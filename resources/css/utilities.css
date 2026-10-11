@@ -1,0 +1,313 @@
+/* Utility Classes for Design System */
+
+/* Spacing Utilities */
+.gap-0 { gap: 0; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 1rem; }
+.gap-4 { gap: 1.5rem; }
+.gap-5 { gap: 2rem; }
+
+/* Card Enhancements */
+.card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.card-gradient-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+}
+
+.card-gradient-danger {
+    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    color: white;
+}
+
+.card-gradient-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+/* Button Enhancements */
+.btn-soft-primary {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    border: 1px solid rgba(13, 110, 253, 0.2);
+}
+
+.btn-soft-primary:hover {
+    background-color: rgba(13, 110, 253, 0.2);
+    color: #0d6efd;
+}
+
+.btn-soft-success {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #198754;
+    border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.btn-soft-success:hover {
+    background-color: rgba(25, 135, 84, 0.2);
+    color: #198754;
+}
+
+.btn-soft-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.btn-soft-danger:hover {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+/* Table Enhancements */
+.table-responsive-custom {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-hover-custom tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-hover-custom tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.table-striped-custom tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Form Enhancements */
+.form-floating-custom {
+    position: relative;
+}
+
+.form-floating-custom > .form-control:focus ~ label,
+.form-floating-custom > .form-control:not(:placeholder-shown) ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.form-control-custom {
+    border-radius: 0.375rem;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control-custom:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Badge Enhancements */
+.badge-soft {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+}
+
+.badge-soft-primary {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.badge-soft-success {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #198754;
+}
+
+.badge-soft-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.badge-soft-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+}
+
+.badge-soft-info {
+    background-color: rgba(13, 202, 240, 0.1);
+    color: #0dcaf0;
+}
+
+/* Avatar Enhancements */
+.avatar-circle {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatar-square {
+    border-radius: 0.375rem;
+    object-fit: cover;
+}
+
+.avatar-rounded {
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.avatar-xs { width: 24px; height: 24px; }
+.avatar-sm { width: 32px; height: 32px; }
+.avatar-md { width: 40px; height: 40px; }
+.avatar-lg { width: 56px; height: 56px; }
+.avatar-xl { width: 80px; height: 80px; }
+
+/* Divider Enhancements */
+.divider {
+    height: 1px;
+    background-color: #dee2e6;
+    margin: 1rem 0;
+}
+
+.divider-vertical {
+    width: 1px;
+    height: 100%;
+    background-color: #dee2e6;
+    margin: 0 1rem;
+}
+
+.divider-dashed {
+    border-style: dashed;
+}
+
+.divider-dotted {
+    border-style: dotted;
+}
+
+/* Shadow Utilities */
+.shadow-sm-custom {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.shadow-md-custom {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.shadow-lg-custom {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+.shadow-none-custom {
+    box-shadow: none !important;
+}
+
+/* Border Radius Utilities */
+.rounded-sm-custom { border-radius: 0.25rem; }
+.rounded-md-custom { border-radius: 0.375rem; }
+.rounded-lg-custom { border-radius: 0.5rem; }
+.rounded-xl-custom { border-radius: 0.75rem; }
+.rounded-2xl-custom { border-radius: 1rem; }
+.rounded-full-custom { border-radius: 9999px; }
+
+/* Text Utilities */
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Animation Utilities */
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-out;
+}
+
+.slide-in-up {
+    animation: slideInUp 0.3s ease-out;
+}
+
+.slide-in-down {
+    animation: slideInDown 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Utilities */
+@media (max-width: 576px) {
+    .hide-mobile {
+        display: none !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .hide-tablet {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .hide-desktop {
+        display: none !important;
+    }
+}
+
+/* Print Utilities */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+}

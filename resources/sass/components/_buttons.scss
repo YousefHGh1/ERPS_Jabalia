@@ -1,0 +1,217 @@
+// ==========================================
+// نظام الأزرار الموحد | Unified Button System
+// ==========================================
+
+.btn {
+    font-family: $font-primary;
+    font-weight: $font-medium;
+    border-radius: $radius-md;
+    transition: $transition-all;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($jabalia-blue, 0.25);
+    }
+
+    &.btn-primary {
+        background: linear-gradient(135deg, $jabalia-blue 0%, $jabalia-blue-dark 100%);
+        border: none;
+        box-shadow: $shadow-colored-sm;
+
+        &:hover {
+            background: linear-gradient(135deg, $jabalia-blue-dark 0%, darken($jabalia-blue-dark, 10%) 100%);
+            box-shadow: $shadow-colored-md;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &.btn-success {
+        background: linear-gradient(135deg, $jabalia-success 0%, darken($jabalia-success, 10%) 100%);
+        border: none;
+        box-shadow: 0 2px 4px rgba($jabalia-success, 0.2);
+
+        &:hover {
+            background: linear-gradient(135deg, darken($jabalia-success, 10%) 0%, darken($jabalia-success, 20%) 100%);
+            box-shadow: 0 4px 8px rgba($jabalia-success, 0.3);
+            transform: translateY(-1px);
+        }
+    }
+
+    &.btn-warning {
+        background: linear-gradient(135deg, $jabalia-warning 0%, darken($jabalia-warning, 10%) 100%);
+        border: none;
+        box-shadow: 0 2px 4px rgba($jabalia-warning, 0.2);
+
+        &:hover {
+            background: linear-gradient(135deg, darken($jabalia-warning, 10%) 0%, darken($jabalia-warning, 20%) 100%);
+            box-shadow: 0 4px 8px rgba($jabalia-warning, 0.3);
+            transform: translateY(-1px);
+        }
+    }
+
+    &.btn-danger {
+        background: linear-gradient(135deg, $jabalia-danger 0%, darken($jabalia-danger, 10%) 100%);
+        border: none;
+        box-shadow: 0 2px 4px rgba($jabalia-danger, 0.2);
+
+        &:hover {
+            background: linear-gradient(135deg, darken($jabalia-danger, 10%) 0%, darken($jabalia-danger, 20%) 100%);
+            box-shadow: 0 4px 8px rgba($jabalia-danger, 0.3);
+            transform: translateY(-1px);
+        }
+    }
+
+    &.btn-info {
+        background: linear-gradient(135deg, $jabalia-info 0%, darken($jabalia-info, 10%) 100%);
+        border: none;
+        box-shadow: 0 2px 4px rgba($jabalia-info, 0.2);
+
+        &:hover {
+            background: linear-gradient(135deg, darken($jabalia-info, 10%) 0%, darken($jabalia-info, 20%) 100%);
+            box-shadow: 0 4px 8px rgba($jabalia-info, 0.3);
+            transform: translateY(-1px);
+        }
+    }
+
+    // Button Sizes
+    &.btn-sm {
+        padding: $btn-padding-sm;
+        font-size: $btn-font-sm;
+        border-radius: $btn-radius-sm;
+    }
+
+    &.btn-lg {
+        padding: $btn-padding-lg;
+        font-size: $btn-font-lg;
+        border-radius: $btn-radius-lg;
+    }
+
+    // Outline Buttons
+    &.btn-outline-primary {
+        border-color: $jabalia-blue;
+        color: $jabalia-blue;
+
+        &:hover {
+            background-color: $jabalia-blue;
+            color: white;
+        }
+    }
+
+    &.btn-outline-success {
+        border-color: $jabalia-success;
+        color: $jabalia-success;
+
+        &:hover {
+            background-color: $jabalia-success;
+            color: white;
+        }
+    }
+
+    &.btn-outline-warning {
+        border-color: $jabalia-warning;
+        color: $jabalia-warning;
+
+        &:hover {
+            background-color: $jabalia-warning;
+            color: white;
+        }
+    }
+
+    &.btn-outline-danger {
+        border-color: $jabalia-danger;
+        color: $jabalia-danger;
+
+        &:hover {
+            background-color: $jabalia-danger;
+            color: white;
+        }
+    }
+
+    // Ghost Buttons
+    &.btn-ghost {
+        background: transparent;
+        border: 1px solid $border-color-base;
+        color: $jabalia-gray-700;
+
+        &:hover {
+            background: $jabalia-bg-tertiary;
+            border-color: $border-color-dark;
+        }
+    }
+
+    // Icon Buttons
+    &.btn-icon {
+        padding: $spacing-2;
+        width: 40px;
+        height: 40px;
+        border-radius: $radius-full;
+
+        &.btn-sm {
+            width: 32px;
+            height: 32px;
+            padding: $spacing-1;
+        }
+
+        &.btn-lg {
+            width: 48px;
+            height: 48px;
+            padding: $spacing-3;
+        }
+    }
+
+    // Loading State
+    &.btn-loading {
+        position: relative;
+        pointer-events: none;
+        opacity: 0.7;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: btn-spinner 0.6s linear infinite;
+        }
+
+        .btn-text {
+            visibility: hidden;
+        }
+    }
+}
+
+@keyframes btn-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Button Groups
+.btn-group {
+    .btn {
+        border-radius: 0;
+
+        &:first-child {
+            border-top-left-radius: $radius-md;
+            border-bottom-left-radius: $radius-md;
+        }
+
+        &:last-child {
+            border-top-right-radius: $radius-md;
+            border-bottom-right-radius: $radius-md;
+        }
+    }
+}

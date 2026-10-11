@@ -1,0 +1,1 @@
+php artisan import:craft-licenses "قسم الحرف (1).xlsx" --fresh --skip-invalid

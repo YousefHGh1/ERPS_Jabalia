@@ -1,0 +1,75 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# =====================================================================
+# رفع الأداء: ضغط المحتوى (Gzip) لتقليل حجم النقل بشكل كبير (~80% لملفات JS/CSS)
+# =====================================================================
+<IfModule mod_deflate.c>
+    # ملاحظة: AddOutputFilterByType يأتي من mod_filter، لذا نتحقق منه أيضاً لتفادي خطأ 500 على سيرفرات لا تُفعّله
+    <IfModule mod_filter.c>
+        # ضغط الاستجابات النصية الشائعة
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+        AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+        AddOutputFilterByType DEFLATE application/json application/xml
+        AddOutputFilterByType DEFLATE application/rss+xml application/atom+xml
+        AddOutputFilterByType DEFLATE application/vnd.ms-fontobject application/x-font-ttf
+        AddOutputFilterByType DEFLATE font/opentype font/ttf font/eot font/otf image/svg+xml
+    </IfModule>
+
+    # لا تُضغط الملفات المضغوطة مسبقاً (صور، فيديو، خطوط woff2، الأرشيفات)
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|avif|ico|zip|gz|rar|7z|mp4|webm|woff2?)$ no-gzip dont-vary
+</IfModule>
+
+# =====================================================================
+# رفع الأداء: ترويسات التخزين المؤقت (Cache-Control / Expires)
+# =====================================================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    ExpiresByType text/css               "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript        "access plus 1 month"
+    ExpiresByType image/svg+xml          "access plus 1 month"
+    ExpiresByType image/png              "access plus 1 month"
+    ExpiresByType image/jpeg             "access plus 1 month"
+    ExpiresByType image/webp             "access plus 1 month"
+    ExpiresByType image/avif             "access plus 1 month"
+    ExpiresByType image/gif              "access plus 1 month"
+    ExpiresByType image/x-icon           "access plus 1 month"
+    ExpiresByType font/woff              "access plus 1 year"
+    ExpiresByType font/woff2             "access plus 1 year"
+    ExpiresByType font/ttf               "access plus 1 year"
+    ExpiresByType application/font-woff  "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+    # الأصول الثابتة (أسماء ثابتة): كاش لمدة شهر
+    <FilesMatch "\.(?:js|css|woff2?|ttf|eot|svg|png|jpe?g|gif|webp|avif|ico)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+
+    # أصول Vite المُبصّمة (اسم يحتوي hash): كاش immutable لسنة كاملة
+    <FilesMatch "^(?:app|vendor|manifest)-[0-9a-f]{6,}\.(?:js|css|json)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>

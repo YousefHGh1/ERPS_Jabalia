@@ -1,0 +1,21 @@
+// Branding colors for Municipality of Jabalia
+$jabalia-primary: #3699FF;
+$jabalia-success: #1BC5BD;
+$jabalia-warning: #FFA800;
+$jabalia-danger:  #F64E60;
+$jabalia-info:    #8950FC;
+
+// Bootstrap color overrides
+$primary:   $jabalia-primary;
+$success:   $jabalia-success;
+$warning:   $jabalia-warning;
+$danger:    $jabalia-danger;
+$info:      $jabalia-info;
+
+// Body
+$body-bg: #ffffff;
+
+// Typography - unify with Cairo UI font
+$font-family-sans-serif: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-size-base: 0.95rem;
+$line-height-base: 1.6;

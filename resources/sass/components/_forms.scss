@@ -1,0 +1,232 @@
+// ==========================================
+// نظام النماذج الموحد | Unified Form System
+// ==========================================
+
+.form-control {
+    font-family: $font-primary;
+    font-size: $font-base;
+    border-radius: $radius-md;
+    border: 1px solid $border-color-base;
+    background: $form-bg-base;
+    padding: $form-padding-base;
+    transition: $transition-colors;
+
+    &:focus {
+        border-color: $form-border-focus;
+        box-shadow: 0 0 0 3px rgba($jabalia-blue, 0.1);
+        background: $jabalia-bg-primary;
+    }
+
+    &:disabled {
+        background: $form-bg-disabled;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    &.is-invalid {
+        border-color: $jabalia-danger;
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($jabalia-danger, 0.1);
+        }
+    }
+
+    &.is-valid {
+        border-color: $jabalia-success;
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($jabalia-success, 0.1);
+        }
+    }
+}
+
+.form-select {
+    font-family: $font-primary;
+    font-size: $font-base;
+    border-radius: $radius-md;
+    border: 1px solid $border-color-base;
+    background: $form-bg-base;
+    padding: $form-padding-base;
+    transition: $transition-colors;
+
+    &:focus {
+        border-color: $form-border-focus;
+        box-shadow: 0 0 0 3px rgba($jabalia-blue, 0.1);
+        background: $jabalia-bg-primary;
+    }
+}
+
+.form-label {
+    font-weight: $font-medium;
+    color: $jabalia-gray-700;
+    margin-bottom: $spacing-2;
+    font-size: $font-sm;
+
+    &.required::after {
+        content: ' *';
+        color: $jabalia-danger;
+    }
+}
+
+.form-text {
+    font-size: $font-sm;
+    color: $jabalia-gray-500;
+    margin-top: $spacing-1;
+}
+
+.form-check {
+    padding-left: $spacing-6;
+    margin-bottom: $spacing-3;
+
+    .form-check-input {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-left: -1.75rem;
+        margin-top: 0.1rem;
+        border-radius: $radius-sm;
+        border: 1px solid $border-color-base;
+        cursor: pointer;
+        transition: $transition-colors;
+
+        &:checked {
+            background-color: $jabalia-blue;
+            border-color: $jabalia-blue;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($jabalia-blue, 0.1);
+        }
+    }
+
+    .form-check-label {
+        cursor: pointer;
+        font-size: $font-base;
+        color: $jabalia-gray-700;
+    }
+}
+
+.form-check-inline {
+    display: inline-flex;
+    margin-right: $spacing-4;
+}
+
+// Form Groups
+.form-group {
+    margin-bottom: $spacing-4;
+
+    &.mb-0 {
+        margin-bottom: 0;
+    }
+}
+
+// Input Groups
+.input-group {
+    .input-group-text {
+        background: $jabalia-bg-secondary;
+        border: 1px solid $border-color-base;
+        color: $jabalia-gray-600;
+        font-weight: $font-medium;
+        border-radius: $radius-md 0 0 $radius-md;
+
+        &:first-child {
+            border-radius: $radius-md 0 0 $radius-md;
+        }
+
+        &:last-child {
+            border-radius: 0 $radius-md $radius-md 0;
+        }
+    }
+
+    .form-control {
+        &:first-child {
+            border-radius: $radius-md 0 0 $radius-md;
+        }
+
+        &:last-child {
+            border-radius: 0 $radius-md $radius-md 0;
+        }
+
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+    }
+}
+
+// Validation Feedback
+.invalid-feedback {
+    font-size: $font-sm;
+    color: $jabalia-danger;
+    margin-top: $spacing-1;
+}
+
+.valid-feedback {
+    font-size: $font-sm;
+    color: $jabalia-success;
+    margin-top: $spacing-1;
+}
+
+// Floating Labels
+.form-floating {
+    .form-control {
+        padding: $form-padding-base;
+
+        &:focus ~ label,
+        &:not(:placeholder-shown) ~ label {
+            color: $jabalia-blue;
+        }
+    }
+
+    label {
+        color: $jabalia-gray-500;
+        padding: $spacing-3 $spacing-4;
+    }
+}
+
+// Search Input
+.input-search {
+    position: relative;
+
+    .search-icon {
+        position: absolute;
+        right: $spacing-4;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $jabalia-gray-400;
+        pointer-events: none;
+    }
+
+    .form-control {
+        padding-right: $spacing-10;
+    }
+}
+
+// File Input
+.form-file {
+    .form-control[type='file'] {
+        padding: $spacing-3;
+        border: 2px dashed $border-color-base;
+        background: $jabalia-bg-secondary;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+            border-color: $jabalia-blue;
+            background: rgba($jabalia-blue, 0.05);
+        }
+
+        &::file-selector-button {
+            background: $jabalia-blue;
+            color: white;
+            border: none;
+            padding: $spacing-2 $spacing-4;
+            border-radius: $radius-md;
+            margin-left: $spacing-2;
+            cursor: pointer;
+            transition: $transition-colors;
+
+            &:hover {
+                background: $jabalia-blue-dark;
+            }
+        }
+    }
+}

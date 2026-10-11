@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Admin Dashboard Styles — أنماط موحدة لصفحات الـ admin
+   ========================================================================== */
+
+:root {
+    --admin-primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --admin-success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --admin-warning-gradient: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%);
+    --admin-danger-gradient: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    --admin-info-gradient: linear-gradient(135deg, #8950FC 0%, #E4E6EF 100%);
+    --admin-dark-gradient: linear-gradient(135deg, #3F4254 0%, #181C32 100%);
+}
+
+/* بطاقات الإحصائيات الموحدة */
+.admin-stat-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: none;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.admin-stat-card .icon-box {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.admin-stat-card .icon-box.bg-primary-grad { background: var(--admin-primary-gradient); }
+.admin-stat-card .icon-box.bg-success-grad { background: var(--admin-success-gradient); }
+.admin-stat-card .icon-box.bg-warning-grad { background: var(--admin-warning-gradient); }
+.admin-stat-card .icon-box.bg-danger-grad { background: var(--admin-danger-gradient); }
+.admin-stat-card .icon-box.bg-info-grad { background: var(--admin-info-gradient); }
+.admin-stat-card .icon-box.bg-dark-grad { background: var(--admin-dark-gradient); }
+
+/* بطاقات الإجراءات السريعة */
+.admin-quick-action-card {
+    border: 1px solid #ebedf3;
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+
+.admin-quick-action-card:hover {
+    background: #f8f9ff;
+    border-color: #3699FF;
+    transform: scale(1.05);
+}
+
+.admin-quick-action-card i {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+/* تحسينات الجداول */
+.admin-table .table thead th {
+    background-color: #f3f6f9;
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+/* الرموز والصور */
+.admin-symbol-light .symbol-label {
+    background-color: #f3f6f9;
+}
+
+/* حاويات الرسوم البيانية */
+.admin-chart-container {
+    min-height: 350px;
+    width: 100%;
+    position: relative;
+}
+
+.admin-chart {
+    min-height: 300px;
+    width: 100%;
+    position: relative;
+}
+
+/* تحسينات عامة للكروت */
+.admin-card-custom {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: none;
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.admin-card-custom:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}

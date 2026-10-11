@@ -1,0 +1,20 @@
+// Fonts - Cairo as primary Arabic UI font
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap');
+
+// Design System - Unified variables
+@import 'design-system';
+
+// Legacy Variables (for backward compatibility)
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Custom Components
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/forms';
+@import 'components/tables';
+@import 'components/alerts';
+@import 'components/badges';
+@import 'components/sidebar';

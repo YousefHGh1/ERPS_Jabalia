@@ -1,0 +1,216 @@
+// ==========================================
+// نظام التنبيهات الموحد | Unified Alert System
+// ==========================================
+
+.alert {
+    border-radius: $alert-radius-base;
+    border: $alert-border-width solid;
+    padding: $alert-padding-base;
+    margin-bottom: $spacing-4;
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+    font-family: $font-primary;
+
+    .alert-icon {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-lg;
+    }
+
+    .alert-content {
+        flex: 1;
+
+        .alert-title {
+            font-weight: $font-semibold;
+            margin-bottom: $spacing-1;
+            font-size: $font-base;
+        }
+
+        .alert-message {
+            font-size: $font-sm;
+            line-height: $leading-relaxed;
+        }
+    }
+
+    .alert-close {
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        font-size: $font-lg;
+        color: inherit;
+        opacity: 0.7;
+        cursor: pointer;
+        transition: $transition-opacity;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    // Alert Variants
+    &.alert-primary {
+        background: rgba($jabalia-blue, 0.05);
+        border-color: $jabalia-blue-light;
+        color: darken($jabalia-blue, 20%);
+
+        .alert-icon {
+            color: $jabalia-blue;
+        }
+    }
+
+    &.alert-success {
+        background: $alert-bg-success;
+        border-color: $alert-border-success;
+        color: $alert-text-success;
+
+        .alert-icon {
+            color: $jabalia-success;
+        }
+    }
+
+    &.alert-warning {
+        background: $alert-bg-warning;
+        border-color: $alert-border-warning;
+        color: $alert-text-warning;
+
+        .alert-icon {
+            color: $jabalia-warning;
+        }
+    }
+
+    &.alert-danger {
+        background: $alert-bg-danger;
+        border-color: $alert-border-danger;
+        color: $alert-text-danger;
+
+        .alert-icon {
+            color: $jabalia-danger;
+        }
+    }
+
+    &.alert-info {
+        background: $alert-bg-info;
+        border-color: $alert-border-info;
+        color: $alert-text-info;
+
+        .alert-icon {
+            color: $jabalia-info;
+        }
+    }
+}
+
+// Alert Sizes
+.alert-sm {
+    padding: $spacing-3;
+
+    .alert-icon {
+        width: 20px;
+        height: 20px;
+        font-size: $font-base;
+    }
+
+    .alert-title {
+        font-size: $font-sm;
+    }
+
+    .alert-message {
+        font-size: $font-xs;
+    }
+}
+
+.alert-lg {
+    padding: $spacing-6;
+
+    .alert-icon {
+        width: 32px;
+        height: 32px;
+        font-size: $font-2xl;
+    }
+
+    .alert-title {
+        font-size: $font-lg;
+    }
+
+    .alert-message {
+        font-size: $font-base;
+    }
+}
+
+// Alert Dismissible
+.alert-dismissible {
+    padding-right: $spacing-10;
+    position: relative;
+
+    .btn-close {
+        position: absolute;
+        top: $spacing-3;
+        right: $spacing-3;
+        padding: 0;
+        background: none;
+        border: none;
+        font-size: $font-lg;
+        color: inherit;
+        opacity: 0.7;
+        cursor: pointer;
+        transition: $transition-opacity;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+// Alert with Icon Only
+.alert-icon-only {
+    justify-content: center;
+    padding: $spacing-4;
+
+    .alert-icon {
+        font-size: $font-3xl;
+    }
+
+    .alert-content {
+        display: none;
+    }
+}
+
+// Solid Alerts
+.alert-solid {
+    color: white;
+    border: none;
+
+    &.alert-primary {
+        background: linear-gradient(135deg, $jabalia-blue 0%, $jabalia-blue-dark 100%);
+    }
+
+    &.alert-success {
+        background: linear-gradient(135deg, $jabalia-success 0%, darken($jabalia-success, 15%) 100%);
+    }
+
+    &.alert-warning {
+        background: linear-gradient(135deg, $jabalia-warning 0%, darken($jabalia-warning, 15%) 100%);
+    }
+
+    &.alert-danger {
+        background: linear-gradient(135deg, $jabalia-danger 0%, darken($jabalia-danger, 15%) 100%);
+    }
+
+    &.alert-info {
+        background: linear-gradient(135deg, $jabalia-info 0%, darken($jabalia-info, 15%) 100%);
+    }
+}
+
+// Alert Links
+.alert a {
+    font-weight: $font-semibold;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

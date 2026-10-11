@@ -1,0 +1,5006 @@
+[
+    {
+        "czn_id": "800696569",
+        "name": "ابراهيم عيد عبدالله",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0597287453",
+        "birthdate": "1987-07-20",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 800696569,
+            "work_start_date": "2021-06-10",
+            "ministry_date_appointment": "2021-06-10",
+            "ministry_installation_date": "2021-06-10",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "فاطمه محمد عبد الفتاح عبدالله",
+                "czn_id": "951207745",
+                "gender": "أنثى",
+                "birth": "1956-09-14",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد  ابراهيم عيد عبدالله",
+                "czn_id": "445804263",
+                "gender": "ذكر",
+                "birth": "2022-12-02",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سهيلة ابراهيم عيد عبدالله",
+                "czn_id": "443129556",
+                "gender": "أنثى",
+                "birth": "2020-02-09",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ايمان منيب جمال حمودة",
+                "czn_id": "803340447",
+                "gender": "أنثى",
+                "birth": "1993-07-03",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عيد ابراهيم محمد عبدالله",
+                "czn_id": "915832315",
+                "gender": "ذكر",
+                "birth": "1935-01-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "محمود ابراهيم عيد عبدالله",
+                "czn_id": "470581000",
+                "gender": "ذكر",
+                "birth": "2025-05-06",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400952321",
+        "name": "احمد جميل عبدالهادي صالح",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "بيت لاهيا",
+        "mobile": "0595151393",
+        "birthdate": "1995-12-08",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مشغل مضخة",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 400952321,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مشغل مضخة",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "جميل عبد الهادي قدوره صالح",
+                "czn_id": "960877587",
+                "gender": "ذكر",
+                "birth": "1957-12-18",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "مطيعه أحمد قدوره صالح",
+                "czn_id": "905821708",
+                "gender": "أنثى",
+                "birth": "1964-08-15",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803737444",
+        "name": "احمد داوود عبدالرؤوف مسعود",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0597823642",
+        "birthdate": "1992-08-14",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "كاتب",
+        "job_category": "الفئة الخامسة",
+        "job_info": {
+            "emp_number": 803737444,
+            "work_start_date": "2020-11-01",
+            "ministry_date_appointment": "2020-11-01",
+            "ministry_installation_date": "2020-11-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كاتب",
+            "current_degree": "6",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس لغة عربية 2016 | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "داود عبد الرؤوف محمد مسعود",
+                "czn_id": "902526136",
+                "gender": "ذكر",
+                "birth": "1960-03-21",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "يسرى محي الدين أحمد مسعود",
+                "czn_id": "920563541",
+                "gender": "أنثى",
+                "birth": "1970-10-02",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "نشوى نبيل عبد المعطي مسعود",
+                "czn_id": "803688738",
+                "gender": "أنثى",
+                "birth": "1992-08-14",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "كريم أحمد داود مسعود",
+                "czn_id": "438230757",
+                "gender": "ذكر",
+                "birth": "2017-02-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "يوسف أحمد داود مسعود",
+                "czn_id": "443004361",
+                "gender": "ذكر",
+                "birth": "2021-03-18",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "804409795",
+        "name": "احمد رجب رمضان دكه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0597926036",
+        "birthdate": "1993-07-10",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "محاسب",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 804409795,
+            "work_start_date": "2017-11-01",
+            "ministry_date_appointment": "2017-11-01",
+            "ministry_installation_date": "2017-11-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "محاسب",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس محاسبة 2016 | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "منال أحمد رجب دكه",
+                "czn_id": "443006523",
+                "gender": "أنثى",
+                "birth": "2020-10-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رجب أحمد رجب دكه",
+                "czn_id": "445855844",
+                "gender": "ذكر",
+                "birth": "2023-01-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رجب رمضان علي دكه",
+                "czn_id": "964828073",
+                "gender": "ذكر",
+                "birth": "1968-10-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "منال حسن محمود دكه",
+                "czn_id": "915525182",
+                "gender": "أنثى",
+                "birth": "1971-07-28",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "تمارة خضر موسى دكه",
+                "czn_id": "404053076",
+                "gender": "أنثى",
+                "birth": "1998-07-16",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801601444",
+        "name": "احمد سليمان اسماعيل مقاط",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0592281160",
+        "birthdate": "1986-08-10",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل",
+        "job_category": "الفئة الخامسة",
+        "job_info": {
+            "emp_number": 801601444,
+            "work_start_date": "2021-08-20",
+            "ministry_date_appointment": "2021-08-20",
+            "ministry_installation_date": "2021-08-20",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل",
+            "current_degree": "6",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "سليمان اسماعيل محمد مقاط",
+                "czn_id": "921883161",
+                "gender": "ذكر",
+                "birth": "1963-07-09",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "اسماعيل أحمد سليمان مقاط",
+                "czn_id": "429433576",
+                "gender": "ذكر",
+                "birth": "2009-12-16",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نداء ابراهيم اسماعيل مقاط",
+                "czn_id": "801936782",
+                "gender": "أنثى",
+                "birth": "1988-03-25",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "فدوى أحمد سليمان مقاط",
+                "czn_id": "424441541",
+                "gender": "أنثى",
+                "birth": "2006-12-22",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نهله زكي محمد مقاط",
+                "czn_id": "921883054",
+                "gender": "أنثى",
+                "birth": "1963-12-08",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "سليمان أحمد سليمان مقاط",
+                "czn_id": "425848363",
+                "gender": "ذكر",
+                "birth": "2008-03-10",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "فداء أحمد سليمان مقاط",
+                "czn_id": "440432045",
+                "gender": "أنثى",
+                "birth": "2018-06-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ألاء أحمد سليمان مقاط",
+                "czn_id": "440432052",
+                "gender": "أنثى",
+                "birth": "2018-06-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عبد الله أحمد سليمان مقاط",
+                "czn_id": "433961935",
+                "gender": "ذكر",
+                "birth": "2013-02-10",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "408828903",
+        "name": "احمد عوض عبد خلة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0595039395",
+        "birthdate": "2002-11-12",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "ميكانيكي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 408828903,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "ميكانيكي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "حلا خالد رمضان الهسي",
+                "czn_id": "421741141",
+                "gender": "أنثى",
+                "birth": "2007-11-15",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عوض عبد مصطفى خلة",
+                "czn_id": "906116033",
+                "gender": "ذكر",
+                "birth": "1963-11-10",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "امل أحمد محمد خلة",
+                "czn_id": "900344136",
+                "gender": "أنثى",
+                "birth": "1974-11-15",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "406096511",
+        "name": "احمد عيسى فسفوس",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0593417110",
+        "birthdate": "2000-07-27",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل خدمات",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 406096511,
+            "work_start_date": "2022-05-22",
+            "ministry_date_appointment": "2022-05-22",
+            "ministry_installation_date": "2022-05-22",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل خدمات",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: دبلوم ادارة اعمال | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "شام أحمد عيسى فسفوس",
+                "czn_id": "445466048",
+                "gender": "أنثى",
+                "birth": "2021-11-07",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "المعتصم أحمد عيسى فسفوس",
+                "czn_id": "470385436",
+                "gender": "ذكر",
+                "birth": "2024-05-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "دعاء محمد مصطفى القانوع",
+                "czn_id": "407097005",
+                "gender": "أنثى",
+                "birth": "2001-03-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نوال محمد محمد فسفوس",
+                "czn_id": "923305593",
+                "gender": "أنثى",
+                "birth": "1966-09-27",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "جهاد أحمد عيسى فسفوس",
+                "czn_id": "471311381",
+                "gender": "ذكر",
+                "birth": "2026-08-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عيسى ابراهيم فرج فسفوس",
+                "czn_id": "946669868",
+                "gender": "ذكر",
+                "birth": "1965-10-20",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "402998900",
+        "name": "اسعد ماهر محمد عبدربه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0599361350",
+        "birthdate": "1997-06-23",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 402998900,
+            "work_start_date": "2023-09-10",
+            "ministry_date_appointment": "2023-09-10",
+            "ministry_installation_date": "2023-09-10",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "ماهر محمد عبدالله عبد ربه",
+                "czn_id": "972973754",
+                "gender": "ذكر",
+                "birth": "1972-05-21",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "رنا أحمد ابراهيم عبد القادر",
+                "czn_id": "409671146",
+                "gender": "أنثى",
+                "birth": "2004-05-02",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "دنيا ربيع عبدالله عبد ربه",
+                "czn_id": "900846445",
+                "gender": "أنثى",
+                "birth": "1975-03-03",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400254942",
+        "name": "اسلام محمد أحمد صالحة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0598334697",
+        "birthdate": "1994-11-12",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 400254942,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "يامن اسلام محمد صالحه",
+                "czn_id": "471063404",
+                "gender": "ذكر",
+                "birth": "2026-02-06",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رنا موسى محمود صالحه",
+                "czn_id": "900268863",
+                "gender": "أنثى",
+                "birth": "1974-08-19",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "هند عبد السلام أحمد صالحه",
+                "czn_id": "803727650",
+                "gender": "أنثى",
+                "birth": "1993-02-14",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد أحمد محمد صالحه",
+                "czn_id": "960879492",
+                "gender": "ذكر",
+                "birth": "1967-10-03",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "424617397",
+        "name": "السيد رائد السيد أبو وردة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0599771996",
+        "birthdate": "2007-04-03",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 424617397,
+            "work_start_date": "2020-09-01",
+            "ministry_date_appointment": "2020-09-01",
+            "ministry_installation_date": "2020-09-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "شهد صلاح السيد ابووردة",
+                "czn_id": "429599087",
+                "gender": "أنثى",
+                "birth": "2010-03-05",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سميه عوني محمد ابووردة",
+                "czn_id": "800349524",
+                "gender": "أنثى",
+                "birth": "1984-08-05",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "رائد السيد علي ابووردة",
+                "czn_id": "909091928",
+                "gender": "ذكر",
+                "birth": "1982-01-27",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801584103",
+        "name": "ايمن اكرم حسين شنن",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - النزله",
+        "mobile": "0595354839",
+        "birthdate": "1986-12-21",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 801584103,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "أكرم أيمن اكرم شنن",
+                "czn_id": "437294580",
+                "gender": "ذكر",
+                "birth": "2016-08-07",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "انتصار ابراهيم محمد شنن",
+                "czn_id": "916215163",
+                "gender": "أنثى",
+                "birth": "1968-09-05",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "مرح أيمن اكرم شنن",
+                "czn_id": "432485852",
+                "gender": "أنثى",
+                "birth": "2011-10-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "اكرم حسين داود شنن",
+                "czn_id": "911215101",
+                "gender": "ذكر",
+                "birth": "1966-08-05",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "فرح أيمن اكرم شنن",
+                "czn_id": "434120119",
+                "gender": "أنثى",
+                "birth": "2013-06-28",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "غزل أيمن اكرم شنن",
+                "czn_id": "445265754",
+                "gender": "أنثى",
+                "birth": "2021-06-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هبه ناصر ابراهيم شنن",
+                "czn_id": "800587503",
+                "gender": "أنثى",
+                "birth": "1985-08-21",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نور أيمن اكرم شنن",
+                "czn_id": "441156734",
+                "gender": "أنثى",
+                "birth": "2019-03-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "402968366",
+        "name": "ايمن هاني مصطفي علوان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0599916053",
+        "birthdate": "1997-05-22",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 402968366,
+            "work_start_date": "2022-01-01",
+            "ministry_date_appointment": "2022-01-01",
+            "ministry_installation_date": "2022-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "وجدي أيمن هاني علوان",
+                "czn_id": "471084079",
+                "gender": "ذكر",
+                "birth": "2026-02-21",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هاني مصطفى عبدالله علوان",
+                "czn_id": "901648956",
+                "gender": "ذكر",
+                "birth": "1977-08-20",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "هاني أيمن هاني علوان",
+                "czn_id": "442841698",
+                "gender": "ذكر",
+                "birth": "2020-11-15",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "جواهر علي سالم علوان",
+                "czn_id": "900683723",
+                "gender": "أنثى",
+                "birth": "1978-02-08",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "نورا إياد يوسف علوان",
+                "czn_id": "403079742",
+                "gender": "أنثى",
+                "birth": "1998-01-11",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "جواهر أيمن هاني علوان",
+                "czn_id": "441311933",
+                "gender": "أنثى",
+                "birth": "2019-07-06",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "457102564",
+        "name": "باسل عايش عبد الهادي صالح",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0598059324",
+        "birthdate": "1992-10-01",
+        "birthplace": "سوريا",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 457102564,
+            "work_start_date": "2023-04-01",
+            "ministry_date_appointment": "2023-04-01",
+            "ministry_installation_date": "2023-04-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: دبلوم إدارة الكترونية | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "فؤاد باسل عايش صالح",
+                "czn_id": "470683780",
+                "gender": "ذكر",
+                "birth": "2025-07-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عايش عبد الهادي قدوره صالح",
+                "czn_id": "960877595",
+                "gender": "ذكر",
+                "birth": "1962-06-03",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "أيسل باسل عايش صالح",
+                "czn_id": "445951387",
+                "gender": "أنثى",
+                "birth": "2023-04-30",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "دانيه عوني أحمد صالح",
+                "czn_id": "410086326",
+                "gender": "أنثى",
+                "birth": "1993-08-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "424324580",
+        "name": "بلال امين محمد خلة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0567747909",
+        "birthdate": "2006-09-26",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 424324580,
+            "work_start_date": "2023-01-01",
+            "ministry_date_appointment": "2023-01-01",
+            "ministry_installation_date": "2023-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "امين محمد يوسف خلة",
+                "czn_id": "900687138",
+                "gender": "ذكر",
+                "birth": "1978-10-28",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "حياة محمود يوسف خلة",
+                "czn_id": "801059445",
+                "gender": "أنثى",
+                "birth": "1978-02-10",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803634302",
+        "name": "حسام اكرم محمود ابوشرخ",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0597232082",
+        "birthdate": "1992-08-17",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 803634302,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس تعليم أساسي | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "محمد حسام اكرم ابو شرخ",
+                "czn_id": "441146339",
+                "gender": "ذكر",
+                "birth": "2019-02-07",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "تحرير ابراهيم أحمد ابو شرخ",
+                "czn_id": "945752541",
+                "gender": "أنثى",
+                "birth": "1973-11-02",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "شذا عادل سليم ابو شرخ",
+                "czn_id": "405169269",
+                "gender": "أنثى",
+                "birth": "1999-06-15",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "دعاء حسام اكرم ابو شرخ",
+                "czn_id": "444967087",
+                "gender": "أنثى",
+                "birth": "2021-02-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "اكرم محمود ابراهيم ابو شرخ",
+                "czn_id": "901800490",
+                "gender": "ذكر",
+                "birth": "1966-06-03",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "407124510",
+        "name": "حسام رامز عبدربه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0595632505",
+        "birthdate": "2001-03-27",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 407124510,
+            "work_start_date": "2023-01-01",
+            "ministry_date_appointment": "2023-01-01",
+            "ministry_installation_date": "2023-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "زينب سعيد عبد ربه صالح",
+                "czn_id": "901433904",
+                "gender": "أنثى",
+                "birth": "1978-12-29",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "اسماء سامي خير البطش",
+                "czn_id": "409941747",
+                "gender": "أنثى",
+                "birth": "2004-05-15",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد حسام رامز صالح",
+                "czn_id": "470233313",
+                "gender": "ذكر",
+                "birth": "2024-03-13",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رامز محمد محمد صالح",
+                "czn_id": "921693180",
+                "gender": "ذكر",
+                "birth": "1973-09-04",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "محمد حسام رامز صالح",
+                "czn_id": "471232603",
+                "gender": "ذكر",
+                "birth": "2026-07-08",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802715276",
+        "name": "حسن محمد حسن ابوحجاج",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0597057444",
+        "birthdate": "1990-05-09",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "كاتب",
+        "job_category": "الفئة الخامسة",
+        "job_info": {
+            "emp_number": 802715276,
+            "work_start_date": "2021-12-14",
+            "ministry_date_appointment": "2021-12-14",
+            "ministry_installation_date": "2021-12-14",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كاتب",
+            "current_degree": "6",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس رياضيات | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "ناديه محمد درويش ابو حجاج",
+                "czn_id": "911276301",
+                "gender": "أنثى",
+                "birth": "1962-12-17",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "ناديه حسن محمد ابو حجاج",
+                "czn_id": "443087945",
+                "gender": "أنثى",
+                "birth": "2020-05-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد حسن علي ابو حجاج",
+                "czn_id": "917810467",
+                "gender": "ذكر",
+                "birth": "1956-08-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "عدي حسن محمد ابو حجاج",
+                "czn_id": "445855711",
+                "gender": "ذكر",
+                "birth": "2023-01-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ندى عدنان عبد العزيز الصوري",
+                "czn_id": "405826496",
+                "gender": "أنثى",
+                "birth": "2000-01-04",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803552157",
+        "name": "حمادة بشير إبراهيم زامل",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0598833726",
+        "birthdate": "1992-02-21",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "فني صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 803552157,
+            "work_start_date": "2020-11-11",
+            "ministry_date_appointment": "2020-11-11",
+            "ministry_installation_date": "2020-11-11",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "فني صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "نجوى عبد الرحمن مصلح زامل",
+                "czn_id": "801052366",
+                "gender": "أنثى",
+                "birth": "1970-10-21",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "عماد الدين حماده بشير زامل",
+                "czn_id": "440778686",
+                "gender": "ذكر",
+                "birth": "2018-10-31",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "اسماعيل حماده بشير زامل",
+                "czn_id": "445229578",
+                "gender": "ذكر",
+                "birth": "2021-02-15",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "حمودة حماده بشير زامل",
+                "czn_id": "445379100",
+                "gender": "ذكر",
+                "birth": "2024-05-05",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "بشير ابراهيم محمد زامل",
+                "czn_id": "915833461",
+                "gender": "ذكر",
+                "birth": "1963-02-20",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "قاسم حماده بشير زامل",
+                "czn_id": "442394359",
+                "gender": "ذكر",
+                "birth": "2019-12-11",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نجوى حماده بشير زامل",
+                "czn_id": "445379118",
+                "gender": "أنثى",
+                "birth": "2024-05-05",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "غزل عوني خليل زامل",
+                "czn_id": "405432493",
+                "gender": "أنثى",
+                "birth": "1999-11-03",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801573940",
+        "name": "خالد حسن محمد شعبان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599492130",
+        "birthdate": "1986-10-12",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "كهربائي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 801573940,
+            "work_start_date": "2021-07-01",
+            "ministry_date_appointment": "2021-07-01",
+            "ministry_installation_date": "2021-07-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كهربائي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "حلا خالد حسن شعبان",
+                "czn_id": "470988270",
+                "gender": "أنثى",
+                "birth": "2025-12-29",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "روان خالد حسن شعبان",
+                "czn_id": "430139493",
+                "gender": "أنثى",
+                "birth": "2011-08-31",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "روعة خالد حسن شعبان",
+                "czn_id": "441140175",
+                "gender": "أنثى",
+                "birth": "2019-01-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "فايزه أحمد عبدالله شعبان",
+                "czn_id": "951172881",
+                "gender": "أنثى",
+                "birth": "1964-01-29",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "جنى خالد حسن شعبان",
+                "czn_id": "433549300",
+                "gender": "أنثى",
+                "birth": "2013-03-09",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "حسن خالد حسن شعبان",
+                "czn_id": "445469794",
+                "gender": "ذكر",
+                "birth": "2021-11-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "حسن محمد سعيد شعبان",
+                "czn_id": "925821944",
+                "gender": "ذكر",
+                "birth": "1964-02-20",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "خديجه صالح محمد زكريا شعبان",
+                "czn_id": "803802750",
+                "gender": "أنثى",
+                "birth": "1992-11-26",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "900488578",
+        "name": "رائد محمد محمد زامل",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0595559046",
+        "birthdate": "1977-11-17",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مفتش أسواق",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 900488578,
+            "work_start_date": "2024-09-01",
+            "ministry_date_appointment": "2024-09-01",
+            "ministry_installation_date": "2024-09-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مفتش أسواق",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "فتحية ابراهيم محمد زامل",
+                "czn_id": "915833446",
+                "gender": "أنثى",
+                "birth": "1951-01-01",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "شهد رائد محمد زامل",
+                "czn_id": "426191508",
+                "gender": "أنثى",
+                "birth": "2008-11-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ساميه محمود أحمد زامل",
+                "czn_id": "906588827",
+                "gender": "أنثى",
+                "birth": "1982-04-30",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "علي رائد محمد زامل",
+                "czn_id": "424596682",
+                "gender": "ذكر",
+                "birth": "2007-08-13",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد ياسين رائد محمد زامل",
+                "czn_id": "421296419",
+                "gender": "ذكر",
+                "birth": "2005-03-09",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد محمد حماده زامل",
+                "czn_id": "915833610",
+                "gender": "ذكر",
+                "birth": "1954-01-01",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803931336",
+        "name": "رأفت عامر محمود جنيد",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0598338259",
+        "birthdate": "1993-02-10",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "سائق",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 803931336,
+            "work_start_date": "2022-01-04",
+            "ministry_date_appointment": "2022-01-04",
+            "ministry_installation_date": "2022-01-04",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "سائق",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "عامر محمود محمود جنيد",
+                "czn_id": "900149170",
+                "gender": "ذكر",
+                "birth": "1974-01-20",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "عامر رأفت عامر جنيد",
+                "czn_id": "445098189",
+                "gender": "ذكر",
+                "birth": "2021-03-30",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رجاء رزق جميل جنيد",
+                "czn_id": "900164401",
+                "gender": "أنثى",
+                "birth": "1974-04-06",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "اسماء فضل رشاد حرز",
+                "czn_id": "403631559",
+                "gender": "أنثى",
+                "birth": "1997-12-25",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "900591298",
+        "name": "رمضان محمد سعيد  أبو النور",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0599629310",
+        "birthdate": "1978-01-01",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مشغل مضخة",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 900591298,
+            "work_start_date": "2021-01-07",
+            "ministry_date_appointment": "2021-01-07",
+            "ministry_installation_date": "2021-01-07",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مشغل مضخة",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "شذا رمضان محمد سعيد ابو النور",
+                "czn_id": "429588643",
+                "gender": "أنثى",
+                "birth": "2010-02-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد سعيد مصطفى ابو النور ابو النور",
+                "czn_id": "925875916",
+                "gender": "ذكر",
+                "birth": "1928-01-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "ليان رمضان محمد سعيد ابو النور",
+                "czn_id": "433162799",
+                "gender": "أنثى",
+                "birth": "2012-07-21",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد رمضان محمد سعيد ابو النور",
+                "czn_id": "434603833",
+                "gender": "ذكر",
+                "birth": "2014-09-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ياسمين رمضان محمد سعيد ابو النور",
+                "czn_id": "424552396",
+                "gender": "أنثى",
+                "birth": "2007-09-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "وداد محمود محمد ابو النور",
+                "czn_id": "800281834",
+                "gender": "أنثى",
+                "birth": "1984-05-23",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ملك رمضان محمد سعيد ابو النور",
+                "czn_id": "409380359",
+                "gender": "أنثى",
+                "birth": "2003-11-13",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رولا رمضان محمد سعيد ابو النور",
+                "czn_id": "422634352",
+                "gender": "أنثى",
+                "birth": "2006-02-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801608472",
+        "name": "زكريا ماجد العيد حمودة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0599920496",
+        "birthdate": "1986-07-07",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "مراسل",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 801608472,
+            "work_start_date": "2022-06-01",
+            "ministry_date_appointment": "2022-06-01",
+            "ministry_installation_date": "2022-06-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مراسل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: دبلوم خدمة اجتماعية | المسؤول المباشر: خطاب شهاب"
+        },
+        "dependents": [
+            {
+                "name": "ماجد زكريا ماجد حموده",
+                "czn_id": "432487882",
+                "gender": "ذكر",
+                "birth": "2011-10-27",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "يحيى زكريا ماجد حموده",
+                "czn_id": "433198421",
+                "gender": "ذكر",
+                "birth": "2012-10-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ماجد العبد محمد حموده",
+                "czn_id": "915841969",
+                "gender": "ذكر",
+                "birth": "1966-06-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "رضا صالح شعبان حموده",
+                "czn_id": "802015354",
+                "gender": "أنثى",
+                "birth": "1988-06-28",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "كوكب ابراهيم محمد حموده",
+                "czn_id": "916215155",
+                "gender": "أنثى",
+                "birth": "1966-08-28",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801473760",
+        "name": "سائد طلال نبهان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0562883097",
+        "birthdate": "1986-05-02",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "فني صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 801473760,
+            "work_start_date": "2020-11-11",
+            "ministry_date_appointment": "2020-11-11",
+            "ministry_installation_date": "2020-11-11",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "فني صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "ريماس سائد طلال نبهان",
+                "czn_id": "430042861",
+                "gender": "أنثى",
+                "birth": "2011-07-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "آدم سائد طلال نبهان",
+                "czn_id": "470865205",
+                "gender": "ذكر",
+                "birth": "2025-11-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "خديجه محمد خضر محمد نبهان",
+                "czn_id": "803587831",
+                "gender": "أنثى",
+                "birth": "1992-04-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "طلال أحمد حسن نبهان",
+                "czn_id": "902545847",
+                "gender": "ذكر",
+                "birth": "1963-06-16",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "طلال سائد طلال نبهان",
+                "czn_id": "435893391",
+                "gender": "ذكر",
+                "birth": "2015-03-21",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عفاف مصباح حسن نبهان",
+                "czn_id": "915833958",
+                "gender": "أنثى",
+                "birth": "1966-09-21",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802385377",
+        "name": "سعيد محمدعلي سعيد ابووردة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزلة",
+        "mobile": "0599199401",
+        "birthdate": "1989-07-30",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مفتش أسواق",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 802385377,
+            "work_start_date": "2021-04-01",
+            "ministry_date_appointment": "2021-04-01",
+            "ministry_installation_date": "2021-04-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مفتش أسواق",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "محمد علي سعيد مصطفى ابو وردة",
+                "czn_id": "964818058",
+                "gender": "ذكر",
+                "birth": "1954-10-18",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "ريم ناصر سعيد ابو وردة",
+                "czn_id": "803500453",
+                "gender": "أنثى",
+                "birth": "1991-12-10",
+                "relation": "مطلق",
+                "status": "Active"
+            },
+            {
+                "name": "صباح محمد مصطفى ابووردة",
+                "czn_id": "964827950",
+                "gender": "أنثى",
+                "birth": "1955-11-22",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "تالين سعيد محمد علي ابو وردة",
+                "czn_id": "445737489",
+                "gender": "أنثى",
+                "birth": "2022-07-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "إيناس أحمد محمد ابو وردة",
+                "czn_id": "403003106",
+                "gender": "أنثى",
+                "birth": "1997-07-17",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "مها سعيد محمد علي ابو وردة",
+                "czn_id": "444150734",
+                "gender": "أنثى",
+                "birth": "2023-11-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "420239790",
+        "name": "سمير فهد محمد فودة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0599112454",
+        "birthdate": "2004-06-17",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 420239790,
+            "work_start_date": "2022-08-28",
+            "ministry_date_appointment": "2022-08-28",
+            "ministry_installation_date": "2022-08-28",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "جميله ابراهيم حامد فودة",
+                "czn_id": "945753226",
+                "gender": "أنثى",
+                "birth": "1973-11-08",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "فهد سمير فهد فودة",
+                "czn_id": "470763087",
+                "gender": "ذكر",
+                "birth": "2025-08-20",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هبه محمود أحمد ابو البيض",
+                "czn_id": "409073152",
+                "gender": "أنثى",
+                "birth": "2004-06-06",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "فهد محمد حامد فودة",
+                "czn_id": "925731275",
+                "gender": "ذكر",
+                "birth": "1972-04-04",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "410691794",
+        "name": "شيرين فايز عبدالله ثابت",
+        "gender": "أنثى",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0598827815",
+        "birthdate": "1994-09-01",
+        "birthplace": "اليمن",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "مهندس مدني",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 410691794,
+            "work_start_date": "2020-11-14",
+            "ministry_date_appointment": "2020-11-14",
+            "ministry_installation_date": "2020-11-14",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مهندس مدني",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس هندسة معماري | المسؤول المباشر: اياد الهلول"
+        },
+        "dependents": [
+            {
+                "name": "ميسر موسى ابراهيم ثابت",
+                "czn_id": "902195189",
+                "gender": "أنثى",
+                "birth": "1966-01-01",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400246229",
+        "name": "عبد الرحمن محمد ربيع المطوق",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0597716782",
+        "birthdate": "1994-12-05",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "محاسب",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 400246229,
+            "work_start_date": "2019-10-01",
+            "ministry_date_appointment": "2019-10-01",
+            "ministry_installation_date": "2019-10-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "محاسب",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس محاسبة | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "مريم ديب موسى الزين",
+                "czn_id": "406167130",
+                "gender": "أنثى",
+                "birth": "2000-11-18",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ايمان عبد الرحمن محمد المطوق",
+                "czn_id": "437301062",
+                "gender": "أنثى",
+                "birth": "2020-05-29",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد ربيع محمد المطوق",
+                "czn_id": "951584705",
+                "gender": "ذكر",
+                "birth": "1971-04-24",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "أسيل عبد الرحمن محمد المطوق",
+                "czn_id": "445672819",
+                "gender": "أنثى",
+                "birth": "2022-09-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ايمان موسى خليل المطوق",
+                "czn_id": "901457945",
+                "gender": "أنثى",
+                "birth": "1978-10-26",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "405996869",
+        "name": "عبدالرحمن بسام عبدالرحمن الداهودي",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0566140409",
+        "birthdate": "2000-07-11",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مشغل بئر",
+        "job_category": "الفئة الثالثة",
+        "job_info": {
+            "emp_number": 405996869,
+            "work_start_date": "2022-05-18",
+            "ministry_date_appointment": "2022-05-18",
+            "ministry_installation_date": "2022-05-18",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مشغل بئر",
+            "current_degree": "2",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "بسام عبد الرحمن محمد الداهودي",
+                "czn_id": "915549521",
+                "gender": "ذكر",
+                "birth": "1972-04-24",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "نفين طلال عوض الداهودي",
+                "czn_id": "900597865",
+                "gender": "أنثى",
+                "birth": "1978-02-11",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "فاطمة محمود عوض زياده",
+                "czn_id": "426146395",
+                "gender": "أنثى",
+                "birth": "2009-01-10",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "404277923",
+        "name": "عبدالرحمن عصام محمد الندر",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0599336763",
+        "birthdate": "1998-10-10",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 404277923,
+            "work_start_date": "2021-08-01",
+            "ministry_date_appointment": "2021-08-01",
+            "ministry_installation_date": "2021-08-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "سارة عبد الرحمن عصام الندر",
+                "czn_id": "443200498",
+                "gender": "أنثى",
+                "birth": "2020-03-28",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "بلال  عبد الرحمن عصام الندر",
+                "czn_id": "445855281",
+                "gender": "ذكر",
+                "birth": "2023-01-10",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "موسى عبد الرحمن عصام الندر",
+                "czn_id": "470822818",
+                "gender": "ذكر",
+                "birth": "2025-10-08",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "فريال جمعة مصباح الندر",
+                "czn_id": "953832896",
+                "gender": "أنثى",
+                "birth": "1973-05-19",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "فريال عبد الرحمن عصام الندر",
+                "czn_id": "445420367",
+                "gender": "أنثى",
+                "birth": "2021-07-31",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عصام محمد عبد العظيم حسين الندر",
+                "czn_id": "904297918",
+                "gender": "ذكر",
+                "birth": "1970-07-08",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "شروق ابراهيم محمد الندر",
+                "czn_id": "406987982",
+                "gender": "أنثى",
+                "birth": "2000-11-23",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "422632703",
+        "name": "عبدالعزيز ناصر النجار",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - مشروع عامر",
+        "mobile": "0592255039",
+        "birthdate": "2000-01-01",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل تشغيل",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 422632703,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل تشغيل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "ناصر ابراهيم محمد النجار",
+                "czn_id": "916215148",
+                "gender": "ذكر",
+                "birth": "1964-12-18",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "نبيلة محمد العبد النجار",
+                "czn_id": "964828123",
+                "gender": "أنثى",
+                "birth": "1965-11-27",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "404317695",
+        "name": "علاء خالد مصطفى نبهان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0597186670",
+        "birthdate": "1998-11-13",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 404317695,
+            "work_start_date": "2022-06-13",
+            "ministry_date_appointment": "2022-06-13",
+            "ministry_installation_date": "2022-06-13",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "خالد مصطفى بدوي نبهان",
+                "czn_id": "966167637",
+                "gender": "ذكر",
+                "birth": "1965-10-10",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "نجاح شعبان أحمد نبهان",
+                "czn_id": "936921444",
+                "gender": "أنثى",
+                "birth": "1968-06-23",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "دعاء عدنان مصطفى نبهان",
+                "czn_id": "424269959",
+                "gender": "أنثى",
+                "birth": "2006-08-20",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "402514517",
+        "name": "علاء ناصر صالح دردونة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599177864",
+        "birthdate": "1996-08-19",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "مصور",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 402514517,
+            "work_start_date": "2022-05-01",
+            "ministry_date_appointment": "2022-05-01",
+            "ministry_installation_date": "2022-05-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مصور",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس اعلام واتصال جماهيري | المسؤول المباشر: مها المقيد"
+        },
+        "dependents": [
+            {
+                "name": "ناصر صالح صالح دردونه",
+                "czn_id": "915861256",
+                "gender": "ذكر",
+                "birth": "1963-12-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "اسراء ابراهيم عبد دردونه",
+                "czn_id": "407001601",
+                "gender": "أنثى",
+                "birth": "2000-12-14",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "فايزه محمد ربيع محمد ابو النعيم دردونه",
+                "czn_id": "939867602",
+                "gender": "أنثى",
+                "birth": "1963-09-26",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802887570",
+        "name": "علي نافذ علي القانوع",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0598320568",
+        "birthdate": "1990-10-29",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "كهربائي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 802887570,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كهربائي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "مريم علي نافذ القانوع",
+                "czn_id": "433350873",
+                "gender": "أنثى",
+                "birth": "2012-11-09",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نافذ علي عبدالله القانوع",
+                "czn_id": "910738822",
+                "gender": "ذكر",
+                "birth": "1970-09-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "صفاء علي نافذ القانوع",
+                "czn_id": "434609814",
+                "gender": "أنثى",
+                "birth": "2014-07-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "امل محمد رشدي جمعه القانوع",
+                "czn_id": "801961491",
+                "gender": "أنثى",
+                "birth": "1988-07-29",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "صفاء مصطفى البراوي القانوع",
+                "czn_id": "801174947",
+                "gender": "أنثى",
+                "birth": "1972-11-20",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "403765357",
+        "name": "عماد عطيه عطيه منصور",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0593170219",
+        "birthdate": "1998-05-03",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "مهندس مدني",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 403765357,
+            "work_start_date": "2023-05-01",
+            "ministry_date_appointment": "2023-05-01",
+            "ministry_installation_date": "2023-05-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مهندس مدني",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس هندسة مدنية | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "مريم محمد خضر محمد منصور",
+                "czn_id": "908964422",
+                "gender": "أنثى",
+                "birth": "1981-03-25",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "عُلا نزار مسعود منصور",
+                "czn_id": "408099174",
+                "gender": "أنثى",
+                "birth": "2002-09-18",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عطيه عطيه ديب منصور",
+                "czn_id": "900336058",
+                "gender": "ذكر",
+                "birth": "1974-10-13",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "عطيه عماد عطيه منصور",
+                "czn_id": "471444224",
+                "gender": "ذكر",
+                "birth": "2026-06-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "407024835",
+        "name": "عمر ايمن محمد ابوزيد",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0597319733",
+        "birthdate": "2000-12-19",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 407024835,
+            "work_start_date": "2022-01-01",
+            "ministry_date_appointment": "2022-01-01",
+            "ministry_installation_date": "2022-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "لطيفه جهاد علي ابو زيد",
+                "czn_id": "900297680",
+                "gender": "أنثى",
+                "birth": "1974-11-05",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "أيمن عمر أيمن ابو زيد",
+                "czn_id": "445099336",
+                "gender": "ذكر",
+                "birth": "2021-09-06",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "مجدي عمر أيمن ابو زيد",
+                "czn_id": "445915317",
+                "gender": "ذكر",
+                "birth": "2023-09-05",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أيمن محمد علي ابو زيد",
+                "czn_id": "908745516",
+                "gender": "ذكر",
+                "birth": "1971-02-11",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "أميرة عمر أيمن ابو زيد",
+                "czn_id": "470894684",
+                "gender": "أنثى",
+                "birth": "2025-11-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ياسمين مجدي البحري دغمش",
+                "czn_id": "409376753",
+                "gender": "أنثى",
+                "birth": "2003-11-03",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802874719",
+        "name": "غسان صابر عبدربه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599164242",
+        "birthdate": "1990-12-30",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 802874719,
+            "work_start_date": "2023-07-01",
+            "ministry_date_appointment": "2023-07-01",
+            "ministry_installation_date": "2023-07-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "تالين غسان صابر صالح",
+                "czn_id": "434617569",
+                "gender": "أنثى",
+                "birth": "2014-05-28",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أسيل غسان صابر صالح",
+                "czn_id": "442394730",
+                "gender": "أنثى",
+                "birth": "2019-12-27",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "صابر محمد محمد صالح",
+                "czn_id": "901957464",
+                "gender": "ذكر",
+                "birth": "1961-09-22",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "هديل عمرو محمد صالح",
+                "czn_id": "802942292",
+                "gender": "أنثى",
+                "birth": "1991-01-27",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "حنان محمد رشيد صالح",
+                "czn_id": "915860738",
+                "gender": "أنثى",
+                "birth": "1966-07-26",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "أدهم غسان صابر صالح",
+                "czn_id": "433776259",
+                "gender": "ذكر",
+                "birth": "2013-05-30",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "403003866",
+        "name": "كرم وليد فارس صالحه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599749492",
+        "birthdate": "1997-08-01",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل تشغيل",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 403003866,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل تشغيل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "وليد فارس محمد صالحه",
+                "czn_id": "916828353",
+                "gender": "ذكر",
+                "birth": "1968-09-09",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "شيماء عماد أحمد عمار",
+                "czn_id": "408958684",
+                "gender": "أنثى",
+                "birth": "2003-02-05",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رندة مصطفى محمد صالحه",
+                "czn_id": "901315473",
+                "gender": "أنثى",
+                "birth": "1976-02-25",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802851808",
+        "name": "محمد احمد حسن الخطيب",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0599918201",
+        "birthdate": "1990-12-05",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "كهربائي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 802851808,
+            "work_start_date": "2025-01-01",
+            "ministry_date_appointment": "2025-01-01",
+            "ministry_installation_date": "2025-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كهربائي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "لميس زكريا محمد الخطيب",
+                "czn_id": "401154232",
+                "gender": "أنثى",
+                "birth": "1996-02-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أدم محمد أحمد الخطيب",
+                "czn_id": "445613029",
+                "gender": "ذكر",
+                "birth": "2021-11-29",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد حسن عيسى الخطيب",
+                "czn_id": "961238250",
+                "gender": "ذكر",
+                "birth": "1960-07-18",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "ليان محمد أحمد الخطيب",
+                "czn_id": "439060088",
+                "gender": "أنثى",
+                "birth": "2017-12-10",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أمير محمد أحمد الخطيب",
+                "czn_id": "436043962",
+                "gender": "ذكر",
+                "birth": "2015-12-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ابتسام عثمان حسن الخطيب",
+                "czn_id": "917047854",
+                "gender": "أنثى",
+                "birth": "1965-12-23",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "409878162",
+        "name": "محمد أسامة محمد المطوق",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0598278734",
+        "birthdate": "2004-01-20",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل خدمات",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 409878162,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل خدمات",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "ميسون محمد محمد المطوق",
+                "czn_id": "901286443",
+                "gender": "أنثى",
+                "birth": "1976-03-16",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "اسامه محمد عيسى المطوق",
+                "czn_id": "915827075",
+                "gender": "ذكر",
+                "birth": "1970-04-19",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802161232",
+        "name": "محمد جبر عبدالله ظاهر",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0595727281",
+        "birthdate": "1990-08-05",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "تفتيش ومتابعة",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 802161232,
+            "work_start_date": "2021-06-01",
+            "ministry_date_appointment": "2021-06-01",
+            "ministry_installation_date": "2021-06-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "تفتيش ومتابعة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس | المسؤول المباشر: احمد الطيب"
+        },
+        "dependents": [
+            {
+                "name": "أمل محمد جبر ظاهر",
+                "czn_id": "445805765",
+                "gender": "أنثى",
+                "birth": "2022-12-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رحاب عبد اللطيف سالم ضاهر",
+                "czn_id": "901823450",
+                "gender": "أنثى",
+                "birth": "1961-09-12",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "جبر عبدالله عبد القادر ظاهر",
+                "czn_id": "940238249",
+                "gender": "ذكر",
+                "birth": "1956-01-19",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "عبدالله محمد جبر ظاهر",
+                "czn_id": "442392833",
+                "gender": "ذكر",
+                "birth": "2019-11-30",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سماء بسام زهدي ظاهر",
+                "czn_id": "400174082",
+                "gender": "أنثى",
+                "birth": "1994-10-15",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "421118126",
+        "name": "محمد راغب رديف الهسي",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - النزله",
+        "mobile": "0595813896",
+        "birthdate": "2004-11-26",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 421118126,
+            "work_start_date": "2022-01-01",
+            "ministry_date_appointment": "2022-01-01",
+            "ministry_installation_date": "2022-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "راغب رديف محمد الهسي",
+                "czn_id": "944817832",
+                "gender": "ذكر",
+                "birth": "1968-12-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "امنة بشاره رديف  الهسي",
+                "czn_id": "424275394",
+                "gender": "أنثى",
+                "birth": "2006-10-07",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هدى خميس محمد الهسي",
+                "czn_id": "902980135",
+                "gender": "أنثى",
+                "birth": "1969-08-12",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802972042",
+        "name": "محمد رافت عبدربه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0598286766",
+        "birthdate": "1991-02-22",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 802972042,
+            "work_start_date": "2022-05-08",
+            "ministry_date_appointment": "2022-05-08",
+            "ministry_installation_date": "2022-05-08",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "رغد محمد محمد عبد ربه",
+                "czn_id": "912390804",
+                "gender": "أنثى",
+                "birth": "1970-11-16",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "ريم محمد رأفت عبد ربه",
+                "czn_id": "445157357",
+                "gender": "أنثى",
+                "birth": "2022-06-08",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رأفت محمود أحمد عبد ربه",
+                "czn_id": "953822384",
+                "gender": "ذكر",
+                "birth": "1971-07-15",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "رغد محمد رأفت عبد ربه",
+                "czn_id": "438538456",
+                "gender": "أنثى",
+                "birth": "2017-07-26",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سندس محمد حسين عبد ربه",
+                "czn_id": "400530424",
+                "gender": "أنثى",
+                "birth": "1995-01-18",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رأفت محمد رأفت عبد ربه",
+                "czn_id": "435073408",
+                "gender": "ذكر",
+                "birth": "2014-11-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803651918",
+        "name": "محمد طلعت محمود سلمان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - تل الزعتر",
+        "mobile": "0599619639",
+        "birthdate": "1993-04-09",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 803651918,
+            "work_start_date": "2022-01-02",
+            "ministry_date_appointment": "2022-01-02",
+            "ministry_installation_date": "2022-01-02",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "نغم محمد طلعت سلمان",
+                "czn_id": "442959003",
+                "gender": "أنثى",
+                "birth": "2022-04-19",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نجلاء أحمد سلمان سلمان",
+                "czn_id": "927391359",
+                "gender": "أنثى",
+                "birth": "1973-11-20",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "مالك محمد طلعت سلمان",
+                "czn_id": "444969265",
+                "gender": "ذكر",
+                "birth": "2020-12-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أيلول محمد طلعت سلمان",
+                "czn_id": "470816109",
+                "gender": "أنثى",
+                "birth": "2025-10-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "طلعت محمود سلمان سلمان",
+                "czn_id": "925728818",
+                "gender": "ذكر",
+                "birth": "1970-03-25",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "امل ياسر شحده سلمان",
+                "czn_id": "403732902",
+                "gender": "أنثى",
+                "birth": "1998-03-19",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "403778491",
+        "name": "محمد عبدالقادر محمد صافي",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0567031328",
+        "birthdate": "1998-05-13",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل تشغيل",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 403778491,
+            "work_start_date": "2021-10-01",
+            "ministry_date_appointment": "2021-10-01",
+            "ministry_installation_date": "2021-10-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل تشغيل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس حقوق | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "عبد القادر محمد عبد القادر صافي",
+                "czn_id": "901339564",
+                "gender": "ذكر",
+                "birth": "1976-08-07",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "سماح أحمد كامل صافي",
+                "czn_id": "901495143",
+                "gender": "أنثى",
+                "birth": "1979-01-15",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "آدم محمد عبد القادر صافي",
+                "czn_id": "445940877",
+                "gender": "ذكر",
+                "birth": "2023-09-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رائد محمد عبد القادر صافي",
+                "czn_id": "445226442",
+                "gender": "ذكر",
+                "birth": "2021-02-07",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ورود سميح محمد عوض",
+                "czn_id": "405181041",
+                "gender": "أنثى",
+                "birth": "1999-08-19",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801597428",
+        "name": "محمد عزمي جمعة علوش",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0566151123",
+        "birthdate": "1986-09-21",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "كهربائي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 801597428,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كهربائي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "سوزان محمد شعبان سعيد علوش",
+                "czn_id": "801335316",
+                "gender": "أنثى",
+                "birth": "1985-11-27",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عزمي محمد عزمي علوش",
+                "czn_id": "445131931",
+                "gender": "ذكر",
+                "birth": "2022-02-15",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سعاد محمد محمد علوش",
+                "czn_id": "985306430",
+                "gender": "أنثى",
+                "birth": "1960-04-07",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "مها محمد عزمي علوش",
+                "czn_id": "430245597",
+                "gender": "أنثى",
+                "birth": "2010-10-30",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد محمد عزمي علوش",
+                "czn_id": "438520843",
+                "gender": "ذكر",
+                "birth": "2017-08-16",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عزمي جمعه محمد علوش",
+                "czn_id": "915861736",
+                "gender": "ذكر",
+                "birth": "1956-02-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "سندس محمد عزمي علوش",
+                "czn_id": "429013733",
+                "gender": "أنثى",
+                "birth": "2009-06-11",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "لمى محمد عزمي علوش",
+                "czn_id": "434490041",
+                "gender": "أنثى",
+                "birth": "2013-08-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "800092785",
+        "name": "محمد عوض عبد خلة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - النزله",
+        "mobile": "0593402092",
+        "birthdate": "1983-08-10",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "حارس",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 800092785,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "حارس",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "منيره أحمد ابراهيم خله",
+                "czn_id": "921120465",
+                "gender": "أنثى",
+                "birth": "1965-03-09",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "ايمان محمد عوض خلة",
+                "czn_id": "421437823",
+                "gender": "أنثى",
+                "birth": "2005-07-08",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "انصاف محمد مصطفى خلة",
+                "czn_id": "949832463",
+                "gender": "أنثى",
+                "birth": "1983-03-12",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عوض عبد مصطفى خلة",
+                "czn_id": "906116033",
+                "gender": "ذكر",
+                "birth": "1963-11-10",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "مصطفى محمد عوض خلة",
+                "czn_id": "409811064",
+                "gender": "ذكر",
+                "birth": "2004-07-28",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ختام محمد عوض خلة",
+                "czn_id": "427430236",
+                "gender": "أنثى",
+                "birth": "2009-11-19",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد محمد عوض خلة",
+                "czn_id": "433811551",
+                "gender": "ذكر",
+                "birth": "2014-09-19",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "804345320",
+        "name": "محمد محمود ابووردة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0598390461",
+        "birthdate": "1993-04-01",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مفتش أسواق",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 804345320,
+            "work_start_date": "2021-04-01",
+            "ministry_date_appointment": "2021-04-01",
+            "ministry_installation_date": "2021-04-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مفتش أسواق",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "ختام محمد مصطفى ابووردة",
+                "czn_id": "954827994",
+                "gender": "أنثى",
+                "birth": "1970-05-14",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "محمود محمد محمود ابووردة",
+                "czn_id": "440777043",
+                "gender": "ذكر",
+                "birth": "2018-11-05",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمود محمد مصطفى ابووردة",
+                "czn_id": "956681134",
+                "gender": "ذكر",
+                "birth": "1967-10-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "زينب عماد سعيد ابووردة",
+                "czn_id": "801902362",
+                "gender": "أنثى",
+                "birth": "1988-01-15",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ياسمين زهير سعيد ابووردة",
+                "czn_id": "804322246",
+                "gender": "أنثى",
+                "birth": "1993-02-23",
+                "relation": "مطلق",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "406146597",
+        "name": "محمد نضال مصلح عبدربه",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0597314473",
+        "birthdate": "2000-10-03",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 406146597,
+            "work_start_date": "2020-01-01",
+            "ministry_date_appointment": "2020-01-01",
+            "ministry_installation_date": "2020-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "لين محمد نضال عبد ربه",
+                "czn_id": "470891086",
+                "gender": "أنثى",
+                "birth": "2025-11-10",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نضال مصلح علي عبد ربه",
+                "czn_id": "976476804",
+                "gender": "ذكر",
+                "birth": "1972-08-27",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "بركة علاء جمال عبد ربه",
+                "czn_id": "426234639",
+                "gender": "أنثى",
+                "birth": "2008-07-29",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هناء محمد علي عبد ربه",
+                "czn_id": "900298811",
+                "gender": "أنثى",
+                "birth": "1974-06-10",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "804427789",
+        "name": "محمدآمين عاشور عبدالحي عيد",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599011299",
+        "birthdate": "1993-04-21",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "كاتب",
+        "job_category": "الفئة الخامسة",
+        "job_info": {
+            "emp_number": 804427789,
+            "work_start_date": "2020-12-01",
+            "ministry_date_appointment": "2020-12-01",
+            "ministry_installation_date": "2020-12-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كاتب",
+            "current_degree": "6",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالويوس ادارة اعمال | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "نعمه محمد محمد عيد",
+                "czn_id": "901956938",
+                "gender": "أنثى",
+                "birth": "1954-07-09",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "روان عيد سعيد عيد",
+                "czn_id": "405918707",
+                "gender": "أنثى",
+                "birth": "2000-04-10",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عاشور عبد الحي مسعود عيد",
+                "czn_id": "915831259",
+                "gender": "ذكر",
+                "birth": "1941-01-01",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "402469126",
+        "name": "محمود بسام مصطفى علوان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599308643",
+        "birthdate": "1996-12-01",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 402469126,
+            "work_start_date": "2022-01-01",
+            "ministry_date_appointment": "2022-01-01",
+            "ministry_installation_date": "2022-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "دانا محمود بسام علوان",
+                "czn_id": "445623226",
+                "gender": "أنثى",
+                "birth": "2021-12-29",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "بسام مصطفى عبد الله علوان",
+                "czn_id": "800869844",
+                "gender": "ذكر",
+                "birth": "1972-03-09",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "ياسمين إسماعيل أحمد دردونه",
+                "czn_id": "401200431",
+                "gender": "أنثى",
+                "birth": "1996-03-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هدى ابراهيم سليمان علوان",
+                "czn_id": "900783762",
+                "gender": "أنثى",
+                "birth": "1977-04-01",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "424054831",
+        "name": "محمود صالح محمود سلمان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0562883000",
+        "birthdate": "2006-05-05",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل تشغيل",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 424054831,
+            "work_start_date": "2025-01-01",
+            "ministry_date_appointment": "2025-01-01",
+            "ministry_installation_date": "2025-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل تشغيل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "هناء عبدالله العبد سلمان",
+                "czn_id": "800567299",
+                "gender": "أنثى",
+                "birth": "1985-06-28",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "صالح محمود سلمان سلمان",
+                "czn_id": "901664797",
+                "gender": "ذكر",
+                "birth": "1977-04-20",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "409805991",
+        "name": "محمود عادل سليم أبو شرخ",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - الفالوجا",
+        "mobile": "0592756276",
+        "birthdate": "2004-02-16",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "حداد",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 409805991,
+            "work_start_date": "2024-07-12",
+            "ministry_date_appointment": "2024-07-12",
+            "ministry_installation_date": "2024-07-12",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "حداد",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: دبلوم صناعة | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "مريم محمد عمر ابو شرخ",
+                "czn_id": "424085066",
+                "gender": "أنثى",
+                "birth": "2006-04-10",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عادل سليم ابراهيم ابو شرخ",
+                "czn_id": "901981175",
+                "gender": "ذكر",
+                "birth": "1969-10-23",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "ميسر ابراهيم أحمد ابو شرخ",
+                "czn_id": "901680009",
+                "gender": "أنثى",
+                "birth": "1977-09-04",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400521969",
+        "name": "محمود محمد ذياب صالح",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0599610333",
+        "birthdate": "1995-01-11",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "محاسب",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 400521969,
+            "work_start_date": "2017-11-01",
+            "ministry_date_appointment": "2017-11-01",
+            "ministry_installation_date": "2017-11-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "محاسب",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس محاسبه | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "سما محمود محمد صالح",
+                "czn_id": "444666945",
+                "gender": "أنثى",
+                "birth": "2023-09-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سها مصلح علي صالح",
+                "czn_id": "901007559",
+                "gender": "أنثى",
+                "birth": "1975-10-27",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "محمد دياب فرج صالح",
+                "czn_id": "909909608",
+                "gender": "ذكر",
+                "birth": "1970-12-09",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "رحاب مصطفى توفيق صالح",
+                "czn_id": "408471019",
+                "gender": "أنثى",
+                "birth": "2003-04-30",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سهى  محمود محمد صالح",
+                "czn_id": "441381217",
+                "gender": "أنثى",
+                "birth": "2019-09-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "405821356",
+        "name": "محمود محمد محمد جودة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - البلد",
+        "mobile": "0595040297",
+        "birthdate": "1999-12-20",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل تشغيل",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 405821356,
+            "work_start_date": "2022-05-08",
+            "ministry_date_appointment": "2022-05-08",
+            "ministry_installation_date": "2022-05-08",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل تشغيل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "محمد محمود محمد جودة",
+                "czn_id": "901669820",
+                "gender": "ذكر",
+                "birth": "1977-07-17",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "هديل حسين عبدالله الندر",
+                "czn_id": "408108231",
+                "gender": "أنثى",
+                "birth": "2002-11-18",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "بسمه حكمت سليمان جودة",
+                "czn_id": "903108397",
+                "gender": "أنثى",
+                "birth": "1980-04-10",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "تسنيم محمود محمد جودة",
+                "czn_id": "470433665",
+                "gender": "أنثى",
+                "birth": "2025-01-23",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "بسمة محمود محمد جودة",
+                "czn_id": "444797831",
+                "gender": "أنثى",
+                "birth": "2023-07-24",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "901433268",
+        "name": "مروان محمد عبدالله رضوان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0592576493",
+        "birthdate": "1978-11-05",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "مساعد حداد",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 901433268,
+            "work_start_date": "2022-01-02",
+            "ministry_date_appointment": "2022-01-02",
+            "ministry_installation_date": "2022-01-02",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مساعد حداد",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "محمد عبدالله اسماعيل رضوان",
+                "czn_id": "918306416",
+                "gender": "ذكر",
+                "birth": "1935-01-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "حمزة مروان محمد رضوان",
+                "czn_id": "431024553",
+                "gender": "ذكر",
+                "birth": "2011-03-26",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "اسلام مروان محمد رضوان",
+                "czn_id": "424346278",
+                "gender": "أنثى",
+                "birth": "2006-10-06",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "خديجه محمود اسماعيل رضوان",
+                "czn_id": "800642431",
+                "gender": "أنثى",
+                "birth": "1986-12-29",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عمران مروان محمد رضوان",
+                "czn_id": "422839894",
+                "gender": "ذكر",
+                "birth": "2007-11-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "علي مروان محمد رضوان",
+                "czn_id": "431024546",
+                "gender": "ذكر",
+                "birth": "2011-03-26",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "افنان مروان محمد رضوان",
+                "czn_id": "429126790",
+                "gender": "أنثى",
+                "birth": "2009-08-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400044228",
+        "name": "مصطفي خالد علي ابووردة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0597809953",
+        "birthdate": "1994-07-03",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 400044228,
+            "work_start_date": "2023-06-01",
+            "ministry_date_appointment": "2023-06-01",
+            "ministry_installation_date": "2023-06-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "صباح محمد رجب ابو وردة",
+                "czn_id": "900208208",
+                "gender": "أنثى",
+                "birth": "1974-03-23",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "صابرين عزيز محمد ابو وردة",
+                "czn_id": "804574754",
+                "gender": "أنثى",
+                "birth": "1993-10-08",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "خالد علي خليل ابو وردة",
+                "czn_id": "900844630",
+                "gender": "ذكر",
+                "birth": "1975-05-03",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802074971",
+        "name": "معاذ رسمي حسن بدران",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0599357455",
+        "birthdate": "1988-08-28",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "فني صرف صحي",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 802074971,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "فني صرف صحي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "ماسة معاذ رسمي بدران",
+                "czn_id": "444727333",
+                "gender": "أنثى",
+                "birth": "2024-03-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رسمي حسن موسى بدران",
+                "czn_id": "910834134",
+                "gender": "ذكر",
+                "birth": "1959-08-27",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "رسمي معاذ رسمي بدران",
+                "czn_id": "434602462",
+                "gender": "ذكر",
+                "birth": "2014-07-16",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد معاذ رسمي بدران",
+                "czn_id": "471196600",
+                "gender": "ذكر",
+                "birth": "2026-06-16",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نورسان معاذ رسمي بدران",
+                "czn_id": "435788393",
+                "gender": "أنثى",
+                "birth": "2015-07-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رنين أحمد محمود بدران",
+                "czn_id": "803719517",
+                "gender": "أنثى",
+                "birth": "1993-04-21",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ساميه فريج محمد بدران",
+                "czn_id": "927812149",
+                "gender": "أنثى",
+                "birth": "1962-04-12",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "409063989",
+        "name": "مهند نافز خليل ابوالنور",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0599269615",
+        "birthdate": "2003-08-02",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 409063989,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "نافذ ابراهيم خليل ابو النور",
+                "czn_id": "912268224",
+                "gender": "ذكر",
+                "birth": "1972-01-17",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "فاطمه سالم محمد ابو النور",
+                "czn_id": "903629376",
+                "gender": "أنثى",
+                "birth": "1980-01-19",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "901485441",
+        "name": "هاني محمد فايق ياسين ريحان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0597692247",
+        "birthdate": "1979-03-17",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 901485441,
+            "work_start_date": "2012-01-01",
+            "ministry_date_appointment": "2012-01-01",
+            "ministry_installation_date": "2012-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "علي هاني محمد فايق ريحان",
+                "czn_id": "434086682",
+                "gender": "ذكر",
+                "birth": "2013-06-04",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نور هاني محمد فايق ريحان",
+                "czn_id": "429884901",
+                "gender": "أنثى",
+                "birth": "2010-07-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محاسن سميح موسى ريحان",
+                "czn_id": "801548488",
+                "gender": "أنثى",
+                "birth": "1986-09-17",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد فايق ياسين ابراهيم ريحان",
+                "czn_id": "902535913",
+                "gender": "ذكر",
+                "birth": "1939-09-05",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "حمزة هاني محمد فايق ريحان",
+                "czn_id": "429131790",
+                "gender": "ذكر",
+                "birth": "2009-07-19",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "علي هاني محمد فايق ريحان",
+                "czn_id": "470866039",
+                "gender": "ذكر",
+                "birth": "2025-10-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "احمد هاني محمد فايق ريحان",
+                "czn_id": "425841160",
+                "gender": "ذكر",
+                "birth": "2008-03-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "406101683",
+        "name": "هاني نافذ ابراهيم ابو النور",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0594304907",
+        "birthdate": "2000-09-09",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 406101683,
+            "work_start_date": "2022-05-24",
+            "ministry_date_appointment": "2022-05-24",
+            "ministry_installation_date": "2022-05-24",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "فاطمة هاني نافذ ابو النور",
+                "czn_id": "470624396",
+                "gender": "أنثى",
+                "birth": "2025-06-15",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أسيل عبد اللطيف محمد عاشور القانوع",
+                "czn_id": "422498543",
+                "gender": "أنثى",
+                "birth": "2005-09-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "نافذ ابراهيم خليل ابو النور",
+                "czn_id": "912268224",
+                "gender": "ذكر",
+                "birth": "1972-01-17",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "فاطمه سالم محمد ابو النور",
+                "czn_id": "903629376",
+                "gender": "أنثى",
+                "birth": "1980-01-19",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "804722684",
+        "name": "هيثم معين محمد سالم",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "بيت لاهيا - المشروع",
+        "mobile": "0598320383",
+        "birthdate": "1994-04-28",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "كهربائي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 804722684,
+            "work_start_date": "2020-10-05",
+            "ministry_date_appointment": "2020-10-05",
+            "ministry_installation_date": "2020-10-05",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "كهربائي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "ليان هيثم معين سالم",
+                "czn_id": "446166753",
+                "gender": "أنثى",
+                "birth": "2023-10-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "معين محمد خميس سالم",
+                "czn_id": "912002482",
+                "gender": "ذكر",
+                "birth": "1969-04-19",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "منى سمير علي الحوم",
+                "czn_id": "409452265",
+                "gender": "أنثى",
+                "birth": "2003-07-19",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "إيمان هيثم معين سالم",
+                "czn_id": "443203377",
+                "gender": "أنثى",
+                "birth": "2020-06-07",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "اخلاص رياض أحمد عيسى",
+                "czn_id": "803725597",
+                "gender": "أنثى",
+                "birth": "1993-06-18",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هيام مجدي محمد سالم",
+                "czn_id": "949868137",
+                "gender": "أنثى",
+                "birth": "1967-06-07",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "براء هيثم معين سالم",
+                "czn_id": "437159023",
+                "gender": "ذكر",
+                "birth": "2017-08-28",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400166930",
+        "name": "وائل طلال احمد القانوع",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0597451044",
+        "birthdate": "1994-10-02",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "حارس",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 400166930,
+            "work_start_date": "2022-08-01",
+            "ministry_date_appointment": "2022-08-01",
+            "ministry_installation_date": "2022-08-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "حارس",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس لغة عربية | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "طلال أحمد محمد القانوع",
+                "czn_id": "961661139",
+                "gender": "ذكر",
+                "birth": "1957-09-09",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "مكرم محمد حرب القانوع",
+                "czn_id": "916217383",
+                "gender": "أنثى",
+                "birth": "1966-02-25",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "حياة وائل طلال القانوع",
+                "czn_id": "471368837",
+                "gender": "أنثى",
+                "birth": "2026-09-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "يامن وائل طلال القانوع",
+                "czn_id": "444285308",
+                "gender": "ذكر",
+                "birth": "2023-01-21",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "شادية عمران علي القانوع",
+                "czn_id": "407717099",
+                "gender": "أنثى",
+                "birth": "2001-06-14",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "801899980",
+        "name": "وليد توفيق محمد شبير",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - تل الزعتر",
+        "mobile": "0599537909",
+        "birthdate": "1988-01-14",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "مشغل بئر",
+        "job_category": "الفئة الثالثة",
+        "job_info": {
+            "emp_number": 801899980,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مشغل بئر",
+            "current_degree": "2",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "توفيق محمد يوسف شبير",
+                "czn_id": "961190113",
+                "gender": "ذكر",
+                "birth": "1950-12-25",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "صفيه فارس عبد اللطيف شبير",
+                "czn_id": "960202943",
+                "gender": "أنثى",
+                "birth": "1953-01-01",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "محمد وليد توفيق شبير",
+                "czn_id": "445610512",
+                "gender": "ذكر",
+                "birth": "2021-11-21",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "لمياء أحمد عبد العاطي المبحوح",
+                "czn_id": "400865366",
+                "gender": "أنثى",
+                "birth": "1995-10-13",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "402267983",
+        "name": "وئام ابراهيم عباس ابووردة",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - النزله",
+        "mobile": "0594072990",
+        "birthdate": "1996-12-07",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل تشغيل",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 402267983,
+            "work_start_date": "2022-01-01",
+            "ministry_date_appointment": "2022-01-01",
+            "ministry_installation_date": "2022-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل تشغيل",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "تحرير وئام إبراهيم أبو وردة",
+                "czn_id": "440432201",
+                "gender": "أنثى",
+                "birth": "2018-06-02",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "تحرير محمد طعمه رمضان ابووردة",
+                "czn_id": "901505826",
+                "gender": "أنثى",
+                "birth": "1974-02-28",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "الاء محمد سميح الجرجير",
+                "czn_id": "405996570",
+                "gender": "أنثى",
+                "birth": "2000-07-12",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ابراهيم عباس أحمد ابووردة",
+                "czn_id": "911101509",
+                "gender": "ذكر",
+                "birth": "1969-07-29",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "مها وئام إبراهيم أبو وردة",
+                "czn_id": "441372786",
+                "gender": "أنثى",
+                "birth": "2019-09-16",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803164110",
+        "name": "ياسر عبدالحكيم احمد المطوق",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0595114047",
+        "birthdate": "1991-10-17",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "سائق",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 803164110,
+            "work_start_date": "2021-08-01",
+            "ministry_date_appointment": "2021-08-01",
+            "ministry_installation_date": "2021-08-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "سائق",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس علوم سياسية وتاريخ | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "تغريد ياسر عبد الحكيم المطوق",
+                "czn_id": "442989141",
+                "gender": "أنثى",
+                "birth": "2020-09-21",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "إلياس ياسر عبد الحكيم المطوق",
+                "czn_id": "444372429",
+                "gender": "ذكر",
+                "birth": "2023-04-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "شرين خالد محمد المطوق",
+                "czn_id": "400619805",
+                "gender": "أنثى",
+                "birth": "1995-03-23",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عبد الحكيم أحمد محمد المطوق",
+                "czn_id": "976662130",
+                "gender": "ذكر",
+                "birth": "1962-07-15",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "فاطمه عبد الرحمن عبد القادر المطوق",
+                "czn_id": "918345356",
+                "gender": "أنثى",
+                "birth": "1963-07-02",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "صلاح الدين ياسر عبد الحكيم المطوق",
+                "czn_id": "471189654",
+                "gender": "ذكر",
+                "birth": "2026-06-10",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سارة ياسر عبد الحكيم المطوق",
+                "czn_id": "440625606",
+                "gender": "أنثى",
+                "birth": "2018-05-23",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "403053606",
+        "name": "ياسر محمد محمد النجار",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد",
+        "mobile": "0598435366",
+        "birthdate": "1991-10-17",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "سائق",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 403053606,
+            "work_start_date": "2025-01-01",
+            "ministry_date_appointment": "2025-01-01",
+            "ministry_installation_date": "2025-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "سائق",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "محمد محمد حسين النجار",
+                "czn_id": "915840441",
+                "gender": "ذكر",
+                "birth": "1958-02-07",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "حنان خالد أحمد قرموط",
+                "czn_id": "408769800",
+                "gender": "أنثى",
+                "birth": "2003-06-04",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عزيزة عايش جمعه النجار",
+                "czn_id": "904284551",
+                "gender": "أنثى",
+                "birth": "1961-11-10",
+                "relation": "ام",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "916807704",
+        "name": "ياسر محمود محمد المزعنن",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0592610182",
+        "birthdate": "1969-05-03",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "ميكانيكي",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 916807704,
+            "work_start_date": "2024-01-01",
+            "ministry_date_appointment": "2024-01-01",
+            "ministry_installation_date": "2024-01-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "ميكانيكي",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: فوق 50 | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "أحمد ياسر محمود المزعنن",
+                "czn_id": "403760598",
+                "gender": "ذكر",
+                "birth": "1998-04-14",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمود محمد محمد المزعنن",
+                "czn_id": "916807712",
+                "gender": "ذكر",
+                "birth": "1937-01-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "فوزيه حسن عبد الرازق المزعنن",
+                "czn_id": "916807720",
+                "gender": "أنثى",
+                "birth": "1942-01-01",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "رغد ياسر محمود المزعنن",
+                "czn_id": "407004571",
+                "gender": "أنثى",
+                "birth": "2000-12-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد ياسر محمود المزعنن",
+                "czn_id": "420423451",
+                "gender": "ذكر",
+                "birth": "2004-07-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "رشيد ياسر محمود المزعنن",
+                "czn_id": "421689845",
+                "gender": "ذكر",
+                "birth": "2007-12-02",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "كفاح محمد محمد المزعنن",
+                "czn_id": "900287467",
+                "gender": "أنثى",
+                "birth": "1974-12-06",
+                "relation": "زوج/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "803339985",
+        "name": "يوسف عوني إبراهيم جنيد",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا",
+        "mobile": "0599325366",
+        "birthdate": "1993-04-28",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 800,
+        "place_of_work": null,
+        "job": "سائق",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 803339985,
+            "work_start_date": "2021-12-19",
+            "ministry_date_appointment": "2021-12-19",
+            "ministry_installation_date": "2021-12-19",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "سائق",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "هالة يوسف عوني جنيد",
+                "czn_id": "445265457",
+                "gender": "أنثى",
+                "birth": "2021-06-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "سها معين ابراهيم جنيد",
+                "czn_id": "400628699",
+                "gender": "أنثى",
+                "birth": "1995-03-28",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "امنه محمد نعمان جنيد",
+                "czn_id": "917357782",
+                "gender": "أنثى",
+                "birth": "1973-03-03",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "آمنة يوسف عوني جنيد",
+                "czn_id": "440456978",
+                "gender": "أنثى",
+                "birth": "2018-02-05",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عوني ابراهيم خليل جنيد",
+                "czn_id": "916495203",
+                "gender": "ذكر",
+                "birth": "1969-11-01",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "محمد عوني يوسف عوني جنيد",
+                "czn_id": "437348923",
+                "gender": "ذكر",
+                "birth": "2016-03-31",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عبد يوسف عوني جنيد",
+                "czn_id": "470678764",
+                "gender": "ذكر",
+                "birth": "2025-07-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ايه يوسف عوني جنيد",
+                "czn_id": "445678873",
+                "gender": "أنثى",
+                "birth": "2022-09-27",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "804999530",
+        "name": "يوسف محمد احمد أبو البيض",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "غزة - الشيخ رضوان",
+        "mobile": "0562883005",
+        "birthdate": "1994-04-13",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1200,
+        "place_of_work": null,
+        "job": "محاسب",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 804999530,
+            "work_start_date": "2018-04-01",
+            "ministry_date_appointment": "2018-04-01",
+            "ministry_installation_date": "2018-04-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "محاسب",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس محاسبة | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "نسرين طه أحمد ابو البيض",
+                "czn_id": "404524514",
+                "gender": "أنثى",
+                "birth": "1998-12-20",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "محمد أحمد محمد ابو البيض",
+                "czn_id": "910742758",
+                "gender": "ذكر",
+                "birth": "1968-07-09",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "ريتال يوسف محمد ابو البيض",
+                "czn_id": "470609314",
+                "gender": "أنثى",
+                "birth": "2025-06-02",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ساميه محمد مصطفى ابو البيض",
+                "czn_id": "931718217",
+                "gender": "أنثى",
+                "birth": "1972-01-04",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "أنس يوسف محمد ابو البيض",
+                "czn_id": "445238595",
+                "gender": "ذكر",
+                "birth": "2021-09-12",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "407041516",
+        "name": "يوسف هشام يوسف غنيم",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0592299840",
+        "birthdate": "2001-01-23",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 1000,
+        "place_of_work": null,
+        "job": "مبرمج",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 407041516,
+            "work_start_date": "2022-12-15",
+            "ministry_date_appointment": "2022-12-15",
+            "ministry_installation_date": "2022-12-15",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "مبرمج",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بكالوريوس نظم معلومات ادارية | المسؤول المباشر: مها المقيد"
+        },
+        "dependents": [
+            {
+                "name": "سماهر محمود سعيد غنيم",
+                "czn_id": "903279149",
+                "gender": "أنثى",
+                "birth": "1979-02-24",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "هشام يوسف حفني غنيم",
+                "czn_id": "912283884",
+                "gender": "ذكر",
+                "birth": "1972-07-01",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "424292829",
+        "name": "يزن فتحي عبدالهادي صالح",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0594866059",
+        "birthdate": "2006-09-09",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "حارس مضخة",
+        "job_category": "فئة العمال",
+        "job_info": {
+            "emp_number": 424292829,
+            "work_start_date": "2026-08-01",
+            "ministry_date_appointment": "2026-08-01",
+            "ministry_installation_date": "2026-08-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "حارس مضخة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: محمد ابوريالة"
+        },
+        "dependents": [
+            {
+                "name": "ريم محمد أحمد صالح",
+                "czn_id": "901688234",
+                "gender": "أنثى",
+                "birth": "1977-07-01",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "فتحي عبد الهادي قدوره صالح",
+                "czn_id": "960877579",
+                "gender": "ذكر",
+                "birth": "1955-04-05",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "400908935",
+        "name": "احمد ايمن منصور",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - -",
+        "mobile": "0599773791",
+        "birthdate": "1995-11-18",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "سائق",
+        "job_category": "الفئة الثانية",
+        "job_info": {
+            "emp_number": 400908935,
+            "work_start_date": "2021-03-01",
+            "ministry_date_appointment": "2021-03-01",
+            "ministry_installation_date": "2021-03-01",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "سائق",
+            "current_degree": "1",
+            "vacation_days": 30,
+            "note": "المؤهل: ثانوية عامة | المسؤول المباشر: علي اللوقة"
+        },
+        "dependents": [
+            {
+                "name": "غاده محمد ايوب أحمد منصور",
+                "czn_id": "900841586",
+                "gender": "أنثى",
+                "birth": "1975-08-25",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "أيمن عطيه ديب منصور",
+                "czn_id": "915833115",
+                "gender": "ذكر",
+                "birth": "1971-07-20",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "آدم أحمد أيمن منصور",
+                "czn_id": "445436033",
+                "gender": "ذكر",
+                "birth": "2021-10-01",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "عزه ماجد محمد منصور",
+                "czn_id": "407036771",
+                "gender": "أنثى",
+                "birth": "2001-02-01",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "ياسمين أحمد أيمن منصور",
+                "czn_id": "440770691",
+                "gender": "أنثى",
+                "birth": "2018-10-03",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "802893545",
+        "name": "عبدالله احمد عبدالله لوا",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا البلد - القدس",
+        "mobile": "0599343130",
+        "birthdate": "1991-01-12",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل نظافة",
+        "job_category": "فئة غير مصنفة",
+        "job_info": {
+            "emp_number": 802893545,
+            "work_start_date": "2021-01-03",
+            "ministry_date_appointment": "2021-01-03",
+            "ministry_installation_date": "2021-01-03",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل نظافة",
+            "current_degree": "10",
+            "vacation_days": 30,
+            "note": "المؤهل: بدون | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "مريم عمرو محمد لوا",
+                "czn_id": "803157262",
+                "gender": "أنثى",
+                "birth": "1992-03-20",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "أحمد عبدالله يوسف لوا",
+                "czn_id": "915830251",
+                "gender": "ذكر",
+                "birth": "1961-07-06",
+                "relation": "أب",
+                "status": "Active"
+            },
+            {
+                "name": "نبويه محمد محمد لوا",
+                "czn_id": "901957480",
+                "gender": "أنثى",
+                "birth": "1965-07-23",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "يامن عبد الله أحمد لوا",
+                "czn_id": "432040392",
+                "gender": "ذكر",
+                "birth": "2012-06-11",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "كنان عبد الله أحمد لوا",
+                "czn_id": "445462724",
+                "gender": "ذكر",
+                "birth": "2021-10-28",
+                "relation": "ابن/ة",
+                "status": "Active"
+            }
+        ]
+    },
+    {
+        "czn_id": "404271140",
+        "name": "محمد باسل احمد ابوالقمصان",
+        "gender": "ذكر",
+        "status": "Active",
+        "address": "جباليا - -",
+        "mobile": "0598282221",
+        "birthdate": "1998-11-03",
+        "birthplace": "اقليم الجنوب - قطاع غزة",
+        "salary": 900,
+        "place_of_work": null,
+        "job": "عامل",
+        "job_category": "الفئة الخامسة",
+        "job_info": {
+            "emp_number": 404271140,
+            "work_start_date": "2022-06-20",
+            "ministry_date_appointment": "2022-06-20",
+            "ministry_installation_date": "2022-06-20",
+            "type": "كرت عمل يومي",
+            "periodic_bonus": "0",
+            "current_job": "عامل",
+            "current_degree": "6",
+            "vacation_days": 30,
+            "note": "المؤهل: - | المسؤول المباشر: رائد مقاط"
+        },
+        "dependents": [
+            {
+                "name": "ندى صلاح الدين محمود أبو القمصان",
+                "czn_id": "405276809",
+                "gender": "أنثى",
+                "birth": "1999-09-03",
+                "relation": "زوج/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هدى محمد باسل أبو القمصان",
+                "czn_id": "443123773",
+                "gender": "أنثى",
+                "birth": "2020-01-17",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هلا محمد باسل أبو القمصان",
+                "czn_id": "445148885",
+                "gender": "أنثى",
+                "birth": "2021-05-15",
+                "relation": "ابن/ة",
+                "status": "Active"
+            },
+            {
+                "name": "هدى محمد حسن ابو القمصان",
+                "czn_id": "901364562",
+                "gender": "أنثى",
+                "birth": "1976-10-12",
+                "relation": "ام",
+                "status": "Active"
+            },
+            {
+                "name": "باسل أحمد أحمد ابو القمصان",
+                "czn_id": "900858929",
+                "gender": "ذكر",
+                "birth": "1975-05-31",
+                "relation": "أب",
+                "status": "Active"
+            }
+        ]
+    }
+]

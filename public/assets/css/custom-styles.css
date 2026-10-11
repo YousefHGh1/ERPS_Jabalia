@@ -1,0 +1,1296 @@
+/* Custom Styles for Jabalia Municipality Admin Dashboard */
+
+/* ===== 3.1 هيكل الصفحة: حد أقصى لعرض المحتوى على الشاشات الكبيرة ===== */
+.content-max-width-wrapper {
+    width: 100%;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== 3.4 النماذج: تنسيق أعمدة النماذج (استخدام class بدل inline) ===== */
+.form-col-padding,
+.form-row .col-md-6.form-col-padding,
+.form-row .col-12.form-col-padding {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+:root {
+    --primary-color: #3699FF;
+    --success-color: #1BC5BD;
+    --warning-color: #FFA800;
+    --danger-color: #F64E60;
+    --info-color: #8950FC;
+    --gray-100: #F3F6F9;
+    --gray-200: #EBEDF3;
+    --gray-300: #E4E6EF;
+    --gray-400: #D1D3E0;
+    --gray-500: #B5B5C3;
+    --gray-600: #7E8299;
+    --gray-700: #5E6278;
+    --gray-800: #3F4254;
+    --gray-900: #181C32;
+
+    /* 3.8 الوصولية: ألوان تباين WCAG AA (نص عادي 4.5:1 على الأقل) */
+    --text-primary: #181C32;
+    --text-muted-aa: #5E6278;
+    --bg-body: #ffffff;
+
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+/* Typography - unify font across the site */
+body,
+button,
+input,
+select,
+textarea,
+.btn,
+.form-control,
+.modal-title,
+.menu-link,
+.menu-text {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* 3.8 الوصولية: تباين WCAG AA — نص أساسي وثانوي بتباين كافٍ */
+body {
+    color: var(--text-primary);
+    background-color: var(--bg-body);
+}
+.text-muted,
+.text-muted-aa {
+    color: var(--text-muted-aa) !important;
+}
+
+/* Card Improvements */
+.card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-speed) ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-custom {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+/* Table Improvements */
+.table {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: var(--gray-100);
+    border-bottom: 2px solid var(--gray-200);
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: var(--gray-700);
+}
+
+.table tbody tr {
+    transition: background-color var(--transition-speed) ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--gray-100);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* ===== 3.5 الجداول: responsive مع data-label، وتوحيد أزرار الإجراءات ===== */
+/* استخدام: أضف للـ table-responsive: data-responsive="true" ولكل td: data-label="نص العمود" */
+@media (max-width: 768px) {
+    .table-responsive[data-responsive="true"] thead th { display: none; }
+    .table-responsive[data-responsive="true"] tbody td {
+        display: block;
+        text-align: right;
+        border-bottom: 1px solid var(--gray-200);
+    }
+    .table-responsive[data-responsive="true"] tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        float: right;
+        margin-left: 0.5rem;
+        color: var(--gray-600);
+    }
+}
+.table-actions .btn-icon {
+    border-radius: 8px;
+    transition: all var(--transition-speed) ease;
+}
+.table-pagination-wrapper .pagination { margin-bottom: 0; }
+
+/* Button Improvements */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Form Improvements */
+.form-control {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    transition: all var(--transition-speed) ease;
+}
+
+.form-control:focus {
+    border-color: var(--warning-color);
+    box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.1);
+}
+
+/* ===== 3.8 الوصولية: focus-visible (لا يظهر عند النقر بالماوس، فقط عند التنقل بلوحة المفاتيح) ===== */
+.btn:focus-visible,
+.form-control:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* إعدادات الوصولية المتقدمة */
+.btn:focus:not(:focus-visible),
+.form-control:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* دعم تقليل الحركة للأشخاص الذين يفضلون ذلك */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .skeleton::after {
+        animation: none;
+    }
+    
+    .loading-spinner {
+        animation: none;
+        border-top-color: var(--primary-color);
+    }
+    
+    .toast {
+        transition: none;
+    }
+    
+    .modal.fade .modal-dialog {
+        transition: none;
+    }
+    
+    .collapsing {
+        transition: none;
+    }
+}
+
+/* تحسين الوصولية للأزرار التفاعلية */
+.btn:hover,
+.btn:focus {
+    text-decoration: none;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* تحسين الوصولية للروابط */
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    text-decoration: underline;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* تحسين الوصولية للجداول */
+.table thead th {
+    cursor: pointer;
+}
+
+.table tbody tr:hover {
+    cursor: default;
+}
+
+/* تحسين الوصولية للنماذج */
+label {
+    cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    cursor: pointer;
+}
+
+/* تحسين الوصولية للمودال */
+.modal-dialog:focus-within {
+    outline: none;
+}
+
+/* تحسين الوصولية للقوائم المنسدلة */
+.dropdown-menu:focus-within {
+    outline: none;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: var(--gray-100);
+    outline: 2px solid var(--primary-color);
+    outline-offset: -2px;
+}
+
+/* تحسين الوصولية للتنبيهات */
+.alert {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.alert-success::before {
+    background-color: var(--success-color);
+}
+
+.alert-danger::before {
+    background-color: var(--danger-color);
+}
+
+.alert-warning::before {
+    background-color: var(--warning-color);
+}
+
+.alert-info::before {
+    background-color: var(--info-color);
+}
+
+/* تحسين الوصولية للتحميل */
+[aria-busy="true"] {
+    cursor: wait;
+}
+
+[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* تحسين الوصولية للصور */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img[alt=""] {
+    display: none;
+}
+
+/* تحسين الوصولية للأيقونات */
+.icon-only {
+    font-size: 0;
+}
+
+.icon-only::before {
+    font-size: 1rem;
+    content: attr(aria-label);
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+/* Badge/Label Improvements */
+.label {
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.label-light-primary {
+    background-color: rgba(54, 153, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.label-light-success {
+    background-color: rgba(27, 197, 189, 0.1);
+    color: var(--success-color);
+}
+
+.label-light-warning {
+    background-color: rgba(255, 168, 0, 0.1);
+    color: var(--warning-color);
+}
+
+.label-light-danger {
+    background-color: rgba(246, 78, 96, 0.1);
+    color: var(--danger-color);
+}
+
+.label-light-info {
+    background-color: rgba(137, 80, 252, 0.1);
+    color: var(--info-color);
+}
+
+/* Modal Improvements */
+.modal-content {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    padding: 1.25rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+}
+
+/* Status Badge Animations */
+.label {
+    transition: all var(--transition-speed) ease;
+}
+
+.label:hover {
+    transform: scale(1.05);
+}
+
+/* Empty States */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    color: var(--gray-400);
+    margin-bottom: 1.5rem;
+}
+
+.empty-state-text {
+    color: var(--gray-600);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Loading States */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: var(--border-radius);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--gray-200);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--gray-200);
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--gray-700);
+    }
+}
+
+/* Accessibility Improvements */
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}
+
+/* Active link color */
+a:active {
+    color: #E5B674;
+}
+
+/* ========== صفحات الإعدادات (Settings) ========== */
+.settings-page {
+    padding: 0 0 2rem;
+}
+
+.settings-card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow var(--transition-speed) ease;
+}
+
+.settings-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.settings-card .card-header {
+    background: linear-gradient(135deg, var(--gray-100) 0%, #fff 100%);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1.5rem 1.75rem;
+}
+
+.settings-card .card-header .card-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.settings-card .card-header.card-header-primary .card-icon-wrap { background: rgba(54, 153, 255, 0.15); color: var(--primary-color); }
+.settings-card .card-header.card-header-info .card-icon-wrap { background: rgba(137, 80, 252, 0.15); color: var(--info-color); }
+.settings-card .card-header.card-header-success .card-icon-wrap { background: rgba(27, 197, 189, 0.15); color: var(--success-color); }
+
+.settings-card .card-title .card-label {
+    font-size: 1.25rem;
+    color: var(--gray-900);
+}
+
+.settings-card .card-title .text-muted {
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.settings-table {
+    margin: 0;
+}
+
+.settings-table thead th {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.settings-table tbody td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.settings-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.settings-table tbody tr:hover td {
+    background-color: rgba(54, 153, 255, 0.04);
+}
+
+.settings-table .td-id {
+    font-weight: 700;
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+.settings-table .badge-permission,
+.settings-table .badge-role {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin: 0.15rem;
+}
+
+.settings-table .badge-permission {
+    background: rgba(54, 153, 255, 0.12);
+    color: var(--primary-color);
+}
+
+.settings-table .badge-role {
+    background: rgba(27, 197, 189, 0.12);
+    color: var(--success-color);
+}
+
+.settings-table .badge-role-name {
+    background: rgba(137, 80, 252, 0.12);
+    color: var(--info-color);
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.settings-table .btn-actions .btn {
+    margin: 0 0.15rem;
+}
+
+.settings-empty {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--gray-100);
+    border-radius: var(--border-radius);
+    margin: 1rem 1.25rem;
+}
+
+.settings-empty .empty-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    background: var(--gray-200);
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.settings-empty .empty-text {
+    color: var(--gray-600);
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.settings-card .card-footer {
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-200);
+    padding: 1rem 1.25rem;
+}
+
+/* نماذج الإعدادات (إنشاء / تعديل) */
+.settings-form-card .card-header {
+    background: linear-gradient(135deg, var(--gray-100) 0%, #fff 100%);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.settings-form-card .card-body {
+    padding: 1.75rem;
+}
+
+.settings-form-card .form-control-solid {
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+}
+
+.settings-form-card .input-icon input {
+    padding-right: 2.75rem;
+}
+
+.settings-form-card .card-footer {
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-200);
+    padding: 1.25rem 1.75rem;
+}
+
+.settings-form-card .checkbox-outline.checkbox-primary span {
+    border-radius: 6px;
+}
+
+/* صفحات تعديل الأدوار والمستخدمين */
+.bg-light-info {
+    background: rgba(137, 80, 252, 0.08);
+}
+
+.bg-light-primary {
+    background: rgba(54, 153, 255, 0.06);
+}
+
+.bg-light-success {
+    background: rgba(27, 197, 189, 0.08);
+}
+
+.user-role-card {
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.user-role-card:hover {
+    background: rgba(27, 197, 189, 0.15) !important;
+    border-color: rgba(27, 197, 189, 0.3);
+}
+
+.role-permission-card .card-header {
+    background: rgba(54, 153, 255, 0.06);
+    transition: background 0.2s ease;
+}
+
+.role-permission-card .card-header:hover {
+    background: rgba(54, 153, 255, 0.12);
+}
+
+.role-permission-card .collapse .card-body {
+    background: #fff;
+}
+
+/* قائمة الصلاحيات داخل البطاقات */
+.permission-list-body {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem 1.5rem !important;
+}
+
+/* قائمة أنواع الطلبات وغيرها: ارتفاع أكبر للقائمة المنسدلة Select2 لظهور الخيارات بشكل أوضح مع التمرير */
+.select2-container--default .select2-results > .select2-results__options {
+    max-height: 400px !important;
+}
+
+/* مودال إضافة طلب جديد */
+.add-request-modal .modal-dialog {
+    max-width: 92%;
+}
+@media (min-width: 1200px) {
+    .add-request-modal .modal-dialog {
+        max-width: 1140px;
+    }
+}
+.add-request-modal .modal-content {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+.add-request-modal .modal-header {
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+.add-request-modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.add-request-modal .modal-footer .btn {
+    min-width: 120px;
+}
+
+/* قائمة نوع الطلب في نموذج الإضافة (صفحة + مودال) */
+.request-type-select-wrapper .select2-container {
+    width: 100% !important;
+}
+.request-type-select-wrapper .select2-selection__rendered {
+    white-space: normal;
+}
+.request-type-dropdown.select2-container--default .select2-results__options {
+    max-height: 400px !important;
+}
+
+/* قائمة نوع الطلب عند فتحها من المودال (مرفوعة إلى body لعدم القص) */
+.request-type-dropdown-modal {
+    z-index: 1060 !important;
+}
+.add-request-modal.show ~ .request-type-dropdown-modal,
+body .request-type-dropdown-modal {
+    z-index: 1060 !important;
+}
+
+.permission-item {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.permission-item-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.permission-item-text {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+    color: var(--gray-800);
+    word-break: break-word;
+    text-align: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Sidebar favorites (pinned links) */
+.menu-fav-toggle {
+    margin-inline-start: 0.35rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+.aside .menu-link:hover .menu-fav-toggle {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.menu-fav-toggle.is-favorite {
+    color: #FFD54F !important;
+    transform: scale(1.05);
+}
+
+/* Keep favorite star yellow even on active menu item */
+.menu-item-active .menu-fav-toggle.is-favorite,
+.menu-item-active .menu-link .menu-fav-toggle.is-favorite {
+    color: #FFD54F !important;
+}
+
+.menu-item-favorite > .menu-link {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Floating Action Button for mobile actions */
+@media (max-width: 992px) {
+    .fab-container {
+        position: fixed;
+        bottom: 1.25rem;
+        inset-inline-end: 1.25rem;
+        z-index: 1050;
+    }
+
+    .fab-button {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+        border: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .fab-button:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Skeleton loading states */
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--gray-200);
+    border-radius: 8px;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%);
+    transform: translateX(-100%);
+    animation: skeleton-loading 1.4s ease-in-out infinite;
+}
+
+.skeleton-line {
+    height: 12px;
+    margin-bottom: 8px;
+    border-radius: 999px;
+    background-color: var(--gray-200);
+}
+
+.skeleton-line:last-child {
+    margin-bottom: 0;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Toastr layout customization: logo right, text center, close left */
+.toast-top-center .toast {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    text-align: center;
+    padding-inline-start: 1.25rem;
+    padding-inline-end: 1.25rem;
+}
+
+.toast-top-center .toast::before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    background-image: url('../bg/logo-light.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    flex-shrink: 0;
+}
+
+.toast-top-center .toast-message,
+.toast-top-center .toast-title {
+    flex: 1;
+    text-align: center;
+}
+
+.toast-top-center .toast-close-button {
+    order: 3;
+    margin-inline-start: 0.5rem;
+}
+
+/* ===== Dark Mode Improvements ===== */
+/* Dark mode: Cards, tables, and forms */
+body.app-theme-dark .card {
+    background-color: #252536 !important;
+    border-color: #323248;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.app-theme-dark .card-header {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+}
+
+body.app-theme-dark .card-header.text-white {
+    background: linear-gradient(135deg, #3699FF 0%, #1BC5BD 100%) !important;
+}
+
+body.app-theme-dark .card-body {
+    background-color: #252536 !important;
+}
+
+body.app-theme-dark .card-footer {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+}
+
+body.app-theme-dark .table {
+    background-color: #252536 !important;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .table thead th {
+    background-color: #2b2b40 !important;
+    color: #e4e6ef;
+    border-color: #323248;
+}
+
+body.app-theme-dark .table tbody tr {
+    background-color: #252536;
+    border-color: #323248;
+}
+
+body.app-theme-dark .table tbody tr:hover {
+    background-color: #323248 !important;
+}
+
+body.app-theme-dark .table td {
+    color: #e4e6ef;
+    border-color: #323248;
+}
+
+body.app-theme-dark .table-light {
+    background-color: #2b2b40 !important;
+    color: #e4e6ef;
+}
+
+/* Dark mode: Forms */
+body.app-theme-dark .form-control,
+body.app-theme-dark .form-control-solid,
+body.app-theme-dark .form-select {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .form-control:focus,
+body.app-theme-dark .form-control-solid:focus,
+body.app-theme-dark .form-select:focus {
+    background-color: #323248 !important;
+    border-color: #3699FF;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .form-control::placeholder {
+    color: #a2a5b8;
+}
+
+body.app-theme-dark .form-control:focus::placeholder {
+    color: #7e8299;
+}
+
+body.app-theme-dark .form-group label {
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .form-text {
+    color: #a2a5b8;
+}
+
+body.app-theme-dark .input-group-text {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+    color: #a2a5b8;
+}
+
+body.app-theme-dark .input-group .form-control {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+    color: #e4e6ef;
+}
+
+/* Dark mode: Buttons */
+body.app-theme-dark .btn-light {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .btn-light:hover {
+    background-color: #323248 !important;
+    border-color: #323248;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .btn-outline-primary {
+    border-color: #3699FF;
+    color: #3699FF;
+}
+
+body.app-theme-dark .btn-outline-primary:hover {
+    background-color: #3699FF;
+    color: white;
+}
+
+/* Dark mode: Icons and text */
+body.app-theme-dark .text-dark {
+    color: #e4e6ef !important;
+}
+
+body.app-theme-dark .text-muted {
+    color: #a2a5b8 !important;
+}
+
+body.app-theme-dark .text-primary {
+    color: #3699FF !important;
+}
+
+body.app-theme-dark .text-success {
+    color: #1BC5BD !important;
+}
+
+body.app-theme-dark .text-warning {
+    color: #FFA800 !important;
+}
+
+body.app-theme-dark .text-danger {
+    color: #F64E60 !important;
+}
+
+body.app-theme-dark .text-info {
+    color: #8950FC !important;
+}
+
+/* Dark mode: Modal */
+body.app-theme-dark .modal-content {
+    background-color: #252536 !important;
+    border-color: #323248;
+}
+
+body.app-theme-dark .modal-header {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+}
+
+body.app-theme-dark .modal-body {
+    background-color: #252536 !important;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .modal-footer {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+}
+
+/* Dark mode: Dropdowns */
+body.app-theme-dark .dropdown-menu {
+    background-color: #252536 !important;
+    border-color: #323248;
+}
+
+body.app-theme-dark .dropdown-item {
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .dropdown-item:hover {
+    background-color: #323248;
+    color: #e4e6ef;
+}
+
+/* Dark mode: Alerts */
+body.app-theme-dark .alert {
+    background-color: #2b2b40 !important;
+    border-color: #323248;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .alert-success {
+    background-color: rgba(27, 197, 189, 0.15) !important;
+    border-color: #1BC5BD;
+    color: #1BC5BD;
+}
+
+body.app-theme-dark .alert-danger {
+    background-color: rgba(246, 78, 96, 0.15) !important;
+    border-color: #F64E60;
+    color: #F64E60;
+}
+
+body.app-theme-dark .alert-warning {
+    background-color: rgba(255, 168, 0, 0.15) !important;
+    border-color: #FFA800;
+    color: #FFA800;
+}
+
+body.app-theme-dark .alert-info {
+    background-color: rgba(137, 80, 252, 0.15) !important;
+    border-color: #8950FC;
+    color: #8950FC;
+}
+
+/* Dark mode: Stat cards */
+body.app-theme-dark .symbol-label {
+    background-color: #2b2b40 !important;
+}
+
+body.app-theme-dark .symbol-light .symbol-label {
+    background-color: #2b2b40 !important;
+}
+
+/* Dark mode: Settings table */
+body.app-theme-dark .settings-table thead th {
+    background-color: #2b2b40 !important;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .settings-table tbody td {
+    background-color: #252536 !important;
+    color: #e4e6ef;
+    border-color: #323248;
+}
+
+body.app-theme-dark .settings-table tbody tr:hover td {
+    background-color: #323248 !important;
+}
+
+/* Dark mode: Empty states */
+body.app-theme-dark .settings-empty {
+    background-color: #2b2b40 !important;
+}
+
+body.app-theme-dark .settings-empty .empty-icon {
+    background-color: #323248;
+    color: #a2a5b8;
+}
+
+body.app-theme-dark .settings-empty .empty-text {
+    color: #e4e6ef;
+}
+
+/* Dark mode: Badges */
+body.app-theme-dark .badge {
+    background-color: #2b2b40 !important;
+    color: #e4e6ef;
+}
+
+body.app-theme-dark .badge-primary {
+    background-color: #3699FF !important;
+    color: white;
+}
+
+body.app-theme-dark .badge-success {
+    background-color: #1BC5BD !important;
+    color: white;
+}
+
+body.app-theme-dark .badge-warning {
+    background-color: #FFA800 !important;
+    color: white;
+}
+
+body.app-theme-dark .badge-danger {
+    background-color: #F64E60 !important;
+    color: white;
+}
+
+body.app-theme-dark .badge-info {
+    background-color: #8950FC !important;
+    color: white;
+}
+
+/* Dark mode: Links */
+body.app-theme-dark a {
+    color: #3699FF;
+}
+
+body.app-theme-dark a:hover {
+    color: #1BC5BD;
+}
+
+/* Dark mode: Empty state components */
+body.app-theme-dark .empty-state-icon {
+    color: #a2a5b8;
+}
+
+body.app-theme-dark .empty-state-text {
+    color: #a2a5b8;
+}
+
+/* Dark mode: Loading states */
+body.app-theme-dark .loading-overlay {
+    background: rgba(37, 37, 54, 0.8);
+}
+
+body.app-theme-dark .loading-spinner {
+    border-color: #323248;
+    border-top-color: #3699FF;
+}
+
+/* Dark mode: General structure — الخلفية يحددها app-shell.css */
+body.app-theme-dark .content-max-width-wrapper,
+body.app-theme-dark .wrapper {
+    background-color: transparent;
+}
+
+body.app-theme-dark .subheader {
+    background-color: transparent !important;
+    border-color: transparent;
+}
+
+/* Dark mode: Skeleton loading */
+body.app-theme-dark .skeleton {
+    background-color: #323248;
+}
+
+body.app-theme-dark .skeleton-line {
+    background-color: #323248;
+}
+
+body.app-theme-dark .skeleton::after {
+    background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%);
+}
+

@@ -1,0 +1,255 @@
+/* ==========================================================================
+   Module Themes — هوية لونية لكل قسم
+   --------------------------------------------------------------------------
+   المتغيرات --module-* تُحقن على <body> من layout/master.blade.php
+   (مصدرها: config/module_themes.php)، وهنا نستهلكها لتلوين عناصر القسم.
+   ========================================================================== */
+
+:root {
+    --module-accent: #3699FF;
+    --module-accent-rgb: 54, 153, 255;
+    --module-accent-soft: rgba(54, 153, 255, 0.12);
+    --module-accent-strong: rgba(54, 153, 255, 0.24);
+}
+
+/* ===== ترويسة الصفحة: أيقونة + شريط لوني ===== */
+.view-page-header .title-icon {
+    background: var(--module-accent-soft) !important;
+    color: var(--module-accent) !important;
+    box-shadow: inset 0 0 0 1px var(--module-accent-strong);
+}
+
+.view-page-header {
+    border-inline-start: 0;
+    padding-bottom: 0.9rem;
+    border-bottom: 2px solid var(--module-accent-soft);
+}
+
+.view-page-header h1 {
+    position: relative;
+}
+
+/* شارة القسم داخل الترويسة */
+.view-module-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.12rem 0.6rem;
+    margin-bottom: 0.35rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    background: var(--module-accent-soft);
+    color: var(--module-accent);
+    border: 1px solid var(--module-accent-strong);
+}
+
+.view-module-chip i {
+    font-size: 0.66rem;
+}
+
+/* ===== أول كارت في الصفحة: شريط علوي بلون القسم ===== */
+#kt_content > .container-fluid > .card-custom:first-of-type {
+    box-shadow: inset 0 3px 0 0 var(--module-accent), 0 8px 28px rgba(24, 28, 50, 0.06) !important;
+}
+
+body.app-theme-dark #kt_content > .container-fluid > .card-custom:first-of-type,
+body.dashboard-dark #kt_content > .container-fluid > .card-custom:first-of-type {
+    box-shadow: inset 0 3px 0 0 var(--module-accent), 0 8px 28px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ===== الجداول: خط رأس الجدول بلون القسم ===== */
+#kt_content .table thead th {
+    border-bottom: 2px solid var(--module-accent-strong) !important;
+}
+
+/* ===== حالات الفراغ والترقيم ===== */
+.view-empty-state .empty-icon {
+    background: var(--module-accent-soft);
+    color: var(--module-accent);
+}
+
+#kt_content .pagination .page-item.active .page-link {
+    background-color: var(--module-accent) !important;
+    border-color: var(--module-accent) !important;
+}
+
+/* ===== أزرار وعناصر أساسية بلون القسم ===== */
+body .btn-module {
+    background: var(--module-accent);
+    border-color: var(--module-accent);
+    color: #fff;
+}
+
+body .btn-module:hover,
+body .btn-module:focus {
+    filter: brightness(0.94);
+    color: #fff;
+}
+
+body .text-module {
+    color: var(--module-accent) !important;
+}
+
+body .bg-module-soft {
+    background: var(--module-accent-soft) !important;
+}
+
+body .border-module {
+    border-color: var(--module-accent) !important;
+}
+
+/* ===== السايدر بار: لون مميز لكل قسم (التمييز بين الأقسام) ===== */
+
+/* خريطة ألوان الأقسام (تُطابق config/module_themes.php) */
+#kt_aside .menu-item[data-module="dashboard"],
+#kt_aside .menu-section[data-module="dashboard"]            { --item-accent: #3699FF; --item-accent-rgb: 54, 153, 255; }
+#kt_aside .menu-item[data-module="administrative"],
+#kt_aside .menu-section[data-module="administrative"]       { --item-accent: #4E73DF; --item-accent-rgb: 78, 115, 223; }
+#kt_aside .menu-item[data-module="central_treasury"],
+#kt_aside .menu-section[data-module="central_treasury"]     { --item-accent: #1BC5BD; --item-accent-rgb: 27, 197, 189; }
+#kt_aside .menu-item[data-module="external_collections"],
+#kt_aside .menu-section[data-module="external_collections"] { --item-accent: #FFA800; --item-accent-rgb: 255, 168, 0; }
+#kt_aside .menu-item[data-module="public_pen"],
+#kt_aside .menu-section[data-module="public_pen"]           { --item-accent: #8950FC; --item-accent-rgb: 137, 80, 252; }
+#kt_aside .menu-item[data-module="crafts"],
+#kt_aside .menu-section[data-module="crafts"]               { --item-accent: #FF6B00; --item-accent-rgb: 255, 107, 0; }
+#kt_aside .menu-item[data-module="engineering"],
+#kt_aside .menu-section[data-module="engineering"]          { --item-accent: #0BB783; --item-accent-rgb: 11, 183, 131; }
+#kt_aside .menu-item[data-module="legal"],
+#kt_aside .menu-section[data-module="legal"]                { --item-accent: #F64E60; --item-accent-rgb: 246, 78, 96; }
+
+/* كبسولة أيقونة العنصر: خلفية شفافة + لون القسم */
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon {
+    background: rgba(var(--item-accent-rgb, 54, 153, 255), 0.14) !important;
+    color: var(--item-accent, currentColor) !important;
+}
+
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon i,
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon svg,
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon .text-primary,
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon .text-success,
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon .text-info,
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon .text-warning,
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link > .menu-icon .text-danger {
+    color: var(--item-accent, currentColor) !important;
+}
+
+/* الأيقونات داخل القائمة الفرعية: لون القسم بشفافية أخف (تسلسل هرمي واضح) */
+#kt_aside .menu-nav .menu-subnav .menu-item[data-module] > .menu-link > .menu-icon {
+    background: transparent !important;
+}
+
+#kt_aside .menu-nav .menu-subnav .menu-item[data-module] > .menu-link > .menu-icon i,
+#kt_aside .menu-nav .menu-subnav .menu-item[data-module] > .menu-link > .menu-icon svg {
+    color: var(--item-accent, currentColor) !important;
+    opacity: 0.78;
+}
+
+/* عند المرور: الكبسولة تتوهج بلون القسم */
+#kt_aside .menu-nav .menu-item[data-module] > .menu-link:hover > .menu-icon {
+    background: rgba(var(--item-accent-rgb, 54, 153, 255), 0.3) !important;
+}
+
+/* العنصر المفتوح (القائمة مفتوحة بدون تفعيل): تدرّج لوني خفيف */
+#kt_aside .menu-item[data-module].menu-item-open:not(.menu-item-active) > .menu-link {
+    background: rgba(var(--item-accent-rgb, 54, 153, 255), 0.12) !important;
+    border-color: rgba(var(--item-accent-rgb, 54, 153, 255), 0.2);
+}
+
+/* العنصر النشط: خلفية ممتلئة بلون القسم (بدل التدرّج الأزرق العام) */
+#kt_aside .menu-item[data-module].menu-item-active > .menu-link,
+#kt_aside .menu-item[data-module].menu-item-here > .menu-link {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.08) 100%),
+        var(--item-accent) !important;
+    color: #fff !important;
+    box-shadow: 0 10px 22px rgba(var(--item-accent-rgb, 54, 153, 255), 0.28) !important;
+}
+
+#kt_aside .menu-item[data-module].menu-item-active > .menu-link .menu-icon,
+#kt_aside .menu-item[data-module].menu-item-active > .menu-link .menu-icon i,
+#kt_aside .menu-item[data-module].menu-item-here > .menu-link .menu-icon,
+#kt_aside .menu-item[data-module].menu-item-here > .menu-link .menu-icon i {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    opacity: 1;
+}
+
+/* الشرطة الجانبية للعنصر النشط: بيضاء لتتناسق مع أي لون قسم */
+#kt_aside .menu-item[data-module].menu-item-active > .menu-link::before,
+#kt_aside .menu-item[data-module].menu-item-here > .menu-link::before {
+    background: #fff !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* رؤوس الأقسام (sections) في السايدر بار */
+#kt_aside .menu-section[data-module] .menu-text::before {
+    background: var(--item-accent, #3699FF) !important;
+    box-shadow: 0 0 8px rgba(var(--item-accent-rgb, 54, 153, 255), 0.55) !important;
+}
+
+#kt_aside .menu-section[data-module] .menu-text {
+    color: var(--item-accent, inherit) !important;
+}
+
+/* ===== شعار السايدر بار: خط سفلي بلون قسم الصفحة الحالية ===== */
+#kt_aside .aside-brand-copy span::after {
+    content: "";
+    display: block;
+    height: 2px;
+    margin-top: 4px;
+    width: 100%;
+    border-radius: 2px;
+    background: var(--module-accent);
+    opacity: 0.85;
+    transition: background 0.25s ease;
+}
+
+/* ===== ترويسة المودال: تلوين حسب القسم ===== */
+.modal-header {
+    background: linear-gradient(135deg, var(--module-accent-soft) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-bottom: 2px solid var(--module-accent);
+}
+
+.modal-title {
+    color: var(--module-accent) !important;
+    font-weight: 700;
+}
+
+/* ===== زر الإنشاء الرئيسي: تلوين حسب القسم ===== */
+.btn-create-main {
+    background: var(--module-accent) !important;
+    border-color: var(--module-accent) !important;
+    color: #fff !important;
+}
+
+.btn-create-main:hover,
+.btn-create-main:focus {
+    filter: brightness(0.9);
+    color: #fff !important;
+}
+
+/* ===== زر الحفظ في المودال: تلوين حسب القسم ===== */
+.btn-save-module {
+    background: var(--module-accent) !important;
+    border-color: var(--module-accent) !important;
+    color: #fff !important;
+}
+
+.btn-save-module:hover,
+.btn-save-module:focus {
+    filter: brightness(0.9);
+    color: #fff !important;
+}
+
+/* ===== ترويسة الكارت عند إنشاء/تعديل: تلوين حسب القسم ===== */
+.card-header-create {
+    background: linear-gradient(135deg, var(--module-accent-soft) 0%, rgba(255, 255, 255, 0.95) 100%);
+    border-bottom: 2px solid var(--module-accent);
+}
+
+.card-header-create .card-title {
+    color: var(--module-accent) !important;
+}
+

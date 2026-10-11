@@ -1,0 +1,350 @@
+// ==========================================
+// نظام التصميم الموحد - بلدية جباليا
+// Unified Design System - Jabalia Municipality
+// ==========================================
+
+// ==========================================
+// 1. نظام الألوان | Color System
+// ==========================================
+
+// الألوان الأساسية للعلامة التجارية | Brand Primary Colors
+$jabalia-blue: #3699FF;
+$jabalia-blue-dark: #2875d9;
+$jabalia-blue-light: #63B3ED;
+
+// الألوان الوظيفية | Functional Colors
+$jabalia-success: #1BC5BD;
+$jabalia-success-light: #68D391;
+$jabalia-warning: #FFA800;
+$jabalia-warning-light: #F6AD55;
+$jabalia-danger: #F64E60;
+$jabalia-danger-light: #FC8181;
+$jabalia-info: #8950FC;
+$jabalia-info-light: #76E4F7;
+
+// الألوان المحايدة | Neutral Colors
+$jabalia-gray-50: #F9FAFB;
+$jabalia-gray-100: #F3F4F6;
+$jabalia-gray-200: #E5E7EB;
+$jabalia-gray-300: #D1D5DB;
+$jabalia-gray-400: #9CA3AF;
+$jabalia-gray-500: #6B7280;
+$jabalia-gray-600: #4B5563;
+$jabalia-gray-700: #374151;
+$jabalia-gray-800: #1F2937;
+$jabalia-gray-900: #111827;
+
+// الألوان للخلفيات | Background Colors
+$jabalia-bg-primary: #ffffff;
+$jabalia-bg-secondary: #F9FAFB;
+$jabalia-bg-tertiary: #F3F4F6;
+$jabalia-bg-dark: #1F2937;
+
+// ==========================================
+// 2. نظام الخطوط | Typography System
+// ==========================================
+
+// عائلة الخطوط | Font Families
+$font-primary: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-secondary: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-mono: 'Fira Code', 'Courier New', monospace;
+
+// أحجام الخطوط | Font Sizes
+$font-xs: 0.75rem;    // 12px
+$font-sm: 0.875rem;   // 14px
+$font-base: 1rem;     // 16px
+$font-lg: 1.125rem;   // 18px
+$font-xl: 1.25rem;    // 20px
+$font-2xl: 1.5rem;    // 24px
+$font-3xl: 1.875rem;  // 30px
+$font-4xl: 2.25rem;   // 36px
+$font-5xl: 3rem;      // 48px
+
+// أوزان الخطوط | Font Weights
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-extrabold: 800;
+$font-black: 900;
+
+// ارتفاع السطر | Line Heights
+$leading-none: 1;
+$leading-tight: 1.25;
+$leading-normal: 1.5;
+$leading-relaxed: 1.625;
+$leading-loose: 2;
+
+// ==========================================
+// 3. نظام التباعد | Spacing System
+// ==========================================
+
+// المسافات | Spacing Scale
+$spacing-0: 0;
+$spacing-1: 0.25rem;   // 4px
+$spacing-2: 0.5rem;    // 8px
+$spacing-3: 0.75rem;   // 12px
+$spacing-4: 1rem;      // 16px
+$spacing-5: 1.25rem;   // 20px
+$spacing-6: 1.5rem;    // 24px
+$spacing-8: 2rem;      // 32px
+$spacing-10: 2.5rem;   // 40px
+$spacing-12: 3rem;     // 48px
+$spacing-16: 4rem;     // 64px
+$spacing-20: 5rem;     // 80px
+$spacing-24: 6rem;     // 96px
+
+// ==========================================
+// 4. نظام الزوايا والحدود | Border & Radius
+// ==========================================
+
+// نصف قطر الزوايا | Border Radius
+$radius-none: 0;
+$radius-sm: 0.125rem;   // 2px
+$radius-base: 0.25rem;  // 4px
+$radius-md: 0.375rem;   // 6px
+$radius-lg: 0.5rem;     // 8px
+$radius-xl: 0.75rem;    // 12px
+$radius-2xl: 1rem;      // 16px
+$radius-full: 9999px;
+
+// الحدود | Borders
+$border-width-thin: 1px;
+$border-width-base: 2px;
+$border-width-thick: 3px;
+
+$border-color-light: $jabalia-gray-200;
+$border-color-base: $jabalia-gray-300;
+$border-color-dark: $jabalia-gray-400;
+
+// ==========================================
+// 5. نظام الظلال | Shadow System
+// ==========================================
+
+$shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+$shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+$shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+$shadow-colored-sm: 0 1px 3px 0 rgba($jabalia-blue, 0.1);
+$shadow-colored-md: 0 4px 6px -1px rgba($jabalia-blue, 0.15);
+$shadow-colored-lg: 0 10px 15px -3px rgba($jabalia-blue, 0.2);
+
+// ==========================================
+// 6. نظام الأزرار | Button System
+// ==========================================
+
+// أحجام الأزرار | Button Sizes
+$btn-padding-xs: 0.25rem 0.5rem;
+$btn-padding-sm: 0.375rem 0.75rem;
+$btn-padding-base: 0.5rem 1rem;
+$btn-padding-lg: 0.75rem 1.5rem;
+$btn-padding-xl: 1rem 2rem;
+
+$btn-font-xs: $font-xs;
+$btn-font-sm: $font-sm;
+$btn-font-base: $font-base;
+$btn-font-lg: $font-lg;
+$btn-font-xl: $font-xl;
+
+$btn-radius-sm: $radius-sm;
+$btn-radius-base: $radius-md;
+$btn-radius-lg: $radius-lg;
+$btn-radius-xl: $radius-xl;
+
+// ==========================================
+// 7. نظام البطاقات | Card System
+// ==========================================
+
+$card-padding-base: $spacing-6;
+$card-padding-lg: $spacing-8;
+$card-radius-base: $radius-lg;
+$card-radius-lg: $radius-xl;
+$card-shadow-base: $shadow-base;
+$card-shadow-hover: $shadow-lg;
+
+// ==========================================
+// 8. نظام النماذج | Form System
+// ==========================================
+
+$form-padding-base: $spacing-3 $spacing-4;
+$form-padding-lg: $spacing-4 $spacing-5;
+$form-radius-base: $radius-md;
+$form-border-color: $border-color-base;
+$form-border-focus: $jabalia-blue;
+$form-bg-base: $jabalia-bg-primary;
+$form-bg-disabled: $jabalia-bg-secondary;
+
+// ==========================================
+// 9. نظام السايدبار | Sidebar System
+// ==========================================
+
+$sidebar-width: 265px;
+$sidebar-width-collapsed: 70px;
+$sidebar-bg-primary: #1e1e2d;
+$sidebar-bg-secondary: #1a1a24;
+$sidebar-text-primary: rgba(255, 255, 255, 0.82);
+$sidebar-text-secondary: rgba(255, 255, 255, 0.6);
+$sidebar-border-color: rgba(255, 255, 255, 0.1);
+$sidebar-hover-bg: rgba(255, 255, 255, 0.05);
+$sidebar-active-bg: linear-gradient(90deg, #3699FF 0%, #2875d9 100%);
+$sidebar-active-text: #ffffff;
+
+// ==========================================
+// 10. نظام الجداول | Table System
+// ==========================================
+
+$table-padding-base: $spacing-3 $spacing-4;
+$table-padding-lg: $spacing-4 $spacing-5;
+$table-border-color: $border-color-light;
+$table-bg-header: $jabalia-bg-secondary;
+$table-bg-hover: $jabalia-bg-tertiary;
+$table-bg-striped: $jabalia-gray-50;
+
+// ==========================================
+// 11. نظام التنبيهات | Alert System
+// ==========================================
+
+$alert-padding-base: $spacing-4;
+$alert-radius-base: $radius-md;
+$alert-border-width: $border-width-thin;
+
+$alert-bg-success: rgba($jabalia-success, 0.1);
+$alert-border-success: $jabalia-success;
+$alert-text-success: $jabalia-gray-800;
+
+$alert-bg-warning: rgba($jabalia-warning, 0.1);
+$alert-border-warning: $jabalia-warning;
+$alert-text-warning: $jabalia-gray-800;
+
+$alert-bg-danger: rgba($jabalia-danger, 0.1);
+$alert-border-danger: $jabalia-danger;
+$alert-text-danger: $jabalia-gray-800;
+
+$alert-bg-info: rgba($jabalia-info, 0.1);
+$alert-border-info: $jabalia-info;
+$alert-text-info: $jabalia-gray-800;
+
+// ==========================================
+// 12. نظام الشارات | Badge System
+// ==========================================
+
+$badge-padding-xs: 0.125rem 0.375rem;
+$badge-padding-sm: 0.25rem 0.5rem;
+$badge-padding-base: 0.375rem 0.625rem;
+$badge-radius-full: $radius-full;
+$badge-radius-base: $radius-md;
+
+$badge-font-xs: $font-xs;
+$badge-font-sm: $font-xs;
+$badge-font-base: $font-sm;
+
+// ==========================================
+// 13. نظام الانتقالات | Transition System
+// ==========================================
+
+$transition-fast: 150ms ease-in-out;
+$transition-base: 200ms ease-in-out;
+$transition-slow: 300ms ease-in-out;
+$transition-slower: 500ms ease-in-out;
+
+$transition-all: all $transition-base;
+$transition-colors: color $transition-fast, background-color $transition-fast, border-color $transition-fast;
+$transition-transform: transform $transition-base;
+$transition-opacity: opacity $transition-fast;
+
+// ==========================================
+// 14. نظام z-index | Z-Index System
+// ==========================================
+
+$z-dropdown: 1000;
+$z-sticky: 1020;
+$z-fixed: 1030;
+$z-modal-backdrop: 1040;
+$z-modal: 1050;
+$z-popover: 1060;
+$z-tooltip: 1070;
+
+// ==========================================
+// 15. نظام الفواصل | Breakpoints
+// ==========================================
+
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// ==========================================
+// 16. متغيرات Bootstrap Overrides
+// ==========================================
+
+// Bootstrap Colors
+$primary: $jabalia-blue;
+$success: $jabalia-success;
+$warning: $jabalia-warning;
+$danger: $jabalia-danger;
+$info: $jabalia-info;
+
+// Body
+$body-bg: $jabalia-bg-primary;
+$body-color: $jabalia-gray-700;
+
+// Typography
+$font-family-sans-serif: $font-primary;
+$font-size-base: $font-base;
+$line-height-base: $leading-normal;
+
+// Headings
+$headings-font-family: $font-primary;
+$headings-font-weight: $font-bold;
+$headings-line-height: $leading-tight;
+$h1-font-size: $font-5xl;
+$h2-font-size: $font-4xl;
+$h3-font-size: $font-3xl;
+$h4-font-size: $font-2xl;
+$h5-font-size: $font-xl;
+$h6-font-size: $font-lg;
+
+// Buttons
+$btn-padding-y: 0.5rem;
+$btn-padding-x: 1rem;
+$btn-font-family: $font-primary;
+$btn-font-weight: $font-medium;
+$btn-border-radius: $radius-md;
+
+// Cards
+$card-spacer-y: $spacing-6;
+$card-spacer-x: $spacing-6;
+$card-border-radius: $radius-lg;
+$card-cap-bg: $jabalia-bg-secondary;
+
+// Forms
+$input-padding-y: $spacing-3;
+$input-padding-x: $spacing-4;
+$input-font-family: $font-primary;
+$input-font-size: $font-base;
+$input-border-radius: $radius-md;
+$input-border-color: $border-color-base;
+$input-focus-border-color: $jabalia-blue;
+
+// Tables
+$table-cell-padding-y: $spacing-3;
+$table-cell-padding-x: $spacing-4;
+$table-border-color: $border-color-light;
+
+// Alerts
+$alert-padding-y: $spacing-4;
+$alert-padding-x: $spacing-5;
+$alert-border-radius: $radius-md;
+
+// Badges
+$badge-padding-y: 0.25rem;
+$badge-padding-x: 0.5rem;
+$badge-border-radius: $radius-md;
+$badge-font-size: $font-sm;

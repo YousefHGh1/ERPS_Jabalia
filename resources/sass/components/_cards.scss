@@ -1,0 +1,186 @@
+// ==========================================
+// نظام البطاقات الموحد | Unified Card System
+// ==========================================
+
+.card {
+    border: 1px solid $border-color-light;
+    border-radius: $card-radius-base;
+    box-shadow: $card-shadow-base;
+    transition: $transition-all;
+    background: $jabalia-bg-primary;
+    overflow: hidden;
+
+    &:hover {
+        box-shadow: $card-shadow-hover;
+        transform: translateY(-2px);
+    }
+
+    .card-header {
+        background: $jabalia-bg-secondary;
+        border-bottom: 1px solid $border-color-light;
+        padding: $card-padding-base;
+        font-weight: $font-semibold;
+        color: $jabalia-gray-800;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .card-title {
+            margin: 0;
+            font-size: $font-lg;
+            font-weight: $font-semibold;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: $spacing-2;
+        }
+    }
+
+    .card-body {
+        padding: $card-padding-base;
+    }
+
+    .card-footer {
+        background: $jabalia-bg-secondary;
+        border-top: 1px solid $border-color-light;
+        padding: $card-padding-base;
+    }
+}
+
+// Card Variants
+.card-primary {
+    border-top: 4px solid $jabalia-blue;
+
+    .card-header {
+        background: linear-gradient(135deg, rgba($jabalia-blue, 0.05) 0%, rgba($jabalia-blue, 0.1) 100%);
+    }
+}
+
+.card-success {
+    border-top: 4px solid $jabalia-success;
+
+    .card-header {
+        background: linear-gradient(135deg, rgba($jabalia-success, 0.05) 0%, rgba($jabalia-success, 0.1) 100%);
+    }
+}
+
+.card-warning {
+    border-top: 4px solid $jabalia-warning;
+
+    .card-header {
+        background: linear-gradient(135deg, rgba($jabalia-warning, 0.05) 0%, rgba($jabalia-warning, 0.1) 100%);
+    }
+}
+
+.card-danger {
+    border-top: 4px solid $jabalia-danger;
+
+    .card-header {
+        background: linear-gradient(135deg, rgba($jabalia-danger, 0.05) 0%, rgba($jabalia-danger, 0.1) 100%);
+    }
+}
+
+.card-info {
+    border-top: 4px solid $jabalia-info;
+
+    .card-header {
+        background: linear-gradient(135deg, rgba($jabalia-info, 0.05) 0%, rgba($jabalia-info, 0.1) 100%);
+    }
+}
+
+// Card Sizes
+.card-lg {
+    .card-header,
+    .card-body,
+    .card-footer {
+        padding: $card-padding-lg;
+    }
+}
+
+.card-flat {
+    box-shadow: none;
+    border: 1px solid $border-color-light;
+
+    &:hover {
+        box-shadow: none;
+        transform: none;
+    }
+}
+
+.card-hoverable {
+    cursor: pointer;
+
+    &:hover {
+        border-color: $jabalia-blue-light;
+    }
+}
+
+// Stats Card
+.card-stats {
+    text-align: center;
+    padding: $spacing-8;
+
+    .stats-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: $radius-full;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto $spacing-4;
+        font-size: $font-3xl;
+
+        &.icon-primary {
+            background: rgba($jabalia-blue, 0.1);
+            color: $jabalia-blue;
+        }
+
+        &.icon-success {
+            background: rgba($jabalia-success, 0.1);
+            color: $jabalia-success;
+        }
+
+        &.icon-warning {
+            background: rgba($jabalia-warning, 0.1);
+            color: $jabalia-warning;
+        }
+
+        &.icon-danger {
+            background: rgba($jabalia-danger, 0.1);
+            color: $jabalia-danger;
+        }
+
+        &.icon-info {
+            background: rgba($jabalia-info, 0.1);
+            color: $jabalia-info;
+        }
+    }
+
+    .stats-value {
+        font-size: $font-4xl;
+        font-weight: $font-bold;
+        color: $jabalia-gray-900;
+        margin-bottom: $spacing-2;
+    }
+
+    .stats-label {
+        font-size: $font-base;
+        color: $jabalia-gray-500;
+        font-weight: $font-medium;
+    }
+
+    .stats-change {
+        font-size: $font-sm;
+        font-weight: $font-semibold;
+        margin-top: $spacing-2;
+
+        &.positive {
+            color: $jabalia-success;
+        }
+
+        &.negative {
+            color: $jabalia-danger;
+        }
+    }
+}

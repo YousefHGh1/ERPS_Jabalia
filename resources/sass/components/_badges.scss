@@ -1,0 +1,269 @@
+// ==========================================
+// نظام الشارات الموحد | Unified Badge System
+// ==========================================
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-primary;
+    font-weight: $font-semibold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: $badge-radius-base;
+    padding: $badge-padding-base;
+    font-size: $badge-font-base;
+    transition: $transition-all;
+
+    // Badge Variants
+    &.badge-primary {
+        background: linear-gradient(135deg, $jabalia-blue 0%, $jabalia-blue-dark 100%);
+        color: white;
+    }
+
+    &.badge-success {
+        background: linear-gradient(135deg, $jabalia-success 0%, darken($jabalia-success, 15%) 100%);
+        color: white;
+    }
+
+    &.badge-warning {
+        background: linear-gradient(135deg, $jabalia-warning 0%, darken($jabalia-warning, 15%) 100%);
+        color: white;
+    }
+
+    &.badge-danger {
+        background: linear-gradient(135deg, $jabalia-danger 0%, darken($jabalia-danger, 15%) 100%);
+        color: white;
+    }
+
+    &.badge-info {
+        background: linear-gradient(135deg, $jabalia-info 0%, darken($jabalia-info, 15%) 100%);
+        color: white;
+    }
+
+    // Outline Badges
+    &.badge-outline-primary {
+        background: transparent;
+        border: 1px solid $jabalia-blue;
+        color: $jabalia-blue;
+    }
+
+    &.badge-outline-success {
+        background: transparent;
+        border: 1px solid $jabalia-success;
+        color: $jabalia-success;
+    }
+
+    &.badge-outline-warning {
+        background: transparent;
+        border: 1px solid $jabalia-warning;
+        color: $jabalia-warning;
+    }
+
+    &.badge-outline-danger {
+        background: transparent;
+        border: 1px solid $jabalia-danger;
+        color: $jabalia-danger;
+    }
+
+    &.badge-outline-info {
+        background: transparent;
+        border: 1px solid $jabalia-info;
+        color: $jabalia-info;
+    }
+
+    // Light Badges
+    &.badge-light-primary {
+        background: rgba($jabalia-blue, 0.1);
+        color: $jabalia-blue;
+    }
+
+    &.badge-light-success {
+        background: rgba($jabalia-success, 0.1);
+        color: $jabalia-success;
+    }
+
+    &.badge-light-warning {
+        background: rgba($jabalia-warning, 0.1);
+        color: $jabalia-warning;
+    }
+
+    &.badge-light-danger {
+        background: rgba($jabalia-danger, 0.1);
+        color: $jabalia-danger;
+    }
+
+    &.badge-light-info {
+        background: rgba($jabalia-info, 0.1);
+        color: $jabalia-info;
+    }
+
+    // Neutral Badges
+    &.badge-light {
+        background: $jabalia-gray-100;
+        color: $jabalia-gray-700;
+    }
+
+    &.badge-dark {
+        background: $jabalia-gray-800;
+        color: white;
+    }
+
+    // Badge Sizes
+    &.badge-xs {
+        padding: $badge-padding-xs;
+        font-size: $badge-font-xs;
+        border-radius: $badge-radius-base;
+    }
+
+    &.badge-sm {
+        padding: $badge-padding-sm;
+        font-size: $badge-font-sm;
+        border-radius: $badge-radius-base;
+    }
+
+    &.badge-lg {
+        padding: $spacing-3 $spacing-5;
+        font-size: $font-base;
+        border-radius: $radius-lg;
+    }
+
+    // Pill Badges
+    &.badge-pill {
+        border-radius: $badge-radius-full;
+        padding-left: $spacing-4;
+        padding-right: $spacing-4;
+    }
+
+    // Badge with Icon
+    &.badge-with-icon {
+        gap: $spacing-2;
+
+        .badge-icon {
+            font-size: 0.9em;
+        }
+    }
+
+    // Badge Dot
+    &.badge-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        padding: 0;
+
+        &.badge-dot-primary {
+            background: $jabalia-blue;
+        }
+
+        &.badge-dot-success {
+            background: $jabalia-success;
+        }
+
+        &.badge-dot-warning {
+            background: $jabalia-warning;
+        }
+
+        &.badge-dot-danger {
+            background: $jabalia-danger;
+        }
+
+        &.badge-dot-info {
+            background: $jabalia-info;
+        }
+    }
+}
+
+// Badge Positioning
+.position-relative .badge-absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+// Badge Counters
+.badge-counter {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    font-size: 11px;
+    font-weight: $font-bold;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 10px;
+    background: $jabalia-danger;
+    color: white;
+    border: 2px solid white;
+}
+
+// Status Badges
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-2 $spacing-4;
+    border-radius: $badge-radius-full;
+    font-size: $font-xs;
+    font-weight: $font-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &.status-active {
+        background: rgba($jabalia-success, 0.1);
+        color: $jabalia-success;
+
+        &::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: $jabalia-success;
+        }
+    }
+
+    &.status-pending {
+        background: rgba($jabalia-warning, 0.1);
+        color: $jabalia-warning;
+
+        &::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: $jabalia-warning;
+        }
+    }
+
+    &.status-inactive,
+    &.status-closed {
+        background: rgba($jabalia-gray-300, 0.3);
+        color: $jabalia-gray-600;
+
+        &::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: $jabalia-gray-400;
+        }
+    }
+
+    &.status-danger,
+    &.status-rejected {
+        background: rgba($jabalia-danger, 0.1);
+        color: $jabalia-danger;
+
+        &::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: $jabalia-danger;
+        }
+    }
+}

@@ -1,0 +1,288 @@
+/* Responsive Design Enhancements */
+
+/* Mobile First Approach */
+@media (max-width: 575.98px) {
+    /* Typography */
+    .responsive-text-xl {
+        font-size: 1.5rem;
+    }
+
+    .responsive-text-lg {
+        font-size: 1.25rem;
+    }
+
+    .responsive-text-md {
+        font-size: 1rem;
+    }
+
+    .responsive-text-sm {
+        font-size: 0.875rem;
+    }
+
+    .responsive-text-xs {
+        font-size: 0.75rem;
+    }
+
+    /* Spacing */
+    .responsive-p-lg {
+        padding: 1rem;
+    }
+
+    .responsive-p-md {
+        padding: 0.75rem;
+    }
+
+    .responsive-p-sm {
+        padding: 0.5rem;
+    }
+
+    .responsive-m-lg {
+        margin: 1rem;
+    }
+
+    .responsive-m-md {
+        margin: 0.75rem;
+    }
+
+    .responsive-m-sm {
+        margin: 0.5rem;
+    }
+
+    /* Cards */
+    .card-responsive {
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .card-responsive .card-body {
+        padding: 1rem;
+    }
+
+    /* Tables */
+    .table-responsive-mobile {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-responsive-mobile table {
+        min-width: 600px;
+    }
+
+    /* Buttons */
+    .btn-responsive {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .btn-responsive-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+
+    .btn-responsive-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    /* Forms */
+    .form-responsive {
+        font-size: 0.875rem;
+    }
+
+    .form-responsive .form-control {
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Navigation */
+    .nav-responsive {
+        flex-direction: column;
+    }
+
+    .nav-responsive .nav-item {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Grid */
+    .grid-responsive {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-responsive-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-responsive-3 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Flex */
+    .flex-responsive {
+        flex-direction: column;
+    }
+
+    .flex-responsive-row {
+        flex-direction: row;
+    }
+
+    /* Container */
+    .container-responsive {
+        padding: 0 1rem;
+    }
+}
+
+/* Tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .grid-responsive-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-responsive-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .flex-responsive {
+        flex-direction: row;
+    }
+}
+
+/* Desktop */
+@media (min-width: 992px) {
+    .grid-responsive-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-responsive-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-responsive-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .flex-responsive {
+        flex-direction: row;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .container-responsive {
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+}
+
+/* Extra Large Desktop */
+@media (min-width: 1400px) {
+    .container-responsive {
+        max-width: 1320px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase tap targets for touch devices */
+    .btn,
+    .nav-link,
+    .dropdown-item {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Remove hover effects on touch devices */
+    .btn:hover,
+    .nav-link:hover {
+        background-color: inherit;
+    }
+}
+
+/* High DPI Screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Improve image quality on retina displays */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .dark-mode-auto {
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+    }
+
+    .dark-mode-auto .card {
+        background-color: #2d2d2d;
+        border-color: #404040;
+    }
+
+    .dark-mode-auto .table {
+        color: #e0e0e0;
+    }
+
+    .dark-mode-auto .form-control {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Landscape Mode on Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hide-landscape-mobile {
+        display: none !important;
+    }
+
+    .adjust-landscape-mobile {
+        padding: 0.5rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-break-before {
+        page-break-before: always;
+    }
+
+    .print-break-after {
+        page-break-after: always;
+    }
+
+    .print-break-inside-avoid {
+        page-break-inside: avoid;
+    }
+
+    a {
+        text-decoration: underline;
+        color: black;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+}
