@@ -330,5 +330,6 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
     // Unified historical files query for crafts and legacy engineering/organization data
     Route::get('/historical-files', [\App\Http\Controllers\HistoricalFilesController::class, 'index'])->name('historical-files.index');
     Route::get('/historical-files/export', [\App\Http\Controllers\HistoricalFilesController::class, 'export'])->name('historical-files.export');
+    Route::get('/historical-files/{id}', [\App\Http\Controllers\HistoricalFilesController::class, 'show'])->name('historical-files.show');
 
 });

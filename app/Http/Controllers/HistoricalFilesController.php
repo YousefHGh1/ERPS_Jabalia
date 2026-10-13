@@ -46,6 +46,16 @@ class HistoricalFilesController extends Controller
         ]);
     }
 
+    public function show(int $id, HistoricalFilesQueryService $queryService)
+    {
+        $craft = HistoricalCraft::findOrFail($id);
+        $data = (array) ($craft->data ?? []);
+        $ownerName = $queryService->craftOwnerName($data);
+        $fileNumber = $queryService->craftFileNumber($data);
+
+        return view('historical-files.show', compact('craft', 'data', 'ownerName', 'fileNumber'));
+    }
+
     /**
      * التصفية الدقيقة بعد التضييق الأولي + الترتيب بالقرب من البحث + الترقيم.
      *

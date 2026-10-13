@@ -95,6 +95,7 @@
                                 <th>حالة الملف</th>
                                 <th>العنوان</th>
                                 <th>ملخص</th>
+                                <th>الإفادة</th>
                                 {{-- <th>التاريخ</th> --}}
                             </tr>
                         </thead>
@@ -109,11 +110,17 @@
                                     <td>{{ $row['file_status'] ?? '—' }}</td>
                                     <td>{{ $row['address'] ?? '—' }}</td>
                                     <td>{{ Str::limit($row['summary'] ?? '—', 80) }}</td>
+                                    <td>
+                                        <a href="{{ route('historical-files.show', ['id' => $row['id']] + request()->query()) }}"
+                                            class="btn btn-sm btn-light-primary">
+                                            <i class="fas fa-file-alt"></i> إفادة حرفة
+                                        </a>
+                                    </td>
                                     {{-- <td>{{ $row['date'] ?? '—' }}</td> --}}
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center py-10">لا توجد نتائج</td>
+                                    <td colspan="9" class="text-center py-10">لا توجد نتائج</td>
                                 </tr>
                             @endforelse
                         </tbody>
