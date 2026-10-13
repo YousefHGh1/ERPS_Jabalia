@@ -80,9 +80,11 @@
             <div class="col-lg-8">
                 <!-- Craft Licenses by Category -->
                 <div class="card card-custom shadow-sm gutter-b">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Craft Licenses by Category') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-chart-bar text-primary mr-2"></i>{{ __('Craft Licenses by Category') }}
+                            </span>
                         </h3>
                     </div>
                     <div class="card-body" style="min-height: 380px;">
@@ -92,9 +94,11 @@
 
                 <!-- Latest Craft Licenses -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Latest Craft Licenses') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-file-contract text-info mr-2"></i>{{ __('Latest Craft Licenses') }}
+                            </span>
                         </h3>
                         <div class="card-toolbar">
                             <a href="{{ route('craft_licenses.index') }}" class="btn btn-light-info btn-sm font-weight-bolder">{{ __('View All') }}</a>
@@ -151,9 +155,11 @@
             <div class="col-lg-4">
                 <!-- Quick Actions Grid -->
                 <div class="card card-custom shadow-sm gutter-b">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Quick Actions') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-bolt text-warning mr-2"></i>{{ __('Quick Actions') }}
+                            </span>
                         </h3>
                     </div>
                     <div class="card-body pt-5">
@@ -188,9 +194,11 @@
 
                 <!-- Craft Licenses Distribution -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Licenses by Status') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-chart-pie text-success mr-2"></i>{{ __('Licenses by Status') }}
+                            </span>
                         </h3>
                     </div>
                     <div class="card-body" style="min-height: 340px;">
@@ -223,7 +231,7 @@
                 plotOptions: { bar: { borderRadius: 10, columnWidth: '45%', dataLabels: { position: 'top' } } },
                 dataLabels: { enabled: true, formatter: function (val) { return val; }, offsetY: -20, style: { fontSize: '12px', colors: ["#304758"] } },
                 yaxis: { axisBorder: { show: false }, axisTicks: { show: false }, labels: { style: { colors: '#6E7988' } } },
-                fill: { opacity: 1 },
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.7, opacityTo: 0.3, stops: [0, 90, 100] } },
                 tooltip: { y: { formatter: function (val) { return val + " {{ __("Licenses") }}"; } } },
                 noData: noDataOpt,
                 states: { hover: { filter: { type: 'none' } } }

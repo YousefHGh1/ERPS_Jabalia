@@ -123,6 +123,7 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
     Route::get('/admin/administrative', [AdminDashboardController::class, 'administrative'])->name('admin.administrative');
     Route::get('/admin/crafts', [AdminDashboardController::class, 'crafts'])->name('admin.crafts');
     Route::get('/admin/engineering', [AdminDashboardController::class, 'engineering'])->name('admin.engineering');
+    Route::get('/admin/public-office', [AdminDashboardController::class, 'publicOffice'])->name('admin.public_office');
     Route::post('/admin/clear-cache', [AdminDashboardController::class, 'clearCache'])->name('admin.clear_cache');
     // Central Treasury (الصندوق المركزي للإيرادات)
     Route::get('/central-treasury/today', [CentralTreasuryController::class, 'todaySummary'])->name('central_treasury.today');

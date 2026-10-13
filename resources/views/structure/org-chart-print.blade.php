@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 
 <head>
@@ -324,6 +324,61 @@
             page-break-inside: avoid;
         }
 
+        /* صف بطاقة الدائرة (غلاف بسيط) */
+        .unit-root-row {
+            display: block;
+        }
+
+        /* منطقة النزلة تحت الدائرة: تحمل النزلة العمودية + الفرع الجانبي للموظفين المباشرين */
+        .dept-trunk {
+            position: relative;
+        }
+
+        /* عند وجود موظفين مباشرين: نطيل النزلة لتتسع لبطاقتهم الجانبية
+           (لا يتم التطويل عند إخفاء الموظفين من لوحة إظهار/إخفاء) */
+        #print-scale-wrapper:not(.hide-employees) .dept-trunk.has-direct-emps .org-connector {
+            --drop: 100px;
+        }
+
+        /* بطاقة الموظفين المباشرين كفرع جانبي يخرج من النزلة العمودية */
+        .dept-trunk .direct-emps-side {
+            position: absolute;
+            top: 26px;
+            right: calc(50% + 52px);
+            width: 30%;
+            max-width: 300px;
+            z-index: 3;
+        }
+
+        /* الذراع الأفقية التي تربط النزلة ببطاقة الموظفين */
+        .dept-trunk .direct-emps-side::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: -52px;
+            width: 52px;
+            height: var(--line-w);
+            background: var(--brand-maroon);
+        }
+
+        /* رأس السهم الأفقي (يتجه نحو بطاقة الموظفين) */
+        .dept-trunk .direct-emps-side::after {
+            content: '';
+            position: absolute;
+            top: calc(10px - var(--arrow-w));
+            right: -6px;
+            width: var(--arrow-h);
+            height: calc(var(--arrow-w) * 2);
+            background: var(--brand-maroon);
+            clip-path: polygon(0 50%, 100% 0, 100% 100%);
+        }
+
+        /* البطاقة نفسها داخل الفرع الجانبي */
+        .dept-trunk .direct-emps-side .direct-emps-card {
+            margin: 0;
+            max-width: 100%;
+        }
+
         .unit-root-label {
             font-size: 10px;
             color: var(--muted);
@@ -481,6 +536,10 @@
             background: #6b7280;
         }
 
+        .print-toggle .dot-top-chain {
+            background: var(--brand-maroon);
+        }
+
         .btn-reset-toggles {
             background: #eef0f6;
             color: #3a3f52;
@@ -511,7 +570,8 @@
 
         /* إخفاء كتل الموظفين */
         .hide-employees .emp-block,
-        .hide-employees .direct-emps-card {
+        .hide-employees .direct-emps-card,
+        .hide-employees .direct-emps-side {
             display: none !important;
         }
 
@@ -522,6 +582,12 @@
 
         /* إخفاء بطاقات المعلومات (عدد الشعب/الموظفين) */
         .hide-meta .meta-row {
+            display: none !important;
+        }
+
+        /* إخفاء القيادة العليا (المجلس البلدي، التدقيق الخارجي، لجان المجلس،
+           الرقابة الداخلية، رئيس البلدية، مدير البلدية) */
+        .hide-top-chain .top-chain {
             display: none !important;
         }
 
@@ -844,6 +910,10 @@
                 <input type="checkbox" data-toggle-class="hide-meta" checked>
                 <span class="dot dot-meta"></span> بطاقات المعلومات
             </label>
+            <label class="print-toggle" title="إخفاء بلدية جباليا النزلة — الهيكلية، المجلس البلدي، التدقيق الخارجي، قسم لجان المجلس البلدي، وحدة الرقابة الداخلية، رئيس البلدية ومدير البلدية">
+                <input type="checkbox" data-toggle-class="hide-top-chain" checked>
+                <span class="dot dot-top-chain"></span> القيادة العليا
+            </label>
             <button type="button" class="btn-reset-toggles" id="btn-reset-toggles">↺ الافتراضي</button>
         </div>
         <span class="print-hint">إذا لم تظهر الصفحة أفقية تلقائياً، اختر "المزيد من الإعدادات ← الاتجاه ← أفقي" في نافذة
@@ -898,37 +968,42 @@
                     </div>
                 </div>
 
+                @php
+                    $__directEmps = (($children['kind'] ?? '') === 'employees') ? [] : ($children['employees'] ?? []);
+                    $__hasDirectEmps = count($__directEmps) > 0;
+                @endphp
                 <div class="unit-root">
                     <div class="unit-root-label">بيانات {{ $typeLabel }}</div>
-                    <div class="unit-root-name">{{ $node['name'] ?? '' }}</div>
-                    @php $visibleNodeMeta = collect($node['meta'] ?? [])->filter(fn($m) => trim($m['label'] ?? '') !== ''); @endphp
-                    @if ($visibleNodeMeta->count())
-                        <div class="meta-row">
-                            @foreach ($visibleNodeMeta as $m)
-                                <span class="meta-chip">{{ $m['label'] }}</span>
-                            @endforeach
-                        </div>
-                    @endif
-                    @php $__nodeDirs = $node['directors'] ?? []; @endphp
-                    @if (!empty($__nodeDirs['permanent']) || !empty($__nodeDirs['acting']))
-                        <div class="dir-chips">
-                            @if (!empty($__nodeDirs['permanent']))
-                                <span class="dir-chip is-permanent"><small>{{ __('permanent') }}:</small>
-                                    {{ $__nodeDirs['permanent'] }}</span>
-                            @endif
-                            @if (!empty($__nodeDirs['acting']))
-                                <span class="dir-chip is-acting"><small>{{ __('acting') }}:</small>
-                                    {{ $__nodeDirs['acting'] }}</span>
-                            @endif
-                        </div>
-                    @else
-                        @if (!empty($node['manager']))
-                            <div class="root-manager">مدير {{ $typeLabel }}: {{ $node['manager'] }}</div>
+                        <div class="unit-root-name">{{ $node['name'] ?? '' }}</div>
+                        @php $visibleNodeMeta = collect($node['meta'] ?? [])->filter(fn($m) => trim($m['label'] ?? '') !== ''); @endphp
+                        @if ($visibleNodeMeta->count())
+                            <div class="meta-row">
+                                @foreach ($visibleNodeMeta as $m)
+                                    <span class="meta-chip">{{ $m['label'] }}</span>
+                                @endforeach
+                            </div>
                         @endif
-                        @if (!empty($node['vacant']))
-                            <div><span class="root-vacant">{{ $node['vacant'] }}</span></div>
+                        @php $__nodeDirs = $node['directors'] ?? []; @endphp
+                        @if (!empty($__nodeDirs['permanent']) || !empty($__nodeDirs['acting']))
+                            <div class="dir-chips">
+                                @if (!empty($__nodeDirs['permanent']))
+                                    <span class="dir-chip is-permanent"><small>{{ __('permanent') }}:</small>
+                                        {{ $__nodeDirs['permanent'] }}</span>
+                                @endif
+                                @if (!empty($__nodeDirs['acting']))
+                                    <span class="dir-chip is-acting"><small>{{ __('acting') }}:</small>
+                                        {{ $__nodeDirs['acting'] }}</span>
+                                @endif
+                            </div>
+                        @else
+                            @if (!empty($node['manager']))
+                                <div class="root-manager">مدير {{ $typeLabel }}: {{ $node['manager'] }}</div>
+                            @endif
+                            @if (!empty($node['vacant']))
+                                <div><span class="root-vacant">{{ $node['vacant'] }}</span></div>
+                            @endif
                         @endif
-                    @endif
+                    </div>
                 </div>
 
                 @if (($children['kind'] ?? '') === 'employees')
@@ -950,23 +1025,6 @@
                     </div>
                 @else
                     @php $sectionCount = count($children['items'] ?? []); @endphp
-                    @php $directEmps = $children['employees'] ?? []; @endphp
-                    @if (count($directEmps) > 0)
-                        <div class="org-connector maroon">
-                            <span class="arrow-head maroon"></span>
-                        </div>
-                        <div class="direct-emps-card">
-                            <div class="direct-emps-title">موظفو {{ $typeLabel }} المباشرون</div>
-                            <div class="emp-chips">
-                                @foreach ($directEmps as $demp)
-                                    <span class="emp-chip">{{ $demp['name'] ?? '' }}@if (!empty($demp['job']))
-                                            <small>— {{ $demp['job'] }}</small>
-                                        @endif
-                                    </span>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endif
                     @php
                         // وزن عرض كل قسم حسب عدد الشعب داخله (قسم بلا شعب يأخذ وزن 1)
                         $__sectionGrow = collect($children['items'] ?? [])
@@ -976,10 +1034,26 @@
                             ->values();
                     @endphp
 
-                    <div class="org-connector maroon">
-                        <span class="arrow-head maroon"></span>
-                    </div>
-                    <div class="org-row maroon weighted {{ $sectionCount === 1 ? 'single-item' : '' }}">
+                    <div class="dept-trunk {{ $__hasDirectEmps ? 'has-direct-emps' : '' }}">
+                        <div class="org-connector maroon">
+                            <span class="arrow-head maroon"></span>
+                        </div>
+                        @if ($__hasDirectEmps)
+                            <div class="direct-emps-side">
+                                <div class="direct-emps-card">
+                                    <div class="direct-emps-title">موظفو {{ $typeLabel }} المباشرون</div>
+                                    <div class="emp-chips">
+                                        @foreach ($__directEmps as $demp)
+                                            <span class="emp-chip">{{ $demp['name'] ?? '' }}@if (!empty($demp['job']))
+                                                    <small>— {{ $demp['job'] }}</small>
+                                                @endif
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <div class="org-row maroon weighted {{ $sectionCount === 1 ? 'single-item' : '' }}">
                         @foreach ($children['items'] ?? [] as $__idx => $child)
                             @php $__grow = $__sectionGrow[$__idx] ?? 1; @endphp
                             <div class="org-item" style="flex-grow: {{ $__grow }};">
@@ -1102,6 +1176,7 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
                     </div>
                 @endif
 

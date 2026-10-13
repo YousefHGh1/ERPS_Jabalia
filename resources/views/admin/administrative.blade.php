@@ -135,14 +135,71 @@
             @endcan
         </div>
 
+        <!-- Secondary Stats -->
+        <div class="row mb-5">
+            @can('index jobs')
+            <div class="col-xl-3 col-md-6 mb-4">
+                <x-admin.stat-card
+                    :title="__('jobs')"
+                    :value="$stats['jobs_count'] ?? 0"
+                    icon="fa-briefcase"
+                    color="danger"
+                    :link="route('jobs.index')"
+                    :linkText="__('View All')"
+                />
+            </div>
+            @endcan
+
+            @can('index vehicle')
+            <div class="col-xl-3 col-md-6 mb-4">
+                <x-admin.stat-card
+                    :title="__('vehicles')"
+                    :value="$stats['vehicles_count'] ?? 0"
+                    icon="fa-car"
+                    color="dark"
+                    :link="route('vehicle.index')"
+                    :linkText="__('View Details')"
+                />
+            </div>
+            @endcan
+
+            @can('index departments')
+            <div class="col-xl-3 col-md-6 mb-4">
+                <x-admin.stat-card
+                    :title="__('departments')"
+                    :value="$stats['departments_count'] ?? 0"
+                    icon="fa-building"
+                    color="primary"
+                    :link="route('departments.index')"
+                    :linkText="__('View All')"
+                />
+            </div>
+            @endcan
+
+            @can('index sections')
+            <div class="col-xl-3 col-md-6 mb-4">
+                <x-admin.stat-card
+                    :title="__('sections')"
+                    :value="$stats['sections_count'] ?? 0"
+                    icon="fa-network-wired"
+                    color="success"
+                    :link="route('sections.index')"
+                    :linkText="__('View All')"
+                />
+            </div>
+            @endcan
+        </div>
+
         <div class="row">
             <!-- Charts Section -->
             <div class="col-lg-8">
                 <div class="card card-custom shadow-sm gutter-b">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Attendance Analytics') }}</span>
-                            <span class="text-muted mt-3 font-weight-bold font-size-sm">{{ __('Last 7 days performance') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-chart-area text-primary mr-2"></i>{{ __('Attendance Analytics') }}
+                            </span>
+                            <span class="text-muted mt-2 font-weight-bold font-size-sm">{{ __('Last 7 days performance') }}</span>
                         </h3>
                     </div>
                     <div class="card-body" style="min-height: 380px;">
@@ -152,9 +209,11 @@
 
                 <!-- Latest Holidays -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Latest Holiday Requests') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-calendar-check text-warning mr-2"></i>{{ __('Latest Holiday Requests') }}
+                            </span>
                         </h3>
                         <div class="card-toolbar">
                             <a href="{{ route('EmployeeHolidays.index') }}" class="btn btn-light-warning btn-sm font-weight-bolder">{{ __('View All') }}</a>
@@ -218,9 +277,11 @@
 
                 <!-- Latest Activities -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Latest Employee Registrations') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-user-plus text-primary mr-2"></i>{{ __('Latest Employee Registrations') }}
+                            </span>
                         </h3>
                         <div class="card-toolbar">
                             <a href="{{ route('employees.index') }}" class="btn btn-light-primary btn-sm font-weight-bolder">{{ __('View All') }}</a>
@@ -271,9 +332,11 @@
             <div class="col-lg-4">
                 <!-- Department Distribution -->
                 <div class="card card-custom shadow-sm gutter-b">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Employees by Dept.') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-sitemap text-primary mr-2"></i>{{ __('Employees by Dept.') }}
+                            </span>
                             <span class="text-muted mt-2 font-weight-bold font-size-sm">{{ __('Total: ') }} {{ number_format($dept_distribution->sum('employees_count')) }}</span>
                         </h3>
                     </div>
@@ -341,9 +404,9 @@
 
                 <!-- Quick Actions Grid -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Quick Actions') }}</span>
+                            <span class="card-label font-weight-bolder text-dark"><i class="fas fa-bolt text-warning mr-2"></i>{{ __('Quick Actions') }}</span>
                         </h3>
                     </div>
                     <div class="card-body pt-5">
@@ -448,10 +511,7 @@
             if (!Array.isArray(deptData)) deptData = [];
             var deptLabels = deptData.map(function(item) { return item.name; });
             var deptSeries = deptData.map(function(item) { return Number(item.employees_count) || 0; });
-            
-            console.log('Dept Data:', deptData);
-            console.log('Dept Series:', deptSeries);
-            
+
             if (deptSeries.length === 0 || deptSeries.every(function(val) { return val === 0; })) {
                 deptLabels = ['{{ __("No data") }}'];
                 deptSeries = [1];
@@ -514,15 +574,11 @@
             function renderCharts() {
                 var elAttendance = document.getElementById('attendance_chart');
                 var elDept = document.getElementById('dept_chart');
-                
-                console.log('Attendance element:', elAttendance);
-                console.log('Dept element:', elDept);
-                
+
                 if (elAttendance) {
                     try {
                         var attendanceChart = new Apex(elAttendance, attendanceOptions);
                         attendanceChart.render();
-                        console.log('Attendance chart rendered');
                     } catch(e) {
                         console.error('Error rendering attendance chart:', e);
                     }
@@ -531,7 +587,6 @@
                     try {
                         var deptChart = new Apex(elDept, deptOptions);
                         deptChart.render();
-                        console.log('Dept chart rendered');
                     } catch(e) {
                         console.error('Error rendering dept chart:', e);
                     }

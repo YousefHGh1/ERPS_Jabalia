@@ -9,29 +9,123 @@
     --admin-danger-gradient: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
     --admin-info-gradient: linear-gradient(135deg, #8950FC 0%, #E4E6EF 100%);
     --admin-dark-gradient: linear-gradient(135deg, #3F4254 0%, #181C32 100%);
+    --admin-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --admin-card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08);
+    --admin-border-radius: 16px;
+    --admin-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* بطاقات الإحصائيات الموحدة */
-.admin-stat-card {
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: none;
-    border-radius: 20px !important;
+/* ========================================================================
+   ترويسة الصفحة الموحدة
+   ======================================================================== */
+.view-page-header {
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+    border-radius: var(--admin-border-radius);
+    padding: 2rem 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--admin-card-shadow);
+    border: 1px solid rgba(54, 153, 255, 0.1);
+    position: relative;
     overflow: hidden;
 }
 
-.admin-stat-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+.view-page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--module-accent, var(--admin-primary-gradient));
 }
 
-.admin-stat-card .icon-box {
-    width: 55px;
-    height: 55px;
+.view-page-header .title-icon {
+    width: 60px;
+    height: 60px;
     border-radius: 15px;
+    background: var(--module-accent-soft, #f3f6f9);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-right: 1.5rem;
+    font-size: 1.8rem;
+    color: var(--module-accent, #3699FF);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.view-page-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.view-module-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--module-accent-soft, #f3f6f9);
+    color: var(--module-accent, #3699FF);
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+/* ========================================================================
+   بطاقات الإحصائيات الموحدة
+   ======================================================================== */
+.admin-stat-card {
+    transition: var(--admin-transition);
+    border: none;
+    border-radius: var(--admin-border-radius) !important;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--admin-card-shadow);
+    position: relative;
+}
+
+.admin-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    opacity: 0;
+    transition: var(--admin-transition);
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--admin-card-shadow-hover);
+}
+
+.admin-stat-card:hover::before {
+    opacity: 1;
+}
+
+.admin-stat-card.border-primary::before { background: var(--admin-primary-gradient); }
+.admin-stat-card.border-success::before { background: var(--admin-success-gradient); }
+.admin-stat-card.border-warning::before { background: var(--admin-warning-gradient); }
+.admin-stat-card.border-danger::before { background: var(--admin-danger-gradient); }
+.admin-stat-card.border-info::before { background: var(--admin-info-gradient); }
+.admin-stat-card.border-dark::before { background: var(--admin-dark-gradient); }
+
+.admin-stat-card .icon-box {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: var(--admin-transition);
+}
+
+.admin-stat-card:hover .icon-box {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .admin-stat-card .icon-box.bg-primary-grad { background: var(--admin-primary-gradient); }
@@ -41,52 +135,160 @@
 .admin-stat-card .icon-box.bg-info-grad { background: var(--admin-info-gradient); }
 .admin-stat-card .icon-box.bg-dark-grad { background: var(--admin-dark-gradient); }
 
-/* بطاقات الإجراءات السريعة */
+.admin-stat-card h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* ========================================================================
+   بطاقات الإجراءات السريعة
+   ======================================================================== */
 .admin-quick-action-card {
-    border: 1px solid #ebedf3;
-    border-radius: 15px;
-    padding: 1.5rem;
+    border: 2px solid #f3f6f9;
+    border-radius: var(--admin-border-radius);
+    padding: 2rem 1.5rem;
     text-align: center;
-    transition: all 0.3s;
+    transition: var(--admin-transition);
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-quick-action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(54, 153, 255, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    opacity: 0;
+    transition: var(--admin-transition);
 }
 
 .admin-quick-action-card:hover {
-    background: #f8f9ff;
     border-color: #3699FF;
-    transform: scale(1.05);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(54, 153, 255, 0.15);
+}
+
+.admin-quick-action-card:hover::before {
+    opacity: 1;
 }
 
 .admin-quick-action-card i {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    transition: var(--admin-transition);
 }
 
-/* تحسينات الجداول */
+.admin-quick-action-card:hover i {
+    transform: scale(1.15);
+}
+
+.admin-quick-action-card span {
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+    color: #3f4254;
+}
+
+/* ========================================================================
+   تحسينات الجداول
+   ======================================================================== */
+.admin-table {
+    border-radius: var(--admin-border-radius);
+    overflow: hidden;
+}
+
+.admin-table .table {
+    margin-bottom: 0;
+}
+
 .admin-table .table thead th {
-    background-color: #f3f6f9;
-    border-radius: 10px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f3f6f9 100%);
+    border-radius: 12px;
     border: none;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    font-size: 0.8rem;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+    color: #3f4254;
+    padding: 1.2rem 1rem;
+    white-space: nowrap;
 }
 
-/* الرموز والصور */
-.admin-symbol-light .symbol-label {
+.admin-table .table tbody tr {
+    transition: var(--admin-transition);
+}
+
+.admin-table .table tbody tr:hover {
+    background: #f8f9ff;
+    transform: scale(1.01);
+}
+
+.admin-table .table tbody td {
+    padding: 1.2rem 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #f3f6f9;
+}
+
+.admin-table .table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ========================================================================
+   الرموز والصور
+   ======================================================================== */
+.symbol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.symbol-30 { width: 30px; height: 30px; }
+.symbol-40 { width: 40px; height: 40px; }
+.symbol-50 { width: 50px; height: 50px; }
+
+.symbol .symbol-label {
+    background-color: #f3f6f9;
+    color: #3f4254;
+    font-weight: 700;
+}
+
+.symbol-light .symbol-label {
     background-color: #f3f6f9;
 }
 
-/* حاويات الرسوم البيانية */
+.symbol-light-primary .symbol-label {
+    background-color: rgba(54, 153, 255, 0.1);
+    color: #3699FF;
+}
+
+.symbol-light-success .symbol-label {
+    background-color: rgba(27, 197, 189, 0.1);
+    color: #1BC5BD;
+}
+
+/* ========================================================================
+   حاويات الرسوم البيانية
+   ======================================================================== */
 .admin-chart-container {
     min-height: 350px;
     width: 100%;
     position: relative;
+    border-radius: var(--admin-border-radius);
+    background: #fff;
 }
 
 .admin-chart {
@@ -95,15 +297,260 @@
     position: relative;
 }
 
-/* تحسينات عامة للكروت */
+/* ========================================================================
+   تحسينات عامة للكروت
+   ======================================================================== */
+.card-custom,
 .admin-card-custom {
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: var(--admin-transition);
     border: none;
-    border-radius: 20px !important;
+    border-radius: var(--admin-border-radius) !important;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--admin-card-shadow);
+}
+
+.card-custom:hover,
+.admin-card-custom:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--admin-card-shadow-hover);
+}
+
+.card-custom .card-header,
+.admin-card-custom .card-header {
+    background: #fff;
+    border-bottom: 1px solid #f3f6f9;
+    padding: 1.5rem 2rem;
+}
+
+.card-custom .card-body,
+.admin-card-custom .card-body {
+    padding: 2rem;
+}
+
+.card-custom .card-title,
+.admin-card-custom .card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #3f4254;
+    margin-bottom: 0.5rem;
+}
+
+/* ========================================================================
+   الحالات والشارات
+   ======================================================================== */
+.label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.label-lg {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+}
+
+.label-light-primary {
+    background: rgba(54, 153, 255, 0.1);
+    color: #3699FF;
+}
+
+.label-light-success {
+    background: rgba(27, 197, 189, 0.1);
+    color: #1BC5BD;
+}
+
+.label-light-warning {
+    background: rgba(255, 168, 0, 0.1);
+    color: #FFA800;
+}
+
+.label-light-danger {
+    background: rgba(246, 78, 96, 0.1);
+    color: #F64E60;
+}
+
+.label-light-info {
+    background: rgba(137, 80, 252, 0.1);
+    color: #8950FC;
+}
+
+.label-light-dark {
+    background: rgba(63, 66, 84, 0.1);
+    color: #3F4254;
+}
+
+/* ========================================================================
+   الأزرار المحسنة
+   ======================================================================== */
+.btn-light-primary:hover {
+    background: #3699FF !important;
+    color: #fff !important;
+    border-color: #3699FF !important;
+}
+
+.btn-light-success:hover {
+    background: #1BC5BD !important;
+    color: #fff !important;
+    border-color: #1BC5BD !important;
+}
+
+.btn-light-warning:hover {
+    background: #FFA800 !important;
+    color: #fff !important;
+    border-color: #FFA800 !important;
+}
+
+.btn-light-danger:hover {
+    background: #F64E60 !important;
+    color: #fff !important;
+    border-color: #F64E60 !important;
+}
+
+.btn-light-info:hover {
+    background: #8950FC !important;
+    color: #fff !important;
+    border-color: #8950FC !important;
+}
+
+/* ========================================================================
+   الاستجابة للأجهزة
+   ======================================================================== */
+@media (max-width: 991.98px) {
+    .view-page-header {
+        padding: 1.5rem;
+    }
+
+    .view-page-header .title-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+    }
+
+    .view-page-header h1 {
+        font-size: 1.4rem;
+    }
+
+    .admin-stat-card .icon-box {
+        width: 50px;
+        height: 50px;
+    }
+
+    .admin-stat-card h2 {
+        font-size: 1.8rem;
+    }
+
+    .card-custom .card-body,
+    .admin-card-custom .card-body {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .view-page-header {
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .view-page-header .title-icon {
+        display: none;
+    }
+
+    .admin-quick-action-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .admin-quick-action-card i {
+        font-size: 2rem;
+    }
+
+    .admin-table .table thead th {
+        font-size: 0.75rem;
+        padding: 1rem 0.75rem;
+    }
+
+    .admin-table .table tbody td {
+        padding: 1rem 0.75rem;
+    }
+}
+
+/* ========================================================================
+   تحسينات الوصول
+   ======================================================================== */
+.admin-stat-card:focus-within,
+.admin-quick-action-card:focus-within,
+.card-custom:focus-within {
+    outline: 2px solid #3699FF;
+    outline-offset: 2px;
+}
+
+/* ========================================================================
+   حالات التحميل
+   ======================================================================== */
+.admin-loading {
+    position: relative;
     overflow: hidden;
 }
 
-.admin-card-custom:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+.admin-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ========================================================================
+   الحالة الفارغة
+   ======================================================================== */
+.admin-empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #a1a5b7;
+}
+
+.admin-empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+}
+
+.admin-empty-state h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #3f4254;
+    margin-bottom: 0.5rem;
+}
+
+.admin-empty-state p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ========================================================================
+   شريط التقدم المحسن
+   ======================================================================== */
+.progress {
+    background-color: #f3f6f9;
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    border-radius: 10px;
+    transition: width 0.6s ease-in-out;
 }

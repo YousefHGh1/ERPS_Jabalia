@@ -361,21 +361,37 @@ return [
             'permissions' => ['view external_collections'],
         ],
 
-        // --- قلم الجمهور (Public Relations) ---
+        // ============================================================
+        // PUBLIC RELATIONS (قلم الجمهور)
+        // ============================================================
         [
-            'type'        => 'submenu',
-            'label'       => 'قلم الجمهور',
-            'icon'        => 'fas fa-bullhorn text-primary',
-            'module'      => 'public_pen',
-            'active'      => ['is' => ['mokalafs*', 'requests*', 'request-types*', 'request-workflows*', 'documents*', 'requests-mail*', 'receipts/payments/request*']],
-            'permissions' => $perm['mokalafs'],
-            'children'    => [
+            'type'            => 'submenu',
+            'label'           => 'قلم الجمهور',
+            'icon'            => 'flaticon2-user text-primary',
+            'active'          => ['is' => [
+                'admin/public-office*',
+                'mokalafs*',
+                'requests*',
+                'request-types*',
+                'request-workflows*',
+                'documents*',
+                'requests-mail*',
+            ]],
+            'permissions_key' => 'mokalafs',
+            'children'        => [
+                // Dashboard
                 [
-                    'route'       => 'mokalafs.index',
-                    'label'       => 'المكلفين',
-                    'icon'        => 'fas fa-user-check text-success',
-                    'active'      => ['is' => ['mokalafs*']],
-                    'permissions' => $perm['mokalafs'],
+                    'route'           => 'admin.public_office',
+                    'label'           => 'داشبور قلم الجمهور',
+                    'icon'            => 'fas fa-chart-pie text-danger',
+                    'active'          => ['is' => ['admin/public-office*']],
+                    'permissions_key' => 'requests',
+                ],
+                [
+                    'route'  => 'mokalafs.index',
+                    'label'  => 'المكلفين',
+                    'icon'   => 'flaticon2-user text-success',
+                    'active' => ['is' => ['mokalafs*']],
                 ],
 
                 // Collection inquiry (فواتير الجباية)
@@ -387,31 +403,42 @@ return [
                     'active'          => ['is' => ['public-pen/collection-inquiry*']],
                     'permissions_key' => 'mokalafs',
                 ],
+
+                // Requests Submenu
                 [
                     'type'     => 'submenu',
                     'label'    => 'الطلبات',
                     'icon'     => 'fas fa-clipboard-list text-info',
-                    'active'   => ['is' => ['requests*', 'request-types*', 'request-workflows*', 'documents*', 'requests-mail*']],
+                    'active'   => ['is' => [
+                        'requests*',
+                        'request-types*',
+                        'request-workflows*',
+                        'documents*',
+                        'requests-mail*',
+                    ]],
                     'gate'     => 'sidebar_can_see_requests_menu',
                     'children' => [
                         [
-                            'route'       => 'request-types.index',
-                            'label'       => 'أنواع الطلبات',
-                            'icon'        => 'fas fa-list-ol text-primary',
-                            'active'      => ['is' => ['request-types*']],
-                            'permissions' => $perm['request_types'],
+                            'route'           => 'request-types.index',
+                            'label'           => 'Request Types',
+                            'icon'            => 'flaticon2-list-3 text-primary',
+                            'active'          => ['is' => ['request-types*']],
+                            'permissions_key' => 'request_types',
                         ],
                         [
-                            'route'       => 'requests.index',
-                            'label'       => 'الطلبات',
-                            'icon'        => 'fas fa-file-lines text-danger',
-                            'active'      => ['is' => ['requests*'], 'except_is' => ['request-types*', 'request-workflows*', 'requests-mail*']],
-                            'permissions' => $perm['requests'],
+                            'route'           => 'requests.index',
+                            'label'           => 'Requests',
+                            'icon'            => 'flaticon2-list text-danger',
+                            'active'          => [
+                                'is'        => ['requests*'],
+                                'except_is' => ['request-types*', 'request-workflows*', 'requests-mail*'],
+                            ],
+                            'permissions_key' => 'requests',
                         ],
                         [
                             'route'        => 'requests.mail.all',
-                            'label'        => 'البريد',
-                            'icon'         => 'fas fa-envelope text-warning',
+                            'label'        => 'Mail',
+                            'icon'         => 'flaticon2-mail text-warning',
                             'active'       => ['is' => ['requests-mail/all']],
                             'active_class' => 'menu-item-open menu-item-active',
                             'li_class'     => 'menu-item-submenu',

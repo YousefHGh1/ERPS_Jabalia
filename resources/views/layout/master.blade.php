@@ -142,73 +142,91 @@
         </div>
     @endif
     <!-- begin::User Panel الصفحة الشخصية-->
-    <div id="kt_quick_user" class="p-10 offcanvas offcanvas-right">
+    <div id="kt_quick_user" class="offcanvas offcanvas-right user-panel">
         <!--begin::Header-->
-        <div class="pb-5 offcanvas-header d-flex align-items-center justify-content-between">
-            <h3 class="m-0 font-weight-bold text-white">{{ __('profile_page') }}
-            </h3>
-            <a href="#" class="btn btn-xs btn-icon btn-light btn-hover-primary" id="kt_quick_user_close">
-                <i class="fas fa-times icon-xs"></i>
+        <div class="offcanvas-header user-panel-head">
+            <div class="user-panel-head-title">
+                <span class="user-panel-head-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <h3 class="m-0 font-weight-bold text-white">{{ __('profile_page') }}
+                </h3>
+            </div>
+            <a href="#" class="btn btn-xs btn-icon user-panel-close" id="kt_quick_user_close" aria-label="{{ __('إغلاق') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
             </a>
         </div>
         <!--end::Header-->
         <!--begin::Content-->
-        <div class="pr-5 offcanvas-content mr-n5">
-            <!--begin::Header-->
-            <div class="mt-5 d-flex align-items-center">
-                <div class="mr-5 symbol symbol-100">
-                    <div class="symbol-label" style="background-image:url({{ asset('assets/bg/bg-1.jpg') }})"></div>
-                    <i class="symbol-badge bg-success"></i>
-                </div>
-                <div class="d-flex flex-column">
-                    <a href="{{ route('user.profile') }}"
-                        class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">{{ Auth::user()->name }}</a>
-                    @php
-                        $roleNames = Auth::user()->roles->pluck('name');
-                        $totalRoles = $roleNames->count();
-                        $displayRoles = $roleNames->take(3)->implode('، ');
-                        if ($totalRoles > 3) {
-                            $displayRoles .= ' +' . ($totalRoles - 3);
-                        }
-                    @endphp
-                    <div class="mt-1 text-muted">{{ $displayRoles ?: '—' }}</div>
-                    <div class="mt-2 navi">
-                        <a href="#" class="navi-item">
-                            <span class="p-0 pb-2 navi-link">
-                                <span class="mr-1 navi-icon">
-                                    <span class="svg-icon svg-icon-lg svg-icon-primary">
-                                        <!--begin::Svg Icon | path:assets/media/svg/icons/Communication/Mail-notification.svg-->
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
-                                            viewBox="0 0 24 24" version="1.1">
-                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                <rect x="0" y="0" width="24" height="24" />
-                                                <path
-                                                    d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z"
-                                                    fill="#000000" />
-                                                <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5"
-                                                    r="2.5" />
-                                            </g>
-                                        </svg>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                </span>
-                                <span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
+        <div class="offcanvas-content user-panel-body">
+            @php
+                $qpUser = Auth::user();
+                $qpName = $qpUser->name ?? '';
+                $qpInitial = $qpName !== '' ? mb_substr($qpName, 0, 1) : '?';
+                $qpRoles = $qpUser->roles->pluck('name');
+                $qpTotalRoles = $qpRoles->count();
+                $qpDisplayRoles = $qpRoles->take(3)->implode('، ');
+                if ($qpTotalRoles > 3) { $qpDisplayRoles .= ' +' . ($qpTotalRoles - 3); }
+                $qpEmpNo = $qpUser->employee_number ?? null;
+                $qpSince = $qpUser->created_at ? $qpUser->created_at->format('Y/m/d') : null;
+            @endphp
+            <!--begin::User Card-->
+            <div class="user-panel-card">
+                <div class="user-panel-cover"></div>
+                <div class="user-panel-card-inner">
+                    <div class="user-panel-avatar">
+                        <span class="user-panel-avatar-text">{{ $qpInitial }}</span>
+                        <i class="user-panel-status" title="{{ __('متصل') }}"></i>
+                    </div>
+                    <div class="user-panel-info">
+                        <a href="{{ route('user.profile') }}" class="user-panel-name">{{ $qpName }}</a>
+                        <div class="user-panel-roles">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
+                            <span>{{ $qpDisplayRoles ?: '—' }}</span>
+                        </div>
+                        <div class="user-panel-email">
+                            <span class="user-panel-email-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
                             </span>
-                        </a>
-                        <a class="btn btn-danger text-white" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                            <span class="user-panel-email-text" dir="ltr">{{ Auth::user()->email }}</span>
+                        </div>
                     </div>
                 </div>
+                @if($qpEmpNo || $qpSince)
+                <div class="user-panel-meta">
+                    @if($qpEmpNo)
+                    <div class="user-panel-meta-item">
+                        <span class="user-panel-meta-label">{{ __('الرقم الوظيفي') }}</span>
+                        <span class="user-panel-meta-value" dir="ltr">{{ $qpEmpNo }}</span>
+                    </div>
+                    @endif
+                    @if($qpSince)
+                    <div class="user-panel-meta-item">
+                        <span class="user-panel-meta-label">{{ __('عضو منذ') }}</span>
+                        <span class="user-panel-meta-value">{{ $qpSince }}</span>
+                    </div>
+                    @endif
+                </div>
+                @endif
             </div>
-            <!--end::Header-->
+            <!--end::User Card-->
+            <!--begin::Actions-->
+            <div class="user-panel-actions">
+                <a href="{{ route('user.profile') }}" class="user-panel-btn user-panel-btn-profile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>{{ __('الملف الشخصي') }}</span>
+                </a>
+                <a class="user-panel-btn user-panel-btn-logout" href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg>
+                    <span>{{ __('Logout') }}</span>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+            <!--end::Actions-->
+            <p class="user-panel-foot">{{ __('Municipality_ERP_System') }} · {{ date('Y') }}</p>
         </div>
         <!--end::Content-->
     </div>

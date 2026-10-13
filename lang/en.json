@@ -138,5 +138,22 @@
     "manual_chart": "manual_chart",
     "confirm_message": "confirm_message",
     "Manager": "Manager",
-    "Above is the official organizational chart. Below is the dynamic system structure.": "Above is the official organizational chart. Below is the dynamic system structure."
+    "Above is the official organizational chart. Below is the dynamic system structure.": "Above is the official organizational chart. Below is the dynamic system structure.",
+    "Public Office": "Public Office",
+    "Overview of taxpayers requests and public office management": "Overview of taxpayers requests and public office management",
+    "Total Requests": "Total Requests",
+    "Pending Requests": "Pending Requests",
+    "Urgent Requests": "Urgent Requests",
+    "Overdue Requests": "Overdue Requests",
+    "Taxpayers": "Taxpayers",
+    "Request Types": "Request Types",
+    "Unpaid Requests": "Unpaid Requests",
+    "Requests by Type": "Requests by Type",
+    "Requests by Status": "Requests by Status",
+    "Urgent & Overdue": "Urgent & Overdue",
+    "No urgent or overdue requests": "No urgent or overdue requests",
+    "Add Taxpayer": "Add Taxpayer",
+    "View Types": "View Types",
+    "Licenses": "Licenses",
+    "Total": "Total"
 }

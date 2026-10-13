@@ -93,7 +93,7 @@ return [
         'administrative' => [
             'label'  => 'الشؤون الإدارية',
             'icon'   => 'fa-briefcase',
-            'color'  => '#4E73DF',
+            'color'  => '#F64E60',
             'rgb'    => '78, 115, 223',
             'routes' => [
                 'categories.*', 'bonus.*', 'bonus_employee.*', 'jobs.*',
@@ -101,16 +101,21 @@ return [
                 'employees.*', 'departmentdirector.*', 'sectiondirector.*', 'branchdirector.*',
                 'holidays.*', 'main_holiday.*', 'EmployeeHolidays.*', 'employee_holidays.*',
                 'employee-permissions.*', 'EmployeePermissions.*', 'employee_advance.*',
+                'employee-advances.*',
                 'Shift.*', 'shift.*', 'zk*', 'attendance.*', 'vehicle.*',
                 'admin.administrative', 'organization.*',
+                'employee.portal', 'employee.calendar', 'employee.requests',
+                'employee.holidays.*', 'employee.permissions.*', 'employee.attendance.*',
                 'settings.*', 'permission_ui.*', 'roles.*', 'users.*', 'permissions.*',
             ],
             'paths'  => [
                 'categories*', 'bonus*', 'jobs*', 'departments*', 'sections*', 'branches*',
                 'structure*', 'employees*', 'departmentdirector*', 'sectiondirector*',
                 'branchdirector*', 'holidays*', 'main_holiday*', 'employee-holidays*',
-                'employee-permissions*', 'employee-advance*', 'shift*', 'Shift*', 'zk*',
+                'employee-permissions*', 'employee-advance*', 'employee-advances*',
+                'shift*', 'Shift*', 'zk*',
                 'attendance*', 'vehicle*', 'admin/administrative*',
+                'employee-portal*',
                 'settings*', 'permissions*', 'roles*', 'users*',
             ],
         ],
@@ -124,10 +129,11 @@ return [
             'routes' => [
                 'mokalafs.*', 'requests.*', 'request-types.*', 'request-workflows.*',
                 'documents.*', 'collection.inquiry*', 'receipts.payments.request',
+                'admin.public_office',
             ],
             'paths'  => [
                 'mokalafs*', 'requests*', 'request-types*', 'request-workflows*',
-                'documents*', 'public-pen*',
+                'documents*', 'public-pen*', 'admin/public-office*',
             ],
         ],
 

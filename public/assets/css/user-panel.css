@@ -1,0 +1,62 @@
+/* لوحة المستخدم الجانبية — بلدية جباليا النزلة (تصميم محسّن) */
+#kt_quick_user.user-panel{width:400px!important;max-width:92vw;padding:0!important;border:none;font-family:'Cairo',sans-serif;background:#f1f5fa;box-shadow:-20px 0 60px rgba(16,24,40,.18);display:flex;flex-direction:column}
+#kt_quick_user .user-panel-head{background:linear-gradient(135deg,#2f8ff7 0%,#22b8a8 100%);padding:18px 20px!important;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative;overflow:hidden}
+#kt_quick_user .user-panel-head::before{content:'';position:absolute;width:220px;height:220px;left:-70px;top:-90px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 65%);pointer-events:none}
+#kt_quick_user .user-panel-head-title{display:flex;align-items:center;gap:11px;position:relative;z-index:1}
+#kt_quick_user .user-panel-head-icon{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.2);color:#fff;display:inline-flex;align-items:center;justify-content:center}
+#kt_quick_user .user-panel-head h3{font-size:1.08rem;font-weight:800}
+#kt_quick_user .user-panel-close{background:rgba(255,255,255,.2)!important;color:#fff!important;border-radius:11px!important;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:background .2s,transform .25s}
+#kt_quick_user .user-panel-close:hover{background:rgba(255,255,255,.35)!important;transform:rotate(-90deg)}
+#kt_quick_user .user-panel-close svg{stroke:#fff}
+#kt_quick_user .user-panel-body{padding:22px 20px!important;margin:0!important;overflow-y:auto;flex:1}
+#kt_quick_user .user-panel-card{background:#fff;border:1px solid rgba(24,28,50,.07);border-radius:20px;box-shadow:0 14px 36px rgba(24,28,50,.09);overflow:hidden;position:relative}
+#kt_quick_user .user-panel-cover{height:74px;background:linear-gradient(-90deg,#2f8ff7 0%,#7b5cff 55%,#22b8a8 100%);position:relative}
+#kt_quick_user .user-panel-card-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;padding:0 18px 18px;margin-top:-38px;position:relative}
+#kt_quick_user .user-panel-avatar{position:relative;flex-shrink:0}
+#kt_quick_user .user-panel-avatar-text{width:76px;height:76px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#7b5cff 0%,#2f8ff7 60%,#22b8a8 100%);box-shadow:0 12px 26px rgba(47,143,247,.4);border:4px solid #fff}
+#kt_quick_user .user-panel-status{position:absolute;bottom:4px;left:4px;width:15px;height:15px;border-radius:50%;background:#22c55e;border:3px solid #fff}
+#kt_quick_user .user-panel-info{min-width:0;width:100%;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:12px}
+#kt_quick_user .user-panel-name{font-weight:800;font-size:1.08rem;color:#181C32;text-decoration:none;line-height:1.4}
+#kt_quick_user .user-panel-name:hover{color:#2f8ff7}
+#kt_quick_user .user-panel-roles{display:inline-flex;align-items:center;gap:6px;color:#2f8ff7;background:rgba(47,143,247,.09);border:1px solid rgba(47,143,247,.16);border-radius:999px;padding:3px 12px;font-size:.76rem;font-weight:700;width:fit-content;max-width:100%}
+#kt_quick_user .user-panel-email{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:2px;min-width:0;max-width:100%}
+#kt_quick_user .user-panel-email-icon{width:29px;height:29px;border-radius:10px;background:rgba(47,143,247,.1);color:#2f8ff7;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+#kt_quick_user .user-panel-email-text{color:#5b6478;font-size:.8rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#kt_quick_user .user-panel-meta{display:flex;margin:0 18px 16px;border-top:1px dashed rgba(24,28,50,.12);padding-top:13px;gap:10px}
+#kt_quick_user .user-panel-meta-item{flex:1;background:#f6f9fd;border:1px solid rgba(24,28,50,.06);border-radius:13px;padding:9px 12px;display:flex;flex-direction:column;gap:2px;text-align:center}
+#kt_quick_user .user-panel-meta-label{font-size:.7rem;color:#8a93a8;font-weight:700}
+#kt_quick_user .user-panel-meta-value{font-size:.86rem;color:#181C32;font-weight:800}
+#kt_quick_user .user-panel-actions{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+#kt_quick_user .user-panel-btn{display:flex;align-items:center;justify-content:center;gap:9px;padding:13px 16px;border-radius:14px;font-weight:800;font-size:.92rem;text-decoration:none;transition:transform .18s,box-shadow .18s,background .18s}
+#kt_quick_user .user-panel-btn svg{flex-shrink:0}
+#kt_quick_user .user-panel-btn-profile{background:#fff;color:#1B7CD4;border:1.5px solid rgba(47,143,247,.3);box-shadow:0 6px 16px rgba(47,143,247,.1)}
+#kt_quick_user .user-panel-btn-profile:hover{background:rgba(47,143,247,.09);transform:translateY(-1px)}
+#kt_quick_user .user-panel-btn-logout{background:linear-gradient(135deg,#F64E60 0%,#d92d40 100%);color:#fff;box-shadow:0 12px 24px rgba(246,78,96,.32);border:none}
+#kt_quick_user .user-panel-btn-logout:hover{color:#fff;transform:translateY(-1px);box-shadow:0 16px 30px rgba(246,78,96,.42)}
+#kt_quick_user .user-panel-foot{text-align:center;color:#9aa3b5;font-size:.74rem;margin:18px 0 2px}
+body.app-theme-dark #kt_quick_user.user-panel,
+body.dashboard-dark #kt_quick_user.user-panel{background:#11172c}
+body.app-theme-dark #kt_quick_user .user-panel-card,
+body.dashboard-dark #kt_quick_user .user-panel-card{background:#1a2140;border-color:rgba(255,255,255,.08)}
+body.app-theme-dark #kt_quick_user .user-panel-name,
+body.dashboard-dark #kt_quick_user .user-panel-name{color:#eef1f8}
+body.app-theme-dark #kt_quick_user .user-panel-email-text,
+body.dashboard-dark #kt_quick_user .user-panel-email-text{color:#9aa5bb}
+body.app-theme-dark #kt_quick_user .user-panel-meta-item,
+body.dashboard-dark #kt_quick_user .user-panel-meta-item{background:#141b36;border-color:rgba(255,255,255,.07)}
+body.app-theme-dark #kt_quick_user .user-panel-meta,
+body.dashboard-dark #kt_quick_user .user-panel-meta{border-top-color:rgba(255,255,255,.1)}
+body.app-theme-dark #kt_quick_user .user-panel-meta-value,
+body.dashboard-dark #kt_quick_user .user-panel-meta-value{color:#eef1f8}
+body.app-theme-dark #kt_quick_user .user-panel-meta-label,
+body.dashboard-dark #kt_quick_user .user-panel-meta-label{color:#8f9ab4}
+body.app-theme-dark #kt_quick_user .user-panel-roles,
+body.dashboard-dark #kt_quick_user .user-panel-roles{background:rgba(47,143,247,.16);border-color:rgba(47,143,247,.28);color:#7db9ff}
+body.app-theme-dark #kt_quick_user .user-panel-email-icon,
+body.dashboard-dark #kt_quick_user .user-panel-email-icon{background:rgba(47,143,247,.18)}
+body.app-theme-dark #kt_quick_user .user-panel-foot,
+body.dashboard-dark #kt_quick_user .user-panel-foot{color:#7b869e}
+body.app-theme-dark #kt_quick_user .user-panel-btn-profile,
+body.dashboard-dark #kt_quick_user .user-panel-btn-profile{background:rgba(47,143,247,.13);color:#7db9ff;border-color:rgba(47,143,247,.28)}
+
+@media(max-width:480px){#kt_quick_user.user-panel{width:330px!important}#kt_quick_user .user-panel-card-inner{flex-direction:column;align-items:center;text-align:center}#kt_quick_user .user-panel-info{align-items:center;padding-top:6px}#kt_quick_user .user-panel-email{justify-content:center}#kt_quick_user .user-panel-meta{flex-direction:column}}

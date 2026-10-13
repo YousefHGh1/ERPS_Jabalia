@@ -1153,5 +1153,22 @@
     "roles.legal_affairs_employee": "موظف الشؤون القانونية",
     "Generated on": "تاريخ الإنشاء",
     "manual_chart": "المخطط اليدوي",
-    "save": "حفظ"
+    "save": "حفظ",
+    "Public Office": "قلم الجمهور",
+    "Overview of taxpayers requests and public office management": "نظرة عامة على طلبات المكلفين وإدارة قلم الجمهور",
+    "Total Requests": "إجمالي الطلبات",
+    "Pending Requests": "الطلبات المعلقة",
+    "Urgent Requests": "الطلبات المستعجلة",
+    "Overdue Requests": "الطلبات المتأخرة",
+    "Taxpayers": "المكلفين",
+    "Request Types": "أنواع الطلبات",
+    "Unpaid Requests": "الطلبات غير المدفوعة",
+    "Requests by Type": "توزيع الطلبات حسب النوع",
+    "Requests by Status": "توزيع الطلبات حسب الحالة",
+    "Urgent & Overdue": "المستعجلة والمتأخرة",
+    "No urgent or overdue requests": "لا توجد طلبات مستعجلة أو متأخرة",
+    "Add Taxpayer": "إضافة مكلف",
+    "View Types": "عرض الأنواع",
+    "Licenses": "التراخيص",
+    "Total": "الإجمالي"
 }

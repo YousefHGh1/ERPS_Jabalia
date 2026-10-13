@@ -39,7 +39,6 @@ body.header-fixed .content {
 #kt_header.header,
 #kt_header_mobile.header-mobile {
     isolation: isolate;
-}
     background: rgba(255, 255, 255, 0.88) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -94,7 +93,22 @@ body.header-fixed .content {
 .header .topbar {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    padding-inline-end: 0.25rem;
+}
+
+#kt_header .container-fluid {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    gap: 1rem;
+    overflow-x: clip;
+}
+
+#kt_header .header-menu-wrapper {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: visible;
 }
 
 .header .topbar .btn.btn-icon.btn-clean {
@@ -134,6 +148,12 @@ body.header-fixed .content {
     height: 18px;
 }
 
+.header .topbar .btn.app-user-chip,
+.header .topbar .app-user-chip.btn-icon {
+    width: auto !important;
+    height: auto !important;
+}
+
 .app-user-chip {
     display: flex;
     align-items: center;
@@ -143,6 +163,11 @@ body.header-fixed .content {
     background: rgba(54, 153, 255, 0.06);
     height: auto !important;
     width: auto !important;
+    min-width: 0;
+    max-width: 300px;
+    overflow: visible;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .app-user-chip .user-hello {
@@ -155,6 +180,9 @@ body.header-fixed .content {
     color: var(--municipal-dark);
     font-weight: 800;
     font-size: 0.88rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
 }
 
 .app-user-chip .symbol-label {
@@ -321,30 +349,17 @@ body.header-fixed .content {
     border-inline-start: 1px solid var(--shell-border);
 }
 
-#kt_quick_user .offcanvas-header {
-    background: var(--hero-gradient);
-    color: #fff;
-    margin: -2.5rem -2.5rem 1.25rem;
-    padding: 1.5rem 1.75rem;
+/* القالب يُخفي اللوحة المغلقة على left:-395px (يفترض عرض 375px) لكن العرض
+   الفعلي 400px، فتتسرّب 5px داخل الشاشة، وتفيض ترويسة اللوحة (هوامش سالبة)
+   فوق أفاتار الهيدر فيقصّه. ندفعها بالكامل خارج الشاشة ونقطع أي فيض.
+   ملاحظة: -410px (وليس -100%) للحفاظ على انزلاق فتح قصير وسلس. */
+#kt_quick_user.offcanvas:not(.offcanvas-on) {
+    left: -410px !important;
+    overflow: hidden !important;
 }
 
-#kt_quick_user .offcanvas-header h3,
-#kt_quick_user .offcanvas-header .btn-light {
-    color: #fff;
-}
-
-#kt_quick_user .offcanvas-header .btn-light {
-    background: rgba(255, 255, 255, 0.16);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-}
-
-#kt_quick_user .btn-danger {
-    border-radius: 12px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #eb3349 0%, #F64E60 100%);
-    border: 0;
-    box-shadow: 0 8px 18px rgba(246, 78, 96, 0.28);
-}
+/* تصميم اللوحة بالكامل في public/assets/css/user-panel.css
+   (القواعد القديمة أُزيلت لتجنّب تصادم الهوامش السالبة مع الترويسة الجديدة) */
 
 /* ===== Scrolltop ===== */
 #kt_scrolltop.scrolltop {

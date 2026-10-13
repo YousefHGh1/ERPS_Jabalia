@@ -110,6 +110,26 @@ class EmployeePortalController extends Controller
             'today_attendance'   => $user->logs()->whereDate('arrival_time', today())->first(),
         ];
 
+        // إحصائيات الحضور لهذا الشهر (عطلة نهاية الأسبوع: الجمعة والسبت)
+        $monthStart   = now()->startOfMonth();
+        $elapsedDays  = (int) $monthStart->diffInDays(now()->startOfDay()) + 1;
+        $expectedDays = collect(range(0, $elapsedDays - 1))
+            ->map(fn ($i) => $monthStart->copy()->addDays($i))
+            ->filter(fn ($d) => ! in_array($d->dayOfWeek, [Carbon::FRIDAY, Carbon::SATURDAY]))
+            ->count();
+
+        $attendanceDays = $user->logs()
+            ->whereMonth('arrival_time', now()->month)
+            ->whereYear('arrival_time', now()->year)
+            ->get()
+            ->map(fn ($log) => Carbon::parse($log->arrival_time)->toDateString())
+            ->unique()
+            ->count();
+
+        $stats['attendance_days'] = $attendanceDays;
+        $stats['absence_days']    = max(0, $expectedDays - $attendanceDays);
+        $stats['attendance_rate'] = $expectedDays > 0 ? round($attendanceDays / $expectedDays * 100, 1) : 0;
+
         // سجل الحضور الأخير
         $recent_attendance = $user->logs()->latest('arrival_time')->take(10)->get();
 

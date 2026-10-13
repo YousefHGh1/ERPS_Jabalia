@@ -6,6 +6,8 @@
     'link' => '#',
     'linkText' => 'View Details',
     'border' => true,
+    'decimals' => 0,
+    'suffix' => '',
 ])
 
 @php
@@ -50,6 +52,7 @@
     $textClass = $textClasses[$color] ?? 'text-primary';
     $btnClass = $btnClasses[$color] ?? 'btn-light-primary';
     $borderClassSuffix = $border ? 'border-4' : '';
+    $displayValue = is_numeric($value) ? number_format((float) $value, (int) $decimals) : $value;
 @endphp
 
 <div class="card card-custom admin-stat-card shadow-sm h-100 border-top {{ $borderClass }} {{ $borderClassSuffix }}">
@@ -57,7 +60,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div>
                 <span class="text-muted font-weight-bold font-size-sm">{{ $title }}</span>
-                <h2 class="font-weight-bolder mt-2 mb-0 {{ $textClass }}">{{ number_format($value) }}</h2>
+                <h2 class="font-weight-bolder mt-2 mb-0 {{ $textClass }}" dir="ltr">{{ $displayValue }}@if($suffix)<small class="font-size-sm font-weight-bold ml-1">{{ $suffix }}</small>@endif</h2>
             </div>
             <div class="icon-box {{ $gradientClass }}">
                 <i class="fa {{ $icon }} text-white icon-lg"></i>

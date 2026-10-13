@@ -59,8 +59,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/views-theme.css') }}">
     {{-- هوية كل قسم (config/module_themes.php) — تعتمد متغيرات --module-* من <body> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/module-themes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/user-panel.css') }}">
     {{-- أنماط صفحات الـ admin الموحدة --}}
     <link rel="stylesheet" href="{{ asset('assets/css/admin-dashboard.css') }}">
+    {{-- أنماط بوابة الموظف --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/employee-portal.css') }}">
     @yield('css')
     @stack('css')
     <style>

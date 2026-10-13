@@ -1,989 +1,580 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('login') }} - بلدية جباليا النزلة</title>
-    
-    <!-- Fonts -->
+    <title>تسجيل الدخول - بلدية جباليا النزلة</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdL0l9n3+e6HAKqGvQExM5L0G4dXWqCJq4I0B/vMx7F2G6JhNF6U3F4z7gVgDw5IqR4e+K5K3A3L7K4M0N" crossorigin="anonymous">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         * {
             font-family: 'Cairo', sans-serif !important;
-            box-sizing: border-box;
+            box-sizing: border-box
         }
-        
+
         :root {
-            --primary-color: #3699FF;
-            --secondary-color: #1BC5BD;
-            --accent-color: #FFA800;
-            --dark-bg: #1a1a27;
-            --light-bg: #ffffff;
-            --text-primary: #181C32;
-            --text-secondary: #5E6278;
+            --blue: #3b9dff;
+            --ink: #101828;
+            --card: #fff;
+            --page: #f4f6fb;
+            --input: #f8fafc;
+            --line: #e6eaf1
         }
-        
+
+        html.dark {
+            --ink: #e8ecf4;
+            --card: #151b33;
+            --page: #0b1026;
+            --input: #101736;
+            --line: #263056
+        }
+
         body {
             margin: 0;
-            padding: 0;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            background: var(--page);
+            color: var(--ink)
+        }
+
+        .login-page {
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch
+        }
+
+        .brand {
+            flex: 1.15;
+            background: linear-gradient(160deg, #0b1026 0%, #141a3d 55%, #241a52 100%);
+            color: #fff;
             position: relative;
             overflow: hidden;
-            transition: background 0.5s ease;
-        }
-        
-        /* Dark mode */
-        body.dark-mode {
-            background: linear-gradient(135deg, #1a1a27 0%, #252536 50%, #1e1e2d 100%);
-        }
-        
-        /* Animated gradient orbs */
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-        
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: rgba(54, 153, 255, 0.4);
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-        
-        .orb-2 {
-            width: 350px;
-            height: 350px;
-            background: rgba(27, 197, 189, 0.4);
-            bottom: -100px;
-            right: -100px;
-            animation-delay: 5s;
-        }
-        
-        .orb-3 {
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 168, 0, 0.3);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: 10s;
-        }
-        
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -30px) scale(1.1); }
-            50% { transform: translate(-20px, 20px) scale(0.9); }
-            75% { transform: translate(20px, 30px) scale(1.05); }
-        }
-        
-        /* Floating particles */
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            animation: particleFloat 25s ease-in-out infinite;
-        }
-        
-        @keyframes particleFloat {
-            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.3; }
-            25% { transform: translateY(-50px) translateX(20px) rotate(90deg); opacity: 0.5; }
-            50% { transform: translateY(-100px) translateX(-20px) rotate(180deg); opacity: 0.4; }
-            75% { transform: translateY(-50px) translateX(30px) rotate(270deg); opacity: 0.6; }
-        }
-        
-        .particle:nth-child(1) { width: 15px; height: 15px; left: 10%; top: 20%; animation-delay: 0s; }
-        .particle:nth-child(2) { width: 20px; height: 20px; left: 20%; top: 60%; animation-delay: 3s; }
-        .particle:nth-child(3) { width: 12px; height: 12px; left: 60%; top: 40%; animation-delay: 6s; }
-        .particle:nth-child(4) { width: 18px; height: 18px; left: 80%; top: 70%; animation-delay: 9s; }
-        .particle:nth-child(5) { width: 14px; height: 14px; left: 40%; top: 80%; animation-delay: 12s; }
-        .particle:nth-child(6) { width: 16px; height: 16px; left: 70%; top: 30%; animation-delay: 15s; }
-        .particle:nth-child(7) { width: 10px; height: 10px; left: 30%; top: 50%; animation-delay: 18s; }
-        .particle:nth-child(8) { width: 22px; height: 22px; left: 50%; top: 15%; animation-delay: 21s; }
-        
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            .gradient-orb,
-            .particle {
-                animation: none;
-            }
-            
-            .login-card,
-            .logo-container img,
-            .municipality-info {
-                animation: none;
-            }
-        }
-        
-        /* Glass card effect */
-        .login-container {
-            position: relative;
-            z-index: 10;
-            padding: 2rem;
-            width: 100%;
-            max-width: 500px;
-        }
-        
-        .login-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            position: relative;
-            overflow: hidden;
-            animation: cardEntrance 0.8s ease-out;
-        }
-        
-        .login-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-        }
-        
-        .login-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: cardShine 8s ease-in-out infinite;
-        }
-        
-        @keyframes cardEntrance {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        @keyframes cardShine {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(10px, 10px); }
-        }
-        
-        /* Dark mode card */
-        body.dark-mode .login-card {
-            background: rgba(37, 37, 54, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Logo and branding */
-        .logo-section {
-            text-align: center;
-            margin-bottom: 2rem;
-            animation: logoEntrance 1s ease-out 0.2s both;
-        }
-        
-        @keyframes logoEntrance {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        
-        .logo-container img {
-            max-height: 80px;
-            width: auto;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
-            transition: transform 0.3s ease;
-        }
-        
-        .logo-container img:hover {
-            transform: scale(1.05);
-        }
-        
-        .municipality-info {
-            animation: textEntrance 1s ease-out 0.4s both;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 0.25rem;
-        }
-        
-        @keyframes textEntrance {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .municipality-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            flex-wrap: wrap;
             justify-content: center;
+            padding: 44px 46px
         }
-        
-        .municipality-name {
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin: 0;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: 0.5px;
-        }
-        
-        .system-name {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin: 0;
-        }
-        
-        .welcome-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.85rem;
-            margin: 0;
-        }
-        
-        body.dark-mode .municipality-name,
-        body.dark-mode .system-name,
-        body.dark-mode .welcome-text {
-            color: #e4e6ef;
-        }
-        
-        /* Form styling */
-        .login-form {
+
+        .brand-inner {
             position: relative;
-            z-index: 1;
-        }
-        
-        .form-title {
-            color: white;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        body.dark-mode .form-title {
-            color: #e4e6ef;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .form-label {
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: block;
-            transition: color 0.3s ease;
-        }
-        
-        body.dark-mode .form-label {
-            color: #e4e6ef;
-        }
-        
-        .input-wrapper {
-            position: relative;
-        }
-        
-        .input-icon {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.2rem;
             z-index: 2;
-            transition: color 0.3s ease;
-            pointer-events: none;
+            max-width: 560px;
+            margin-inline-start: auto;
+            width: 100%;
+            text-align: right
+        }
+
+        .brand-top {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            margin-bottom: 26px
         }
-        
-        .input-icon svg {
+
+        .brand-logo img {
+            height: 62px;
+            background: linear-gradient(160deg, #3b4677 0%, #141a3d 55%, #f8f8f8 100%);
+            border-radius: 14px;
+            padding: 6px 12px
+        }
+
+        .tbtn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .tbtn svg {
             width: 20px;
             height: 20px;
-            fill: currentColor;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.9;
+            stroke-linecap: round;
+            stroke-linejoin: round
         }
-        
-        [dir="rtl"] .input-icon {
-            right: auto;
-            left: 1rem;
+
+        .brand .tbtn {
+            border: 1px solid rgba(255, 255, 255, .22);
+            background: rgba(255, 255, 255, .08);
+            color: #fff
         }
-        
-        .form-control {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 0.875rem 3rem 0.875rem 1rem;
-            font-size: 0.95rem;
-            color: #333;
-            transition: all 0.3s ease;
-            width: 100%;
+
+        .sys-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .16);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: .85rem;
+            color: #d6dbea;
+            margin-bottom: 22px
         }
-        
-        [dir="rtl"] .form-control {
-            padding: 0.875rem 1rem 0.875rem 3rem;
+
+        .sys-badge .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #22e0a1
         }
-        
-        .form-control:focus {
-            background: white;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 4px rgba(54, 153, 255, 0.15);
-            outline: none;
+
+        .brand h1 {
+            margin: 0 0 14px;
+            font-size: 2.2rem;
+            line-height: 1.55;
+            font-weight: 900;
+            text-align: right
         }
-        
-        .form-control:focus + .input-icon {
-            color: var(--primary-color);
+
+        .brand h1 .hl {
+            color: var(--blue)
         }
-        
-        .form-control::placeholder {
-            color: #999;
+
+        .brand p.desc {
+            margin: 0 0 30px;
+            color: #aeb6d3;
+            line-height: 2;
+            font-size: .97rem;
+            text-align: right
         }
-        
-        .form-control.is-invalid {
-            border-color: #F64E60;
-            background-color: #fff5f5;
-            animation: shake 0.5s ease;
+
+        .feat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 24px
         }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+
+        .feat {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .13);
+            border-radius: 14px;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-weight: 700;
+            font-size: .92rem
         }
-        
-        /* Dark mode form controls */
-        body.dark-mode .form-control {
-            background: rgba(43, 43, 64, 0.9);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: #e4e6ef;
+
+        .feat svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--blue);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0
         }
-        
-        body.dark-mode .form-control:focus {
-            background: rgba(50, 50, 72, 0.95);
-            border-color: var(--primary-color);
+
+        .brand-foot {
+            color: #8b93b5;
+            font-size: .82rem;
+            text-align: center;
+            margin-top: auto;
+            position: relative;
+            z-index: 2
         }
-        
-        body.dark-mode .form-control::placeholder {
-            color: #a2a5b8;
+
+        .form-side {
+            flex: 1;
+            background: var(--page);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            position: relative
         }
-        
-        body.dark-mode .form-control.is-invalid {
-            background: rgba(246, 78, 96, 0.1);
-            border-color: #F64E60;
-        }
-        
-        body.dark-mode .input-icon {
-            color: #a2a5b8;
-        }
-        
-        body.dark-mode .form-control:focus + .input-icon {
-            color: var(--primary-color);
-        }
-        
-        /* Password toggle */
-        .password-toggle {
+
+        .form-side .tbtn {
             position: absolute;
-            left: 1rem;
+            top: 22px;
+            left: 22px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--ink)
+        }
+
+        .card {
+            background: var(--card);
+            width: 100%;
+            max-width: 480px;
+            border-radius: 22px;
+            padding: 42px 40px 26px;
+            box-shadow: 0 24px 60px rgba(16, 24, 40, .10);
+            border: 1px solid var(--line);
+            text-align: right
+        }
+
+        .card h2 {
+            margin: 0;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800
+        }
+
+        .card .sub {
+            text-align: center;
+            color: #98a2b3;
+            margin: 8px 0 28px;
+            font-size: .93rem
+        }
+
+        label.lbl {
+            display: block;
+            text-align: right;
+            font-weight: 700;
+            margin: 0 0 8px;
+            font-size: .92rem
+        }
+
+        .field {
+            position: relative;
+            margin-bottom: 20px
+        }
+
+        .field input {
+            width: 100%;
+            border: 1.5px solid var(--line);
+            background: var(--input);
+            border-radius: 12px;
+            padding: 13px 46px;
+            font-size: .95rem;
+            color: var(--ink);
+            text-align: right
+        }
+
+        .field input:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(59, 157, 255, .15);
+            outline: none
+        }
+
+        .fic {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+            color: #9aa5bb;
+            display: flex
+        }
+
+        .fic svg,
+        .eye svg {
+            width: 19px;
+            height: 19px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .eye {
+            position: absolute;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
-            color: rgba(255, 255, 255, 0.6);
+            color: #9aa5bb;
             cursor: pointer;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-            z-index: 2;
-            transition: color 0.3s ease;
-        }
-        
-        [dir="rtl"] .password-toggle {
-            left: auto;
-            right: 1rem;
-        }
-        
-        .password-toggle:hover {
-            color: var(--primary-color);
-        }
-        
-        body.dark-mode .password-toggle {
-            color: #a2a5b8;
-        }
-        
-        body.dark-mode .password-toggle:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Validation feedback */
-        .invalid-feedback {
-            color: #fff;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            display: none;
-        }
-        
-        .form-control.is-invalid ~ .invalid-feedback {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-        
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        body.dark-mode .invalid-feedback {
-            color: #F64E60;
-            text-shadow: none;
-        }
-        
-        /* Remember me and forgot password */
-        .form-options {
             display: flex;
+            padding: 4px
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            margin: 2px 0 22px;
+            font-size: .88rem
         }
-        
-        .remember-me {
+
+        .remember {
             display: flex;
             align-items: center;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-            cursor: pointer;
+            gap: 8px;
+            font-weight: 600
         }
-        
-        .remember-me input[type="checkbox"] {
-            margin-left: 0.5rem;
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            accent-color: var(--primary-color);
+
+        .remember input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--blue)
         }
-        
-        [dir="rtl"] .remember-me input[type="checkbox"] {
-            margin-left: 0;
-            margin-right: 0.5rem;
-        }
-        
-        body.dark-mode .remember-me {
-            color: #e4e6ef;
-        }
-        
-        .forgot-password {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
+
+        .forgot {
+            color: var(--blue);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 700
         }
-        
-        .forgot-password:hover {
-            color: white;
-            text-decoration: underline;
-        }
-        
-        body.dark-mode .forgot-password {
-            color: #e4e6ef;
-        }
-        
-        body.dark-mode .forgot-password:hover {
-            color: white;
-        }
-        
-        /* Submit button */
-        .btn-login {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+
+        .btn {
+            width: 100%;
             border: none;
             border-radius: 12px;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: white;
-            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b9dff, #5db4ff);
+            color: #fff;
+            font-size: 1.03rem;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(54, 153, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-login::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .btn-login:hover::before {
-            left: 100%;
-        }
-        
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(54, 153, 255, 0.4);
-        }
-        
-        .btn-login:active {
-            transform: translateY(0);
-        }
-        
-        .btn-login:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        .btn-login .spinner {
-            display: none;
-        }
-        
-        .btn-login.loading .spinner {
-            display: inline-block;
-        }
-        
-        .btn-login.loading .btn-text {
-            opacity: 0.7;
-        }
-        
-        .btn-login .spinner-border {
-            width: 1.2rem;
-            height: 1.2rem;
-            border-width: 2px;
-        }
-        
-        /* Dark mode button */
-        body.dark-mode .btn-login {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-        }
-        
-        /* Footer text */
-        .login-footer {
-            text-align: center;
-            margin-top: 2rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
-        }
-        
-        body.dark-mode .login-footer {
-            color: #a2a5b8;
-        }
-        
-        /* Theme toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            transition: all 0.3s ease;
-            color: white;
+            gap: 10px
         }
-        
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round
         }
-        
-        body.dark-mode .theme-toggle {
-            background: rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.1);
+
+        .btn:disabled {
+            opacity: .7
         }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .login-container {
-                padding: 1rem;
-            }
-            
-            .login-card {
-                padding: 2rem;
-            }
-            
-            .logo-container img {
-                max-height: 60px;
-            }
-            
-            .municipality-header {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .municipality-name {
-                font-size: 1.3rem;
-            }
-            
-            .system-name {
-                font-size: 0.95rem;
-            }
-            
-            .form-options {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
-            .gradient-orb {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .particle {
-                display: none;
-            }
+
+        .err {
+            background: #fef3f2;
+            border: 1px solid #fecdca;
+            color: #b42318;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: .85rem;
+            margin-bottom: 16px;
+            text-align: right
         }
-        
-        @media (max-width: 480px) {
-            .login-card {
-                padding: 1.5rem;
+
+        .field-err {
+            color: #d92d20;
+            font-size: .8rem;
+            margin: -12px 0 14px;
+            text-align: right
+        }
+
+        .copy {
+            text-align: center;
+            color: #98a2b3;
+            font-size: .8rem;
+            margin-top: 24px
+        }
+
+        html.dark .sun-i {
+            display: none
+        }
+
+        html:not(.dark) .moon-i {
+            display: none
+        }
+
+        @media(max-width:992px) {
+            .login-page {
+                flex-direction: column
             }
-            
-            .municipality-name {
-                font-size: 1.3rem;
+
+            .brand {
+                padding: 30px 22px
             }
-            
-            .btn-login {
-                padding: 0.875rem 1.5rem;
-                font-size: 1rem;
+
+            .brand-inner {
+                margin: 0 auto
+            }
+
+            .brand h1 {
+                font-size: 1.5rem
+            }
+
+            .card {
+                padding: 32px 24px
             }
         }
-        
-        /* Accessibility improvements */
-        .btn-login:focus-visible,
-        .form-control:focus-visible,
-        .password-toggle:focus-visible,
-        .theme-toggle:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-        
-        .btn-login:focus:not(:focus-visible),
-        .form-control:focus:not(:focus-visible) {
-            outline: none;
-        }
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .login-card {
-                background: rgba(255, 255, 255, 0.9);
-                border: 2px solid white;
-            }
-            
-            .form-control {
-                border-width: 2px;
+
+        @media(max-width:576px) {
+            .feat-grid {
+                grid-template-columns: 1fr
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- Animated gradient orbs -->
-    <div class="gradient-orb orb-1"></div>
-    <div class="gradient-orb orb-2"></div>
-    <div class="gradient-orb orb-3"></div>
-    
-    <!-- Floating particles -->
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    
-    <!-- Theme toggle -->
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="تبديل الوضع الليلي">
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-    </button>
-    
-    <div class="login-container">
-        <div class="login-card">
-            <!-- Logo and branding -->
-            <div class="logo-section">
-                <div class="logo-container">
-                    <img src="{{ asset('assets/bg/logo-light.png') }}" alt="شعار بلدية جباليا النزلة">
+    <div class="login-page">
+        <div class="brand">
+            <div class="brand-inner">
+                <div class="brand-top">
+                    <div class="brand-logo"><img src="{{ asset('assets/bg/logo-light.png') }}" alt="شعار البلدية"
+                            onerror="this.style.display='none'"></div>
+                    <button type="button" class="tbtn" onclick="toggleTheme()" aria-label="تبديل المظهر">
+                        <svg class="sun-i" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="4" />
+                            <path
+                                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                        </svg>
+                        <svg class="moon-i" viewBox="0 0 24 24">
+                            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+                        </svg>
+                    </button>
                 </div>
-                <div class="municipality-info">
-                    <!-- <h1 class="municipality-name">بلدية جباليا النزلة</h1>
-                    <p class="system-name">نظام الإدارة الإلكترونية</p> -->
-                    <p class="welcome-text">مرحباً بك في بوابة الموظفين</p>
+                <div><span class="sys-badge"><span class="dot"></span> النظام الإداري الموحد</span></div>
+                <h1><span class="hl">نظام بلدية جباليا النزلة</span><br>للإدارة والخدمات البلدية</h1>
+                <p class="desc">منصة موحدة لإدارة الشؤون الإدارية والموظفين، والصندوق المركزي والتحصيل، وقلم الجمهور
+                    والطلبات، والهندسة والحرف والشؤون القانونية.</p>
+                <div class="feat-grid">
+                    <div class="feat"><span>الشؤون الإدارية</span><svg viewBox="0 0 24 24">
+                            <rect x="2" y="7" width="20" height="14" rx="2" />
+                            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+                        </svg></div>
+                    <div class="feat"><span>الصندوق المركزي</span><svg viewBox="0 0 24 24">
+                            <rect x="2" y="5" width="20" height="14" rx="2" />
+                            <path d="M2 10h20M6 15h4" />
+                        </svg></div>
+                    <div class="feat"><span>قلم الجمهور</span><svg viewBox="0 0 24 24">
+                            <rect x="8" y="2" width="8" height="4" rx="1" />
+                            <path
+                                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2M9 12h6M9 16h4" />
+                        </svg></div>
+                    <div class="feat"><span>الهندسة والحرف</span><svg viewBox="0 0 24 24">
+                            <circle cx="6" cy="6" r="3" />
+                            <circle cx="6" cy="18" r="3" />
+                            <path d="M8.5 8.5 20 20M9 6h11M6 9v11" />
+                        </svg></div>
                 </div>
             </div>
-            
-            <!-- Login form -->
-            <form class="login-form" method="POST" action="{{ route('login') }}" id="loginForm">
-                @csrf
-                
-                
-                <!-- Employee number -->
-                <div class="form-group">
-                    <label for="employee_number" class="form-label">رقم الموظف</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                        </span>
-                        <input 
-                            id="employee_number" 
-                            type="text" 
-                            name="employee_number" 
-                            value="{{ old('employee_number') }}" 
-                            required 
-                            autofocus 
-                            placeholder="أدخل رقم الموظف" 
-                            autocomplete="username"
-                            class="form-control @error('employee_number') is-invalid @enderror"
-                            aria-describedby="employee_number_error"
-                        >
-                        <div class="invalid-feedback" id="employee_number_error">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; vertical-align: middle; margin-left: 4px;">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
-                            {{ $errors->first('employee_number') }}
-                        </div>
+            <div class="brand-foot">© {{ date('Y') }} بلدية جباليا النزلة — جميع الحقوق محفوظة</div>
+        </div>
+        <div class="form-side">
+            <button type="button" class="tbtn" onclick="toggleTheme()" aria-label="تبديل المظهر">
+                <svg class="sun-i" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4" />
+                    <path
+                        d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                </svg>
+                <svg class="moon-i" viewBox="0 0 24 24">
+                    <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+                </svg>
+            </button>
+            <div class="card">
+                <h2>مرحباً بعودتك 👋</h2>
+                <p class="sub">سجل الدخول للمتابعة إلى لوحة التحكم</p>
+                @if ($errors->any())
+                    <div class="err">{{ $errors->first() }}</div>
+                @endif
+                <form method="POST" action="{{ route('login') }}" id="loginForm">
+                    @csrf
+                    <label class="lbl" for="employee_number">اسم المستخدم</label>
+                    <div class="field">
+                        <input id="employee_number" type="text" name="employee_number"
+                            value="{{ old('employee_number') }}" required autofocus autocomplete="username"
+                            placeholder="أدخل اسم المستخدم">
+                        <span class="fic"><svg viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg></span>
                     </div>
-                </div>
-                
-                <!-- Password -->
-                <div class="form-group">
-                    <label for="password" class="form-label">كلمة المرور</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </span>
-                        <input 
-                            id="password" 
-                            type="password" 
-                            name="password" 
-                            required 
-                            placeholder="أدخل كلمة المرور" 
-                            autocomplete="current-password"
-                            class="form-control @error('password') is-invalid @enderror"
-                            aria-describedby="password_error"
-                        >
-                        <button 
-                            type="button" 
-                            class="password-toggle" 
-                            id="passwordToggle"
-                            aria-label="إظهار/إخفاء كلمة المرور"
-                        >
-                            <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                            <svg class="eye-off-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
-                                <line x1="1" y1="1" x2="23" y2="23"></line>
-                            </svg>
-                        </button>
-                        <div class="invalid-feedback" id="password_error">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline; vertical-align: middle; margin-left: 4px;">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="12" y1="8" x2="12" y2="12"></line>
-                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                            </svg>
-                            {{ $errors->first('password') }}
-                        </div>
+                    @error('employee_number')
+                        <div class="field-err">{{ $message }}</div>
+                    @enderror
+                    <label class="lbl" for="password">كلمة المرور</label>
+                    <div class="field">
+                        <input id="password" type="password" name="password" required autocomplete="current-password"
+                            placeholder="••••••••">
+                        <span class="fic"><svg viewBox="0 0 24 24">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg></span>
+                        <button type="button" class="eye" id="pwToggle" aria-label="إظهار كلمة المرور"><svg
+                                viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg></button>
                     </div>
-                </div>
-                
-                <!-- Remember me and forgot password -->
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" name="remember" id="remember">
-                        <span>تذكرني</span>
-                    </label>
-                    @if(Route::has('password.request'))
-                        <a href="{{ route('password.request') }}" class="forgot-password">
-                            نسيت كلمة المرور؟
-                        </a>
-                    @endif
-                </div>
-                
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-login" id="loginButton">
-                    <span class="spinner">
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    </span>
-                    <span class="btn-text">
-                        <i class="fas fa-sign-in-alt mr-2"></i>
-                        تسجيل الدخول
-                    </span>
-                </button>
-            </form>
-            
-            <!-- Footer -->
-            <div class="login-footer">
-                <p>© {{ date('Y') }} بلدية جباليا النزلة - جميع الحقوق محفوظة</p>
+                    @error('password')
+                        <div class="field-err">{{ $message }}</div>
+                    @enderror
+                    <div class="form-row">
+                        <label class="remember"><input type="checkbox" name="remember" id="remember"
+                                {{ old('remember') ? 'checked' : '' }}> تذكرني</label>
+                        @if (Route::has('password.request'))
+                            <a class="forgot" href="{{ route('password.request') }}">نسيت كلمة المرور؟</a>
+                        @endif
+                    </div>
+                    <button type="submit" class="btn" id="loginBtn"><svg viewBox="0 0 24 24">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" />
+                        </svg> تسجيل الدخول</button>
+                </form>
+                <p class="copy">بلدية جباليا النزلة · {{ date('Y') }}</p>
             </div>
         </div>
     </div>
-    
     <script>
-        // Password toggle functionality
-        document.getElementById('passwordToggle').addEventListener('click', function() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = this.querySelector('.eye-icon');
-            const eyeOffIcon = this.querySelector('.eye-off-icon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.style.display = 'none';
-                eyeOffIcon.style.display = 'block';
-                this.setAttribute('aria-label', 'إخفاء كلمة المرور');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.style.display = 'block';
-                eyeOffIcon.style.display = 'none';
-                this.setAttribute('aria-label', 'إظهار كلمة المرور');
+        (function() {
+            // نفس مفاتيح لوحة التحكم حتى يبقى المظهر موحّداً بين صفحة الدخول والنظام
+            var KEYS = ['theme', 'municipality_dashboard_theme', 'login-theme'];
+
+            function readTheme() {
+                try {
+                    for (var i = 0; i < KEYS.length; i++) {
+                        var v = localStorage.getItem(KEYS[i]);
+                        if (v === 'dark' || v === 'light') {
+                            return v;
+                        }
+                    }
+                } catch (e) {}
+                return null;
             }
+
+            function saveTheme(mode) {
+                try {
+                    for (var i = 0; i < KEYS.length; i++) {
+                        localStorage.setItem(KEYS[i], mode);
+                    }
+                } catch (e) {}
+            }
+
+            window.toggleTheme = function() {
+                var h = document.documentElement;
+                h.classList.toggle('dark');
+                saveTheme(h.classList.contains('dark') ? 'dark' : 'light');
+            };
+
+            var saved = readTheme();
+            if (saved === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else if (saved === 'light') {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+
+        document.getElementById('pwToggle').addEventListener('click', function() {
+            var p = document.getElementById('password');
+            p.type = (p.type === 'password') ? 'text' : 'password';
         });
-        
-        // Form submission handling
         document.getElementById('loginForm').addEventListener('submit', function(e) {
-            const button = document.getElementById('loginButton');
-            const form = this;
-            
-            // Prevent double submission
-            if (button.disabled) {
+            var b = document.getElementById('loginBtn');
+            if (b.disabled) {
                 e.preventDefault();
                 return false;
             }
-            
-            // Show loading state
-            button.disabled = true;
-            button.classList.add('loading');
-            
-            // Re-enable after 30 seconds (timeout fallback)
+            b.disabled = true;
             setTimeout(function() {
-                button.disabled = false;
-                button.classList.remove('loading');
+                b.disabled = false;
             }, 30000);
-        });
-        
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const moonIcon = themeToggle.querySelector('.moon-icon');
-        const sunIcon = themeToggle.querySelector('.sun-icon');
-        
-        // Check for saved theme preference or system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            body.classList.add('dark-mode');
-            moonIcon.style.display = 'none';
-            sunIcon.style.display = 'block';
-        }
-        
-        themeToggle.addEventListener('click', function() {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'block';
-                this.setAttribute('aria-label', 'تفعيل الوضع الفاتح');
-            } else {
-                localStorage.setItem('theme', 'light');
-                moonIcon.style.display = 'block';
-                sunIcon.style.display = 'none';
-                this.setAttribute('aria-label', 'تفعيل الوضع الليلي');
-            }
-        });
-        
-        // Remove loading state if there are validation errors
-        @if($errors->any())
-            document.getElementById('loginButton').disabled = false;
-            document.getElementById('loginButton').classList.remove('loading');
-        @endif
-        
-        // Focus management for accessibility
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstInput = document.querySelector('input[type="text"]');
-            if (firstInput) {
-                firstInput.focus();
-            }
         });
     </script>
 </body>

@@ -1,0 +1,13 @@
+/minifier/
+/phar/
+/vendor/
+/coverage/
+/phpunit.phar
+/.phpunit.result.cache
+/phpstan.phar
+/phpstan.neon
+.idea/ar-php.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml

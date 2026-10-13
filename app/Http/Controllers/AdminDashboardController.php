@@ -45,12 +45,22 @@ class AdminDashboardController extends Controller
     }
 
     /**
+     * عرض صفحة قلم الجمهور
+     */
+    public function publicOffice()
+    {
+        $data = $this->dashboardService->getPublicOfficeDashboardData();
+
+        return view('admin.public-office', $data);
+    }
+
+    /**
      * مسح كاش Dashboard
      */
     public function clearCache(Request $request)
     {
         $type = $request->input('type', 'all');
-        
+
         if ($type === 'all') {
             $this->dashboardService->clearDashboardCache();
             $message = 'تم مسح جميع كاشات Dashboard بنجاح';

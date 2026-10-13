@@ -80,9 +80,11 @@
             <div class="col-lg-8">
                 <!-- Engineering Files by Status -->
                 <div class="card card-custom shadow-sm gutter-b">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Engineering Files by Status') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-chart-pie text-success mr-2"></i>{{ __('Engineering Files by Status') }}
+                            </span>
                         </h3>
                     </div>
                     <div class="card-body" style="min-height: 380px;">
@@ -92,9 +94,11 @@
 
                 <!-- Latest Engineering Files -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Latest Engineering Files') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-file-contract text-info mr-2"></i>{{ __('Latest Engineering Files') }}
+                            </span>
                         </h3>
                         <div class="card-toolbar">
                             <a href="{{ route('engineering.index') }}" class="btn btn-light-info btn-sm font-weight-bolder">{{ __('View All') }}</a>
@@ -160,9 +164,11 @@
             <div class="col-lg-4">
                 <!-- Quick Actions Grid -->
                 <div class="card card-custom shadow-sm gutter-b">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Quick Actions') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-bolt text-warning mr-2"></i>{{ __('Quick Actions') }}
+                            </span>
                         </h3>
                     </div>
                     <div class="card-body pt-5">
@@ -197,9 +203,11 @@
 
                 <!-- Revenue by Month -->
                 <div class="card card-custom shadow-sm gutter-b mt-5">
-                    <div class="card-header border-0 pt-7">
+                    <div class="card-header border-0 pt-6">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label font-weight-bolder text-dark">{{ __('Revenue by Month') }}</span>
+                            <span class="card-label font-weight-bolder text-dark">
+                                <i class="fa fa-coins text-success mr-2"></i>{{ __('Revenue by Month') }}
+                            </span>
                         </h3>
                     </div>
                     <div class="card-body" style="min-height: 340px;">
@@ -258,7 +266,8 @@
                 series: [{ name: '{{ __("Revenue") }}', data: revenueAmounts }],
                 xaxis: { categories: revenueMonths, axisBorder: { show: false }, axisTicks: { show: false } },
                 colors: ['#1BC5BD'],
-                plotOptions: { bar: { borderRadius: 10, columnWidth: '60%' } },
+                plotOptions: { bar: { borderRadius: 10, columnWidth: '60%', dataLabels: { position: 'top' } } },
+                dataLabels: { enabled: true, formatter: function (val) { return val.toLocaleString(); }, offsetY: -20, style: { fontSize: '12px', colors: ["#304758"] } },
                 yaxis: { labels: { formatter: function (v) { return v.toLocaleString(); } } },
                 noData: noDataOpt,
                 states: { hover: { filter: { type: 'none' } } }

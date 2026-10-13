@@ -323,6 +323,7 @@ return [
             'label'           => 'قلم الجمهور',
             'icon'            => 'flaticon2-user text-primary',
             'active'          => ['is' => [
+                'admin/public-office*',
                 'mokalafs*',
                 'requests*',
                 'request-types*',
@@ -332,6 +333,14 @@ return [
             ]],
             'permissions_key' => 'mokalafs',
             'children'        => [
+                // Dashboard
+                [
+                    'route'           => 'admin.public_office',
+                    'label'           => 'داشبور قلم الجمهور',
+                    'icon'            => 'fas fa-chart-pie text-danger',
+                    'active'          => ['is' => ['admin/public-office*']],
+                    'permissions_key' => 'requests',
+                ],
                 [
                     'route'  => 'mokalafs.index',
                     'label'  => 'المكلفين',
