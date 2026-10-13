@@ -264,7 +264,7 @@ class MokalafController extends Controller
             // Check if mokalaf already exists (باستخدام الخدمة لسهولة إعادة الاستخدام)
             $existingMokalaf = $this->mokalafService->findExisting(
                 $request->identity_number,
-                $request->license_number
+                null
             );
 
             if ($existingMokalaf) {
@@ -434,14 +434,9 @@ class MokalafController extends Controller
     public function checkMokalafExists(Request $request)
     {
         $identityNumber = $request->get('identity_number');
-        $licenseNumber = $request->get('license_number');
-
-        $mokalaf = null;
-        if ($identityNumber) {
-            $mokalaf = Mokalaf::where('identity_number', $identityNumber)->first();
-        } elseif ($licenseNumber) {
-            $mokalaf = Mokalaf::where('license_number', $licenseNumber)->first();
-        }
+        $mokalaf = $identityNumber
+            ? Mokalaf::where('identity_number', $identityNumber)->first()
+            : null;
 
         if ($mokalaf) {
             return response()->json([

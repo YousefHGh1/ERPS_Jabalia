@@ -37,7 +37,6 @@ class StoreMokalafRequest extends FormRequest
                 'nullable',
                 'string',
                 'max:50',
-                Rule::unique('mokalafs', 'license_number'),
             ],
             'name' => 'required|string',
             'address' => 'nullable|string',

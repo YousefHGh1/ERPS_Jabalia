@@ -141,15 +141,13 @@
     $(document).ready(function() {
         $('#identity_number, #license_number').on('blur', function() {
             var identityNumber = $('#identity_number').val();
-            var licenseNumber = $('#license_number').val();
 
-            if (identityNumber || licenseNumber) {
+            if (identityNumber) {
                 $.ajax({
                     url: '{{ route("mokalafs.check-exists") }}',
                     type: 'GET',
                     data: {
-                        identity_number: identityNumber,
-                        license_number: licenseNumber
+                        identity_number: identityNumber
                     },
                     success: function(response) {
                         if (response.exists) {
@@ -188,6 +186,8 @@
                         $('#manual-input').show();
                     }
                 });
+            } else {
+                $('#manual-input').show();
             }
         });
 

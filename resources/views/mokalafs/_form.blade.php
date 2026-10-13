@@ -337,48 +337,9 @@ $(document).ready(function() {
         });
     }
 
-    // Keep blur event for license number
     $('#license_number').off('blur').on('blur', function() {
-        var licenseNumber = $(this).val();
-        
-        if (licenseNumber) {
-            $.ajax({
-                url: '{{ route("mokalafs.check-exists") }}',
-                type: 'GET',
-                data: { license_number: licenseNumber },
-                success: function(response) {
-                    if (response.exists) {
-                        if (typeof Swal !== 'undefined') {
-                            Swal.fire({
-                                title: '{{ __('تنبيه') }}',
-                                text: '{{ __('هذا الشخص مضاف بالفعل كمكلف. هل تريد تعديل بياناته؟') }}',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: '{{ __('نعم') }}',
-                                cancelButtonText: '{{ __('إلغاء') }}',
-                                reverseButtons: true
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    window.location.href = response.edit_url;
-                                } else {
-                                    $('#license_number').val('');
-                                }
-                            });
-                        } else {
-                            if (confirm('{{ __('هذا الشخص مضاف بالفعل كمكلف. هل تريد تعديل بياناته؟') }}')) {
-                                window.location.href = response.edit_url;
-                            } else {
-                                $('#license_number').val('');
-                            }
-                        }
-                    } else {
-                        $('#manual-input').show();
-                    }
-                },
-                error: function() {
-                    $('#manual-input').show();
-                }
-            });
+        if ($(this).val().trim()) {
+            $('#manual-input').show();
         }
     });
 
