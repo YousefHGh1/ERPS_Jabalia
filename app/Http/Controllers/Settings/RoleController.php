@@ -19,7 +19,7 @@ class RoleController extends Controller
         'crafts_manager', 'craft_licenses_manager', 'engineering_manager', 
         'engineering_files_manager', 'legal_affairs_manager', 'notices_manager',
         'imprisonment_orders_manager', 'legal_affairs_employee', 'republic_pen_manager',
-        'public_relations', 'external_collection_manager'
+        'public_relations', 'request_mail_officer', 'external_collection_manager'
     ];
 
     public function index(Request $request): View

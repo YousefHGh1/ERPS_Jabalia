@@ -325,6 +325,7 @@ class PermissionSeeder extends Seeder
             'external_collections_manager' => 'مدير التحصيل الخارجي',
 
             // أدوار مجمعة جديدة
+            'request_mail_officer' => 'موظف متابعة بريد الطلبات',
             'all_sections' => 'جميع الأقسام',
             'administrative_affairs' => 'الشؤون الإدارية',
             'central_treasury_full' => 'الصندوق المركزي',

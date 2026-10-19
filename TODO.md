@@ -1,4 +1,5 @@
-cd ~/jabalia
+cd public_html
+cd jabalia
 git pull origin main
 php artisan config:clear && php artisan view:clear && php artisan cache:clear
 php artisan config:cache && php artisan view:cache && php artisan event:cache

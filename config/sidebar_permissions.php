@@ -243,6 +243,22 @@ return [
             'delete requests',
             'show requests',
         ],
+        /**
+         * Request Mail Officer (موظف متابعة بريد الطلبات)
+         * رد ومتابعة بريد الطلبات فقط: عرض الطلبات + عرض/تسجيل/تعديل الردود
+         * + استعلام مرجعي للمكلفين وأنواع الطلبات (بدون إدارة).
+         * ملاحظة: الرد الفعلي يعتمد على ربط الموظف بقسم/دائرة
+         * (انظر StoreRequestMailRequest::authorize و RequestMailController).
+         */
+        'request_mail_officer' => [
+            'index requests',
+            'show requests',
+            'show request_mails',
+            'store request_mails',
+            'update request_mails',
+            'index mokalafs',
+            'index request_types',
+        ],
 
         /**
          * Craft Licenses

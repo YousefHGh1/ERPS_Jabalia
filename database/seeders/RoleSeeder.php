@@ -68,6 +68,7 @@ class RoleSeeder extends Seeder
             // أدوار قلم الجمهور
             'republic_pen_manager' => 'مدير قلم الجمهور',
             'public_relations' => 'قلم الجمهور',
+            'request_mail_officer' => 'موظف متابعة بريد الطلبات',
 
             // أدوار التحصيل الخارجي
             'external_collection_manager' => 'مدير التحصيل الخارجي',
@@ -132,6 +133,7 @@ class RoleSeeder extends Seeder
         // أدوار قلم الجمهور
         $this->assignRepublicPenPermissions();
         $this->assignPublicRelationsPermissions();
+        $this->assignRequestMailOfficerPermissions();
 
         $this->command->info('✅ انتهى ربط الصلاحيات بالأدوار');
     }
@@ -293,6 +295,41 @@ class RoleSeeder extends Seeder
             ->get();
         $publicRelations->syncPermissions($publicRelationsPermissions);
         $this->command->info("   🔑 قلم الجمهور حصل على {$publicRelationsPermissions->count()} صلاحية (المكلفين والطلبات فقط)");
+    }
+    /**
+     * صلاحيات دور «موظف متابعة بريد الطلبات» (request_mail_officer).
+     *
+     * دور ضيّق للموظف المكلّف بالرد على طلبات المسارات ومتابعة بريد الطلبات فقط،
+     * دون صلاحيات إدارة المكلفين أو أنواع الطلبات أو مساراتها:
+     * - index requests: إظهار قائمتي «الطلبات» و«Mail» في الشريط الجانبي
+     *   (عبر Gate: sidebar_can_see_requests_menu و sidebar_can_see_request_mail).
+     * - show requests: عرض تفاصيل الطلب من صفحة بريد الطلبات.
+     * - show request_mails: عرض صفحة الرد (requests.mail.show).
+     * - store/update request_mails: تسجيل الرد (requests.mail.store/update).
+     * - index mokalafs + show mokalafs: الاستعلام المرجعي للمكلّف —
+     *   بدون store/update/delete حتى لا يعدّل بيانات المكلفين.
+     * - index request_types: العرض المرجعي لأنواع الطلبات فقط.
+     *
+     * ملاحظة: الرد الفعلي لا يتطلب أي صلاحية إضافية متى كان الموظف
+     * مربوطاً بقسم/دائرة (انظر StoreRequestMailRequest::authorize و
+     * status.blade.php)، لذا يجب ربط المستخدم بقسم «قسم قلم الجمهور».
+     */
+    private function assignRequestMailOfficerPermissions(): void
+    {
+        $officer = Role::findByName('request_mail_officer', 'web');
+
+        $officerPermissions = Permission::whereIn('name', [
+            'index requests',
+            'show requests',
+            'show request_mails',
+            'store request_mails',
+            'update request_mails',
+            'index mokalafs',
+            'index request_types',
+        ])->get();
+
+        $officer->syncPermissions($officerPermissions);
+        $this->command->info("   🔑 موظف متابعة بريد الطلبات حصل على {$officerPermissions->count()} صلاحية (رد ومتابعة فقط)");
     }
 
     /**
