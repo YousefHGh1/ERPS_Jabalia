@@ -34,6 +34,14 @@ class ControllerPermissionsSeeder extends Seeder
                 'delete requests',
             ],
 
+            // بريد الطلبات (الرد والمتابعة — مستخدمة فعلياً في
+            // RequestMailController و StoreRequestMailRequest)
+            'request_mails' => [
+                'show request_mails',
+                'store request_mails',
+                'update request_mails',
+            ],
+
             // تراخيص الحرف
             'craft_licenses' => [
                 'index craft_licenses',
