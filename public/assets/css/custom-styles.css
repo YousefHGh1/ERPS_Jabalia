@@ -405,6 +405,29 @@ img[alt=""] {
     padding: 1rem 1.5rem;
 }
 
+/* Fix modal shaking/jittering issue */
+.modal.fade .modal-dialog {
+    transition: none !important;
+    transform: none !important;
+}
+
+.modal.show .modal-dialog {
+    transform: none !important;
+}
+
+/* Fix select dropdowns inside modals */
+.modal .bootstrap-select .dropdown-toggle {
+    filter: none !important;
+}
+
+.modal .bootstrap-select .dropdown-menu {
+    z-index: 1060 !important;
+}
+
+.modal .selectpicker {
+    width: 100% !important;
+}
+
 /* Status Badge Animations */
 .label {
     transition: all var(--transition-speed) ease;
@@ -1292,5 +1315,38 @@ body.app-theme-dark .skeleton::after {
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 0.1) 50%,
     rgba(255, 255, 255, 0) 100%);
+}
+
+/* ===== Fix modal scroll jumping (prevent screen shake) ===== */
+/* عندما يفتح الـ modal، نحافظ على عرض scrollbar لمنع shift في الصفحة */
+body.modal-open {
+    overflow: hidden !important;
+    padding-right: 0 !important;
+}
+
+/* الحفاظ على عرض scrollbar دائماً */
+html {
+    scrollbar-gutter: stable;
+}
+
+/* إصلاح إضافي للـ modals لمنع الاهتزاز */
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* تعطيل animation للـ modal لمنع الاهتزاز عند الفتح */
+.modal.fade .modal-dialog {
+    transition: none !important;
+    transform: none !important;
+}
+
+.modal.show .modal-dialog {
+    transform: none !important;
+}
+
+/* تأكد من أن backdrop لا يسبب اهتزاز */
+.modal-backdrop {
+    transition: opacity 0.15s linear !important;
 }
 

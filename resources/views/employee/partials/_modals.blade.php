@@ -19,6 +19,25 @@
     .close {
         color: white;
     }
+
+    /* Fix modal shaking/jittering */
+    .modal.fade .modal-dialog {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .modal.show .modal-dialog {
+        transform: none !important;
+    }
+
+    /* Fix bootstrap-select inside modals */
+    .modal .bootstrap-select .dropdown-toggle {
+        filter: none !important;
+    }
+
+    .modal .bootstrap-select .dropdown-menu {
+        z-index: 1060 !important;
+    }
 </style>
 <div class="modal fade" id="createModal" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

@@ -389,7 +389,6 @@
 
                     if ($.fn.selectpicker && select.hasClass('selectpicker')) {
                         select.selectpicker('refresh');
-                        select.selectpicker('render');
                     }
                 }
 
@@ -456,7 +455,7 @@
 
                     setTimeout(function() {
                         modal.data('initializing-edit-selects', false);
-                    }, 250);
+                    }, 100);
                 });
 
                 $(document).on('change', '.department-edit', function() {

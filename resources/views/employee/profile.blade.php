@@ -14,6 +14,29 @@
 {{ __('profile_page') }}
 @endsection
 
+@section('css')
+<style>
+    /* Fix modal shaking/jittering issue */
+    .modal.fade .modal-dialog {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .modal.show .modal-dialog {
+        transform: none !important;
+    }
+
+    /* Fix select dropdowns inside modals */
+    .modal .bootstrap-select .dropdown-toggle {
+        filter: none !important;
+    }
+
+    .modal .bootstrap-select .dropdown-menu {
+        z-index: 1060 !important;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class=" container ">
     <!--begin::Advance Table Widget 3-->
@@ -3186,6 +3209,13 @@
 
 {{-- اضهار رصيد الاجازات --}}
 <script>
+    $(document).ready(function() {
+        // Initialize bootstrap-select
+        if ($.fn.selectpicker) {
+            $('.selectpicker').selectpicker();
+        }
+    });
+
     function handleEmployeeSelection() {
         var selectedOption = $("#employee_id option:selected");
 
