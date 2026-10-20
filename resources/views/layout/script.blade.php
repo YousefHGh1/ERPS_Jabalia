@@ -9,6 +9,21 @@
             document.body.classList.remove('page-loading');
         }
     })();
+
+    // Fix modal shaking/jittering globally
+    $(document).on('show.bs.modal', '.modal', function() {
+        $(this).find('.modal-dialog').css({
+            'transform': 'none',
+            'transition': 'none'
+        });
+    });
+
+    $(document).on('shown.bs.modal', '.modal', function() {
+        $(this).find('.modal-dialog').css({
+            'transform': 'none',
+            'transition': 'none'
+        });
+    });
 </script>
 <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
 <!--begin::Global Config(global config for global JS scripts)-->

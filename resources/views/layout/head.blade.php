@@ -67,6 +67,31 @@
     @yield('css')
     @stack('css')
     <style>
+        /* Global fix for modal shaking/jittering */
+        .modal.fade .modal-dialog {
+            transition: none !important;
+            transform: none !important;
+            opacity: 1 !important;
+        }
+
+        .modal.show .modal-dialog {
+            transform: none !important;
+        }
+
+        .modal.in .modal-dialog {
+            transform: none !important;
+        }
+
+        .modal.fade {
+            transition: none !important;
+        }
+
+        .modal .modal-dialog {
+            transition: none !important;
+            transform: none !important;
+        }
+    </style>
+    <style>
         /* إعدادات حجم الخط من الملف الشخصي */
         body.app-font-small { font-size: 14px; }
         body.app-font-small .font-size-sm { font-size: 12px; }
