@@ -3210,9 +3210,13 @@
 {{-- اضهار رصيد الاجازات --}}
 <script>
     $(document).ready(function() {
-        // Initialize bootstrap-select
+        // Initialize bootstrap-select with specific options to prevent jitter
         if ($.fn.selectpicker) {
-            $('.selectpicker').selectpicker();
+            $('.selectpicker').selectpicker({
+                width: '100%',
+                container: 'body',
+                dropdownAlignRight: true
+            });
         }
     });
 

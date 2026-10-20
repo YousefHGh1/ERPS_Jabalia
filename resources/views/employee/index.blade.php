@@ -158,9 +158,13 @@
             $(document).ready(function() {
                 const filterForm = $('#filter-form');
 
-                // initialize bootstrap-select on page load
+                // initialize bootstrap-select on page load with specific options to prevent jitter
                 if ($.fn.selectpicker) {
-                    $('.selectpicker').selectpicker();
+                    $('.selectpicker').selectpicker({
+                        width: '100%',
+                        container: 'body',
+                        dropdownAlignRight: true
+                    });
                 }
 
                 filterForm.on('submit', function(e) {
@@ -236,7 +240,11 @@
 
                                     // re-init selectpicker for newly injected edit modals (except job_id which we removed)
                                     if ($.fn.selectpicker) {
-                                        $('#edit-modals-container .selectpicker').selectpicker();
+                                        $('#edit-modals-container .selectpicker').selectpicker({
+                                            width: '100%',
+                                            container: 'body',
+                                            dropdownAlignRight: true
+                                        });
                                     }
                                 }
                             } else {
@@ -446,16 +454,19 @@
 
                     modal.data('initializing-edit-selects', true);
 
-                    if (currentDepartment) {
-                        setSelectValue(departmentSelect, currentDepartment);
-                    }
+                    // Delay initialization to prevent shaking
+                    requestAnimationFrame(function() {
+                        if (currentDepartment) {
+                            setSelectValue(departmentSelect, currentDepartment);
+                        }
 
-                    setSelectValue(sectionSelect, currentSection);
-                    setSelectValue(branchSelect, currentBranch);
+                        setSelectValue(sectionSelect, currentSection);
+                        setSelectValue(branchSelect, currentBranch);
 
-                    setTimeout(function() {
-                        modal.data('initializing-edit-selects', false);
-                    }, 100);
+                        setTimeout(function() {
+                            modal.data('initializing-edit-selects', false);
+                        }, 50);
+                    });
                 });
 
                 $(document).on('change', '.department-edit', function() {

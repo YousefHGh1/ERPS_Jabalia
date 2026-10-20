@@ -409,9 +409,24 @@ img[alt=""] {
 .modal.fade .modal-dialog {
     transition: none !important;
     transform: none !important;
+    opacity: 1 !important;
 }
 
 .modal.show .modal-dialog {
+    transform: none !important;
+}
+
+.modal.in .modal-dialog {
+    transform: none !important;
+}
+
+/* Disable all modal transitions */
+.modal.fade {
+    transition: none !important;
+}
+
+.modal .modal-dialog {
+    transition: none !important;
     transform: none !important;
 }
 
@@ -426,6 +441,15 @@ img[alt=""] {
 
 .modal .selectpicker {
     width: 100% !important;
+}
+
+/* Fix bootstrap-select layout shifts */
+.bootstrap-select {
+    position: relative !important;
+}
+
+.bootstrap-select .dropdown-toggle {
+    position: relative !important;
 }
 
 /* Status Badge Animations */

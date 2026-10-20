@@ -316,6 +316,15 @@
     box-shadow: var(--admin-card-shadow-hover);
 }
 
+/* أي transform على عنصر أب يجعل المودال (position: fixed) يتموضع بالنسبة له بدل الشاشة،
+   فيتحرك المودال مع hover الكرت ويخرج المؤشر منه ثم يعود ← رعشة لا نهائية */
+body.modal-open .card-custom:hover,
+body.modal-open .admin-card-custom:hover,
+.card-custom:has(.modal.show):hover,
+.admin-card-custom:has(.modal.show):hover {
+    transform: none;
+}
+
 .card-custom .card-header,
 .admin-card-custom .card-header {
     background: #fff;
