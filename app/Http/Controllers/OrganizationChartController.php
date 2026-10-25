@@ -934,10 +934,37 @@ class OrganizationChartController extends Controller
         $department->load([
             'directors.employee',
             'employees' => fn($q) =>
-            $q->active()->whereNull('section_id')->whereNull('branch_id')->with('job')->orderBy('name'),
+            $q->active()
+                ->whereNull('section_id')
+                ->whereNull('branch_id')
+                ->whereNotIn('id', function ($sub) use ($department) {
+                    $sub->select('employee_id')
+                        ->from('department_directors')
+                        ->where('director_type', 'permanent')
+                        ->orWhere(function ($or) {
+                            $or->select('employee_id')
+                                ->from('department_directors')
+                                ->where('director_type', 'acting');
+                        });
+                })
+                ->with('job')
+                ->orderBy('name'),
             'sections'  => fn($q)  => $q->orderBy('name')->with([
                 'directors.employee',
-                'employees'          => fn($sq)          => $sq->active()->whereNull('branch_id')->with('job')->orderBy('name'),
+                'employees'          => fn($sq)          => $sq->active()
+                    ->whereNull('branch_id')
+                    ->whereNotIn('id', function ($sub) use ($department) {
+                        $sub->select('employee_id')
+                            ->from('section_directors')
+                            ->where('director_type', 'permanent')
+                            ->orWhere(function ($or) {
+                                $or->select('employee_id')
+                                    ->from('section_directors')
+                                    ->where('director_type', 'acting');
+                            });
+                    })
+                    ->with('job')
+                    ->orderBy('name'),
                 'branches'           => fn($bq)           => $bq->orderBy('name'),
                 'branches.directors.employee',
                 'branches.employees' => fn($beq) => $beq->active()->with('job')->orderBy('name'),
@@ -1015,7 +1042,20 @@ class OrganizationChartController extends Controller
         $section->load([
             'directors.employee',
             'department',
-            'employees'          => fn($sq)          => $sq->active()->whereNull('branch_id')->with('job')->orderBy('name'),
+            'employees'          => fn($sq)          => $sq->active()
+                ->whereNull('branch_id')
+                ->whereNotIn('id', function ($sub) use ($section) {
+                    $sub->select('employee_id')
+                        ->from('section_directors')
+                        ->where('director_type', 'permanent')
+                        ->orWhere(function ($or) {
+                            $or->select('employee_id')
+                                ->from('section_directors')
+                                ->where('director_type', 'acting');
+                        });
+                })
+                ->with('job')
+                ->orderBy('name'),
             'branches'           => fn($bq)           => $bq->orderBy('name'),
             'branches.directors.employee',
             'branches.employees' => fn($beq) => $beq->active()->with('job')->orderBy('name'),
@@ -1078,6 +1118,16 @@ class OrganizationChartController extends Controller
         $employees = Employee::query()
             ->active()
             ->where('branch_id', $branch->id)
+            ->whereNotIn('id', function ($sub) use ($branch) {
+                $sub->select('employee_id')
+                    ->from('branch_directors')
+                    ->where('director_type', 'permanent')
+                    ->orWhere(function ($or) {
+                        $or->select('employee_id')
+                            ->from('branch_directors')
+                            ->where('director_type', 'acting');
+                    });
+            })
             ->with('job')
             ->orderBy('name')
             ->get(['id', 'name', 'job_id']);
