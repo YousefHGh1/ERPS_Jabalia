@@ -157,6 +157,12 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
         ->where('type', 'department|section|branch')
         ->where('id', '[0-9]+')
         ->name('structure.org-chart.print');
+    Route::get('/structure/org-chart/export/excel/{type}/{id}', [OrganizationChartController::class, 'exportExcel'])
+        ->where('type', 'department|section|branch')
+        ->where('id', '[0-9]+')
+        ->name('structure.org-chart.export.excel');
+    Route::post('/structure/org-chart/settle-employees', [OrganizationChartController::class, 'settleEmployees'])
+        ->name('structure.org-chart.settle-employees');
     Route::get('/structure/org-chart/hierarchy/{type}/{id}', [OrganizationChartController::class, 'hierarchy'])
         ->where('type', 'department|section|branch')
         ->where('id', '[0-9]+')

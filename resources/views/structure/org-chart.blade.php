@@ -1289,6 +1289,10 @@
                                 <i class="fas fa-file-pdf text-danger ml-2"></i>
                                 {{ __('Export PDF A3') }}
                             </a>
+                            <a class="dropdown-item" href="javascript:void(0)" id="orgChartSettleEmployees">
+                                <i class="fas fa-sync-alt text-info ml-2"></i>
+                                {{ __('تحديث تسكين الموظفين') }}
+                            </a>
                         </div>
                     </div>
 
@@ -2044,6 +2048,41 @@
 
             btnExportPdfA3 && btnExportPdfA3.addEventListener('click', function() {
                 window.location.href = '{{ route('structure.org-chart.export.pdf.a3') }}';
+            });
+
+            var btnSettleEmployees = document.getElementById('orgChartSettleEmployees');
+            btnSettleEmployees && btnSettleEmployees.addEventListener('click', function() {
+                if (!confirm('{{ __('تأكيد تحديث تسكين الموظفين بناءً على تعيينات المديرين؟') }}')) {
+                    return;
+                }
+                var btn = this;
+                var originalText = btn.innerHTML;
+                btn.innerHTML = '<i class=\"fas fa-spinner fa-spin ml-2\"></i> {{ __('جارٍ التحديث...') }}';
+                btn.setAttribute('disabled', 'disabled');
+
+                fetch('{{ route('structure.org-chart.settle-employees') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(function(response) { return response.json(); })
+                .then(function(data) {
+                    if (data.ok) {
+                        alert(data.message);
+                        window.location.reload();
+                    } else {
+                        alert('{{ __('حدث خطأ أثناء التحديث') }}');
+                    }
+                })
+                .catch(function() {
+                    alert('{{ __('حدث خطأ أثناء التواصل مع الخادم') }}');
+                })
+                .finally(function() {
+                    btn.innerHTML = originalText;
+                    btn.removeAttribute('disabled');
+                });
             });
 
             // الطباعة: تصغير المخطط حسب العرض، مع السماح بامتداده رأسيًا على عدة صفحات.

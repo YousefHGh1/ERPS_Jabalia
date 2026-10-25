@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-
 use App\Models\Branch;
 use App\Models\BranchDirector;
 use App\Models\Department;
@@ -9,31 +8,31 @@ use App\Models\Employee;
 use App\Models\OrgChartLayout;
 use App\Models\Section;
 use App\Models\SectionDirector;
+use ArPHP\I18N\Arabic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use ArPHP\I18N\Arabic;
 use PDF;
-
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class OrganizationChartController extends Controller
-{
-    public function __construct()
-    {
-        $this->middleware('permission:index departments', ['only' => ['index', 'builder', 'saveBuilder', 'hierarchy']]);
-    }
+{public function __construct()
+    {$this->middleware('permission:index departments', ['only' => ['index', 'builder',
+        'saveBuilder', 'hierarchy']]);}
 
     public function index()
     {
         $departments = Department::query()
             ->with([
                 'directors.employee',
-                'sections'               => fn($q)          => $q->orderBy('name'),
+                'sections'          => fn($q)          => $q->orderBy('name'),
                 'sections.directors.employee',
-                'sections.branches'      => fn($q) => $q->orderBy('name'),
+                'sections.branches' => fn($q) => $q->orderBy('name'),
                 'sections.branches.directors.employee',
             ])
             ->get()
             ->sortBy(function ($department) {
-                // Priority ordering: Municipality Presidency (1), Manager (2), Administrative Affairs (3), then others alphabetically
+                // Priority ordering: Municipality Presidency (1), Manager (2), Administrative Affairs (3), then others
+
                 $priorityDepartments = [
                     'Municipality Presidency' => 1,
                     'Manager'                 => 2,
@@ -47,7 +46,8 @@ class OrganizationChartController extends Controller
 
         $departmentIds = $departments->pluck('id')->filter()->unique()->values();
         $sectionIds    = $departments->pluck('sections')->flatten()->pluck('id')->filter()->unique()->values();
-        $branchIds     = $departments->pluck('sections')->flatten()->pluck('branches')->flatten()->pluck('id')->filter()->unique()->values();
+        $branchIds     =
+        $departments->pluck('sections')->flatten()->pluck('branches')->flatten()->pluck('id')->filter()->unique()->values();
 
         $departmentEmployeesByDepartment = $departmentIds->isEmpty()
             ? collect()
@@ -176,14 +176,15 @@ class OrganizationChartController extends Controller
         $departments = Department::query()
             ->with([
                 'directors.employee',
-                'sections'               => fn($q)          => $q->orderBy('name'),
+                'sections'          => fn($q)          => $q->orderBy('name'),
                 'sections.directors.employee',
-                'sections.branches'      => fn($q) => $q->orderBy('name'),
+                'sections.branches' => fn($q) => $q->orderBy('name'),
                 'sections.branches.directors.employee',
             ])
             ->get()
             ->sortBy(function ($department) {
-                // Priority ordering: Municipality Presidency (1), Manager (2), Administrative Affairs (3), then others alphabetically
+                // Priority ordering: Municipality Presidency (1), Manager (2), Administrative Affairs (3), then others
+
                 $priorityDepartments = [
                     'Municipality Presidency' => 1,
                     'Manager'                 => 2,
@@ -197,7 +198,8 @@ class OrganizationChartController extends Controller
 
         $departmentIds = $departments->pluck('id')->filter()->unique()->values();
         $sectionIds    = $departments->pluck('sections')->flatten()->pluck('id')->filter()->unique()->values();
-        $branchIds     = $departments->pluck('sections')->flatten()->pluck('branches')->flatten()->pluck('id')->filter()->unique()->values();
+        $branchIds     =
+        $departments->pluck('sections')->flatten()->pluck('branches')->flatten()->pluck('id')->filter()->unique()->values();
 
         $departmentEmployeesByDepartment = $departmentIds->isEmpty()
             ? collect()
@@ -255,14 +257,15 @@ class OrganizationChartController extends Controller
         $departments = Department::query()
             ->with([
                 'directors.employee',
-                'sections'               => fn($q)          => $q->orderBy('name'),
+                'sections'          => fn($q)          => $q->orderBy('name'),
                 'sections.directors.employee',
-                'sections.branches'      => fn($q) => $q->orderBy('name'),
+                'sections.branches' => fn($q) => $q->orderBy('name'),
                 'sections.branches.directors.employee',
             ])
             ->get()
             ->sortBy(function ($department) {
-                // Priority ordering: Municipality Presidency (1), Manager (2), Administrative Affairs (3), then others alphabetically
+                // Priority ordering: Municipality Presidency (1), Manager (2), Administrative Affairs (3), then others
+
                 $priorityDepartments = [
                     'Municipality Presidency' => 1,
                     'Manager'                 => 2,
@@ -276,7 +279,8 @@ class OrganizationChartController extends Controller
 
         $departmentIds = $departments->pluck('id')->filter()->unique()->values();
         $sectionIds    = $departments->pluck('sections')->flatten()->pluck('id')->filter()->unique()->values();
-        $branchIds     = $departments->pluck('sections')->flatten()->pluck('branches')->flatten()->pluck('id')->filter()->unique()->values();
+        $branchIds     =
+        $departments->pluck('sections')->flatten()->pluck('branches')->flatten()->pluck('id')->filter()->unique()->values();
 
         $departmentEmployeesByDepartment = $departmentIds->isEmpty()
             ? collect()
@@ -314,7 +318,7 @@ class OrganizationChartController extends Controller
             ->groupBy('branch_id')
             ->map(fn(Collection $group) => $group->values());
 
-        $arabic = static fn ($text): string => (new Arabic())->utf8Glyphs(
+        $arabic = static fn($text): string => (new Arabic())->utf8Glyphs(
             e((string) $text),
             100,
             false,
@@ -350,9 +354,9 @@ class OrganizationChartController extends Controller
                 Department::query()
                     ->with([
                         'directors.employee',
-                        'sections'               => fn($q) => $q->orderBy('name'),
+                        'sections'          => fn($q)          => $q->orderBy('name'),
                         'sections.directors.employee',
-                        'sections.branches'      => fn($q) => $q->orderBy('name'),
+                        'sections.branches' => fn($q) => $q->orderBy('name'),
                         'sections.branches.directors.employee',
                     ])
                     ->findOrFail((int) $id)
@@ -362,7 +366,7 @@ class OrganizationChartController extends Controller
                     ->with([
                         'department.directors.employee',
                         'directors.employee',
-                        'branches'               => fn($q) => $q->orderBy('name'),
+                        'branches' => fn($q) => $q->orderBy('name'),
                         'branches.directors.employee',
                     ])
                     ->findOrFail((int) $id)
@@ -378,15 +382,23 @@ class OrganizationChartController extends Controller
             ),
         };
 
-        $node = $hierarchy['node'] ?? [];
-        $children = $hierarchy['children'] ?? ['kind' => '', 'items' => []];
-        $typeLabel = $type === 'department' ? 'الدائرة' : ($type === 'section' ? 'القسم' : 'الشعبة');
+        $node       = $hierarchy['node'] ?? [];
+        $children   = $hierarchy['children'] ?? ['kind' => '', 'items' => []];
+        $typeLabel  = $type === 'department' ? 'الدائرة' : ($type === 'section' ? 'القسم' : 'الشعبة');
         $nodeAccent = $type === 'department' ? '#d92d20' : ($type === 'section' ? '#1b84ff' : '#d99a00');
 
-        $eyeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#1b84ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
-        $userIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+        $eyeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#1b84ff" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+        <circle cx="12" cy="12" r="3" />
+    </svg>';
+        $userIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+    </svg>';
 
-        $letterheadPath = public_path('images/للتقارير.jpg');
+        $letterheadPath    = public_path('images/للتقارير.jpg');
         $letterheadDataUri = null;
         if (is_file($letterheadPath)) {
             $mime = function_exists('mime_content_type')
@@ -399,6 +411,7 @@ class OrganizationChartController extends Controller
             'hierarchy'         => $hierarchy,
             'node'              => $node,
             'children'          => $children,
+            'type'              => $type,
             'typeLabel'         => $typeLabel,
             'nodeAccent'        => $nodeAccent,
             'eyeIcon'           => $eyeIcon,
@@ -407,8 +420,416 @@ class OrganizationChartController extends Controller
         ]);
     }
 
+    public function exportExcel(string $type, $id)
+    {
+        $config = $this->resolveOrgNodeType($type);
+        abort_unless(auth()->check() && auth()->user()->can('index ' . $config['permission']), 403);
+
+        $hierarchy = match ($type) {
+            'department' => $this->buildDepartmentHierarchy(
+                Department::query()
+                    ->with([
+                        'directors.employee',
+                        'sections'          => fn($q)          => $q->orderBy('name'),
+                        'sections.directors.employee',
+                        'sections.branches' => fn($q) => $q->orderBy('name'),
+                        'sections.branches.directors.employee',
+                    ])
+                    ->findOrFail((int) $id)
+            ),
+            'section'    => $this->buildSectionHierarchy(
+                Section::query()
+                    ->with([
+                        'department.directors.employee',
+                        'directors.employee',
+                        'branches' => fn($q) => $q->orderBy('name'),
+                        'branches.directors.employee',
+                    ])
+                    ->findOrFail((int) $id)
+            ),
+            default      => $this->buildBranchHierarchy(
+                Branch::query()
+                    ->with([
+                        'section.department.directors.employee',
+                        'section.directors.employee',
+                        'directors.employee',
+                    ])
+                    ->findOrFail((int) $id)
+            ),
+        };
+
+        $employees = [];
+        $this->collectEmployeesFromHierarchy($hierarchy, $employees, $type);
+        $this->resolvePermanentVsActing($employees);
+
+        usort($employees, fn($a, $b) => strcmp($a['unit_type'] ?? '', $b['unit_type'] ?? '') ?: strcmp($a['name'] ?? '',
+            $b['name'] ?? ''));
+
+        $spreadsheet = new Spreadsheet();
+        $sheet       = $spreadsheet->getActiveSheet();
+        $sheet->setRightToLeft(true);
+        $sheet->setTitle(mb_substr('هيكلية ' . ($hierarchy['node']['name'] ?? ''), 0, 31));
+
+        $headers = [
+            'نوع الوحدة',
+            'اسم الوحدة',
+            'اسم الموظف',
+            'المسمى الوظيفي',
+            'نوع التعيين',
+        ];
+
+        $sheet->fromArray($headers, null, 'A1');
+
+        $headerStyle = [
+            'font'      => ['bold' => true, 'color' => ['rgb' => 'FFFFFF'], 'size' => 12],
+            'fill'      => ['fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID, 'startColor' => ['rgb' => 'B03A2E']],
+            'alignment' => ['horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER],
+        ];
+        $sheet->getStyle('A1:E1')->applyFromArray($headerStyle);
+
+        $rowIndex = 2;
+        foreach ($employees as $emp) {
+            $sheet->fromArray([
+                $emp['unit_type_label'] ?? '',
+                $emp['unit_name'] ?? '',
+                $emp['name'] ?? '',
+                $emp['job'] ?? '',
+                $emp['appointment_type_label'] ?? '',
+            ], null, 'A' . $rowIndex);
+            $rowIndex++;
+        }
+
+        foreach (range('A', 'E') as $column) {
+            $sheet->getColumnDimension($column)->setAutoSize(true);
+        }
+
+        $writer   = new Xlsx($spreadsheet);
+        $unitName = str_replace(['/', '\\', ' '], '_', $hierarchy['node']['name'] ?? 'org-chart');
+        $filename = 'org-chart-' . $unitName . '-' . date('Y-m-d') . '.xlsx';
+
+        return response()->streamDownload(function () use ($writer) {
+            $writer->save('php://output');
+        }, $filename, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ]);
+    }
+
+    public function settleEmployees()
+    {
+        abort_unless(auth()->check() && auth()->user()->can('index departments'), 403);
+
+        $updated   = 0;
+        $skipped   = 0;
+        $details   = [];
+
+        // 1. تسكين مدراء الدوائر
+        $departments = Department::query()
+            ->with(['directors.employee'])
+            ->get();
+
+        foreach ($departments as $department) {
+            $director = $department->directors
+                ->firstWhere('director_type', 'permanent')
+                ?: $department->directors->firstWhere('director_type', 'acting');
+
+            if (!$director || !$director->employee) {
+                $skipped++;
+                $details[] = [
+                    'unit'    => $department->name,
+                    'type'    => 'department',
+                    'status'  => 'no_director',
+                    'message' => 'لا يوجد مدير مسموح به',
+                ];
+                continue;
+            }
+
+            $employee = $director->employee;
+            $current  = [
+                'department_id' => $employee->department_id,
+                'section_id'    => $employee->section_id,
+                'branch_id'     => $employee->branch_id,
+            ];
+            $desired = [
+                'department_id' => (int) $department->id,
+                'section_id'    => null,
+                'branch_id'     => null,
+            ];
+
+            if ($current === $desired) {
+                $skipped++;
+                $details[] = [
+                    'unit'    => $department->name,
+                    'type'    => 'department',
+                    'status'  => 'already_settled',
+                    'message' => 'الموظف مسكّن بالفعل',
+                ];
+                continue;
+            }
+
+            $employee->update($desired);
+            $this->updateEmployeeJobTitle($employee, 'department', $director->director_type);
+            $updated++;
+            $details[] = [
+                'unit'    => $department->name,
+                'type'    => 'department',
+                'status'  => 'updated',
+                'message' => 'تم التحديث',
+            ];
+        }
+
+        // 2. تسكين مدراء الأقسام
+        $sections = Section::query()
+            ->with(['department', 'directors.employee'])
+            ->get();
+
+        foreach ($sections as $section) {
+            $director = $section->directors
+                ->firstWhere('director_type', 'permanent')
+                ?: $section->directors->firstWhere('director_type', 'acting');
+
+            if (!$director || !$director->employee) {
+                $skipped++;
+                $details[] = [
+                    'unit'    => $section->name,
+                    'type'    => 'section',
+                    'status'  => 'no_director',
+                    'message' => 'لا يوجد مدير مسموح به',
+                ];
+                continue;
+            }
+
+            $employee = $director->employee;
+            $current  = [
+                'department_id' => $employee->department_id,
+                'section_id'    => $employee->section_id,
+                'branch_id'     => $employee->branch_id,
+            ];
+            $desired = [
+                'department_id' => $section->department_id ? (int) $section->department_id : null,
+                'section_id'    => (int) $section->id,
+                'branch_id'     => null,
+            ];
+
+            if ($current === $desired) {
+                $skipped++;
+                $details[] = [
+                    'unit'    => $section->name,
+                    'type'    => 'section',
+                    'status'  => 'already_settled',
+                    'message' => 'الموظف مسكّن بالفعل',
+                ];
+                continue;
+            }
+
+            $employee->update($desired);
+            $this->updateEmployeeJobTitle($employee, 'section', $director->director_type);
+            $updated++;
+            $details[] = [
+                'unit'    => $section->name,
+                'type'    => 'section',
+                'status'  => 'updated',
+                'message' => 'تم التحديث',
+            ];
+        }
+
+        // 3. تسكين مدراء الشعب
+        $branches = Branch::query()
+            ->with(['section.department', 'directors.employee'])
+            ->get();
+
+        foreach ($branches as $branch) {
+            $director = $branch->directors
+                ->firstWhere('director_type', 'permanent')
+                ?: $branch->directors->firstWhere('director_type', 'acting');
+
+            if (!$director || !$director->employee) {
+                $skipped++;
+                $details[] = [
+                    'unit'    => $branch->name,
+                    'type'    => 'branch',
+                    'status'  => 'no_director',
+                    'message' => 'لا يوجد مدير مسموح به',
+                ];
+                continue;
+            }
+
+            $employee = $director->employee;
+            $current  = [
+                'department_id' => $employee->department_id,
+                'section_id'    => $employee->section_id,
+                'branch_id'     => $employee->branch_id,
+            ];
+            $desired = [
+                'department_id' => $branch->section && $branch->section->department_id
+                    ? (int) $branch->section->department_id
+                    : null,
+                'section_id'    => $branch->section_id ? (int) $branch->section_id : null,
+                'branch_id'     => (int) $branch->id,
+            ];
+
+            if ($current === $desired) {
+                $skipped++;
+                $details[] = [
+                    'unit'    => $branch->name,
+                    'type'    => 'branch',
+                    'status'  => 'already_settled',
+                    'message' => 'الموظف مسكّن بالفعل',
+                ];
+                continue;
+            }
+
+            $employee->update($desired);
+            $this->updateEmployeeJobTitle($employee, 'branch', $director->director_type);
+            $updated++;
+            $details[] = [
+                'unit'    => $branch->name,
+                'type'    => 'branch',
+                'status'  => 'updated',
+                'message' => 'تم التحديث',
+            ];
+        }
+
+        return response()->json([
+            'ok'      => true,
+            'message' => __('تمت المزامنة بنجاح: تم تحديث :updated موظف، وتخطي :skipped', [
+                'updated' => $updated,
+                'skipped' => $skipped,
+            ]),
+            'updated' => $updated,
+            'skipped' => $skipped,
+            'details' => $details,
+        ]);
+    }
+
+    private function updateEmployeeJobTitle(Employee $employee, string $unitType, string $directorType, bool $isActing = false): void
+    {
+        $unitTypeLabel = $unitType === 'department' ? 'مدير دائرة' : ($unitType === 'section' ? 'رئيس قسم' : 'رئيس شعبة');
+        $jobTitle = $directorType === 'permanent' ? $unitTypeLabel : 'مكلف - ' . $unitTypeLabel;
+
+        if (!$employee->EmployeeJobInfo) {
+            $employee->EmployeeJobInfo()->create(['current_job' => $jobTitle]);
+        } else {
+            $employee->EmployeeJobInfo->update(['current_job' => $jobTitle]);
+        }
+    }
+
+    private function collectEmployeesFromHierarchy(array $hierarchy, array &$employees, string $unitType): void
+    {
+        $node          = $hierarchy['node'] ?? [];
+        $nodeName      = $node['name'] ?? '';
+        $nodeTypeLabel = $unitType === 'department' ? 'دائرة' : ($unitType === 'section' ? 'قسم' : 'شعبة');
+
+        $directEmployees = $hierarchy['children']['employees'] ?? [];
+        foreach ($directEmployees as $emp) {
+            $employees[] = [
+                'id'                     => $emp['id'],
+                'name'                   => $emp['name'],
+                'job'                    => $emp['job'] ?? '',
+                'unit_name'              => $nodeName,
+                'unit_type'              => $unitType,
+                'unit_type_label'        => $nodeTypeLabel,
+                'appointment_type'       => 'permanent',
+                'appointment_type_label' => 'مسكن',
+            ];
+        }
+
+        $directors = $node['directors'] ?? [];
+        if (! empty($directors['permanent'])) {
+            $employees[] = [
+                'id'                     => $this->extractEmployeeIdFromName($directors['permanent'], $hierarchy),
+                'name'                   => $directors['permanent'],
+                'job'                    => '',
+                'unit_name'              => $nodeName,
+                'unit_type'              => $unitType,
+                'unit_type_label'        => $nodeTypeLabel,
+                'appointment_type'       => 'permanent',
+                'appointment_type_label' => 'مسكن',
+            ];
+        }
+        if (! empty($directors['acting'])) {
+            $employees[] = [
+                'id'                     => $this->extractEmployeeIdFromName($directors['acting'], $hierarchy),
+                'name'                   => $directors['acting'],
+                'job'                    => '',
+                'unit_name'              => $nodeName,
+                'unit_type'              => $unitType,
+                'unit_type_label'        => $nodeTypeLabel,
+                'appointment_type'       => 'acting',
+                'appointment_type_label' => 'مكلف',
+            ];
+        }
+
+        $items = $hierarchy['children']['items'] ?? [];
+        foreach ($items as $child) {
+            $childType = $child['type'] ?? 'section';
+            $this->collectEmployeesFromHierarchy($child, $employees, $childType);
+        }
+    }
+
+    private function resolvePermanentVsActing(array &$employees): void
+    {
+        // تجميع حسب (اسم الموظف + اسم الوحدة) للتأكد من أن المسكن والمكلف في نفس الوحدة فقط
+        $byKey = [];
+        foreach ($employees as $index => $emp) {
+            $key = $emp['name'] . '|' . ($emp['unit_name'] ?? '');
+            if (! isset($byKey[$key])) {
+                $byKey[$key] = [];
+            }
+            $byKey[$key][] = &$employees[$index];
+        }
+
+        foreach ($byKey as $key => $entries) {
+            $hasPermanent = false;
+            $hasActing    = false;
+            foreach ($entries as $entry) {
+                if ($entry['appointment_type'] === 'permanent') {
+                    $hasPermanent = true;
+                }
+                if ($entry['appointment_type'] === 'acting') {
+                    $hasActing = true;
+                }
+            }
+
+            if ($hasPermanent && $hasActing) {
+                foreach ($entries as $entryKey => $entry) {
+                    if ($entry['appointment_type'] === 'permanent') {
+                        unset($entries[$entryKey]);
+                    } else {
+                        $entries[$entryKey]['appointment_type_label'] = 'مكلف (تكليف فقط)';
+                    }
+                }
+            }
+        }
+    }
+
+    private function extractEmployeeIdFromName(string $name, array $hierarchy): int
+    {
+        $id = 0;
+        $this->findEmployeeIdByName($hierarchy, $name, $id);
+        return $id;
+    }
+
+    private function findEmployeeIdByName(array $hierarchy, string $name, int &$foundId): void
+    {
+        if ($foundId !== 0) {
+            return;
+        }
+
+        $directEmployees = $hierarchy['children']['employees'] ?? [];
+        foreach ($directEmployees as $emp) {
+            if ($emp['name'] === $name) {
+                $foundId = $emp['id'];
+                return;
+            }
+        }
+
+        $items = $hierarchy['children']['items'] ?? [];
+        foreach ($items as $child) {
+            $this->findEmployeeIdByName($child, $name, $foundId);
+        }
+    }
+
     /**
-     * حذف قسم أو شعبة من داخل نافذة الهيكلية.
      * نفس منطق الشاشات الأصلية: فصل الموظفين ثم الحذف، وبنفس صلاحية الحذف.
      */
     public function destroy(Request $request, string $type, $id)
@@ -446,7 +867,9 @@ class OrganizationChartController extends Controller
 
     /**
      * سجل أنواع عقد الهيكل التنظيمي المستخدمة في النوافذ المنبثقة.
-     * model: الموديل المرتبط بالنوع | permission: صلاحية التعديل (نفس صلاحيات الشاشة الأصلية) | children_kind: نوع العناصر التابعة
+     * model: الموديل المرتبط بالنوع | permission: صلاحية التعديل (نفس صلاحيات الشاشة الأصلية) | children_kind: نوع
+    العناصر
+    التابعة
      */
     private const ORG_NODE_TYPES = [
         'department' => [
@@ -510,13 +933,14 @@ class OrganizationChartController extends Controller
     {
         $department->load([
             'directors.employee',
-            'employees' => fn($q) => $q->active()->whereNull('section_id')->whereNull('branch_id')->with('job')->orderBy('name'),
+            'employees' => fn($q) =>
+            $q->active()->whereNull('section_id')->whereNull('branch_id')->with('job')->orderBy('name'),
             'sections'  => fn($q)  => $q->orderBy('name')->with([
                 'directors.employee',
-                'employees'               => fn($sq)          => $sq->active()->whereNull('branch_id')->with('job')->orderBy('name'),
-                'branches'                => fn($bq)           => $bq->orderBy('name'),
+                'employees'          => fn($sq)          => $sq->active()->whereNull('branch_id')->with('job')->orderBy('name'),
+                'branches'           => fn($bq)           => $bq->orderBy('name'),
                 'branches.directors.employee',
-                'branches.employees'      => fn($beq) => $beq->active()->with('job')->orderBy('name'),
+                'branches.employees' => fn($beq) => $beq->active()->with('job')->orderBy('name'),
             ]),
         ]);
 
@@ -535,7 +959,8 @@ class OrganizationChartController extends Controller
                 'directors' => $section->directors_meta,
                 'meta'      => [
                     ['key' => 'branches', 'value' => $section->branches->count(), 'label' => 'الشعب: ' . $section->branches->count()],
-                    ['key' => 'direct_employees', 'value' => $section->employees->count(), 'label' => 'الموظفون المباشرون: ' . $section->employees->count()],
+                    ['key' => 'direct_employees', 'value' => $section->employees->count(), 'label' => 'الموظفون المباشرون: ' .
+                        $section->employees->count()],
                 ],
                 'employees' => $mapEmployees($section->employees),
                 'branches'  => $section->branches->map(fn(Branch $branch) => [
@@ -545,7 +970,8 @@ class OrganizationChartController extends Controller
                     'manager'   => $branch->director_label,
                     'directors' => $branch->directors_meta,
                     'meta'      => [
-                        ['key' => 'direct_employees', 'value' => $branch->employees->count(), 'label' => 'الموظفون: ' . $branch->employees->count()],
+                        ['key' => 'direct_employees', 'value' => $branch->employees->count(), 'label' => 'الموظفون: ' .
+                            $branch->employees->count()],
                     ],
                     'employees' => $mapEmployees($branch->employees),
                 ])->values(),
@@ -555,14 +981,15 @@ class OrganizationChartController extends Controller
         $departmentDirectEmployees = $mapEmployees($department->employees);
 
         $total = $departmentDirectEmployees->count()
-         + $items->sum(fn($section) => count($section['employees']) + collect($section['branches'])->sum(fn($branch) => count($branch['employees'])));
+         + $items->sum(fn($section) => count($section['employees']) + collect($section['branches'])->sum(fn($branch) =>
+            count($branch['employees'])));
 
         return [
             'node'     => [
-                'type'    => 'department',
-                'id'      => $department->id,
-                'name'    => $department->name,
-                'manager' => $department->director_label,
+                'type'      => 'department',
+                'id'        => $department->id,
+                'name'      => $department->name,
+                'manager'   => $department->director_label,
                 'directors' => $department->directors_meta,
             ],
             'parent'   => null,
@@ -588,10 +1015,10 @@ class OrganizationChartController extends Controller
         $section->load([
             'directors.employee',
             'department',
-            'employees'               => fn($sq)          => $sq->active()->whereNull('branch_id')->with('job')->orderBy('name'),
-            'branches'                => fn($bq)           => $bq->orderBy('name'),
+            'employees'          => fn($sq)          => $sq->active()->whereNull('branch_id')->with('job')->orderBy('name'),
+            'branches'           => fn($bq)           => $bq->orderBy('name'),
             'branches.directors.employee',
-            'branches.employees'      => fn($beq) => $beq->active()->with('job')->orderBy('name'),
+            'branches.employees' => fn($beq) => $beq->active()->with('job')->orderBy('name'),
         ]);
 
         $mapEmployees = fn(Collection $employees) => $employees->map(fn(Employee $employee) => [
@@ -607,7 +1034,8 @@ class OrganizationChartController extends Controller
             'manager'   => $branch->director_label,
             'directors' => $branch->directors_meta,
             'meta'      => [
-                ['key' => 'direct_employees', 'value' => $branch->employees->count(), 'label' => 'الموظفون: ' . $branch->employees->count()],
+                ['key' => 'direct_employees', 'value' => $branch->employees->count(), 'label' => 'الموظفون: ' .
+                    $branch->employees->count()],
             ],
             'employees' => $mapEmployees($branch->employees),
         ])->values();
@@ -616,10 +1044,10 @@ class OrganizationChartController extends Controller
 
         return [
             'node'     => [
-                'type'    => 'section',
-                'id'      => $section->id,
-                'name'    => $section->name,
-                'manager' => $section->director_label,
+                'type'      => 'section',
+                'id'        => $section->id,
+                'name'      => $section->name,
+                'manager'   => $section->director_label,
                 'directors' => $section->directors_meta,
             ],
             'parent'   => $section->department ? [
@@ -656,10 +1084,10 @@ class OrganizationChartController extends Controller
 
         return [
             'node'     => [
-                'type'    => 'branch',
-                'id'      => $branch->id,
-                'name'    => $branch->name,
-                'manager' => $branch->director_label,
+                'type'      => 'branch',
+                'id'        => $branch->id,
+                'name'      => $branch->name,
+                'manager'   => $branch->director_label,
                 'directors' => $branch->directors_meta,
             ],
             'parent'   => $branch->section ? [
@@ -821,10 +1249,13 @@ class OrganizationChartController extends Controller
         // ربط العنصر الجديد بالوحدة المفتوحة: قسم تحت دائرة / شعبة تحت قسم / موظف تحت أي وحدة
         if ($target === 'section') {
             abort_unless($unitType === 'department', 404);
-            $parent = ['field' => 'department_id', 'value' => $unit->id, 'label' => __('departments'), 'unit_type' => 'department', 'unit_name' => $unit->name];
+            $parent = ['field' => 'department_id', 'value' => $unit->id, 'label' => __('departments'), 'unit_type' =>
+                'department',
+                'unit_name'        => $unit->name];
         } elseif ($target === 'branch') {
             abort_unless($unitType === 'section', 404);
-            $parent = ['field' => 'section_id', 'value' => $unit->id, 'label' => __('sections'), 'unit_type' => 'section', 'unit_name' => $unit->name];
+            $parent = ['field' => 'section_id', 'value' => $unit->id, 'label' => __('sections'), 'unit_type' => 'section',
+                'unit_name'        => $unit->name];
         } else {
             $fields = [
                 'department' => ['field' => 'department_id', 'label' => __('departments')],
@@ -835,11 +1266,11 @@ class OrganizationChartController extends Controller
         }
 
         return response()->json([
-            'ok'     => true,
-            'target' => $target,
-            'parent' => $parent,
+            'ok'         => true,
+            'target'     => $target,
+            'parent'     => $parent,
             'assignment' => $target === 'employee' ? $this->resolveEmployeeAssignment($unitType, $unit) : null,
-            'employees' => $target === 'employee'
+            'employees'  => $target === 'employee'
                 ? Employee::query()->orderBy('name')->get(['id', 'name', 'department_id', 'section_id', 'branch_id'])
                 : [],
         ]);
@@ -856,8 +1287,8 @@ class OrganizationChartController extends Controller
     {
         $assignment = ['department_id' => null, 'section_id' => null, 'branch_id' => null];
 
-        $branchModel    = null;
-        $sectionModel   = null;
+        $branchModel     = null;
+        $sectionModel    = null;
         $departmentModel = null;
 
         if ($unitType === 'department') {
@@ -954,14 +1385,14 @@ class OrganizationChartController extends Controller
 
             $assignment = ['department_id' => null, 'section_id' => null, 'branch_id' => null];
             if (! empty($assignData['branch_id'])) {
-                $branch = Branch::query()->with('section')->findOrFail((int) $assignData['branch_id']);
+                $branch                      = Branch::query()->with('section')->findOrFail((int) $assignData['branch_id']);
                 $assignment['branch_id']     = (int) $branch->id;
                 $assignment['section_id']    = $branch->section_id ? (int) $branch->section_id : null;
                 $assignment['department_id'] = $branch->section && $branch->section->department_id
                     ? (int) $branch->section->department_id
                     : null;
             } elseif (! empty($assignData['section_id'])) {
-                $section = Section::query()->findOrFail((int) $assignData['section_id']);
+                $section                     = Section::query()->findOrFail((int) $assignData['section_id']);
                 $assignment['section_id']    = (int) $section->id;
                 $assignment['department_id'] = $section->department_id ? (int) $section->department_id : null;
             } else {
@@ -1109,8 +1540,32 @@ class OrganizationChartController extends Controller
             $message = __('saved successfully');
         }
 
+        /* === تسكين الموظف في الوحدة عند تعيينه مديراً لها === */
+        $employee->loadMissing(['section.department']);
+        $settlement = [
+            'department_id' => null,
+            'section_id'    => null,
+            'branch_id'     => null,
+        ];
+        if ($type === 'department') {
+            $settlement['department_id'] = (int) $unit->id;
+        } elseif ($type === 'section') {
+            $settlement['section_id']    = (int) $unit->id;
+            $settlement['department_id'] = $unit->department_id ? (int) $unit->department_id : null;
+        } elseif ($type === 'branch') {
+            $settlement['branch_id']     = (int) $unit->id;
+            $settlement['section_id']    = $unit->section_id ? (int) $unit->section_id : null;
+            $settlement['department_id'] = $unit->section && $unit->section->department_id
+                ? (int) $unit->section->department_id
+                : null;
+        }
+        $employee->update($settlement);
+
+        $this->updateEmployeeJobTitle($employee, $type, $validatedData['director_type'], $validatedData['director_type'] === 'acting');
+
         $unitTypeLabel = $type === 'department' ? 'مدير دائرة' : ($type === 'section' ? 'رئيس قسم' : 'رئيس شعبة');
-        activity()->causedBy(auth()->user())->log('تم تعيين ' . $unitTypeLabel . ': ' . $unit->name . ' → ' . $employee->name);
+        activity()->causedBy(auth()->user())->log('تم تعيين ' . $unitTypeLabel . ': ' . $unit->name . ' → ' .
+            $employee->name);
 
         return response()->json([
             'ok'      => true,
@@ -1148,5 +1603,4 @@ class OrganizationChartController extends Controller
             'ok'      => true,
             'message' => __('deleted successfully'),
         ]);
-    }
-}
+    }}

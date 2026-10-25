@@ -1,6 +1,7 @@
 @props([
     'id' => null,
     'title' => null,
+    'header' => null,
     'size' => 'md',
     'centered' => false,
     'scrollable' => false,
@@ -36,13 +37,13 @@
 >
     <div class="modal-dialog {{ $sizeClasses }} {{ $centered ? 'modal-dialog-centered' : '' }} {{ $scrollable ? 'modal-dialog-scrollable' : '' }}">
         <div class="modal-content" style="{{ $moduleVars }}">
-            @if($title || $slot->exists('header'))
+            @if($title || $header)
                 <div class="modal-header">
                     @if($title)
                         <h5 class="modal-title" id="{{ $id }}Label">{{ $title }}</h5>
                     @endif
 
-                    @if($slot->exists('header'))
+                    @if($header)
                         {{ $header }}
                     @endif
 
@@ -54,7 +55,7 @@
                 {{ $slot }}
             </div>
 
-            @if($slot->exists('footer'))
+            @if($footer)
                 <div class="modal-footer">
                     {{ $footer }}
                 </div>

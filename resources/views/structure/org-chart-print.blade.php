@@ -67,6 +67,25 @@
             color: #3a3f52;
         }
 
+        .print-btn .btn-excel {
+            background: #107c10;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: inherit;
+            margin: 0 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .print-btn .btn-excel:hover {
+            background: #0e6b0e;
+        }
+
         .print-btn .print-hint {
             display: block;
             margin-top: 8px;
@@ -886,6 +905,9 @@
     <div class="print-btn no-print">
         <div>
             <button onclick="window.print()">🖨 طباعة الهيكلية</button>
+            <a href="{{ route('structure.org-chart.export.excel', ['type' => $type, 'id' => $node['id'] ?? null]) }}" class="btn-excel">
+                📊 تصدير إكسل
+            </a>
             <button class="btn-back" onclick="window.close()">رجوع</button>
         </div>
         <div class="print-toggles" id="print-toggles">
