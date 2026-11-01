@@ -336,16 +336,18 @@ class RequestWorkflowController extends Controller
             'request_type_id' => ['nullable', 'exists:request_types,id'],
         ]);
 
-        $requestIds = RequestResponse::query()
+        $pendingResponses = RequestResponse::query()
             ->where('response_type', 4)
             ->whereNotNull('assigned_employee_id')
+            ->whereHas('assignedEmployee.user')
             ->whereHas('request', function ($query) use ($validated) {
                 if (!empty($validated['request_type_id'])) {
                     $query->where('request_type_id', $validated['request_type_id']);
                 }
-            })
-            ->distinct()
-            ->pluck('request_id');
+            });
+
+        $requestIds = (clone $pendingResponses)->distinct()->pluck('request_id');
+        $employeeCount = (clone $pendingResponses)->distinct()->count('assigned_employee_id');
 
         foreach ($requestIds as $requestId) {
             SendRequestCreatedNotificationsJob::dispatch((int) $requestId, true);
@@ -353,6 +355,7 @@ class RequestWorkflowController extends Controller
 
         return back()->with('reminder_resend_result', [
             'requests' => $requestIds->count(),
+            'employees' => $employeeCount,
         ]);
     }
 

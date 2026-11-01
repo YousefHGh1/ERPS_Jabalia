@@ -54,7 +54,7 @@
                 @endphp
                 @if (session('reminder_resend_result'))
                     <div class="alert alert-info">
-                        أُعيد إرسال التنبيه للموظفين المسؤولين عن الطلبات المعلّقة. عدد الطلبات: {{ session('reminder_resend_result')['requests'] }}.
+                        أُعيد إرسال التنبيه إلى {{ session('reminder_resend_result')['employees'] }} موظف مسؤول عن {{ session('reminder_resend_result')['requests'] }} طلب معلّق.
                     </div>
                 @endif
                 <div class="row mb-7">
