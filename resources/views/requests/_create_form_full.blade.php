@@ -86,6 +86,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group d-flex align-items-center">
+                        <div class="w-100">
+                            <label class="font-weight-bold">{{ __('مسار الطلب والموظف المسؤول عن كل خطوة') }}:</label>
+                            <div id="{{ $prefix }}request-workflow-steps" class="text-muted">{{ __('اختر نوع الطلب لعرض مساره') }}</div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         @include('requests.partials.fee_amount_trigger', [
                             'prefix' => $prefix,
@@ -221,3 +227,4 @@
     'prefix' => $prefix,
     'feeModalId' => $prefix . 'requestFeeAmountModal',
 ])
+

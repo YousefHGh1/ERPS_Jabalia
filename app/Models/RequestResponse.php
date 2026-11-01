@@ -17,6 +17,7 @@ class RequestResponse extends Model
         'response_type',
         'request_id',
         'workflow_id',
+        'assigned_employee_id',
         'section_id',
         'department_id',
         'notes',
@@ -44,6 +45,11 @@ class RequestResponse extends Model
     public function workflow()
     {
         return $this->belongsTo(RequestWorkflow::class, 'workflow_id');
+    }
+
+    public function assignedEmployee()
+    {
+        return $this->belongsTo(Employee::class, 'assigned_employee_id');
     }
 
     public function section()

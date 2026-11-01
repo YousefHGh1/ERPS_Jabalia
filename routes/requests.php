@@ -11,6 +11,9 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
     Route::get('/requests/autocomplete/mokalaf', [RequestController::class, 'autocompleteMokalaf'])->name('requests.autocomplete-mokalaf');
     Route::get('/requests/get-mokalaf-by-identity', [RequestController::class, 'getMokalafByIdentity'])->name('requests.get-mokalaf-by-identity');
     Route::get('/requests/get-mokalaf-data', [RequestController::class, 'getMokalafData'])->name('requests.get-mokalaf-data');
+    Route::get('/requests/get-eligible-employees', [RequestController::class, 'getEligibleEmployees'])->name('requests.get-eligible-employees');
+    Route::get('/requests/request-type-workflows', [RequestController::class, 'getRequestTypeWorkflows'])->name('requests.request-type-workflows');
+    Route::get('/requests/search-all-employees', [RequestController::class, 'searchAllEmployees'])->name('requests.search-all-employees');
     Route::get('/requests/create', [RequestController::class, 'create'])->name('requests.create');
 
     // Requests Resource Routes

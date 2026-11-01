@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\RequestWorkflow;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -46,6 +47,8 @@ class StoreRequestRequest extends FormRequest
             'owner' => 'nullable|string|max:255',
             'tenant' => 'nullable|string|max:255',
             'fee_amount' => 'nullable|numeric|min:0',
+            'workflow_employee_ids' => 'nullable|array',
+            'workflow_employee_ids.*' => 'nullable|integer|exists:employees,id',
             'attachments.*' => [
                 'nullable',
                 'file',
@@ -92,5 +95,29 @@ class StoreRequestRequest extends FormRequest
             'common_name' => $join ? $this->input('common_name') : null,
             'fee_amount' => ($fee === '' || $fee === null) ? null : $fee,
         ]);
+    }
+
+    /**
+     * Configure the validator instance.
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $requestTypeId = $this->input('request_type_id');
+
+            $workflowEmployees = $this->input('workflow_employee_ids', []);
+            if (is_array($workflowEmployees) && $requestTypeId) {
+                $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)->active()->get()->keyBy('id');
+                foreach ($workflowEmployees as $workflowId => $employeeId) {
+                    if (!$employeeId) continue;
+                    $workflow = $workflows->get($workflowId);
+                    if (!$workflow) {
+                        $validator->errors()->add("workflow_employee_ids.{$workflowId}", 'خطوة المسار لا تتبع نوع الطلب المحدد. حدّث الصفحة وأعد الاختيار.');
+                        continue;
+                    }
+                    // الموظفون خارج الجهة مسموح اختيارهم بعد تنبيه واضح في النموذج.
+                }
+            }
+        });
     }
 }

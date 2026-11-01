@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Request as RequestModel;
+use App\Models\RequestWorkflow;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
@@ -48,6 +49,11 @@ class UpdateRequestRequest extends FormRequest
             'apartment' => 'nullable|string|max:50',
             'owner' => 'nullable|string|max:255',
             'tenant' => 'nullable|string|max:255',
+            'approval_employee_ids' => 'nullable|string',
+            'approval_employee_type' => 'nullable|in:primary,substitute',
+            'approval_substitution_reason' => 'nullable|string|max:500',
+            'workflow_employee_ids' => 'nullable|array',
+            'workflow_employee_ids.*' => 'nullable|integer|exists:employees,id',
             'attachments.*' => [
                 'nullable',
                 'file',
@@ -77,6 +83,9 @@ class UpdateRequestRequest extends FormRequest
             'attachments.*.max' => 'حجم الملف يجب ألا يتجاوز 10 ميجابايت',
             'attachments.*.mimes' => 'نوع الملف غير مسموح. الأنواع المسموحة: PDF, DOC, DOCX, JPG, JPEG, PNG, XLS, XLSX',
             'mobile.regex' => 'رقم الهاتف غير صحيح',
+            'approval_employee_ids.exists' => 'أحد الموظفين المحددين غير موجود',
+            'approval_employee_type.in' => 'نوع الموظف المسؤول غير صالح',
+            'approval_substitution_reason.max' => 'سبب الاستبدال يجب ألا يتجاوز 500 حرف',
         ];
     }
 
@@ -103,6 +112,18 @@ class UpdateRequestRequest extends FormRequest
             if (! $requestModel instanceof RequestModel) {
                 return;
             }
+            $workflowEmployees = $this->input('workflow_employee_ids', []);
+            $requestTypeId = $this->input('request_type_id');
+            if (is_array($workflowEmployees)) {
+                $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)->active()->get()->keyBy('id');
+                foreach ($workflowEmployees as $workflowId => $employeeId) {
+                    if (!$employeeId) continue;
+                    $workflow = $workflows->get($workflowId);
+                    if (!$workflow) {
+                        $validator->errors()->add("workflow_employee_ids.{$workflowId}", 'خطوة المسار لا تتبع نوع الطلب المحدد. حدّث الصفحة وأعد الاختيار.');
+                    }
+                }
+            }
             $fee = $this->input('fee_amount');
             $hasActivePayments = $requestModel->payments()->where('status', 'active')->exists();
             if (($fee === null || $fee === '') && $hasActivePayments) {
@@ -123,6 +144,7 @@ class UpdateRequestRequest extends FormRequest
                     'لا يمكن أن يكون الرسم المستحق أقل من مجموع الدفعات المسجّلة (' . number_format($paid, 2) . ' ₪).'
                 );
             }
+
         });
     }
 }

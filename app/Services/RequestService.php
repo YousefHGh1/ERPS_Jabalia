@@ -121,6 +121,8 @@ class RequestService
     public function createRequest(array $data, array $attachments = []): RequestModel
     {
         return DB::transaction(function () use ($data, $attachments) {
+            $workflowEmployeeIds = $data['workflow_employee_ids'] ?? [];
+            unset($data['workflow_employee_ids']);
             $request = RequestModel::create($data);
 
             if (!empty($attachments)) {
@@ -128,9 +130,8 @@ class RequestService
             }
 
             try {
-                $this->createWorkflowResponses($request);
+                $this->createWorkflowResponses($request, $workflowEmployeeIds);
             } catch (\Throwable $e) {
-                // Log the workflow error but don't fail the request creation
                 Log::warning('Workflow creation failed for request ' . $request->id . ': ' . $e->getMessage());
             }
 
@@ -139,7 +140,7 @@ class RequestService
             SendRequestCreatedNotificationsJob::dispatch($request->id);
             event(new RequestCreated($request));
 
-            $request = $request->fresh(['requestType', 'status', 'mokalaf', 'attachments']);
+            $request = $request->fresh(['requestType', 'status', 'mokalaf', 'attachments', 'approvalEmployees']);
             $this->calculateFinancials($request);
 
             return $request;
@@ -149,13 +150,23 @@ class RequestService
     public function updateRequest(RequestModel $request, array $data, array $newAttachments = []): RequestModel
     {
         return DB::transaction(function () use ($request, $data, $newAttachments) {
+            $workflowEmployeeIds = $data['workflow_employee_ids'] ?? null;
+            unset($data['workflow_employee_ids']);
             $request->update($data);
+
+            if (is_array($workflowEmployeeIds)) {
+                foreach ($workflowEmployeeIds as $workflowId => $employeeId) {
+                    RequestResponse::where('request_id', $request->id)
+                        ->where('workflow_id', $workflowId)
+                        ->update(['assigned_employee_id' => $employeeId ?: null]);
+                }
+            }
 
             if (!empty($newAttachments)) {
                 $this->handleAttachments($request, $newAttachments);
             }
 
-            $request = $request->fresh(['requestType', 'status', 'mokalaf', 'attachments']);
+            $request = $request->fresh(['requestType', 'status', 'mokalaf', 'attachments', 'approvalEmployees']);
             $this->calculateFinancials($request);
 
             return $request;
@@ -223,7 +234,7 @@ class RequestService
         });
     }
 
-    public function createWorkflowResponses(RequestModel $request): void
+    public function createWorkflowResponses(RequestModel $request, array $workflowEmployeeIds = []): void
     {
         $workflows = RequestWorkflow::where('request_type_id', $request->request_type_id)
             ->active()
@@ -251,6 +262,7 @@ class RequestService
                 'response_type' => self::RESPONSE_TYPE_WAITING,
                 'request_id' => $request->id,
                 'workflow_id' => $workflow->id,
+                'assigned_employee_id' => $workflowEmployeeIds[$workflow->id] ?? null,
                 'section_id' => $workflow->section_id,
                 'department_id' => $workflow->department_id,
                 'notes' => '-',

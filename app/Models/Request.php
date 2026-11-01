@@ -40,6 +40,9 @@ class Request extends Model
         'fee_amount',
         'paid_amount',
         'remaining_amount',
+        'approval_employee_id',
+        'approval_employee_type',
+        'approval_substitution_reason',
     ];
 
     protected $casts = [
@@ -88,6 +91,18 @@ public function requestType()
     public function updater()
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function approvalEmployee()
+    {
+        return $this->belongsTo(Employee::class, 'approval_employee_id');
+    }
+
+    public function approvalEmployees()
+    {
+        return $this->belongsToMany(Employee::class, 'request_approval_employees')
+            ->withPivot('approval_type', 'substitution_reason')
+            ->withTimestamps();
     }
 
     public function attachments()

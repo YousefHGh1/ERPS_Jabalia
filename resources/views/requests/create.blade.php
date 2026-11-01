@@ -76,6 +76,13 @@
                             </div>
 
                             <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label class="d-block font-weight-bold">مسار الطلب والموظف المسؤول عن كل خطوة:</label>
+                                    <div id="request-workflow-steps" class="text-muted">اختر نوع الطلب لعرض مساره.</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label class="d-block d-md-inline-block">العنوان:</label>
                                     <input type="text" class="form-control" id="address" name="address"
@@ -392,6 +399,7 @@
             'prefix' => '',
             'feeModalId' => 'requestFeeAmountModal',
         ])
+
     </div>
 @endsection
 
@@ -725,6 +733,50 @@
                 prefix: '',
                 formId: 'kt_form_2',
                 draftKey: 'request_create_page_draft'
+            });
+
+            $('#kt_select2_4').on('change', function() {
+                var requestTypeId = $(this).val();
+                var $container = $('#request-workflow-steps');
+                if (!requestTypeId) {
+                    $container.html('اختر نوع الطلب لعرض مساره.');
+                    return;
+                }
+                $container.html('<div class="text-muted py-2"><i class="fas fa-spinner fa-spin"></i> جارٍ تحميل المسار...</div>');
+                $.get('{{ route('requests.request-type-workflows') }}', {request_type_id: requestTypeId})
+                    .done(function(response) {
+                        if (!response.workflows.length) {
+                            $container.html('<div class="alert alert-warning mb-0">لا توجد خطوات مفعّلة لهذا النوع.</div>');
+                            return;
+                        }
+                        var html = '<div class="list-group">';
+                        response.workflows.forEach(function(step) {
+                            html += '<div class="list-group-item"><div class="d-flex justify-content-between align-items-center flex-wrap">';
+                            html += '<div class="mb-2"><span class="badge badge-primary">' + step.step_order + '</span> <strong>' + $('<div>').text(step.name).html() + '</strong><div class="small text-muted">' + $('<div>').text(step.unit).html() + '</div></div>';
+                            html += '<div class="form-group mb-0" style="min-width:260px"><label class="small mb-1">الموظف المسؤول</label><select class="form-control form-control-sm" name="workflow_employee_ids[' + step.id + ']">';
+                            html += '<option value="">اختر الموظف (اختياري)</option>';
+                            var localEmployees = step.employees.filter(function(employee) { return employee.in_unit; });
+                            var otherEmployees = step.employees.filter(function(employee) { return !employee.in_unit; });
+                            localEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '">' + $('<div>').text(employee.name).html() + '</option>'; });
+                            if (otherEmployees.length) {
+                                html += '<optgroup label="──────── موظفون خارج الجهة المعنية ────────">';
+                                otherEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '">' + $('<div>').text(employee.name + ' — ' + employee.unit).html() + '</option>'; });
+                                html += '</optgroup>';
+                            }
+                            html += '</select>';
+                            html += '<div class="small mt-1 text-primary workflow-assignee-name">لم يتم اختيار موظف بعد.</div>';
+                            if (otherEmployees.length) html += '<small class="text-warning d-block">تنبيه: الموظفون بعد الفاصل خارج القسم أو الدائرة المعنية.</small>';
+                            if (!step.employees.length) html += '<small class="text-danger">لا يوجد موظفون نشطون مرتبطون بهذه الجهة.</small>';
+                            html += '</div></div></div>';
+                        });
+                        $container.html(html + '</div>');
+                        $container.find('select[name^="workflow_employee_ids"]').on('change', function() {
+                            var selectedName = $(this).find('option:selected').text();
+                            $(this).closest('.form-group').find('.workflow-assignee-name').text(this.value ? 'الموظف المختار: ' + selectedName : 'لم يتم اختيار موظف بعد.');
+                        });
+                    }).fail(function(xhr) {
+                        $container.html('<div class="alert alert-danger mb-0">' + ((xhr.responseJSON && xhr.responseJSON.message) || 'تعذر تحميل مسار الطلب.') + '</div>');
+                    });
             });
 
             @if (session('success'))

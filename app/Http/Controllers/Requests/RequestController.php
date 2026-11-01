@@ -8,12 +8,14 @@ use App\Http\Requests\UpdateRequestRequest;
 use App\Http\Resources\RequestResource;
 use App\Models\CraftLicense;
 use App\Models\Department;
+use App\Models\Employee;
 use App\Models\Mokalaf;
 use App\Models\Request as RequestModel;
 use App\Models\RequestAttachment;
 use App\Models\RequestPayment;
 use App\Models\RequestStatus;
 use App\Models\RequestType;
+use App\Models\RequestWorkflow;
 use App\Models\Section;
 use App\Repositories\RequestRepository;
 use App\Services\RequestService;
@@ -198,7 +200,7 @@ class RequestController extends Controller
     public function edit(Request $httpRequest, RequestModel $requestModel)
     {
         $this->authorize('update', $requestModel);
-        $requestModel->load(['requestType', 'status', 'mokalaf', 'attachments', 'responses.section', 'responses.department', 'payments.user']);
+        $requestModel->load(['requestType', 'status', 'mokalaf', 'attachments', 'responses.section', 'responses.department', 'responses.assignedEmployee', 'payments.user']);
 
         $requestTypes = Cache::remember('request_types_all', 3600, function () {
             return RequestType::select('id', 'name')->orderBy('name')->get();
@@ -516,6 +518,158 @@ class RequestController extends Controller
         }
 
         return back()->with('error', 'الملف غير موجود');
+    }
+
+    public function getEligibleEmployees(Request $httpRequest)
+    {
+        $requestTypeId = $httpRequest->input('request_type_id');
+        $search = $httpRequest->input('search', '');
+
+        if (!$requestTypeId) {
+            return response()->json([
+                'success' => false,
+                'message' => 'نوع الطلب مطلوب',
+            ], 422);
+        }
+
+        // جلب المسارات النشطة لنوع الطلب
+        $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)
+            ->active()
+            ->with(['section', 'department'])
+            ->get();
+
+        if ($workflows->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'لم يتم إعداد مسارات لهذا النوع من الطلبات',
+            ], 422);
+        }
+
+        // جمع الأقسام والدوائر المؤهلة
+        $sectionIds = $workflows->pluck('section_id')->filter()->unique()->values();
+        $departmentIds = $workflows->pluck('department_id')->filter()->unique()->values();
+
+        // جلب الموظفين النشطين في هذه الأقسام والدوائر
+        $query = Employee::active()
+            ->whereHas('user')
+            ->with(['user', 'department', 'section', 'job', 'employeeJobInfo'])
+            ->where(function ($q) use ($sectionIds, $departmentIds) {
+                if ($sectionIds->isNotEmpty()) {
+                    $q->whereIn('section_id', $sectionIds);
+                }
+                if ($departmentIds->isNotEmpty()) {
+                    $q->orWhereIn('department_id', $departmentIds);
+                }
+            });
+
+        // البحث بالاسم أو الرقم الوظيفي
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhereHas('employeeJobInfo', function ($subQuery) use ($search) {
+                      $subQuery->where('emp_number', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        $employees = $query->orderBy('name')->get();
+
+        return response()->json([
+            'success' => true,
+            'employees' => $employees->map(function ($employee) {
+                return [
+                    'id' => $employee->id,
+                    'name' => $employee->name,
+                    'emp_number' => $employee->employeeJobInfo->emp_number ?? null,
+                    'job_title' => $employee->job->name ?? null,
+                    'department' => $employee->department->name ?? null,
+                    'section' => $employee->section->name ?? null,
+                ];
+            }),
+        ]);
+    }
+
+    public function getRequestTypeWorkflows(Request $httpRequest)
+    {
+        $validated = $httpRequest->validate([
+            'request_type_id' => 'required|exists:request_types,id',
+        ]);
+
+        $workflows = RequestWorkflow::where('request_type_id', $validated['request_type_id'])
+            ->active()->ordered()->with(['section:id,name', 'department:id,name'])->get();
+
+        return response()->json([
+            'success' => true,
+            'workflows' => $workflows->map(function ($workflow) {
+                $employees = Employee::active()->whereHas('user')
+                    ->with('section:id,name', 'department:id,name')
+                    ->orderBy('name')->get(['id', 'name', 'section_id', 'department_id'])
+                    ->sortBy(function ($employee) use ($workflow) {
+                        if ($workflow->section_id) {
+                            return (int) $employee->section_id === (int) $workflow->section_id ? 0 : 1;
+                        }
+                        return $workflow->department_id && (int) $employee->department_id === (int) $workflow->department_id ? 0 : 1;
+                    })->values();
+
+                return [
+                    'id' => $workflow->id,
+                    'step_order' => $workflow->step_order,
+                    'name' => $workflow->name ?: 'الخطوة ' . $workflow->step_order,
+                    'unit' => $workflow->section->name ?? $workflow->department->name ?? 'لم تحدد جهة',
+                    'employees' => $employees->map(function ($employee) use ($workflow) {
+                        $isInUnit = $workflow->section_id
+                            ? (int) $employee->section_id === (int) $workflow->section_id
+                            : ($workflow->department_id && (int) $employee->department_id === (int) $workflow->department_id);
+
+                        return [
+                            'id' => $employee->id,
+                            'name' => $employee->name,
+                            'in_unit' => (bool) $isInUnit,
+                            'unit' => $employee->section->name ?? $employee->department->name ?? 'دون جهة',
+                        ];
+                    }),
+                ];
+            })->values(),
+        ]);
+    }
+
+    public function searchAllEmployees(Request $httpRequest)
+    {
+        $search = $httpRequest->input('search', '');
+
+        if (strlen($search) < 2) {
+            return response()->json([
+                'success' => false,
+                'message' => 'يرجى إدخال كلمتين على الأقل للبحث',
+            ], 422);
+        }
+
+        $employees = Employee::active()
+            ->whereHas('user')
+            ->with(['user', 'department', 'section', 'job', 'employeeJobInfo'])
+            ->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhereHas('employeeJobInfo', function ($subQuery) use ($search) {
+                      $subQuery->where('emp_number', 'like', "%{$search}%");
+                  });
+            })
+            ->orderBy('name')
+            ->limit(50)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'employees' => $employees->map(function ($employee) {
+                return [
+                    'id' => $employee->id,
+                    'name' => $employee->name,
+                    'emp_number' => $employee->employeeJobInfo->emp_number ?? null,
+                    'job_title' => $employee->job->name ?? null,
+                    'department' => $employee->department->name ?? null,
+                    'section' => $employee->section->name ?? null,
+                ];
+            }),
+        ]);
     }
 
     public function deleteAttachment(RequestModel $request, RequestAttachment $attachment)

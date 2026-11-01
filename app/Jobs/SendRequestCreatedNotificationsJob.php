@@ -3,16 +3,15 @@
 namespace App\Jobs;
 
 use App\Models\Request as RequestModel;
-use App\Models\RequestWorkflow;
-use App\Models\Employee;
-use App\Models\User;
 use App\Models\Notification;
+use App\Models\RequestResponse;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class SendRequestCreatedNotificationsJob implements ShouldQueue
 {
@@ -33,72 +32,92 @@ class SendRequestCreatedNotificationsJob implements ShouldQueue
         }
 
         $notifiedUserIds = [];
-
-        $workflows = RequestWorkflow::where('request_type_id', $request->request_type_id)
-            ->active()
-            ->ordered()
-            ->get();
+        $smsNotifiedEmployeeIds = [];
 
         $requestTypeName = $request->requestType->name ?? 'غير محدد';
-        $message = "تم إرسال طلب جديد رقم: {$request->id} ({$requestTypeName}) لقسمك - يرجى مراجعته في بريد الطلبات";
+        $message = "تم إسناد طلب جديد رقم: {$request->id} ({$requestTypeName}) إليك - يرجى مراجعته في بريد الطلبات";
         $link = route('requests.mail.waiting');
 
-        foreach ($workflows as $workflow) {
-            if (!$workflow->section_id) {
+        $responses = RequestResponse::with('assignedEmployee.user')
+            ->where('request_id', $request->id)
+            ->where('response_type', 4)
+            ->whereNotNull('assigned_employee_id')
+            ->get();
+
+        foreach ($responses as $response) {
+            $user = $response->assignedEmployee?->user;
+            if (!$user || in_array($user->id, $notifiedUserIds, true)) {
                 continue;
             }
-            $employees = Employee::where('section_id', $workflow->section_id)
-                ->where('status', 'active')
-                ->with('user')
-                ->get();
 
-            foreach ($employees as $employee) {
-                if ($employee->user && !in_array($employee->user->id, $notifiedUserIds)) {
-                    try {
-                        Notification::create([
-                            'user_id' => $employee->user->id,
-                            'type' => 'request',
-                            'title' => 'طلب جديد',
-                            'message' => $message,
-                            'link' => $link,
-                            'icon' => 'fa-envelope',
-                            'priority' => 'normal',
-                            'is_read' => false,
-                        ]);
-                        $notifiedUserIds[] = $employee->user->id;
-                    } catch (\Exception $e) {
-                        Log::error("SendRequestCreatedNotificationsJob: failed for employee {$employee->id}: " . $e->getMessage());
-                    }
-                }
+            try {
+                Notification::create([
+                    'user_id' => $user->id,
+                    'type' => 'request',
+                    'title' => 'طلب جديد مسند إليك',
+                    'message' => $message,
+                    'link' => $link,
+                    'icon' => 'fa-envelope',
+                    'priority' => 'normal',
+                    'is_read' => false,
+                ]);
+                $notifiedUserIds[] = $user->id;
+            } catch (\Exception $e) {
+                Log::error("SendRequestCreatedNotificationsJob: failed for employee {$response->assigned_employee_id}: " . $e->getMessage());
             }
-        }
 
-        try {
-            $admins = User::role('admin')->get();
-            $adminMessage = "طلب جديد رقم: {$request->id} ({$requestTypeName}) - مراجعته في بريد الطلبات";
-            foreach ($admins as $user) {
-                if (!in_array($user->id, $notifiedUserIds)) {
-                    try {
-                        Notification::create([
-                            'user_id' => $user->id,
-                            'type' => 'request',
-                            'title' => 'طلب جديد',
-                            'message' => $adminMessage,
-                            'link' => $link,
-                            'icon' => 'fa-envelope',
-                            'priority' => 'normal',
-                            'is_read' => false,
-                        ]);
-                        $notifiedUserIds[] = $user->id;
-                    } catch (\Exception $e) {
-                        Log::error("SendRequestCreatedNotificationsJob: failed for admin {$user->id}: " . $e->getMessage());
-                    }
-                }
+            $employee = $response->assignedEmployee;
+            $phone = $employee?->mobile ?: $user->mobile;
+            if ($employee && $phone && !in_array((int) $employee->id, $smsNotifiedEmployeeIds, true)) {
+                $this->sendSms($request, $requestTypeName, $employee, $phone);
+                $smsNotifiedEmployeeIds[] = (int) $employee->id;
             }
-        } catch (\Throwable $e) {
-            Log::warning("SendRequestCreatedNotificationsJob: admin notify: " . $e->getMessage());
         }
 
         Log::info("SendRequestCreatedNotificationsJob: request {$request->id}, notified " . count($notifiedUserIds) . " users");
+    }
+
+    private function sendSms(RequestModel $request, string $requestTypeName, $employee, string $phone): void
+    {
+        $config = config('services.tweetsms');
+        if (empty($config['enabled'])) {
+            return;
+        }
+
+        if (empty($config['username']) || empty($config['password']) || empty($config['sender'])) {
+            Log::warning('TweetSMS is enabled but credentials or sender are missing.');
+            return;
+        }
+
+        $message = "طلب جديد يحتاج للمعالجة. رقم الطلب: {$request->id}، النوع: {$requestTypeName}. يرجى الدخول إلى بريد الطلبات.";
+
+        try {
+            $response = Http::asForm()
+                ->timeout((int) ($config['timeout'] ?? 10))
+                ->get($config['base_url'], [
+                    'comm' => 'sendsms',
+                    'user' => $config['username'],
+                    'pass' => $config['password'],
+                    'to' => $phone,
+                    'message' => $message,
+                    'sender' => $config['sender'],
+                ]);
+
+            $body = trim($response->body());
+            if (!$response->successful() || !preg_match('/(?:^|\\s)1(?:\\s|$)/', $body)) {
+                Log::warning('TweetSMS did not confirm delivery for assigned request employee.', [
+                    'request_id' => $request->id,
+                    'employee_id' => $employee->id,
+                    'http_status' => $response->status(),
+                    'provider_response' => $body,
+                ]);
+            }
+        } catch (\Throwable $e) {
+            Log::error('TweetSMS request notification failed.', [
+                'request_id' => $request->id,
+                'employee_id' => $employee->id,
+                'error' => $e->getMessage(),
+            ]);
+        }
     }
 }

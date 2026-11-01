@@ -38,18 +38,6 @@
                     <a href="{{ route('requests.mail.waiting') }}" class="btn btn-light-danger font-weight-bolder mr-2">
                         <i class="fas fa-arrow-right"></i> {{ __('عودة') }}
                     </a>
-                    @php
-                        $canUpdateStatus = Auth::user()->employee && Auth::user()->employee->section_id !== null;
-                        if (!$canUpdateStatus) {
-                            try {
-                                $canUpdateStatus = Auth::user()->hasPermissionTo('mail.create')
-                                    || Auth::user()->hasPermissionTo('mail.update')
-                                    || Auth::user()->hasRole('admin');
-                            } catch (\Exception $e) {
-                                $canUpdateStatus = false;
-                            }
-                        }
-                    @endphp
                     @if($response->response_type == 4 && $canUpdateStatus)
                         <button type="button" class="btn btn-primary font-weight-bolder" data-toggle="modal" data-target="#responseModal">
                             <i class="fas fa-check"></i> {{ __('تعديل الحالة') }} / {{ __('الرد على الطلب') }}

@@ -309,9 +309,9 @@
                     <button type="button" class="btn btn-light-warning font-weight-bold order-2 order-md-1" data-dismiss="modal">
                         <i class="fas fa-times"></i> {{ __('إلغاء') }}
                     </button>
-                    <!-- <a href="{{ route('requests.create') }}" class="btn btn-light-primary font-weight-bold order-1 order-md-2 ml-auto mr-2" target="_blank">
+                    <a href="{{ route('requests.create') }}" class="btn btn-light-primary font-weight-bold order-1 order-md-2 ml-auto mr-2" target="_blank">
                         <i class="fas fa-book-open"></i> {{ __('إنشاء في صفحة كاملة') }}
-                    </a> -->
+                    </a>
                     <button type="button" class="btn btn-primary font-weight-bold order-3" id="addRequestSubmitBtn">
                         <i class="fas fa-check"></i> {{ __('حفظ') }}
                     </button>
@@ -352,7 +352,6 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('assets/plugins/custom/select2/js/select2.full.min.js') }}"></script>
 @include('requests._mokalaf_select2_js')
 @include('requests.partials.fee_amount_modal_script')
 @include('requests.partials.edit_request_interactions_script')
@@ -360,7 +359,7 @@
 <script>
     $(document).ready(function() {
         var p = 'modal_';
-        $('#addRequestModal').on('show.bs.modal', function () {
+        $('#addRequestModal').off('show.bs.modal.requestCreate').on('show.bs.modal.requestCreate', function () {
             window.initMokalafSelect2({
                 prefix: p,
                 formId: p + 'kt_form_2',
@@ -373,6 +372,48 @@
                 draftKey: 'request_create_modal_draft'
             });
 
+            $('#' + p + 'kt_select2_4').off('change.requestWorkflow').on('change.requestWorkflow', function() {
+                loadWorkflowStepsModal($(this).val(), p);
+            });
+
+            function loadWorkflowStepsModal(requestTypeId, prefix) {
+                var $container = $('#' + prefix + 'request-workflow-steps');
+                if (!$container.length) return;
+                if (!requestTypeId) {
+                    $container.text('{{ __('اختر نوع الطلب لعرض مساره') }}');
+                    return;
+                }
+                $container.html('<span class="text-muted"><i class="fas fa-spinner fa-spin"></i> {{ __('جارٍ تحميل المسار') }}</span>');
+                $.get("{{ route('requests.request-type-workflows') }}", {request_type_id: requestTypeId})
+                    .done(function(response) {
+                        if (!response.workflows.length) {
+                            $container.html('<div class="alert alert-warning mb-0">{{ __('لا توجد خطوات مفعّلة لهذا النوع') }}</div>');
+                            return;
+                        }
+                        var html = '<div class="list-group">';
+                        response.workflows.forEach(function(step) {
+                            html += '<div class="list-group-item d-flex justify-content-between align-items-center flex-wrap"><div class="mb-2"><span class="badge badge-primary">' + step.step_order + '</span> <strong>' + $('<div>').text(step.name).html() + '</strong><div class="small text-muted">' + $('<div>').text(step.unit).html() + '</div></div>';
+                            html += '<div style="min-width:240px"><label class="small mb-1">{{ __('الموظف المسؤول') }}</label><select class="form-control form-control-sm" name="workflow_employee_ids[' + step.id + ']">';
+                            html += '<option value="">{{ __('اختر الموظف (اختياري)') }}</option>';
+                            var localEmployees = step.employees.filter(function(employee) { return employee.in_unit; });
+                            var otherEmployees = step.employees.filter(function(employee) { return !employee.in_unit; });
+                            localEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '">' + $('<div>').text(employee.name).html() + '</option>'; });
+                            if (otherEmployees.length) {
+                                html += '<optgroup label="──────── موظفون خارج الجهة المعنية ────────">';
+                                otherEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '">' + $('<div>').text(employee.name + ' — ' + employee.unit).html() + '</option>'; });
+                                html += '</optgroup>';
+                            }
+                            html += '</select><div class="small mt-1 text-primary workflow-assignee-name">{{ __('لم يتم اختيار موظف بعد') }}</div>' + (otherEmployees.length ? '<small class="text-warning d-block">{{ __('تنبيه: الموظفون بعد الفاصل خارج القسم أو الدائرة المعنية') }}</small>' : '') + (!step.employees.length ? '<small class="text-danger">{{ __('لا يوجد موظفون نشطون') }}</small>' : '') + '</div></div>';
+                        });
+                        $container.html(html + '</div>');
+                        $container.find('select[name^="workflow_employee_ids"]').on('change', function() {
+                            var selectedName = $(this).find('option:selected').text();
+                            $(this).closest('div').find('.workflow-assignee-name').text(this.value ? '{{ __('الموظف المختار') }}: ' + selectedName : '{{ __('لم يتم اختيار موظف بعد') }}');
+                        });
+                    }).fail(function() {
+                        $container.html('<div class="alert alert-danger mb-0">{{ __('تعذر تحميل مسار الطلب') }}</div>');
+                    });
+            }
             // تهيئة قائمة نوع الطلب داخل المودال (Select2) مع ضبط الـ dropdown داخل المودال نفسه
             var $requestTypeSelect = $('#' + p + 'kt_select2_4');
             if ($requestTypeSelect.length && !$requestTypeSelect.hasClass('select2-hidden-accessible')) {
@@ -382,6 +423,7 @@
                     width: '100%'
                 });
             }
+            loadWorkflowStepsModal($requestTypeSelect.val(), p);
         }).on('hidden.bs.modal', function () {
             var form = $('#' + p + 'kt_form_2')[0];
             if (form) form.reset();
@@ -402,6 +444,7 @@
             $('#' + p + 'common_name').addClass('d-none');
             $('#' + p + 'common_name_input').val('');
             $('#' + p + 'request_attachments_preview').empty();
+            $('#' + p + 'request-workflow-steps').text('{{ __('اختر نوع الطلب لعرض مساره') }}');
         });
 
         $(document).on('change', '#' + p + 'join_', function () {
@@ -685,3 +728,4 @@
     });
 </script>
 @endsection
+

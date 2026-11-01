@@ -62,7 +62,7 @@ class RequestMailController extends Controller
         }
         // الموظفون التابعون للأقسام/الدوائر يمكنهم رؤية الطلبات (بدون صلاحيات)
         $employee = $user->employee;
-        if ($employee && ($employee->section_id !== null || $employee->department_id !== null)) {
+        if ($employee) {
             return true;
         }
         // صلاحيات البريد
@@ -89,7 +89,7 @@ class RequestMailController extends Controller
         } catch (\Throwable $e) {
             // تجاهل
         }
-        if ($user->employee && ($user->employee->section_id !== null || $user->employee->department_id !== null)) {
+        if ($user->employee) {
             return true;
         }
         try {
@@ -279,27 +279,20 @@ class RequestMailController extends Controller
                 ->with('error', 'الرد غير موجود');
         }
 
-        // التحقق من أن الرد يخص وحدة المستخدم (قسمه أو دائرته) - عدا الأدمن ومن يملك صلاحيات البريد
-        try {
-            $isPrivileged = Auth::user()->hasRole('admin')
-                || Auth::user()->hasPermissionTo('mail.view')
-                || Auth::user()->hasPermissionTo('mail.create')
-                || Auth::user()->hasPermissionTo('mail.update')
-                || Auth::user()->hasPermissionTo('mail.delete');
-        } catch (\Throwable $e) {
-            $isPrivileged = false;
-        }
-        if (!$isPrivileged && !$this->responseBelongsToEmployee($response, Auth::user()->employee)) {
+        if (!$this->responseBelongsToEmployee($response, Auth::user()->employee)) {
             return redirect()->route('requests.mail.waiting')
                 ->with('error', 'غير مصرح لك بالوصول إلى هذا الطلب');
         }
 
         // حساب حالة الطلب الحالية
         $status = $this->calculateRequestStatus($request);
+        $canUpdateStatus = $this->canUpdateRequestStatus()
+            && in_array((int) $response->response_type, [2, 4], true)
+            && $this->responseBelongsToEmployee($response, Auth::user()->employee);
 
         $responseTypes = ResponseType::whereIn('id', [1, 2, 3])->get();
 
-        return view('requests.mail.status', compact('request', 'response', 'status', 'responseTypes'));
+        return view('requests.mail.status', compact('request', 'response', 'status', 'responseTypes', 'canUpdateStatus'));
     }
 
     /**
@@ -307,8 +300,14 @@ class RequestMailController extends Controller
      */
     public function edit($id)
     {
+        if (!$this->canAccessRequestMail()) {
+            return response()->json(['error' => 'غير مصرح لك بالوصول'], 403);
+        }
         $response = RequestResponse::with(['responseType', 'section', 'department', 'request'])
             ->findOrFail($id);
+        if (!$this->responseBelongsToEmployee($response, Auth::user()->employee)) {
+            return response()->json(['error' => 'هذا الرد غير مسند إلى حسابك الشخصي'], 403);
+        }
 
         return response()->json($response);
     }
@@ -329,11 +328,6 @@ class RequestMailController extends Controller
             $requestModel = RequestModel::findOrFail($validated['request_id']);
             $user = Auth::user();
             $employee = $user->employee;
-            $isAdmin = false;
-            try {
-                $isAdmin = $user->hasRole('admin');
-            } catch (\Throwable $e) { /* ignore */ }
-
             // إذا وُجد response_id (صفحة التفاصيل ترسله) نحدّث هذا الرد بعد التحقق من الصلاحية
             if (!empty($validated['response_id'])) {
                 $response = RequestResponse::where('id', $validated['response_id'])
@@ -344,30 +338,22 @@ class RequestMailController extends Controller
                     DB::rollback();
                     return response()->json(['error' => 'الرد غير موجود أو تم الرد عليه مسبقاً'], 400);
                 }
-                // التحقق: أدمن أو أن الرد يخص وحدة الموظف (قسم أو دائرة)
-                if (!$isAdmin && !$this->responseBelongsToEmployee($response, $employee)) {
+                if (!$this->responseBelongsToEmployee($response, $employee)) {
                     DB::rollback();
-                    return response()->json(['error' => 'غير مصرح لك بتعديل رد هذه الجهة'], 403);
+                    return response()->json(['error' => 'هذا الرد غير مسند إلى حسابك الشخصي'], 403);
                 }
             } else {
-                if (!$employee || ($employee->section_id === null && $employee->department_id === null)) {
+                if (!$employee) {
                     DB::rollback();
-                    return response()->json(['error' => 'المستخدم غير مرتبط بقسم أو دائرة'], 400);
+                    return response()->json(['error' => 'حساب المستخدم غير مرتبط بموظف'], 400);
                 }
                 $response = RequestResponse::where('request_id', $validated['request_id'])
-                    ->where(function ($q) use ($employee) {
-                        if ($employee->section_id !== null) {
-                            $q->where('section_id', $employee->section_id);
-                        }
-                        if ($employee->department_id !== null) {
-                            $q->orWhere('department_id', $employee->department_id);
-                        }
-                    })
+                    ->where('assigned_employee_id', $employee->id)
                     ->where('response_type', 4)
                     ->first();
                 if (!$response) {
                     DB::rollback();
-                    return response()->json(['error' => 'لا يوجد رد قيد الانتظار لهذه الجهة'], 400);
+                    return response()->json(['error' => 'لا يوجد رد قيد الانتظار مسند إلى حسابك لهذا الطلب'], 400);
                 }
             }
 
@@ -420,34 +406,8 @@ class RequestMailController extends Controller
      */
     private function responseBelongsToEmployee(RequestResponse $response, $employee): bool
     {
-        if (!$employee) {
-            return false;
-        }
-        // مطابقة القسم مباشرة
-        if ($employee->section_id !== null && $response->section_id !== null && (int) $employee->section_id === (int) $response->section_id) {
-            return true;
-        }
-        // مطابقة الدائرة مباشرة (رد دائرة)
-        if ($employee->department_id !== null && $response->department_id !== null && (int) $employee->department_id === (int) $response->department_id) {
-            return true;
-        }
-        // موظف دائرة بدون قسم: يملك الردود على أقسام دائرته
-        if ($employee->section_id === null && $employee->department_id !== null && $response->section_id !== null) {
-            $secDept = $response->section->department_id ?? $response->workflow->section->department_id ?? null;
-            if ($secDept !== null && (int) $secDept === (int) $employee->department_id) {
-                return true;
-            }
-        }
-        // احتياط: مطابقة عبر الـ workflow
-        if ($response->workflow) {
-            if ($employee->section_id !== null && $response->workflow->section_id !== null && (int) $employee->section_id === (int) $response->workflow->section_id) {
-                return true;
-            }
-            if ($employee->department_id !== null && $response->workflow->department_id !== null && (int) $employee->department_id === (int) $response->workflow->department_id) {
-                return true;
-            }
-        }
-        return false;
+        return $employee && $response->assigned_employee_id !== null
+            && (int) $response->assigned_employee_id === (int) $employee->id;
     }
 
     /**
@@ -472,6 +432,8 @@ class RequestMailController extends Controller
                     'response_type' => 4, // قيد الانتظار
                     'request_id' => $requestModel->id,
                     'workflow_id' => $workflow->id,
+                    'assigned_employee_id' => $requestModel->responses()->where('workflow_id', $workflow->id)->value('assigned_employee_id')
+                        ?? RequestResponse::where('request_id', $requestModel->id)->where('workflow_id', $workflow->id)->withTrashed()->value('assigned_employee_id'),
                     'section_id' => $workflow->section_id,
                     'department_id' => $workflow->department_id,
                     'notes' => '-',
@@ -506,8 +468,13 @@ class RequestMailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (!Auth::user()->hasRole('admin')) {
-            return response()->json(['error' => 'غير مصرح بتعديل الرد'], 403);
+        if (!$this->canAccessRequestMail()) {
+            return response()->json(['error' => 'غير مصرح لك بالوصول'], 403);
+        }
+
+        $response = RequestResponse::findOrFail($id);
+        if (!$this->responseBelongsToEmployee($response, Auth::user()->employee)) {
+            return response()->json(['error' => 'هذا الرد غير مسند إلى حسابك الشخصي'], 403);
         }
 
         $validated = $request->validate([
@@ -516,8 +483,6 @@ class RequestMailController extends Controller
         ]);
 
         try {
-            $response = RequestResponse::findOrFail($id);
-
             $response->update([
                 'response_type' => $validated['response_type'],
                 'notes' => $validated['notes'] ?? $response->notes,
@@ -583,8 +548,7 @@ class RequestMailController extends Controller
      */
     private function getMailResponses(int $mail, int $perPage = 15, ?string $search = null)
     {
-        $allowedSectionIds = $this->getAllowedSectionIds();
-        $allowedDepartmentIds = $this->getAllowedDepartmentIds();
+        $employeeId = Auth::user()?->employee?->id;
 
         // استعلام الردود مع تحميل الطلب (حتى لو كان الطلب soft-deleted ليظهر في الجدول)
         $query = RequestResponse::with([
@@ -596,21 +560,9 @@ class RequestMailController extends Controller
             'responseType',
         ]);
 
-        // أقسام مسموحة OR دوائر مسموحة (ردود الأقسام + ردود الدوائر المباشرة)
-        $query->where(function ($q) use ($allowedSectionIds, $allowedDepartmentIds) {
-            $has = false;
-            if ($allowedSectionIds->isNotEmpty()) {
-                $q->whereIn('section_id', $allowedSectionIds->toArray());
-                $has = true;
-            }
-            if ($allowedDepartmentIds->isNotEmpty()) {
-                $q->orWhereIn('department_id', $allowedDepartmentIds->toArray());
-                $has = true;
-            }
-            if (!$has) {
-                $q->whereRaw('1 = 0');
-            }
-        });
+        $employeeId
+            ? $query->where('assigned_employee_id', $employeeId)
+            : $query->whereRaw('1 = 0');
 
         if ($mail === 1) {
             $query->where('response_type', 1);
@@ -662,8 +614,7 @@ class RequestMailController extends Controller
         }
 
         $mail = (int) $request->get('mail', 0); // 0=all, 1=accepted, 2=pending, 3=rejected, 4=waiting
-        $allowedSectionIds = $this->getAllowedSectionIds();
-        $allowedDepartmentIds = $this->getAllowedDepartmentIds();
+        $employeeId = Auth::user()?->employee?->id;
 
         // وضع تشخيصي (debug) لمعرفة سبب عدم ظهور الطلبات
         if ($request->has('debug')) {
@@ -672,7 +623,7 @@ class RequestMailController extends Controller
                 ->get();
 
             $queryWithRequest = RequestResponse::with(['request'])
-                ->whereIn('section_id', $allowedSectionIds->toArray())
+                ->when($employeeId, fn ($q) => $q->where('assigned_employee_id', $employeeId), fn ($q) => $q->whereRaw('1 = 0'))
                 ->whereHas('request');
             if ($mail !== 0) {
                 $queryWithRequest->where('response_type', $mail);
@@ -686,7 +637,7 @@ class RequestMailController extends Controller
 
             return response()->json([
                 'mail_param' => $mail,
-                'allowed_section_ids' => $allowedSectionIds->values(),
+                'assigned_employee_id' => $employeeId,
                 'request_responses_total' => $allResponses->count(),
                 'request_responses_by_section' => $allResponses->groupBy('section_id')->map->count(),
                 'waiting_by_section' => $allResponses->where('response_type', 4)->groupBy('section_id')->map->count(),
@@ -697,7 +648,7 @@ class RequestMailController extends Controller
             ]);
         }
 
-        if ($allowedSectionIds->isEmpty() && $allowedDepartmentIds->isEmpty()) {
+        if (!$employeeId) {
             return response()->json([
                 'draw' => $request->get('draw', 1),
                 'recordsTotal' => 0,
@@ -714,21 +665,7 @@ class RequestMailController extends Controller
             'section',
             'department',
             'responseType',
-        ])
-            ->where(function ($q) use ($allowedSectionIds, $allowedDepartmentIds) {
-                $has = false;
-                if ($allowedSectionIds->isNotEmpty()) {
-                    $q->whereIn('section_id', $allowedSectionIds->toArray());
-                    $has = true;
-                }
-                if ($allowedDepartmentIds->isNotEmpty()) {
-                    $q->orWhereIn('department_id', $allowedDepartmentIds->toArray());
-                    $has = true;
-                }
-                if (!$has) {
-                    $q->whereRaw('1 = 0');
-                }
-            });
+        ])->where('assigned_employee_id', $employeeId);
 
         if ($mail === 1) {
             $query->where('response_type', 1);
@@ -760,7 +697,10 @@ class RequestMailController extends Controller
                     ($response->response_type == 1 ? 'success' : ($response->response_type == 2 ? 'warning' : ($response->response_type == 3 ? 'danger' : 'info'))) .
                     '">' . ($response->responseType->name ?? '-') . '</span>',
                 'actions' => '<a href="' . route('requests.mail.show', ['requestId' => $req->id, 'responseId' => $response->id]) .
-                    '" class="btn btn-sm btn-primary"><i class="flaticon2-eye"></i> عرض</a>'
+                    '" class="btn btn-sm btn-primary"><i class="flaticon2-eye"></i> عرض</a>' .
+                    (in_array((int) $response->response_type, [2, 4], true)
+                        ? ' <a href="' . route('requests.mail.show', ['requestId' => $req->id, 'responseId' => $response->id]) . '" class="btn btn-sm btn-warning"><i class="fas fa-pen"></i> تغيير الحالة</a>'
+                        : '')
             ];
             $index++;
         }

@@ -262,6 +262,12 @@ return [
                             'icon'   => 'fas fa-user-tag text-success',
                             'active' => ['is' => ['permissions/users*']],
                         ],
+                        [
+                            'route'  => 'permission_ui.tweetsms.index',
+                            'label'  => 'نظام الرسائل SMS',
+                            'icon'   => 'fas fa-sms text-primary',
+                            'active' => ['is' => ['permissions/tweetsms*']],
+                        ],
                     ],
                 ],
             ],

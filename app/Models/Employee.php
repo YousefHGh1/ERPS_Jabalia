@@ -66,6 +66,14 @@ class Employee extends Model
     {
         return $this->hasOne(User::class);
     }
+    
+    public function approvalRequests()
+    {
+        return $this->belongsToMany(Request::class, 'request_approval_employees')
+            ->withPivot('approval_type', 'substitution_reason')
+            ->withTimestamps();
+    }
+    
     public function EmployeeJobInfo()
     {
         return $this->hasOne(EmployeeJobInfo::class);

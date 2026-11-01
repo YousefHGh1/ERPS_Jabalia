@@ -50,4 +50,13 @@ return [
         'api_key' => env('CITIZEN_API_KEY'),
     ],
 
+    'tweetsms' => [
+        'base_url' => env('TWEETSMS_BASE_URL', 'http://www.tweetsms.ps/api.php'),
+        'username' => env('TWEETSMS_USERNAME'),
+        'password' => env('TWEETSMS_PASSWORD'),
+        'sender' => env('TWEETSMS_SENDER'),
+        'enabled' => env('TWEETSMS_ENABLED', false),
+        'timeout' => env('TWEETSMS_TIMEOUT', 10),
+    ],
+
 ];

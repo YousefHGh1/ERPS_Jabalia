@@ -148,6 +148,12 @@
                                                class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i> {{ __('عرض') }}
                                             </a>
+                                            @if(in_array((int) $response->response_type, [2, 4], true))
+                                                <a href="{{ route('requests.mail.show', ['requestId' => $req->id, 'responseId' => $response->id]) }}"
+                                                   class="btn btn-sm btn-warning mt-1">
+                                                    <i class="fas fa-pen"></i> {{ __('تغيير الحالة') }}
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endif

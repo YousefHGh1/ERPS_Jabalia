@@ -312,6 +312,12 @@ return [
                             'active'      => ['is' => ['permissions/users*']],
                             'permissions' => ['index users'],
                         ],
+                                                [
+                            'route'  => 'permission_ui.tweetsms.index',
+                            'label'  => 'نظام الرسائل SMS',
+                            'icon'   => 'fas fa-sms text-primary',
+                            'active' => ['is' => ['permissions/tweetsms*']],
+                        ],
                     ],
                 ],
             ],

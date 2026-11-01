@@ -74,7 +74,7 @@
                         <div class="col-md-6 form-group d-flex align-items-center mb-2">
                             <label class="mb-0 mr-2 text-nowrap d-block d-md-inline-block" style="min-width: 100px;">{{ __('نوع الطلب') }}:</label>
                             <div class="flex-grow-1">
-                                <select name="request_type_id" class="form-control form-control-sm @error('request_type_id') is-invalid @enderror" required>
+                                <select name="request_type_id" class="form-control form-control-sm @error('request_type_id') is-invalid @enderror js-req-edit-request-type" required>
                                     <option value="">{{ __('اختر نوع الطلب') }}</option>
                                     @foreach($requestTypes as $type)
                                         <option value="{{ $type->id }}" {{ (int) $requestModel->request_type_id === (int) $type->id ? 'selected' : '' }}>
@@ -87,6 +87,15 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+
+                    @php
+                        $workflowAssignees = $requestModel->responses->keyBy('workflow_id')->map(fn ($response) => $response->assigned_employee_id);
+                    @endphp
+                    <div class="form-group mb-2">
+                        <label class="font-weight-bold">{{ __('مسار الطلب والموظف المسؤول عن كل خطوة') }}:</label>
+                        <div class="js-req-edit-workflow-steps text-muted"
+                            data-assignees='@json(old('workflow_employee_ids', $workflowAssignees))'>{{ __('جارٍ تحميل المسار') }}</div>
                     </div>
 
                     <div class="row">
@@ -442,4 +451,5 @@
         </div>
     </div>
 @endif
+
 </div>

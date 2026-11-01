@@ -13,8 +13,8 @@ class StoreRequestMailRequest extends FormRequest
     public function authorize(): bool
     {
         $user = $this->user();
-        // الموظفون التابعون للأقسام/الدوائر يمكنهم تعديل حالة الطلبات المخصصة لوحدتهم (لا يتطلب صلاحيات)
-        if ($user->employee && ($user->employee->section_id !== null || $user->employee->department_id !== null)) {
+        // الموظف يستطيع الرد على المسارات المسندة إلى حسابه الشخصي.
+        if ($user->employee) {
             return true;
         }
         try {

@@ -79,6 +79,10 @@ Route::middleware(config('permission_ui.middleware'))->group(function () {
         'as'     => config('permission_ui.route_name_prefix'),
     ], function () {
         Route::get('dashboard', [\App\Http\Controllers\Settings\DashboardController::class, 'index'])->name('dashboard');
+        Route::get('tweetsms', [\App\Http\Controllers\Settings\TweetSmsController::class, 'index'])->name('tweetsms.index');
+        Route::put('tweetsms', [\App\Http\Controllers\Settings\TweetSmsController::class, 'update'])->name('tweetsms.update');
+        Route::post('tweetsms/balance', [\App\Http\Controllers\Settings\TweetSmsController::class, 'balance'])->name('tweetsms.balance');
+        Route::post('tweetsms/test', [\App\Http\Controllers\Settings\TweetSmsController::class, 'sendTest'])->name('tweetsms.test');
         Route::resource('roles', \App\Http\Controllers\Settings\RoleController::class)->except('show');
         Route::post('roles/{role}/duplicate', [\App\Http\Controllers\Settings\RoleController::class, 'duplicate'])
             ->name('roles.duplicate');
