@@ -336,18 +336,67 @@ class RequestWorkflowController extends Controller
             'request_type_id' => ['nullable', 'exists:request_types,id'],
         ]);
 
-        $pendingResponses = RequestResponse::query()
+        $pendingRequests = RequestModel::pending()
+            ->when(!empty($validated['request_type_id']), fn ($query) => $query->where('request_type_id', $validated['request_type_id']))
+            ->get();
+        $workflowsByType = RequestWorkflow::active()->ordered()
+            ->with(['section.displayDirector.employee.user', 'department.displayDirector.employee.user'])
+            ->whereIn('request_type_id', $pendingRequests->pluck('request_type_id')->unique())
+            ->get()->groupBy('request_type_id');
+
+        foreach ($pendingRequests as $pendingRequest) {
+            foreach ($workflowsByType->get($pendingRequest->request_type_id, collect()) as $workflow) {
+                $response = RequestResponse::where('request_id', $pendingRequest->id)
+                    ->where('workflow_id', $workflow->id)
+                    ->where('response_type', 4)
+                    ->first();
+
+                if (!$response) {
+                    $hasHistory = RequestResponse::withTrashed()
+                        ->where('request_id', $pendingRequest->id)
+                        ->where('workflow_id', $workflow->id)
+                        ->exists();
+                    if ($hasHistory) {
+                        continue;
+                    }
+
+                    $response = new RequestResponse([
+                        'request_id' => $pendingRequest->id,
+                        'workflow_id' => $workflow->id,
+                        'response_type' => 4,
+                        'notes' => '-',
+                        'created_by' => auth()->id() ?? $pendingRequest->created_by,
+                    ]);
+                }
+
+                $employeeId = $response->assigned_employee_id
+                    ?: $workflow->default_assigned_employee_id
+                    ?: ($workflow->section?->displayDirector?->employee_id
+                        ?? $workflow->department?->displayDirector?->employee_id);
+                $employee = $employeeId ? Employee::active()->whereHas('user')->find($employeeId) : null;
+                if (!$employee) {
+                    continue;
+                }
+
+                $response->assigned_employee_id = $employee->id;
+                $response->section_id = $workflow->section_id;
+                $response->department_id = $workflow->department_id;
+                $response->save();
+            }
+        }
+
+        $requestIds = RequestResponse::query()
             ->where('response_type', 4)
             ->whereNotNull('assigned_employee_id')
             ->whereHas('assignedEmployee.user')
-            ->whereHas('request', function ($query) use ($validated) {
-                if (!empty($validated['request_type_id'])) {
-                    $query->where('request_type_id', $validated['request_type_id']);
-                }
-            });
-
-        $requestIds = (clone $pendingResponses)->distinct()->pluck('request_id');
-        $employeeCount = (clone $pendingResponses)->distinct()->count('assigned_employee_id');
+            ->whereIn('request_id', $pendingRequests->pluck('id'))
+            ->distinct()->pluck('request_id');
+        $employeeCount = RequestResponse::query()
+            ->where('response_type', 4)
+            ->whereNotNull('assigned_employee_id')
+            ->whereHas('assignedEmployee.user')
+            ->whereIn('request_id', $requestIds)
+            ->distinct()->count('assigned_employee_id');
 
         foreach ($requestIds as $requestId) {
             SendRequestCreatedNotificationsJob::dispatch((int) $requestId, true);
@@ -356,6 +405,7 @@ class RequestWorkflowController extends Controller
         return back()->with('reminder_resend_result', [
             'requests' => $requestIds->count(),
             'employees' => $employeeCount,
+            'pending_requests' => $pendingRequests->count(),
         ]);
     }
 

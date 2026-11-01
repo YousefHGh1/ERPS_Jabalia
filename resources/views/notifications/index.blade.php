@@ -108,8 +108,8 @@
             </div>
 
             @if($notifications->hasPages())
-                <div class="d-flex justify-content-center mt-5">
-                    {{ $notifications->links() }}
+                <div class="d-flex justify-content-center mt-5" dir="rtl">
+                    {{ $notifications->links('pagination::bootstrap-4') }}
                 </div>
             @endif
         </div>

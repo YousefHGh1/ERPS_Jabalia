@@ -54,7 +54,7 @@
                 @endphp
                 @if (session('reminder_resend_result'))
                     <div class="alert alert-info">
-                        أُعيد إرسال التنبيه إلى {{ session('reminder_resend_result')['employees'] }} موظف مسؤول عن {{ session('reminder_resend_result')['requests'] }} طلب معلّق.
+                        أُعيد إرسال التنبيه إلى {{ session('reminder_resend_result')['employees'] }} موظف مسؤول عن {{ session('reminder_resend_result')['requests'] }} من أصل {{ session('reminder_resend_result')['pending_requests'] }} طلباً قيد الانتظار. قد تتعذر تنبيهات الطلبات التي لا تملك مساراً نشطاً أو موظفاً مسؤولاً.
                     </div>
                 @endif
                 <div class="row mb-7">
