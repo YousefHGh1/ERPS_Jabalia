@@ -30,7 +30,11 @@ class RequestWorkflowController extends Controller
         $requestType = RequestType::findOrFail($requestTypeId);
         $page_title = 'مسارات نوع الطلب: ' . $requestType->name;
         $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)
-            ->with(['section', 'department', 'defaultAssignedEmployee', 'previousWorkflow.section', 'previousWorkflow.department'])
+            ->with([
+                'section.displayDirector.employee',
+                'department.displayDirector.employee',
+                'department', 'defaultAssignedEmployee', 'previousWorkflow.section', 'previousWorkflow.department',
+            ])
             ->orderBy('step_order', 'asc')
             ->get();
         $sections = Section::with('displayDirector')->select('id', 'name')->orderBy('name')->get();
@@ -230,7 +234,10 @@ class RequestWorkflowController extends Controller
 
         $requestTypeId = (int) $validated['request_type_id'];
         $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)
-            ->active()->ordered()->with(['section.displayDirector', 'department.displayDirector'])->get();
+            ->active()->ordered()->with([
+                'section.displayDirector.employee.user',
+                'department.displayDirector.employee.user',
+            ])->get();
         if ($workflows->isEmpty()) {
             return back()->withErrors(['synchronize' => 'لا توجد مسارات نشطة لمزامنتها.']);
         }
@@ -239,6 +246,17 @@ class RequestWorkflowController extends Controller
         $counts = ['created' => 0, 'updated' => 0, 'removed' => 0];
 
         DB::transaction(function () use ($requestTypeId, $workflows, $workflowIds, &$counts) {
+            foreach ($workflows as $workflow) {
+                if ($workflow->default_assigned_employee_id) {
+                    continue;
+                }
+                $director = $workflow->section?->displayDirector?->employee
+                    ?? $workflow->department?->displayDirector?->employee;
+                if ($director && strtolower((string) $director->status) === 'active' && $director->user) {
+                    $workflow->update(['default_assigned_employee_id' => $director->id]);
+                }
+            }
+
             RequestModel::where('request_type_id', $requestTypeId)->chunkById(100, function ($requests) use ($workflows, $workflowIds, &$counts) {
                 foreach ($requests as $requestModel) {
                     $counts['removed'] += RequestResponse::where('request_id', $requestModel->id)

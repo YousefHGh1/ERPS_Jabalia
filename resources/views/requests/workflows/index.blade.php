@@ -46,7 +46,9 @@
             <div class="card-body pt-7">
                 {{-- Success/Error messages are displayed via SweetAlert2 in layout/error.blade.php --}}
                 @if (session('workflow_sync_result'))
-                    @php($syncResult = session('workflow_sync_result'))
+                    @php
+                        $syncResult = session('workflow_sync_result');
+                    @endphp
                     <div class="alert alert-success">
                         اكتملت المزامنة: أضيفت {{ $syncResult['created'] }} خطوة، وحُدّث تعيين {{ $syncResult['updated'] }} خطوة معلّقة، وأزيلت {{ $syncResult['removed'] }} خطوة معلّقة لم تعد ضمن المسار النشط. الردود المنجزة بقيت كما هي.
                     </div>
@@ -81,13 +83,6 @@
                                             <span class="text-muted font-weight-bold">{{ $workflow->step_order }}</span>
                                         </td>
                                         <td>
-                                            @if($workflow->defaultAssignedEmployee)
-                                                <span class="label label-light-primary label-inline">{{ $workflow->defaultAssignedEmployee->name }}</span>
-                                            @else
-                                                <span class="text-muted">مدير الجهة تلقائياً عند الحفظ</span>
-                                            @endif
-                                        </td>
-                                        <td>
                                             <div class="d-flex align-items-center">
                                                 <div class="symbol symbol-40 symbol-light-primary mr-3">
                                                     <span class="symbol-label font-size-h5 font-weight-bold">
@@ -100,6 +95,18 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            @php
+                                                $defaultAssignee = $workflow->defaultAssignedEmployee
+                                                    ?? $workflow->section?->displayDirector?->employee
+                                                    ?? $workflow->department?->displayDirector?->employee;
+                                            @endphp
+                                            @if ($defaultAssignee)
+                                                <span class="label label-light-primary label-inline">{{ $defaultAssignee->name }}</span>
+                                            @else
+                                                <span class="text-muted">لا يوجد رئيس/مدير معيّن لهذه الجهة</span>
+                                            @endif
                                         </td>
                                         <td>
                                             @if ($workflow->previousWorkflow)
