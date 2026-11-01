@@ -8,7 +8,11 @@ use App\Models\RequestType;
 use App\Models\Department;
 use App\Models\Section;
 use App\Models\Employee;
+use App\Models\Request as RequestModel;
+use App\Models\RequestResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
 class RequestWorkflowController extends Controller
@@ -17,7 +21,7 @@ class RequestWorkflowController extends Controller
     {
         $this->middleware('permission:index request_workflows', ['only' => ['index']]);
         $this->middleware('permission:store request_workflows', ['only' => ['store']]);
-        $this->middleware('permission:update request_workflows', ['only' => ['update']]);
+        $this->middleware('permission:update request_workflows', ['only' => ['update', 'synchronize']]);
         $this->middleware('permission:delete request_workflows', ['only' => ['destroy']]);
     }
 
@@ -216,6 +220,94 @@ class RequestWorkflowController extends Controller
             'success' => true,
             'message' => 'تم الحذف بنجاح'
         ]);
+    }
+
+    public function synchronize(Request $request)
+    {
+        $validated = $request->validate([
+            'request_type_id' => ['required', 'exists:request_types,id'],
+        ]);
+
+        $requestTypeId = (int) $validated['request_type_id'];
+        $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)
+            ->active()->ordered()->with(['section.displayDirector', 'department.displayDirector'])->get();
+        if ($workflows->isEmpty()) {
+            return back()->withErrors(['synchronize' => 'لا توجد مسارات نشطة لمزامنتها.']);
+        }
+
+        $workflowIds = $workflows->pluck('id');
+        $counts = ['created' => 0, 'updated' => 0, 'removed' => 0];
+
+        DB::transaction(function () use ($requestTypeId, $workflows, $workflowIds, &$counts) {
+            RequestModel::where('request_type_id', $requestTypeId)->chunkById(100, function ($requests) use ($workflows, $workflowIds, &$counts) {
+                foreach ($requests as $requestModel) {
+                    $counts['removed'] += RequestResponse::where('request_id', $requestModel->id)
+                        ->where('response_type', 4)
+                        ->whereNotNull('workflow_id')
+                        ->whereNotIn('workflow_id', $workflowIds)
+                        ->delete();
+
+                    foreach ($workflows as $workflow) {
+                        $employeeId = $workflow->default_assigned_employee_id
+                            ?: ($workflow->section?->displayDirector?->employee_id
+                                ?? $workflow->department?->displayDirector?->employee_id);
+                        $response = RequestResponse::where('request_id', $requestModel->id)
+                            ->where('workflow_id', $workflow->id)
+                            ->where('response_type', 4)
+                            ->first();
+
+                        if ($response) {
+                            $response->update([
+                                'assigned_employee_id' => $employeeId,
+                                'section_id' => $workflow->section_id,
+                                'department_id' => $workflow->department_id,
+                            ]);
+                            $counts['updated']++;
+                            continue;
+                        }
+
+                        $previousPendingResponse = RequestResponse::withTrashed()
+                            ->where('request_id', $requestModel->id)
+                            ->where('workflow_id', $workflow->id)
+                            ->where('response_type', 4)
+                            ->first();
+                        if ($previousPendingResponse) {
+                            $previousPendingResponse->restore();
+                            $previousPendingResponse->update([
+                                'assigned_employee_id' => $employeeId,
+                                'section_id' => $workflow->section_id,
+                                'department_id' => $workflow->department_id,
+                            ]);
+                            $counts['updated']++;
+                            continue;
+                        }
+
+                        $hasCompletedResponse = RequestResponse::where('request_id', $requestModel->id)
+                            ->where('workflow_id', $workflow->id)
+                            ->exists();
+                        if ($hasCompletedResponse) {
+                            continue;
+                        }
+
+                        RequestResponse::create([
+                            'response_type' => 4,
+                            'request_id' => $requestModel->id,
+                            'workflow_id' => $workflow->id,
+                            'assigned_employee_id' => $employeeId,
+                            'section_id' => $workflow->section_id,
+                            'department_id' => $workflow->department_id,
+                            'notes' => '-',
+                            'created_by' => auth()->id() ?? $requestModel->created_by,
+                        ]);
+                        $counts['created']++;
+                    }
+                }
+            });
+        });
+
+        Cache::put('request_mail_version', (int) Cache::get('request_mail_version', 0) + 1);
+
+        return back()->with('workflow_sync_result', $counts);
     }
 
     private function validatedAssignee(Request $request, $unit): ?int

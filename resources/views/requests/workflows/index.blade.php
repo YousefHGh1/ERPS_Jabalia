@@ -30,12 +30,27 @@
                                                 <i class="fas fa-plus"></i> {{ __('إضافة مسار') }}
                                             </a>
                                         @endcan
+                                        @can('update request_workflows')
+                                            <form method="POST" action="{{ route('request-workflows.synchronize') }}" class="d-inline" onsubmit="return confirm('سيتم تحديث جميع الطلبات القديمة لهذا النوع: مزامنة الخطوات المعلقة مع المسارات النشطة، وتحديث الموظف المسؤول فيها، مع إبقاء الردود المنجزة كما هي. هل تريد المتابعة؟');">
+                                                @csrf
+                                                <input type="hidden" name="request_type_id" value="{{ $requestType->id }}">
+                                                <button type="submit" class="btn btn-light-success font-weight-bolder mr-2">
+                                                    <i class="fas fa-sync-alt"></i> مزامنة المسارات والطلبات
+                                                </button>
+                                            </form>
+                                        @endcan
                 </x-slot>
             </x-page-header>
         <div class="card card-custom gutter-b shadow-sm border-0">
 
             <div class="card-body pt-7">
                 {{-- Success/Error messages are displayed via SweetAlert2 in layout/error.blade.php --}}
+                @if (session('workflow_sync_result'))
+                    @php($syncResult = session('workflow_sync_result'))
+                    <div class="alert alert-success">
+                        اكتملت المزامنة: أضيفت {{ $syncResult['created'] }} خطوة، وحُدّث تعيين {{ $syncResult['updated'] }} خطوة معلّقة، وأزيلت {{ $syncResult['removed'] }} خطوة معلّقة لم تعد ضمن المسار النشط. الردود المنجزة بقيت كما هي.
+                    </div>
+                @endif
 
                 @if ($workflows->isEmpty())
                     <div class="text-center py-10">

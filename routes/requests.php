@@ -38,6 +38,7 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
     Route::get('/request-workflows/{requestTypeId}', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'index'])->name('request-workflows.index');
     Route::get('/request-workflows/{requestTypeId}/create', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'create'])->name('request-workflows.create');
     Route::post('/request-workflows', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'store'])->name('request-workflows.store');
+    Route::post('/request-workflows/synchronize', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'synchronize'])->name('request-workflows.synchronize');
     Route::get('/request-workflows/{id}/edit', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'edit'])->name('request-workflows.edit');
     Route::put('/request-workflows/{id}', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'update'])->name('request-workflows.update');
     Route::delete('/request-workflows/{id}', [\App\Http\Controllers\Requests\RequestWorkflowController::class, 'destroy'])->name('request-workflows.destroy');
