@@ -53,6 +53,7 @@
                                 <tr class="text-uppercase text-muted">
                                     <th class="pl-0" style="width: 80px">الترتيب</th>
                                     <th style="min-width: 200px">اسم المسار (الدائرة/القسم)</th>
+                                    <th style="min-width: 190px">الموظف المسؤول افتراضياً</th>
                                     <th style="min-width: 200px">المسار السابق</th>
                                     <th style="min-width: 100px">الحالة</th>
                                     <th class="text-right" style="min-width: 120px">الإجراءات</th>
@@ -63,6 +64,13 @@
                                     <tr>
                                         <td class="pl-0">
                                             <span class="text-muted font-weight-bold">{{ $workflow->step_order }}</span>
+                                        </td>
+                                        <td>
+                                            @if($workflow->defaultAssignedEmployee)
+                                                <span class="label label-light-primary label-inline">{{ $workflow->defaultAssignedEmployee->name }}</span>
+                                            @else
+                                                <span class="text-muted">مدير الجهة تلقائياً عند الحفظ</span>
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -161,6 +169,14 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="font-weight-bold">الموظف المسؤول الافتراضي</label>
+                            <select id="default_assigned_employee_id" class="form-control form-control-solid selectpicker w-100" data-live-search="true">
+                                <option value="">يُحدد تلقائياً حسب مدير الجهة</option>
+                            </select>
+                            <small class="form-text text-muted">يمكن تغييره عند إنشاء الطلب. إذا لم تختر موظفاً، يُستخدم رئيس القسم أو مدير الدائرة تلقائياً.</small>
+                        </div>
+
+                        <div class="form-group">
                             <label class="font-weight-bold">{{ __('ترتيب الخطوة') }} <span
                                     class="text-danger">*</span></label>
                             <input type="number" name="step_order" id="step_order" class="form-control form-control-solid"
@@ -231,6 +247,28 @@
         var UPDATE_URL = "{{ route('request-workflows.update', ':id') }}";
         var DELETE_URL = "{{ route('request-workflows.destroy', ':id') }}";
         var REQUEST_TYPE_ID = {{ $requestType->id }};
+        var WORKFLOW_EMPLOYEES = @json($workflowEmployeesData);
+        var UNIT_DIRECTORS = @json($unitDirectors);
+
+        function populateDefaultAssignee(selectedId) {
+            var unit = $('#unit_id').val() || '';
+            var parts = unit.split(':');
+            var type = parts[0], unitId = parts[1];
+            var directorId = UNIT_DIRECTORS[unit] || '';
+            var $select = $('#default_assigned_employee_id');
+            var html = '<option value="">يُحدد تلقائياً حسب مدير الجهة</option>';
+            WORKFLOW_EMPLOYEES.filter(function(employee) {
+                return type === 'section' ? String(employee.section_id) === String(unitId) : (type === 'department' && String(employee.department_id) === String(unitId));
+            }).forEach(function(employee) {
+                var id = String(employee.id);
+                var isDirector = id === String(directorId);
+                var isSelected = selectedId ? id === String(selectedId) : isDirector;
+                html += '<option value="' + id + '" ' + (isSelected ? 'selected' : '') + '>' + $('<div>').text(employee.name + (isDirector ? ' — رئيس/مدير الجهة' : '')).html() + '</option>';
+            });
+            $select.html(html).selectpicker('refresh');
+        }
+
+        $('#unit_id').on('changed.bs.select change', function() { populateDefaultAssignee(''); });
 
         // Initialize selectpicker when modal is shown
         $('#workflow-modal').on('shown.bs.modal', function() {
@@ -247,6 +285,7 @@
             $('#prev_workflow_group').addClass('d-none');
             $('#prev_workflow_check').prop('checked', false);
             $('#step_order').val({{ $workflows->max('step_order') + 1 ?? 1 }});
+            $('#default_assigned_employee_id').val('');
             $('.selectpicker').selectpicker('refresh');
             clearErrors();
             $('#workflow-modal').modal('show');
@@ -290,6 +329,7 @@
                 request_type_id: REQUEST_TYPE_ID,
                 unit_type: unitParts[0],
                 unit_id: unitParts[1],
+                default_assigned_employee_id: $('#default_assigned_employee_id').val() || null,
                 step_order: parseInt(stepOrder),
                 previous_workflow_id: null
             };
@@ -394,6 +434,7 @@
                 $('#unit_id').val(data.department_id ? 'department:' + data.department_id : 'section:' + data
                     .section_id);
                 $('#step_order').val(data.step_order);
+            populateDefaultAssignee(data.default_assigned_employee_id || '');
 
                 if (data.previous_workflow_id) {
                     $('#prev_workflow_check').prop('checked', true);

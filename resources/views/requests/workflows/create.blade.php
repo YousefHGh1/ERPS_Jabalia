@@ -87,6 +87,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="font-weight-bold">الموظف المسؤول الافتراضي</label>
+                        <select name="default_assigned_employee_id" id="default_assigned_employee_id" class="form-control select2" style="width:100%">
+                            <option value="">يُحدد تلقائياً حسب مدير الجهة</option>
+                        </select>
+                        <small class="form-text text-muted">يمكن تغييره عند إنشاء الطلب. إذا لم تختر موظفاً، يُستخدم رئيس القسم أو مدير الدائرة تلقائياً.</small>
+                    </div>
+
+                    <div class="form-group">
                         <div class="checkbox-list">
                             <label class="checkbox checkbox-outline">
                                 <input type="checkbox" id="prev_workflow_check" name="has_previous" value="1">
@@ -136,6 +144,18 @@
             $('.select2').select2({
                 placeholder: 'اختر...',
                 dir: 'rtl'
+            });
+
+            var employees = @json($workflowEmployeesData);
+            var unitDirectors = @json($unitDirectors);
+            $('#unit_id').on('change', function() {
+                var parts = ($(this).val() || '').split(':');
+                var type = parts[0], id = parts[1];
+                var director = unitDirectors[type + ':' + id];
+                var html = '<option value="">يُحدد تلقائياً حسب مدير الجهة</option>';
+                employees.filter(function(employee) { return type === 'section' ? String(employee.section_id) === String(id) : String(employee.department_id) === String(id); })
+                    .forEach(function(employee) { html += '<option value="' + employee.id + '" ' + (String(employee.id) === String(director || '') ? 'selected' : '') + '>' + $('<div>').text(employee.name + (String(employee.id) === String(director || '') ? ' — رئيس/مدير الجهة' : '')).html() + '</option>'; });
+                $('#default_assigned_employee_id').html(html).trigger('change.select2');
             });
 
             $('#workflow-form').submit(function() {

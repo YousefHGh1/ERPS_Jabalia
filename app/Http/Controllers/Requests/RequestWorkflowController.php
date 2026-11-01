@@ -7,6 +7,7 @@ use App\Models\RequestWorkflow;
 use App\Models\RequestType;
 use App\Models\Department;
 use App\Models\Section;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -25,24 +26,52 @@ class RequestWorkflowController extends Controller
         $requestType = RequestType::findOrFail($requestTypeId);
         $page_title = 'مسارات نوع الطلب: ' . $requestType->name;
         $workflows = RequestWorkflow::where('request_type_id', $requestTypeId)
-            ->with(['section', 'department', 'previousWorkflow.section', 'previousWorkflow.department'])
+            ->with(['section', 'department', 'defaultAssignedEmployee', 'previousWorkflow.section', 'previousWorkflow.department'])
             ->orderBy('step_order', 'asc')
             ->get();
-        $sections = Section::select('id', 'name')->orderBy('name')->get();
-        $departments = Department::select('id', 'name')->orderBy('name')->get();
-        return view('requests.workflows.index', compact('page_title', 'workflows', 'requestType', 'sections', 'departments'));
+        $sections = Section::with('displayDirector')->select('id', 'name')->orderBy('name')->get();
+        $departments = Department::with('displayDirector')->select('id', 'name')->orderBy('name')->get();
+        $employees = Employee::active()->whereHas('user')->orderBy('name')->get(['id', 'name', 'section_id', 'department_id']);
+        $workflowEmployeesData = $employees->map(fn ($employee) => [
+            'id' => $employee->id,
+            'name' => $employee->name,
+            'section_id' => $employee->section_id,
+            'department_id' => $employee->department_id,
+        ])->values();
+        $unitDirectors = [];
+        foreach ($sections as $section) {
+            $unitDirectors['section:' . $section->id] = $section->displayDirector?->employee_id;
+        }
+        foreach ($departments as $department) {
+            $unitDirectors['department:' . $department->id] = $department->displayDirector?->employee_id;
+        }
+        return view('requests.workflows.index', compact('page_title', 'workflows', 'requestType', 'sections', 'departments', 'employees', 'workflowEmployeesData', 'unitDirectors'));
     }
 
     public function create($requestTypeId)
     {
         $requestType = RequestType::findOrFail($requestTypeId);
-        $sections = Section::select('id', 'name')->orderBy('name')->get();
-        $departments = Department::select('id', 'name')->orderBy('name')->get();
+        $sections = Section::with('displayDirector')->select('id', 'name')->orderBy('name')->get();
+        $departments = Department::with('displayDirector')->select('id', 'name')->orderBy('name')->get();
+        $employees = Employee::active()->whereHas('user')->orderBy('name')->get(['id', 'name', 'section_id', 'department_id']);
+        $workflowEmployeesData = $employees->map(fn ($employee) => [
+            'id' => $employee->id,
+            'name' => $employee->name,
+            'section_id' => $employee->section_id,
+            'department_id' => $employee->department_id,
+        ])->values();
+        $unitDirectors = [];
+        foreach ($sections as $section) {
+            $unitDirectors['section:' . $section->id] = $section->displayDirector?->employee_id;
+        }
+        foreach ($departments as $department) {
+            $unitDirectors['department:' . $department->id] = $department->displayDirector?->employee_id;
+        }
         $existingWorkflows = RequestWorkflow::where('request_type_id', $requestTypeId)
             ->orderBy('step_order', 'asc')
             ->get();
         $page_title = 'إضافة مسار لنوع الطلب: ' . $requestType->name;
-        return view('requests.workflows.create', compact('page_title', 'requestType', 'sections', 'departments', 'existingWorkflows'));
+        return view('requests.workflows.create', compact('page_title', 'requestType', 'sections', 'departments', 'existingWorkflows', 'employees', 'workflowEmployeesData', 'unitDirectors'));
     }
 
     public function store(Request $request)
@@ -54,6 +83,7 @@ class RequestWorkflowController extends Controller
                 'unit_id' => 'required|integer',
                 'previous_workflow_id' => 'nullable|exists:request_workflows,id',
                 'step_order' => 'required|integer|min:1',
+                'default_assigned_employee_id' => 'nullable|integer|exists:employees,id',
             ]);
 
             $requestTypeId = $request->request_type_id;
@@ -96,6 +126,7 @@ class RequestWorkflowController extends Controller
                 'description' => null,
                 'step_order' => $request->step_order,
                 'is_active' => true,
+                'default_assigned_employee_id' => $this->validatedAssignee($request, $unit),
             ]);
 
             return response()->json([
@@ -135,6 +166,7 @@ class RequestWorkflowController extends Controller
             'unit_id' => 'required|integer',
             'previous_workflow_id' => 'nullable|exists:request_workflows,id',
             'step_order' => 'required|integer|min:1',
+            'default_assigned_employee_id' => 'nullable|integer|exists:employees,id',
         ]);
 
         $workflow = RequestWorkflow::findOrFail($id);
@@ -160,6 +192,7 @@ class RequestWorkflowController extends Controller
             'previous_workflow_id' => $previousWorkflowId,
             'name' => $unit->name,
             'step_order' => $request->step_order,
+            'default_assigned_employee_id' => $this->validatedAssignee($request, $unit),
         ]);
 
         return response()->json([
@@ -183,5 +216,27 @@ class RequestWorkflowController extends Controller
             'success' => true,
             'message' => 'تم الحذف بنجاح'
         ]);
+    }
+
+    private function validatedAssignee(Request $request, $unit): ?int
+    {
+        $employeeId = $request->input('default_assigned_employee_id');
+        if ($employeeId) {
+            $employee = Employee::active()->whereHas('user')->findOrFail($employeeId);
+            $belongsToUnit = $unit instanceof Section
+                ? (int) $employee->section_id === (int) $unit->id
+                : (int) $employee->department_id === (int) $unit->id;
+            if (!$belongsToUnit) {
+                abort(422, 'الموظف المسؤول يجب أن يكون تابعاً للجهة المختارة.');
+            }
+            return (int) $employee->id;
+        }
+
+        $director = $unit->displayDirector()->with('employee')->first();
+        if ($director?->employee && $director->employee->status === 'active' && $director->employee->user) {
+            return (int) $director->employee_id;
+        }
+
+        return null;
     }
 }

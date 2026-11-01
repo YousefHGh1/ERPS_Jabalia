@@ -262,7 +262,7 @@ class RequestService
                 'response_type' => self::RESPONSE_TYPE_WAITING,
                 'request_id' => $request->id,
                 'workflow_id' => $workflow->id,
-                'assigned_employee_id' => $workflowEmployeeIds[$workflow->id] ?? null,
+                'assigned_employee_id' => $workflowEmployeeIds[$workflow->id] ?? $workflow->default_assigned_employee_id,
                 'section_id' => $workflow->section_id,
                 'department_id' => $workflow->department_id,
                 'notes' => '-',

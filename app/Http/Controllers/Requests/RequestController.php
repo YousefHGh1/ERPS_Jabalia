@@ -613,6 +613,9 @@ class RequestController extends Controller
 
                 return [
                     'id' => $workflow->id,
+                    'default_employee_id' => $workflow->default_assigned_employee_id
+                        ?: ($workflow->section?->displayDirector()->value('employee_id')
+                            ?? $workflow->department?->displayDirector()->value('employee_id')),
                     'step_order' => $workflow->step_order,
                     'name' => $workflow->name ?: 'الخطوة ' . $workflow->step_order,
                     'unit' => $workflow->section->name ?? $workflow->department->name ?? 'لم تحدد جهة',

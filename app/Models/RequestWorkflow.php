@@ -16,6 +16,7 @@ class RequestWorkflow extends Model
         'previous_workflow_id',
         'section_id',
         'department_id',
+        'default_assigned_employee_id',
         'name',
         'description',
         'step_order',
@@ -54,6 +55,11 @@ class RequestWorkflow extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function defaultAssignedEmployee()
+    {
+        return $this->belongsTo(Employee::class, 'default_assigned_employee_id');
     }
 
     public function previousWorkflow()

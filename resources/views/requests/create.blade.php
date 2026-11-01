@@ -754,10 +754,10 @@
                             html += '<div class="list-group-item"><div class="d-flex justify-content-between align-items-center flex-wrap">';
                             html += '<div class="mb-2"><span class="badge badge-primary">' + step.step_order + '</span> <strong>' + $('<div>').text(step.name).html() + '</strong><div class="small text-muted">' + $('<div>').text(step.unit).html() + '</div></div>';
                             html += '<div class="form-group mb-0" style="min-width:260px"><label class="small mb-1">الموظف المسؤول</label><select class="form-control form-control-sm" name="workflow_employee_ids[' + step.id + ']">';
-                            html += '<option value="">اختر الموظف (اختياري)</option>';
+                            html += '<option value="">اختر الموظف</option>';
                             var localEmployees = step.employees.filter(function(employee) { return employee.in_unit; });
                             var otherEmployees = step.employees.filter(function(employee) { return !employee.in_unit; });
-                            localEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '">' + $('<div>').text(employee.name).html() + '</option>'; });
+                            localEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '" ' + (String(employee.id) === String(step.default_employee_id) ? 'selected' : '') + '>' + $('<div>').text(employee.name).html() + (String(employee.id) === String(step.default_employee_id) ? ' — المسؤول الافتراضي' : '') + '</option>'; });
                             if (otherEmployees.length) {
                                 html += '<optgroup label="──────── موظفون خارج الجهة المعنية ────────">';
                                 otherEmployees.forEach(function(employee) { html += '<option value="' + employee.id + '">' + $('<div>').text(employee.name + ' — ' + employee.unit).html() + '</option>'; });
