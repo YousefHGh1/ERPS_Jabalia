@@ -23,6 +23,17 @@
             icon="fa-file-lines"
         >
             <x-slot name="actions">
+                @can('update requests')
+                    <form method="POST" action="{{ route('request-workflows.resend-notifications') }}" class="d-inline" onsubmit="return confirm('سيُعاد إرسال إشعار داخل النظام ورسالة SMS إذا كانت مفعّلة لكل الموظفين المسؤولين عن الطلبات التي ما زالت قيد الانتظار{{ request()->filled('request_type_id') ? ' لنوع الطلب المحدد' : '' }}. هل تريد المتابعة؟');">
+                        @csrf
+                        @if(request()->filled('request_type_id'))
+                            <input type="hidden" name="request_type_id" value="{{ request('request_type_id') }}">
+                        @endif
+                        <button type="submit" class="btn btn-light-warning font-weight-bolder">
+                            <i class="fas fa-bell"></i> إعادة تنبيه الموظفين
+                        </button>
+                    </form>
+                @endcan
                 <a href="#" class="btn btn-light-success font-weight-bolder" data-toggle="collapse"
                     data-target="#collapseSearch">
                     <i class="fas fa-search"></i> {{ __('بحث') }}
@@ -41,6 +52,11 @@
                     $requestStats = $requestStats ?? ['total' => 0, 'urgent' => 0, 'overdue' => 0, 'due_soon' => 0, 'pending' => 0];
                     $monitor = request('monitor');
                 @endphp
+                @if (session('reminder_resend_result'))
+                    <div class="alert alert-info">
+                        أُعيد إرسال التنبيه للموظفين المسؤولين عن الطلبات المعلّقة. عدد الطلبات: {{ session('reminder_resend_result')['requests'] }}.
+                    </div>
+                @endif
                 <div class="row mb-7">
                     <div class="col-xl col-md-4 col-sm-6 mb-4">
                         <a href="{{ route('requests.index') }}" class="d-block bg-light-primary rounded p-5 text-decoration-none h-100 {{ $monitor ? '' : 'border border-primary' }}">

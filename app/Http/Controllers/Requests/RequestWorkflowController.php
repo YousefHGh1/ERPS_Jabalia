@@ -10,6 +10,7 @@ use App\Models\Section;
 use App\Models\Employee;
 use App\Models\Request as RequestModel;
 use App\Models\RequestResponse;
+use App\Jobs\SendRequestCreatedNotificationsJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
@@ -22,6 +23,7 @@ class RequestWorkflowController extends Controller
         $this->middleware('permission:index request_workflows', ['only' => ['index']]);
         $this->middleware('permission:store request_workflows', ['only' => ['store']]);
         $this->middleware('permission:update request_workflows', ['only' => ['update', 'synchronize']]);
+        $this->middleware('permission:update requests', ['only' => ['resendPendingNotifications']]);
         $this->middleware('permission:delete request_workflows', ['only' => ['destroy']]);
     }
 
@@ -326,6 +328,32 @@ class RequestWorkflowController extends Controller
         Cache::put('request_mail_version', (int) Cache::get('request_mail_version', 0) + 1);
 
         return back()->with('workflow_sync_result', $counts);
+    }
+
+    public function resendPendingNotifications(Request $request)
+    {
+        $validated = $request->validate([
+            'request_type_id' => ['nullable', 'exists:request_types,id'],
+        ]);
+
+        $requestIds = RequestResponse::query()
+            ->where('response_type', 4)
+            ->whereNotNull('assigned_employee_id')
+            ->whereHas('request', function ($query) use ($validated) {
+                if (!empty($validated['request_type_id'])) {
+                    $query->where('request_type_id', $validated['request_type_id']);
+                }
+            })
+            ->distinct()
+            ->pluck('request_id');
+
+        foreach ($requestIds as $requestId) {
+            SendRequestCreatedNotificationsJob::dispatch((int) $requestId, true);
+        }
+
+        return back()->with('reminder_resend_result', [
+            'requests' => $requestIds->count(),
+        ]);
     }
 
     private function validatedAssignee(Request $request, $unit): ?int

@@ -18,7 +18,8 @@ class SendRequestCreatedNotificationsJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function __construct(
-        public int $requestId
+        public int $requestId,
+        public bool $resendReminder = false
     ) {}
 
     public function handle(): void
@@ -35,7 +36,9 @@ class SendRequestCreatedNotificationsJob implements ShouldQueue
         $smsNotifiedEmployeeIds = [];
 
         $requestTypeName = $request->requestType->name ?? 'غير محدد';
-        $message = "تم إسناد طلب جديد رقم: {$request->id} ({$requestTypeName}) إليك - يرجى مراجعته في بريد الطلبات";
+        $message = $this->resendReminder
+            ? "تذكير: لا يزال لديك طلب رقم {$request->id} ({$requestTypeName}) بحاجة إلى الرد. يرجى مراجعته في بريد الطلبات."
+            : "تم إسناد طلب جديد رقم: {$request->id} ({$requestTypeName}) إليك - يرجى مراجعته في بريد الطلبات";
         $link = route('requests.mail.waiting');
 
         $responses = RequestResponse::with('assignedEmployee.user')
@@ -54,7 +57,7 @@ class SendRequestCreatedNotificationsJob implements ShouldQueue
                 Notification::create([
                     'user_id' => $user->id,
                     'type' => 'request',
-                    'title' => 'طلب جديد مسند إليك',
+                    'title' => $this->resendReminder ? 'تذكير بطلب بحاجة إلى رد' : 'طلب جديد مسند إليك',
                     'message' => $message,
                     'link' => $link,
                     'icon' => 'fa-envelope',
@@ -89,7 +92,9 @@ class SendRequestCreatedNotificationsJob implements ShouldQueue
             return;
         }
 
-        $message = "طلب جديد يحتاج للمعالجة. رقم الطلب: {$request->id}، النوع: {$requestTypeName}. يرجى الدخول إلى بريد الطلبات.";
+        $message = $this->resendReminder
+            ? "تذكير: الطلب رقم {$request->id} ({$requestTypeName}) ما زال بحاجة إلى رد. يرجى مراجعته في بريد الطلبات."
+            : "طلب جديد يحتاج للمعالجة. رقم الطلب: {$request->id}، النوع: {$requestTypeName}. يرجى الدخول إلى بريد الطلبات.";
 
         try {
             $response = Http::asForm()
