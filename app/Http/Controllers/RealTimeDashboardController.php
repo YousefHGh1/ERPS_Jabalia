@@ -10,6 +10,7 @@ use App\Models\Engineering;
 use App\Models\ImprisonmentOrder;
 use App\Models\Notice;
 use App\Models\Notification;
+use Spatie\Activitylog\Models\Activity;
 use App\Models\Request as RequestModel;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -32,6 +33,18 @@ class RealTimeDashboardController extends Controller
         return view('dashboard.realtime');
     }
 
+    public function activityLog(Request $request)
+    {
+        abort_unless($this->isDashboardAdmin(), 403);
+
+        $activities = Activity::with('causer')
+            ->latest('created_at')
+            ->paginate(50)
+            ->withQueryString();
+
+        return view('dashboard.activity-log', compact('activities'));
+    }
+
     public function getRealTimeStats()
     {
         // Prevent cache stampede under high traffic right after cache expiry.
@@ -42,12 +55,20 @@ class RealTimeDashboardController extends Controller
 
         // Fast path
         if (Cache::has($cacheKey)) {
-            return response()->json(Cache::get($cacheKey));
+            $cachedStats = Cache::get($cacheKey);
+            if ($this->isDashboardAdmin()) {
+                $cachedStats['timeline'] = $this->getTimelineData();
+            }
+            return response()->json($cachedStats);
         }
 
         // If someone else is recomputing, avoid forcing all requests to do heavy work.
         if (Cache::has($lockKey)) {
-            return response()->json($this->getRealTimeStatsFallback());
+            $fallbackStats = $this->getRealTimeStatsFallback();
+            if ($this->isDashboardAdmin()) {
+                $fallbackStats['timeline'] = $this->getTimelineData();
+            }
+            return response()->json($fallbackStats);
         }
 
         Cache::put($lockKey, 1, $lockSeconds);
@@ -66,7 +87,7 @@ class RealTimeDashboardController extends Controller
                     'notices' => fn () => $this->getNoticeStats(),
                     'imprisonment' => fn () => $this->getImprisonmentStats(),
                     'heatmap' => fn () => $this->getHeatmapData(),
-                    'timeline' => fn () => $this->getTimelineData(),
+                    'timeline' => fn () => $this->isDashboardAdmin() ? [] : $this->getTimelineData(),
                     'system_alerts' => fn () => $this->getSystemAlerts(),
                 ];
 
@@ -106,6 +127,11 @@ class RealTimeDashboardController extends Controller
 
                 return $stats;
             });
+
+            // Keep the administrator activity feed fresh even while the heavier dashboard metrics stay cached.
+            if ($this->isDashboardAdmin()) {
+                $stats['timeline'] = $this->getTimelineData();
+            }
 
             return response()->json($stats);
         } finally {
@@ -302,6 +328,31 @@ class RealTimeDashboardController extends Controller
 
     private function getTimelineData()
     {
+        if ($this->isDashboardAdmin()) {
+            return Activity::with('causer')
+                ->latest('created_at')
+                ->limit(15)
+                ->get()
+                ->map(function (Activity $activity) {
+                    $subjectLabel = $activity->subject_type
+                        ? \App\Services\ModelAuditLabels::get($activity->subject_type)
+                        : null;
+
+                    return [
+                        'type' => 'activity',
+                        'title' => $activity->description ?: 'حركة مسجلة في النظام',
+                        'description' => $subjectLabel
+                            ? $subjectLabel . ($activity->subject_id ? ' رقم ' . $activity->subject_id : '')
+                            : ($activity->log_name ?: 'النظام'),
+                        'user' => $activity->causer?->name ?? 'النظام',
+                        'time' => $activity->created_at?->diffForHumans(),
+                        'sort_ts' => $activity->created_at?->timestamp ?? 0,
+                        'priority' => 'normal',
+                    ];
+                })
+                ->values();
+        }
+
         // Keep timeline relatively cheap.
         // (This is called only after cache miss for the whole payload.)
         $items = collect();
@@ -373,6 +424,11 @@ class RealTimeDashboardController extends Controller
             });
 
         return $items->sortByDesc('sort_ts')->values();
+    }
+
+    private function isDashboardAdmin(): bool
+    {
+        return auth()->user()?->hasAnyRole(['admin', 'super-admin', 'super_user']) ?? false;
     }
 
     public function getLiveUpdates()

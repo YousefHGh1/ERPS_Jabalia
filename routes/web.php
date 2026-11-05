@@ -104,6 +104,8 @@ Route::middleware(config('permission_ui.middleware'))->group(function () {
             ->name('export.permissions');
         Route::get('export/permission-matrix', [\App\Http\Controllers\Settings\ExportController::class, 'exportPermissionMatrix'])
             ->name('export.permission-matrix');
+        Route::get('export/database', [\App\Http\Controllers\Settings\ExportController::class, 'exportDatabase'])
+            ->name('export.database');
     });
 });
 
@@ -119,6 +121,7 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
     // Real-time Dashboard Routes (protected by permission)
     Route::middleware('can:index real_time_dashboards')->group(function () {
         Route::get('/dashboard/realtime', [RealTimeDashboardController::class, 'index'])->name('dashboard.realtime');
+        Route::get('/dashboard/realtime/activity-log', [RealTimeDashboardController::class, 'activityLog'])->name('dashboard.realtime.activity-log');
         Route::get('/dashboard/realtime-stats', [RealTimeDashboardController::class, 'getRealTimeStats'])->name('dashboard.realtime-stats');
         Route::get('/dashboard/live-updates', [RealTimeDashboardController::class, 'getLiveUpdates'])->name('dashboard.live-updates');
     });

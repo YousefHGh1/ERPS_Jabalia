@@ -35,6 +35,9 @@
                 <a href="{{ route($prefix.'export.permission-matrix') }}" class="btn btn-light-info font-weight-bolder px-4 mb-2">
                     <i class="fas fa-file-excel ml-1"></i>{{ __('المصفوفة') }}
                 </a>
+                <a href="{{ route($prefix.'export.database') }}" class="btn btn-light-danger font-weight-bolder px-4 mb-2">
+                    <i class="fas fa-database ml-1"></i>{{ __('تصدير قاعدة البيانات') }}
+                </a>
             </x-slot>
         </x-page-header>
 
@@ -260,6 +263,9 @@
                     <a href="{{ route($prefix.'export.permissions') }}" class="perm-action perm-action--slate">
                         <i class="fas fa-file-excel"></i><span>{{ __('تصدير الصلاحيات') }}</span>
                     </a>
+                    <a href="{{ route($prefix.'export.database') }}" class="perm-action perm-action--red">
+                        <i class="fas fa-database"></i><span>{{ __('تصدير قاعدة البيانات') }}</span>
+                    </a>
                 </div>
             </div>
 
@@ -456,6 +462,7 @@
 .perm-action--violet { --a: var(--perm-violet); }
 .perm-action--teal { --a: #0BB783; }
 .perm-action--slate { --a: var(--perm-slate); }
+.perm-action--red { --a: var(--perm-red); }
 .perm-quick { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .8rem; }
 .perm-quick-card {
     --a: var(--perm-blue);

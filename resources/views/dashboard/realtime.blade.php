@@ -16,79 +16,70 @@
 
 @push('css')
 <style>
-.stats-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 15px;
-    padding: 1.5rem;
-    color: white;
-    transition: transform 0.3s ease;
-}
-.stats-card:hover {
-    transform: translateY(-5px);
-}
-.live-indicator {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #10b981;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-.heatmap-container {
-    background: #f3f4f6;
-    border-radius: 10px;
-    padding: 1rem;
-}
-.timeline-item {
-    border-left: 3px solid #e5e7eb;
-    padding-left: 1rem;
-    margin-left: 0.5rem;
-}
-.timeline-item.priority-high {
-    border-left-color: #ef4444;
-}
-.alert-badge {
-    animation: bounce 2s infinite;
-}
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
-.realtime-counter {
-    font-variant-numeric: tabular-nums;
-}
-.chart-container {
-    position: relative;
-    height: 300px;
-}
+.realtime-dashboard { --rt-ink:#17233d; --rt-muted:#718096; --rt-line:#e7edf5; --rt-blue:#3b82f6; }
+.realtime-hero { display:flex; align-items:center; justify-content:space-between; gap:20px; padding:22px 26px; margin-bottom:24px; border:1px solid #e7edf5; border-radius:18px; background:linear-gradient(115deg,#fff 15%,#f4f8ff 100%); box-shadow:0 8px 24px rgba(31,55,90,.06); }
+.realtime-hero-copy { display:flex; align-items:center; gap:15px; }
+.realtime-hero-icon { display:grid; place-items:center; width:52px; height:52px; border-radius:15px; color:#2563eb; background:#eaf2ff; font-size:21px; }
+.realtime-hero h1 { color:var(--rt-ink); font-size:21px; font-weight:800; margin:0; }
+.realtime-hero p { margin:5px 0 0; color:var(--rt-muted); font-size:12px; }
+.realtime-hero-actions { display:flex; align-items:center; gap:10px; }
+.realtime-status { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; color:#087c61; background:#e8faf4; font-size:12px; font-weight:700; }
+.realtime-status .live-indicator,.live-indicator { display:inline-block; width:8px; height:8px; flex:0 0 8px; background:#10b981; border-radius:50%; box-shadow:0 0 0 4px rgba(16,185,129,.12); animation:rt-pulse 2s infinite; }
+@keyframes rt-pulse { 50% { opacity:.55; } }
+.stats-card { --rt-accent:#3b82f6; position:relative; height:100%; overflow:hidden; padding:21px; border:1px solid var(--rt-line); border-top:3px solid var(--rt-accent); border-radius:15px; color:var(--rt-ink)!important; background:#fff!important; box-shadow:0 6px 20px rgba(31,55,90,.045); transition:transform .2s ease,box-shadow .2s ease; }
+.stats-card:hover { transform:translateY(-3px); box-shadow:0 12px 26px rgba(31,55,90,.09); }
+.stats-card-employees { --rt-accent:#3b82f6; }
+.stats-card-requests { --rt-accent:#e65c78; }
+.stats-card-crafts { --rt-accent:#d99a20; }
+.stats-card-engineering { --rt-accent:#7c62d9; }
+.stats-card-reservations { --rt-accent:#13a89e; }
+.stats-card-notices { --rt-accent:#ee8a37; }
+.stats-card-imprisonment { --rt-accent:#d85666; }
+.stats-card .font-size-h2 { color:var(--rt-ink); font-size:29px; font-weight:800; letter-spacing:-.5px; }
+.stats-card p,.stats-card>div span { color:var(--rt-muted)!important; font-size:12px; }
+.stats-card .text-white-75,.stats-card .text-white-50,.stats-card .opacity-75 { color:var(--rt-muted)!important; }
+.stats-icon { display:grid; place-items:center; width:43px; height:43px; border-radius:13px; color:var(--rt-accent); background:color-mix(in srgb,var(--rt-accent) 11%,white); }
+.stats-icon i { font-size:18px; }
+.stats-card .border-top { border-color:var(--rt-line)!important; }
+.stats-card .progress { height:5px!important; overflow:hidden; border-radius:10px; background:#eef2f7; }
+.stats-card .progress-bar { background:var(--rt-accent)!important; border-radius:10px; }
+.realtime-dashboard .card-custom { height:100%; overflow:hidden; border:1px solid var(--rt-line); border-radius:16px; box-shadow:0 6px 22px rgba(31,55,90,.045); }
+.realtime-dashboard .card-custom .card-header { min-height:unset; padding:19px 22px!important; border-bottom:1px solid #edf1f6!important; }
+.realtime-dashboard .card-custom .card-title { color:var(--rt-ink)!important; font-size:15px; }
+.heatmap-container { padding:15px; border:1px solid #edf1f6; border-radius:13px; background:#f8fafd; }
+.timeline-item { padding:0 14px 0 0; margin:0 4px 18px 0; border-right:2px solid #e5eaf1; border-left:0; }
+.timeline-item.priority-high { border-right-color:#ef4444; }
+.alert-badge { animation:rt-pulse 2s infinite; }
+.realtime-counter { font-variant-numeric:tabular-nums; }
+.chart-container { position:relative; height:300px; }
+.quick-action-link { min-height:105px; display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:13px; font-size:13px; }
+.quick-action-link i { margin-bottom:9px!important; font-size:21px!important; }
+.realtime-dashboard .card-body { padding:21px; }
+.realtime-dashboard #systemAlerts .alert { display:flex; align-items:center; gap:12px; border-radius:12px; box-shadow:0 4px 14px rgba(31,55,90,.05); }
+.realtime-dashboard .alert-icon { flex:0 0 auto; }
+.realtime-dashboard #liveTimeline { min-height:90px; }
+.realtime-dashboard .timeline-item:last-child { margin-bottom:0!important; }
+.realtime-dashboard .quick-action-link { box-shadow:0 5px 14px rgba(31,55,90,.08); transition:transform .2s ease,box-shadow .2s ease; }
+.realtime-dashboard .quick-action-link:hover { transform:translateY(-2px); box-shadow:0 9px 19px rgba(31,55,90,.13); }
+@media(max-width:767px) { .realtime-hero { align-items:flex-start; flex-direction:column; padding:18px; } .realtime-hero-actions { width:100%; justify-content:space-between; } }
 </style>
 @endpush
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid realtime-dashboard" dir="rtl">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-8">
-        <div>
-            <h1 class="h3 mb-0 text-dark font-weight-bolder">
-                {{ __('مركز التحكم التفاعلي') }}
-                <span class="live-indicator ml-2"></span>
-            </h1>
-            <p class="text-muted mt-2">{{ __('تحديثات فورية للإحصائيات والأنشطة') }}</p>
+    <div class="realtime-hero">
+        <div class="realtime-hero-copy">
+            <div class="realtime-hero-icon"><i class="fas fa-chart-line"></i></div>
+            <div>
+                <h1>{{ __('مركز التحكم التفاعلي') }}</h1>
+                <p>{{ __('تحديثات فورية للإحصائيات والأنشطة') }} · تحديث تلقائي كل 30 ثانية</p>
+            </div>
         </div>
-        <div class="d-flex align-items-center">
-            <span class="badge badge-success mr-3">
-                <i class="fas fa-circle text-success mr-1" style="font-size: 8px;"></i>
-                {{ __('متصل') }}
-            </span>
-            <button class="btn btn-light-primary" onclick="refreshAllData()">
-                <i class="fas fa-sync-alt mr-2"></i>
-                {{ __('تحديث') }}
+        <div class="realtime-hero-actions">
+            <span class="realtime-status"><span class="live-indicator"></span>{{ __('متصل') }}</span>
+            <button class="btn btn-primary font-weight-bold" onclick="refreshAllData(this)">
+                <i class="fas fa-sync-alt ml-2"></i>{{ __('تحديث الآن') }}
             </button>
         </div>
     </div>
@@ -103,13 +94,13 @@
         @can('index employees')
         <!-- Employees Stats -->
         <div class="col-xl-3 col-lg-6 mb-4">
-            <div class="stats-card">
+            <div class="stats-card stats-card-employees">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalEmployees">-</h3>
                         <p class="text-white-75 mb-0">{{ __('إجمالي الموظفين') }}</p>
                     </div>
-                    <div class="text-white-50">
+                    <div class="stats-icon">
                         <i class="fas fa-users fa-2x"></i>
                     </div>
                 </div>
@@ -129,13 +120,13 @@
         @can('index requests')
         <!-- Requests Stats -->
         <div class="col-xl-3 col-lg-6 mb-4">
-            <div class="stats-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="stats-card stats-card-requests">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalRequests">-</h3>
                         <p class="text-white-75 mb-0">{{ __('إجمالي الطلبات') }}</p>
                     </div>
-                    <div class="text-white-50">
+                    <div class="stats-icon">
                         <i class="fas fa-clipboard-list fa-2x"></i>
                     </div>
                 </div>
@@ -155,13 +146,13 @@
         @can('index craft_licenses')
         <!-- Crafts Stats -->
         <div class="col-xl-3 col-lg-6 mb-4">
-            <div class="stats-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <div class="stats-card stats-card-crafts">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalCrafts">-</h3>
                         <p class="text-white-75 mb-0">{{ __('الرخص الحرفية') }}</p>
                     </div>
-                    <div class="text-white-50">
+                    <div class="stats-icon">
                         <i class="fas fa-tools fa-2x"></i>
                     </div>
                 </div>
@@ -181,13 +172,13 @@
         @can('index engineerings')
         <!-- Engineering Stats -->
         <div class="col-xl-3 col-lg-6 mb-4">
-            <div class="stats-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="stats-card stats-card-engineering">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalEngineering">-</h3>
                         <p class="text-white-75 mb-0">{{ __('ملفات الهندسة') }}</p>
                     </div>
-                    <div class="text-white-50">
+                    <div class="stats-icon">
                         <i class="fas fa-drafting-compass fa-2x"></i>
                     </div>
                 </div>
@@ -210,13 +201,13 @@
     <div class="row mb-8">
         @can('index reservations')
         <div class="col-xl-4 col-lg-6 mb-4">
-            <div class="stats-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333;">
+            <div class="stats-card stats-card-reservations">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalReservations">-</h3>
                         <p class="mb-0 opacity-75">{{ __('الحجوزات') }}</p>
                     </div>
-                    <div class="opacity-75">
+                    <div class="stats-icon">
                         <i class="fas fa-calendar-alt fa-2x"></i>
                     </div>
                 </div>
@@ -231,13 +222,13 @@
         @endcan
         @can('index notices')
         <div class="col-xl-4 col-lg-6 mb-4">
-            <div class="stats-card" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); color: #333;">
+            <div class="stats-card stats-card-notices">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalNotices">-</h3>
                         <p class="mb-0 opacity-75">{{ __('الإخطارات') }}</p>
                     </div>
-                    <div class="opacity-75">
+                    <div class="stats-icon">
                         <i class="fas fa-bell fa-2x"></i>
                     </div>
                 </div>
@@ -252,13 +243,13 @@
         @endcan
         @can('index imprisonment_orders')
         <div class="col-xl-4 col-lg-6 mb-4">
-            <div class="stats-card" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); color: #333;">
+            <div class="stats-card stats-card-imprisonment">
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <h3 class="font-size-h2 mb-2 realtime-counter" id="totalImprisonment">-</h3>
                         <p class="mb-0 opacity-75">{{ __('أوامر الحبس') }}</p>
                     </div>
-                    <div class="opacity-75">
+                    <div class="stats-icon">
                         <i class="fas fa-gavel fa-2x"></i>
                     </div>
                 </div>
@@ -300,6 +291,13 @@
                         {{ __('النشاط المباشر') }}
                         <span class="live-indicator ml-2"></span>
                     </h3>
+                    @if(auth()->user()?->hasAnyRole(['admin', 'super-admin', 'super_user']))
+                        <div class="card-toolbar">
+                            <a href="{{ route('dashboard.realtime.activity-log') }}" class="btn btn-sm btn-light-primary font-weight-bold">
+                                <i class="fas fa-list ml-1"></i> عرض الكل
+                            </a>
+                        </div>
+                    @endif
                 </div>
                 <div class="card-body" style="max-height: 400px; overflow-y: auto;">
                     <div id="liveTimeline">
@@ -324,7 +322,7 @@
                     <div class="row">
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('requests.index') }}" class="btn btn-primary btn-block btn-lg">
+                                <a href="{{ route('requests.index') }}" class="quick-action-link btn btn-primary btn-block btn-lg">
                                     <i class="fas fa-clipboard-list mb-2 fa-2x"></i><br>
                                     {{ __('الطلبات') }}
                                 </a>
@@ -334,7 +332,7 @@
         @can('index employee_holiday')
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('EmployeeHolidays.index') }}" class="btn btn-warning btn-block btn-lg">
+                                <a href="{{ route('EmployeeHolidays.index') }}" class="quick-action-link btn btn-warning btn-block btn-lg">
                                     <i class="fas fa-calendar-check mb-2 fa-2x"></i><br>
                                     {{ __('الموافقة على الإجازات') }}
                                     <span class="badge badge-danger ml-2 alert-badge" id="pendingHolidaysBadge">0</span>
@@ -345,7 +343,7 @@
         @can('index craft_licenses')
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('craft_licenses.index') }}" class="btn btn-success btn-block btn-lg">
+                                <a href="{{ route('craft_licenses.index') }}" class="quick-action-link btn btn-success btn-block btn-lg">
                                     <i class="fas fa-tools mb-2 fa-2x"></i><br>
                                     {{ __('الرخص الحرفية') }}
                                     <span class="badge badge-warning ml-2 alert-badge" id="renewalPendingBadge">0</span>
@@ -356,7 +354,7 @@
         @can('index notifications')
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('notifications.index') }}" class="btn btn-info btn-block btn-lg">
+                                <a href="{{ route('notifications.index') }}" class="quick-action-link btn btn-info btn-block btn-lg">
                                     <i class="fas fa-bell mb-2 fa-2x"></i><br>
                                     {{ __('الإشعارات') }}
                                     <span class="badge badge-danger ml-2 alert-badge" id="unreadNotificationsBadge">0</span>
@@ -367,7 +365,7 @@
         @can('index reservations')
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('reservations.index') }}" class="btn btn-success btn-block btn-lg">
+                                <a href="{{ route('reservations.index') }}" class="quick-action-link btn btn-success btn-block btn-lg">
                                     <i class="fas fa-calendar-alt mb-2 fa-2x"></i><br>
                                     {{ __('الحجوزات') }}
                                 </a>
@@ -377,7 +375,7 @@
         @can('index notices')
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('notices.index') }}" class="btn btn-warning btn-block btn-lg">
+                                <a href="{{ route('notices.index') }}" class="quick-action-link btn btn-warning btn-block btn-lg">
                                     <i class="fas fa-bell mb-2 fa-2x"></i><br>
                                     {{ __('الإخطارات') }}
                                 </a>
@@ -387,7 +385,7 @@
         @can('index imprisonment_orders')
                         <div class="col-md-3 mb-4">
                             <div class="text-center">
-                                <a href="{{ route('imprisonment_orders.index') }}" class="btn btn-danger btn-block btn-lg">
+                                <a href="{{ route('imprisonment_orders.index') }}" class="quick-action-link btn btn-danger btn-block btn-lg">
                                     <i class="fas fa-gavel mb-2 fa-2x"></i><br>
                                     {{ __('أوامر الحبس') }}
                                 </a>
@@ -407,6 +405,7 @@
 <script>
 let dashboardData = null;
 let updateInterval = null;
+let heatmapChart = null;
 
 // Initialize dashboard
 $(document).ready(function() {
@@ -476,37 +475,43 @@ function updateAllStats(data) {
 }
 
 function updateCharts(data) {
-    // Heatmap Chart
     const heatmapCtx = document.getElementById('heatmapChart').getContext('2d');
-    new Chart(heatmapCtx, {
+    const chartData = {
+        labels: (data.heatmap || []).map(item => item.area),
+        datasets: [{
+            label: '{{ __('الكثافة') }}',
+            data: (data.heatmap || []).map(item => item.count),
+            backgroundColor: 'rgba(59, 130, 246, .72)',
+            hoverBackgroundColor: 'rgba(37, 99, 235, .9)',
+            borderRadius: 6,
+            maxBarThickness: 34
+        }]
+    };
+
+    if (heatmapChart) {
+        heatmapChart.data = chartData;
+        heatmapChart.update('none');
+        return;
+    }
+
+    heatmapChart = new Chart(heatmapCtx, {
         type: 'bar',
-        data: {
-            labels: data.heatmap.map(item => item.area),
-            datasets: [{
-                label: '{{ __('الكثافة') }}',
-                data: data.heatmap.map(item => item.count),
-                backgroundColor: data.heatmap.map(item => 
-                    `rgba(255, ${255 - item.intensity * 2}, ${255 - item.intensity * 2}, 0.8)`
-                ),
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
+        data: chartData,
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                x: { grid: { display: false }, ticks: { color: '#718096' } },
+                y: { beginAtZero: true, grid: { color: '#edf1f6' }, ticks: { precision: 0, color: '#718096' } }
             }
         }
     });
 }
 
 function updateTimeline(timeline) {
-    const iconMap = { request: 'fa-clipboard-list', holiday: 'fa-calendar', reservation: 'fa-calendar-alt', notice: 'fa-bell' };
-    const bgMap = { request: 'bg-primary', holiday: 'bg-warning', reservation: 'bg-info', notice: 'bg-secondary' };
+    const iconMap = { activity: 'fa-history', request: 'fa-clipboard-list', holiday: 'fa-calendar', reservation: 'fa-calendar-alt', notice: 'fa-bell' };
+    const bgMap = { activity: 'bg-primary', request: 'bg-primary', holiday: 'bg-warning', reservation: 'bg-info', notice: 'bg-secondary' };
     const timelineHtml = timeline.map(item => `
         <div class="timeline-item ${item.priority === 'high' ? 'priority-high' : ''} mb-4">
             <div class="d-flex align-items-start">
@@ -559,14 +564,12 @@ function startRealTimeUpdates() {
     }, 30000);
 }
 
-function refreshAllData() {
-    const btn = event.target;
+function refreshAllData(btn) {
     const originalHtml = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>{{ __('جاري التحديث...') }}';
     btn.disabled = true;
 
     loadDashboardData();
-
     setTimeout(() => {
         btn.innerHTML = originalHtml;
         btn.disabled = false;

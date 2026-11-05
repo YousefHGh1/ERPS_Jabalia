@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
@@ -14,6 +15,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ExportController extends Controller
 {
@@ -113,6 +115,108 @@ class ExportController extends Controller
             'مصفوفة الصلاحيات',
             array_merge(['الدور'], $permissions->pluck('name')->all())
         );
+    }
+
+    /**
+     * Export database backup using PHP
+     * Reads database credentials from .env file
+     */
+    public function exportDatabase(): StreamedResponse
+    {
+        try {
+            // Get database credentials from .env
+            $dbHost = config('database.connections.mysql.host');
+            $dbPort = config('database.connections.mysql.port');
+            $dbName = config('database.connections.mysql.database');
+            $dbUsername = config('database.connections.mysql.username');
+            $dbPassword = config('database.connections.mysql.password');
+
+            // Validate required settings
+            if (empty($dbName)) {
+                return response()->streamDownload(function () {
+                    echo 'Database name not configured in .env file';
+                }, 'error.txt', ['Content-Type' => 'text/plain']);
+            }
+
+            // Generate backup filename with timestamp
+            $timestamp = now()->format('Y-m-d_H-i-s');
+            $filename = "database_backup_{$timestamp}.sql";
+
+            // Stream the SQL dump directly
+            return response()->streamDownload(function () use ($dbHost, $dbPort, $dbUsername, $dbPassword, $dbName) {
+                // Connect to MySQL using PDO
+                $dsn = "mysql:host={$dbHost};port={$dbPort};dbname={$dbName};charset=utf8mb4";
+                $pdo = new \PDO($dsn, $dbUsername, $dbPassword, [
+                    \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                    \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
+                ]);
+
+                // Set SQL mode for consistent export
+                $pdo->exec("SET SESSION sql_mode='NO_AUTO_VALUE_ON_ZERO'");
+
+                // Output headers
+                echo "-- Database Backup\n";
+                echo "-- Generated: " . now()->format('Y-m-d H:i:s') . "\n";
+                echo "-- Database: {$dbName}\n";
+                echo "-- Host: {$dbHost}\n";
+                echo "-- --------------------------------------------------------\n\n";
+
+                // Disable foreign key checks
+                echo "SET FOREIGN_KEY_CHECKS=0;\n\n";
+
+                // Get all tables
+                $tables = $pdo->query("SHOW TABLES")->fetchAll(\PDO::FETCH_COLUMN);
+
+                foreach ($tables as $table) {
+                    echo "-- Table structure for table `{$table}`\n";
+                    echo "DROP TABLE IF EXISTS `{$table}`;\n";
+
+                    // Get CREATE TABLE statement
+                    $createTable = $pdo->query("SHOW CREATE TABLE `{$table}`")->fetch();
+                    echo $createTable['Create Table'] . ";\n\n";
+
+                    // Get table data
+                    $columns = $pdo->query("SHOW COLUMNS FROM `{$table}`")->fetchAll();
+                    $columnNames = array_map(fn($col) => "`{$col['Field']}`", $columns);
+
+                    echo "-- Dumping data for table `{$table}`\n";
+
+                    $rows = $pdo->query("SELECT * FROM `{$table}`")->fetchAll();
+                    if (!empty($rows)) {
+                        foreach ($rows as $row) {
+                            $values = array_map(function($value) {
+                                if ($value === null) {
+                                    return 'NULL';
+                                }
+                                return "'" . addslashes($value) . "'";
+                            }, $row);
+
+                            echo "INSERT INTO `{$table}` (" . implode(', ', $columnNames) . ") VALUES (" . implode(', ', $values) . ");\n";
+                        }
+                    }
+                    echo "\n";
+                }
+
+                // Re-enable foreign key checks
+                echo "SET FOREIGN_KEY_CHECKS=1;\n";
+
+                // Close connection
+                $pdo = null;
+            }, $filename, [
+                'Content-Type' => 'application/sql',
+                'Cache-Control' => 'max-age=0',
+            ]);
+
+        } catch (\Exception $e) {
+            Log::error('Database export exception', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return response()->streamDownload(function () use ($e) {
+                echo "Error: " . $e->getMessage();
+            }, 'error.txt', ['Content-Type' => 'text/plain']);
+        }
     }
 
     /**

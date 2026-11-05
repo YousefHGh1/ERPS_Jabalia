@@ -245,6 +245,12 @@ return [
                     'permissions_key' => 'settings',
                     'children'        => [
                         [
+                            'route'  => 'permission_ui.dashboard',
+                            'label'  => 'لوحة تحكم الصلاحيات',
+                            'icon'   => 'fas fa-tachometer-alt text-primary',
+                            'active' => ['is' => ['permissions/dashboard*']],
+                        ],
+                        [
                             'route'  => 'permission_ui.permissions.index',
                             'label'  => 'Permissions',
                             'icon'   => 'fas fa-shield-alt text-danger',
@@ -267,6 +273,12 @@ return [
                             'label'  => 'نظام الرسائل SMS',
                             'icon'   => 'fas fa-sms text-primary',
                             'active' => ['is' => ['permissions/tweetsms*']],
+                        ],
+                        [
+                            'route'  => 'permission_ui.export.database',
+                            'label'  => 'تصدير قاعدة البيانات',
+                            'icon'   => 'fas fa-database text-danger',
+                            'active' => ['is' => ['permissions/export/database*']],
                         ],
                     ],
                 ],
