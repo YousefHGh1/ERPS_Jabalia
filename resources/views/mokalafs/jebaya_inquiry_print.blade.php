@@ -163,6 +163,8 @@
     <div class="report-meta">
         <span>تاريخ الطباعة: <strong>{{ now()->format('Y-m-d H:i') }}</strong></span>
         <span>|</span>
+        <span>نوع البحث: <strong>{{ $search_type === 'all' ? 'الكل' : ($search_type === 'name' ? 'الاسم' : ($search_type === 'mobile' ? 'رقم الجوال' : ($search_type === 'voucher' ? 'رقم السند' : 'رقم الاشتراك'))) }}</strong></span>
+        <span>|</span>
         <span>نص البحث: <strong>{{ $search ?: '—' }}</strong></span>
         <span>|</span>
         <span>عدد السجلات: <strong>{{ count($invoices) }}</strong></span>

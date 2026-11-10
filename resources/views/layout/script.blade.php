@@ -165,6 +165,80 @@
             navigator.serviceWorker.register('{{ asset("sw.js") }}').catch(function() {});
         });
     }
+
+    // PWA: زر تثبيت التطبيق على الموبايل
+    let deferredPrompt;
+    const installButton = document.createElement('button');
+    installButton.textContent = 'تثبيت التطبيق';
+    installButton.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: linear-gradient(135deg, #3699FF 0%, #007bff 100%);
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(54, 153, 255, 0.4);
+        z-index: 9999;
+        display: none;
+        transition: all 0.3s ease;
+        font-family: 'Cairo', sans-serif;
+    `;
+    installButton.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-3px)';
+        this.style.boxShadow = '0 6px 20px rgba(54, 153, 255, 0.6)';
+    });
+    installButton.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = '0 4px 15px rgba(54, 153, 255, 0.4)';
+    });
+    document.body.appendChild(installButton);
+
+    // الاستماع لحدث beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('🎯 beforeinstallprompt event fired!');
+        e.preventDefault();
+        deferredPrompt = e;
+        installButton.style.display = 'block';
+
+        if (typeof toastr !== 'undefined') {
+            toastr.info('يمكنك تثبيت التطبيق على جوالك!', 'تثبيت التطبيق');
+        }
+    });
+
+    // عند الضغط على زر التثبيت
+    installButton.addEventListener('click', async () => {
+        console.log('Install button clicked');
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('User choice:', outcome);
+            if (outcome === 'accepted') {
+                if (typeof toastr !== 'undefined') {
+                    toastr.success('جاري تثبيت التطبيق...', 'تم');
+                }
+            } else {
+                if (typeof toastr !== 'undefined') {
+                    toastr.info('تم إلغاء التثبيت', 'إلغاء');
+                }
+            }
+            deferredPrompt = null;
+            installButton.style.display = 'none';
+        }
+    });
+
+    // إخفاء الزر بعد التثبيت
+    window.addEventListener('appinstalled', () => {
+        console.log('🎉 App installed!');
+        installButton.style.display = 'none';
+        if (typeof toastr !== 'undefined') {
+            toastr.success('تم تثبيت التطبيق بنجاح!', 'ممتاز');
+        }
+    });
 </script>
 
 <script>

@@ -55,12 +55,20 @@ class JebayaInvoice extends Model
      *    الأرقام العربية والمشرقية والشرطات والمسافات).
      *
      * يتم تهريب محارف LIKE الخاصة (% _ \) حتى تُبحث حرفياً وليس كأنماط عامة.
+     *
+     * @param string $term مصطلح البحث
+     * @param string $searchType نوع البحث: all, name, mobile, voucher, agreement
      */
-    public function scopeSearch(Builder $query, string $term): Builder
+    public function scopeSearch(Builder $query, string $term, string $searchType = 'all'): Builder
     {
         $term = trim($term);
         if ($term === '') {
             return $query;
+        }
+
+        // إذا تم تحديد نوع بحث محدد، قم بالبحث في ذلك الحقل فقط
+        if ($searchType !== 'all') {
+            return $this->searchByField($query, $term, $searchType);
         }
 
         // توحيد الأرقام العربية في مصطلح البحث ليطابق التخزين اللاتيني
@@ -139,6 +147,64 @@ class JebayaInvoice extends Model
             // مطابقة العبارة كاملة وبترتيبها تماماً على العمود المطبّع
             $q->orWhereRaw($nameExpr . ' LIKE ?', ['%' . static::escapeLike($normalizedTerm) . '%']);
         }
+    }
+
+    /**
+     * البحث في حقل محدد فقط.
+     *
+     * @param Builder $query الاستعلام
+     * @param string $term مصطلح البحث
+     * @param string $searchType نوع الحقل: name, mobile, voucher, agreement
+     */
+    private function searchByField(Builder $query, string $term, string $searchType): Builder
+    {
+        $normalizedTerm = normalizeArabicText($term);
+        $digitsOnly = preg_replace('/\D+/', '', $normalizedTerm) ?? '';
+        $nameExpr = static::normalizedNameExpression();
+        $mobileExpr = sqlNormalizeExpression('mobile_no');
+
+        return $query->where(function (Builder $q) use ($term, $normalizedTerm, $digitsOnly, $nameExpr, $mobileExpr, $searchType) {
+            switch ($searchType) {
+                case 'name':
+                    // البحث في الاسم فقط مع التطبيع العربي
+                    if (preg_match('/\p{Arabic}/u', $normalizedTerm)) {
+                        $q->whereRaw($nameExpr . ' LIKE ?', ['%' . static::escapeLike($normalizedTerm) . '%']);
+                    } else {
+                        $q->where('arabic_name', 'like', '%' . static::escapeLike($term) . '%');
+                    }
+                    break;
+
+                case 'mobile':
+                    // البحث في رقم الجوال فقط
+                    $q->where('mobile_no', 'like', '%' . static::escapeLike($term) . '%');
+                    if ($normalizedTerm !== $term) {
+                        $q->orWhere('mobile_no', 'like', '%' . static::escapeLike($normalizedTerm) . '%');
+                    }
+                    if ($digitsOnly !== '' && $digitsOnly !== $term && $digitsOnly !== $normalizedTerm) {
+                        $q->orWhereRaw(
+                            "REPLACE(REPLACE(REPLACE({$mobileExpr}, '-', ''), ' ', ''), '/', '') LIKE ?",
+                            ['%' . static::escapeLike($digitsOnly) . '%']
+                        );
+                    }
+                    break;
+
+                case 'voucher':
+                    // البحث في رقم السند فقط
+                    $q->where('voucher_no', 'like', '%' . static::escapeLike($term) . '%');
+                    if ($normalizedTerm !== $term) {
+                        $q->orWhere('voucher_no', 'like', '%' . static::escapeLike($normalizedTerm) . '%');
+                    }
+                    break;
+
+                case 'agreement':
+                    // البحث في رقم الاشتراك فقط
+                    $q->where('agreement_id', 'like', '%' . static::escapeLike($term) . '%');
+                    if ($normalizedTerm !== $term) {
+                        $q->orWhere('agreement_id', 'like', '%' . static::escapeLike($normalizedTerm) . '%');
+                    }
+                    break;
+            }
+        });
     }
 
     /**

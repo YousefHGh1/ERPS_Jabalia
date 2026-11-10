@@ -18,6 +18,16 @@
             </div>
             <div class="card-body pt-0">
                 <form method="GET" action="{{ route('collection.inquiry') }}" class="row align-items-end">
+                    <div class="col-md-3 mb-3">
+                        <label class="font-weight-bold text-dark">نوع البحث</label>
+                        <select name="search_type" class="form-control form-control-solid">
+                            <option value="all" {{ $search_type === 'all' || $search_type === '' ? 'selected' : '' }}>الكل (بحث عام)</option>
+                            <option value="name" {{ $search_type === 'name' ? 'selected' : '' }}>الاسم</option>
+                            <option value="mobile" {{ $search_type === 'mobile' ? 'selected' : '' }}>رقم الجوال</option>
+                            <option value="voucher" {{ $search_type === 'voucher' ? 'selected' : '' }}>رقم السند</option>
+                            <option value="agreement" {{ $search_type === 'agreement' ? 'selected' : '' }}>رقم الاشتراك</option>
+                        </select>
+                    </div>
                     <div class="col-md-6 mb-3">
                         <label class="font-weight-bold text-dark">البحث</label>
                         <input type="text" name="search" value="{{ $search }}"
@@ -29,12 +39,12 @@
                             وعند البحث بعدة كلمات تُجلب الأسماء التي تحتويها متجاورة وبالتسلسل نفسه.
                         </span>
                     </div>
-                    <div class="col-md-6 mb-3 text-left">
+                    <div class="col-md-3 mb-3 text-left">
                         <button class="btn btn-primary font-weight-bolder">
                             <i class="fas fa-search"></i> استعلام
                         </button>
                         @if ($search !== '')
-                            <a href="{{ route('collection.inquiry.print', ['search' => $search]) }}" target="_blank"
+                            <a href="{{ route('collection.inquiry.print', ['search' => $search, 'search_type' => $search_type]) }}" target="_blank"
                                 class="btn btn-light-success font-weight-bolder mr-2">
                                 <i class="fas fa-print"></i> طباعة
                             </a>

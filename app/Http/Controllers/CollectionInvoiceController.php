@@ -22,6 +22,7 @@ class CollectionInvoiceController extends Controller
     public function index(Request $request)
     {
         $search = trim((string) $request->query('search', ''));
+        $searchType = trim((string) $request->query('search_type', 'all'));
 
         $invoices = collect();
         $totals = [
@@ -29,14 +30,15 @@ class CollectionInvoiceController extends Controller
         ];
 
         if ($search !== '') {
-            $invoices = $this->runQuery($search);
-            $totals = $this->computeTotals($search);
+            $invoices = $this->runQuery($search, $searchType);
+            $totals = $this->computeTotals($search, $searchType);
         }
 
         return view('mokalafs.jebaya_inquiry', [
-            'search'   => $search,
-            'invoices' => $invoices,
-            'totals'   => $totals,
+            'search'      => $search,
+            'search_type' => $searchType,
+            'invoices'    => $invoices,
+            'totals'      => $totals,
         ]);
     }
 
@@ -46,18 +48,20 @@ class CollectionInvoiceController extends Controller
     public function print(Request $request)
     {
         $search = trim((string) $request->query('search', ''));
+        $searchType = trim((string) $request->query('search_type', 'all'));
 
         if ($search === '') {
             return redirect()->route('collection.inquiry')
                 ->with('warning', 'يجب إدخال مصطلح بحث للطباعة.');
         }
 
-        $invoices = $this->runQuery($search, 500);
+        $invoices = $this->runQuery($search, $searchType, 500);
 
         return view('mokalafs.jebaya_inquiry_print', [
-            'search'   => $search,
-            'invoices' => $invoices->getCollection(),
-            'totals'   => $this->computeTotals($search),
+            'search'      => $search,
+            'search_type' => $searchType,
+            'invoices'    => $invoices->getCollection(),
+            'totals'      => $this->computeTotals($search, $searchType),
         ]);
     }
 
@@ -79,13 +83,13 @@ class CollectionInvoiceController extends Controller
      * عند البحث بالاسم تُرتَّب النتائج حسب مدى التزامها بنطاق البحث: الأسماء
      * التي تبدأ بالعبارة المطلوبة أولاً ثم الأقرب إليها، ثم تاريخ السند.
      */
-    protected function runQuery(string $search, int $perPage = self::PER_PAGE)
+    protected function runQuery(string $search, string $searchType = 'all', int $perPage = self::PER_PAGE)
     {
         $term = trim($search);
-        $query = JebayaInvoice::search($term);
+        $query = JebayaInvoice::search($term, $searchType);
 
         $normalized = normalizeArabicText($term);
-        if (preg_match('/\p{Arabic}/u', $normalized)) {
+        if (preg_match('/\p{Arabic}/u', $normalized) && $searchType === 'all') {
             $nameExpr = JebayaInvoice::normalizedNameExpression();
             // 1) العبارة الكاملة أولاً (تطابق متجاور)، ثم 2) تطابق كل الكلمات بأي ترتيب، ثم الأحدث
             $phraseLike = '%' . escapeLike($normalized) . '%';
@@ -104,9 +108,9 @@ class CollectionInvoiceController extends Controller
     /**
      * حساب مجاميع النتائج بنفس شروط البحث المرن.
      */
-    protected function computeTotals(string $search): array
+    protected function computeTotals(string $search, string $searchType = 'all'): array
     {
-        $agg = JebayaInvoice::search($search)
+        $agg = JebayaInvoice::search($search, $searchType)
             ->selectRaw('COUNT(*) AS c')
             ->selectRaw('COALESCE(SUM(net_amt),0) AS s_net')
             ->selectRaw('COALESCE(SUM(total_late),0) AS s_late')
