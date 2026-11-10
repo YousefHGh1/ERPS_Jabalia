@@ -94,7 +94,6 @@ class JebayaImport extends Command
         $wr->open('zip://' . str_replace('\\', '/', $file) . '#' . $wsName, null, LIBXML_NONET);
 
         $inserted = 0;
-        $skipped = 0;
         $chunk = [];
         $rowNum = 0; // 1-based excel row
 
@@ -109,26 +108,30 @@ class JebayaImport extends Command
 
             $cells = $this->parseRow($wr, $shared);
 
-            $name   = $cells['L'] ?? '';
-            $amount = $this->num($cells['E'] ?? 0); // net_amt
+            // الأعمدة الجديدة في الملف:
+            // A: وصف المالك (الاسم)
+            // B: رقم المستفيد (رقم السند)
+            // K: وصف رقم الخدمة (رقم الجوال أو معلومات إضافية)
+            // J: الإجمالي حتى تاريخ 1/1/2023
 
-            if ($name === '' && $amount == 0) {
-                $skipped++;
-                continue;
-            }
+            $name = $cells['A'] ?? ''; // وصف المالك
+            $voucherNo = $cells['B'] ?? ''; // رقم المستفيد
+            $totalAmount = $this->num($cells['J'] ?? 0); // الإجمالي
+            $serviceInfo = $cells['K'] ?? ''; // وصف رقم الخدمة
 
+            // استيراد جميع الصفوف بدون تخطي
             $chunk[] = [
-                'agreement_id'        => $this->nullable($cells['A'] ?? null),
-                'voucher_no'          => $this->nullable($cells['B'] ?? null),
-                'voucher_date'        => $this->excelDate($cells['C'] ?? null),
-                'voucher_amt'         => $this->num($cells['D'] ?? 0),
-                'net_amt'             => $amount,
-                'total_late'          => $this->num($cells['F'] ?? 0),
-                'last_due_date'       => $this->excelDate($cells['G'] ?? null),
-                'current_voucher_amt' => $this->num($cells['H'] ?? 0),
-                'auto_discount_ratio' => $this->num($cells['I'] ?? 0),
-                'voucher_month'       => $this->nullable($cells['J'] ?? null),
-                'mobile_no'           => $this->nullable($cells['K'] ?? null),
+                'agreement_id'        => null, // غير موجود في الملف الجديد
+                'voucher_no'          => $this->nullable($voucherNo),
+                'voucher_date'        => null, // غير موجود في الملف الجديد
+                'voucher_amt'         => $totalAmount,
+                'net_amt'             => $totalAmount,
+                'total_late'          => 0.0,
+                'last_due_date'       => null, // غير موجود في الملف الجديد
+                'current_voucher_amt' => $totalAmount,
+                'auto_discount_ratio' => 0.0,
+                'voucher_month'       => null, // غير موجود في الملف الجديد
+                'mobile_no'           => $this->nullable($serviceInfo),
                 'arabic_name'         => $name,
                 'created_at'          => now(),
                 'updated_at'          => now(),
@@ -152,7 +155,7 @@ class JebayaImport extends Command
                 ->update(['records_count' => $inserted, 'imported_at' => now()]);
         }
 
-        $this->info("اكتمل الاستيراد: تم إدراج {$inserted} فاتورة (تم تخطي {$skipped} صف فارغ).");
+        $this->info("اكتمل الاستيراد: تم إدراج {$inserted} فاتورة.");
 
         return self::SUCCESS;
     }
