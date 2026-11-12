@@ -28,7 +28,7 @@
                             <option value="agreement" {{ $search_type === 'agreement' ? 'selected' : '' }}>رقم الاشتراك</option>
                         </select>
                     </div>
-                    <div class="col-md-6 mb-9">
+                    <div class="col-md-8 mb-6">
                         <label class="font-weight-bold text-dark">البحث</label>
                         <input type="text" name="search" value="{{ $search }}"
                             class="form-control form-control-solid"
@@ -38,7 +38,7 @@
                             البحث بالاسم لا يتأثر باختلاف الحروف (أ/إ/آ = ا، ة = ه، ى = ي) .
                         </span>
                     </div>
-                    <div class="col-md-3 mb-3 text-left">
+                    <div class="col-md-1 mb-3 text-left">
                         <button class="btn btn-primary font-weight-bolder">
                             <i class="fas fa-search"></i> استعلام
                         </button>
