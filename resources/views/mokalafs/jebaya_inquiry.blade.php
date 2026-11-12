@@ -28,7 +28,7 @@
                             <option value="agreement" {{ $search_type === 'agreement' ? 'selected' : '' }}>رقم الاشتراك</option>
                         </select>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-6 mb-9">
                         <label class="font-weight-bold text-dark">البحث</label>
                         <input type="text" name="search" value="{{ $search }}"
                             class="form-control form-control-solid"
