@@ -495,6 +495,36 @@ class RequestController extends Controller
         return view('requests.print', compact('request'));
     }
 
+    public function history(RequestModel $request)
+    {
+        $this->authorize('view', $request);
+        $request = $this->requestRepository->findWithRelations($request->id);
+
+        if (! $request) {
+            abort(404, 'الطلب غير موجود');
+        }
+
+        // جمع جميع الحركات من Activity Log
+        $activities = Activity::forSubject($request)
+            ->with('causer')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // جمع الردود على الطلب
+        $responses = $request->responses()
+            ->with(['responsedBy', 'section', 'department', 'workflow', 'responseType'])
+            ->orderBy('responsed_at', 'desc')
+            ->get();
+
+        // جمع المدفوعات
+        $payments = $request->payments()
+            ->with('user')
+            ->orderBy('payment_date', 'desc')
+            ->get();
+
+        return view('requests.history', compact('request', 'activities', 'responses', 'payments'));
+    }
+
     public function apiIndex(Request $request)
     {
         $filters = $request->only(['search', 'request_type_id', 'status_id', 'mokalaf_id', 'is_urgent', 'from_date', 'to_date']);

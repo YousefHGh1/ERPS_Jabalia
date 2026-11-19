@@ -19,6 +19,7 @@ Route::middleware(['auth', \App\Http\Middleware\EagerLoadAuthUser::class])->grou
     // Requests Resource Routes
     Route::resource('/requests', RequestController::class)->except(['create']);
     Route::get('/requests/{request}/print', [RequestController::class, 'print'])->name('requests.print');
+    Route::get('/requests/{request}/history', [RequestController::class, 'history'])->name('requests.history');
     Route::post('/requests/{request}/add-payment', [RequestController::class, 'addPayment'])->name('requests.add-payment');
     Route::post('/request-payments/{payment}/cancel', [RequestController::class, 'cancelRequestPayment'])->name('requests.cancel-payment');
 

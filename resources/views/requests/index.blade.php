@@ -264,6 +264,9 @@
                                                 <a href="{{ route('requests.show', $request) }}" class="dropdown-item">
                                                     <i class="fas fa-eye text-info mr-2"></i> {{ __('عرض التفاصيل') }}
                                                 </a>
+                                                <a href="{{ route('requests.history', $request) }}" class="dropdown-item">
+                                                    <i class="fas fa-history text-warning mr-2"></i> {{ __('سجل الحركات') }}
+                                                </a>
                                                 <a href="{{ route('requests.print', $request) }}" class="dropdown-item" target="_blank">
                                                     <i class="fas fa-print text-success mr-2"></i> {{ __('طباعة الطلب') }}
                                                 </a>
