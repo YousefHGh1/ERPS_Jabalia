@@ -61,6 +61,7 @@ return [
     'profiles' => 'الملفات الشخصية',
     'registers' => 'التسجيل',
     'request_mails' => 'بريد الطلبات',
+    'request_mail_officer' => 'موظف متابعة بريد الطلبات',
     'request_types' => 'أنواع الطلبات',
     'request_workflows' => 'سير عمل الطلبات',
     'requests' => 'الطلبات',
