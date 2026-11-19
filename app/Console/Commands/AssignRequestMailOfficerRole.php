@@ -237,12 +237,13 @@ class AssignRequestMailOfficerRole extends Command
 
         $this->newLine();
         $this->info('========== الخطوات التالية ==========');
-        $this->line('1) يجب التأكد من ربط كل موظف بقسم «قسم قلم الجمهور» من شاشة الموظفين');
+        $this->line('1) الموظفون الآن لديهم دور «موظف متابعة بريد الطلبات»');
         $this->line('2) قم بتنظيف الكاش على السيرفر:');
         $this->line('   php artisan cache:clear');
         $this->line('   php artisan config:cache');
         $this->line('   php artisan view:clear');
-        $this->line('3) الموظفون الآن يستطيعون الوصول إلى بريد الطلبات والرد على الطلبات');
+        $this->line('3) الموظفون يستطيعون الوصول إلى بريد الطلبات والرد على الطلبات');
+        $this->line('   (بغض النظر عن القسم الذي هم فيه)');
 
         return 0;
     }
