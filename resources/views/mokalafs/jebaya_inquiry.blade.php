@@ -106,6 +106,8 @@
                                 <thead>
                                     <tr>
                                         <th>الاسم</th>
+                                        <th>اسم المنتفع</th>
+                                        <th>العنوان</th>
                                         <th>رقم الاشتراك</th>
                                         <th>رقم السند</th>
                                         <th>التاريخ</th>
@@ -114,7 +116,6 @@
                                         <th class="text-center">الصافي</th>
                                         <th class="text-center">المتأخرات</th>
                                         <th class="text-center">الحسم</th>
-                                        <th>الجوال</th>
                                         <th class="text-center">إجراءات</th>
                                     </tr>
                                 </thead>
@@ -122,6 +123,8 @@
                                     @foreach ($invoices as $inv)
                                         <tr>
                                             <td>{{ $inv->arabic_name }}</td>
+                                            <td>{{ $inv->beneficiary_name ?? '-' }}</td>
+                                            <td>{{ $inv->address ?? '-' }}</td>
                                             <td>{{ $inv->agreement_id ?? '-' }}</td>
                                             <td>{{ $inv->voucher_no ?? '-' }}</td>
                                             <td>{{ optional($inv->voucher_date)->format('Y-m-d') ?? '-' }}</td>
@@ -130,7 +133,6 @@
                                             <td class="text-center">{{ number_format($inv->net_amt, 2) }}</td>
                                             <td class="text-center">{{ number_format($inv->total_late, 2) }}</td>
                                             <td class="text-center">{{ number_format($inv->auto_discount_ratio, 2) }}</td>
-                                            <td>{{ $inv->mobile_no ?: '-' }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('collection.inquiry.show', $inv->id) }}" target="_blank"
                                                     class="btn btn-sm btn-light-primary font-weight-bolder">

@@ -174,6 +174,8 @@
         <thead>
             <tr>
                 <th>الاسم</th>
+                <th>اسم المنتفع</th>
+                <th>العنوان</th>
                 <th>رقم الاشتراك</th>
                 <th>رقم السند</th>
                 <th>التاريخ</th>
@@ -182,13 +184,14 @@
                 <th>الصافي</th>
                 <th>المتأخرات</th>
                 <th>الحسم</th>
-                <th>الجوال</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($invoices as $inv)
                 <tr>
                     <td>{{ $inv->arabic_name }}</td>
+                    <td>{{ $inv->beneficiary_name ?? '-' }}</td>
+                    <td>{{ $inv->address ?? '-' }}</td>
                     <td>{{ $inv->agreement_id ?? '-' }}</td>
                     <td>{{ $inv->voucher_no ?? '-' }}</td>
                     <td>{{ optional($inv->voucher_date)->format('Y-m-d') ?? '-' }}</td>
@@ -197,21 +200,20 @@
                     <td>{{ number_format($inv->net_amt ?? 0, 2) }}</td>
                     <td>{{ number_format($inv->total_late ?? 0, 2) }}</td>
                     <td>{{ number_format($inv->auto_discount_ratio ?? 0, 2) }}</td>
-                    <td>{{ $inv->mobile_no ?: '-' }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="10" class="empty-state">لا توجد فواتير مطابقة لهذا البحث</td>
+                    <td colspan="11" class="empty-state">لا توجد فواتير مطابقة لهذا البحث</td>
                 </tr>
             @endforelse
 
             @if (count($invoices))
                 <tr class="totals-row">
-                    <td colspan="5" class="totals-label">المجموع</td>
+                    <td colspan="7" class="totals-label">المجموع</td>
                     <td>{{ number_format($totals['amt'] ?? 0, 2) }}</td>
                     <td>{{ number_format($totals['net'] ?? 0, 2) }}</td>
                     <td>{{ number_format($totals['late'] ?? 0, 2) }}</td>
-                    <td colspan="2">&nbsp;</td>
+                    <td colspan="1">&nbsp;</td>
                 </tr>
             @endif
         </tbody>

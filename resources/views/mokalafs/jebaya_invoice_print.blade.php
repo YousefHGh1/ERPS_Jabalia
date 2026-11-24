@@ -93,6 +93,9 @@
             gap: 14px;
             margin-bottom: 20px;
         }
+        .info-section .info-box {
+            min-height: auto;
+        }
         .info-box {
             background: var(--panel-bg);
             padding: 14px;
@@ -222,8 +225,9 @@
                 <div class="info-box">
                     <h3>معلومات المشترك</h3>
                     <p><span>الاسم:</span> <span class="value">{{ $invoice->arabic_name }}</span></p>
+                    <p><span>اسم المنتفع:</span> <span class="value">{{ $invoice->beneficiary_name ?? '-' }}</span></p>
+                    <p><span>العنوان:</span> <span class="value">{{ $invoice->address ?? '-' }}</span></p>
                     <p><span>رقم الاشتراك:</span> <span class="value">{{ $invoice->agreement_id ?? '-' }}</span></p>
-                    <p><span>رقم الجوال:</span> <span class="value">{{ $invoice->mobile_no ?: '-' }}</span></p>
                 </div>
                 <div class="info-box">
                     <h3>معلومات الفاتورة</h3>

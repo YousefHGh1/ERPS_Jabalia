@@ -28,6 +28,8 @@ class JebayaInvoice extends Model
         'voucher_month',
         'mobile_no',
         'arabic_name',
+        'beneficiary_name',
+        'address',
     ];
 
     protected $casts = [

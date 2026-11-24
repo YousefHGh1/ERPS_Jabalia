@@ -35,7 +35,7 @@ class JebayaImport extends Command
             return $this->importFromFile($tmpPath, true);
         }
 
-        $file = $this->option('file') ?: base_path('fawatweeer.xlsx');
+        $file = $this->option('file') ?: base_path('نهائي نهائي الجباية كاملة.xlsx');
 
         if (! file_exists($file)) {
             $this->error("الملف غير موجود: {$file}");
@@ -111,13 +111,15 @@ class JebayaImport extends Command
             // الأعمدة الجديدة في الملف:
             // A: وصف المالك (الاسم)
             // B: رقم المستفيد (رقم السند)
-            // K: وصف رقم الخدمة (رقم الجوال أو معلومات إضافية)
+            // C: اسم المستفيد (اسم المنتفع)
+            // K: وصف رقم الخدمة (العنوان)
             // J: الإجمالي حتى تاريخ 1/1/2023
 
             $name = $cells['A'] ?? ''; // وصف المالك
             $voucherNo = $cells['B'] ?? ''; // رقم المستفيد
+            $beneficiaryName = $cells['C'] ?? ''; // اسم المستفيد (المنتفع)
             $totalAmount = $this->num($cells['J'] ?? 0); // الإجمالي
-            $serviceInfo = $cells['K'] ?? ''; // وصف رقم الخدمة
+            $address = $cells['K'] ?? ''; // وصف رقم الخدمة (العنوان)
 
             // استيراد جميع الصفوف بدون تخطي
             $chunk[] = [
@@ -131,8 +133,10 @@ class JebayaImport extends Command
                 'current_voucher_amt' => $totalAmount,
                 'auto_discount_ratio' => 0.0,
                 'voucher_month'       => null, // غير موجود في الملف الجديد
-                'mobile_no'           => $this->nullable($serviceInfo),
+                'mobile_no'           => null, // غير موجود في الملف الجديد
                 'arabic_name'         => $name,
+                'beneficiary_name'    => $this->nullable($beneficiaryName),
+                'address'             => $this->nullable($address),
                 'created_at'          => now(),
                 'updated_at'          => now(),
             ];
