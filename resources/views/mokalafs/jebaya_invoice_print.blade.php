@@ -250,7 +250,7 @@
                         <div class="value">{{ number_format($invoice->total_late ?? 0, 2) }} ₪</div>
                     </div>
                     <div class="amount-box discount">
-                        <div class="label">الحسم</div>
+                        <div class="label">الخصم</div>
                         <div class="value">{{ number_format($invoice->auto_discount_ratio ?? 0, 2) }} %</div>
                     </div>
                 </div>

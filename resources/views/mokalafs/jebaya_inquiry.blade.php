@@ -111,7 +111,7 @@
                                         <th class="text-center">المستحق</th>
                                         <th class="text-center">الصافي</th>
                                         <th class="text-center">المتأخرات</th>
-                                        <th class="text-center">الحسم</th>
+                                        <th class="text-center">الخصم</th>
                                         <th class="text-center">إجراءات</th>
                                     </tr>
                                 </thead>
