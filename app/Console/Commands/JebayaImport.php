@@ -110,21 +110,21 @@ class JebayaImport extends Command
 
             // الأعمدة الجديدة في الملف:
             // A: وصف المالك (الاسم)
-            // B: رقم المستفيد (رقم السند)
+            // B: رقم المستفيد (رقم الاشتراك)
             // C: اسم المستفيد (اسم المنتفع)
             // K: وصف رقم الخدمة (العنوان)
             // J: الإجمالي حتى تاريخ 1/1/2023
 
             $name = $cells['A'] ?? ''; // وصف المالك
-            $voucherNo = $cells['B'] ?? ''; // رقم المستفيد
+            $agreementId = $cells['B'] ?? ''; // رقم المستفيد (رقم الاشتراك)
             $beneficiaryName = $cells['C'] ?? ''; // اسم المستفيد (المنتفع)
             $totalAmount = $this->num($cells['J'] ?? 0); // الإجمالي
             $address = $cells['K'] ?? ''; // وصف رقم الخدمة (العنوان)
 
             // استيراد جميع الصفوف بدون تخطي
             $chunk[] = [
-                'agreement_id'        => null, // غير موجود في الملف الجديد
-                'voucher_no'          => $this->nullable($voucherNo),
+                'agreement_id'        => $this->nullable($agreementId), // رقم المستفيد (رقم الاشتراك)
+                'voucher_no'          => null, // غير موجود في الملف الجديد
                 'voucher_date'        => null, // غير موجود في الملف الجديد
                 'voucher_amt'         => $totalAmount,
                 'net_amt'             => $totalAmount,

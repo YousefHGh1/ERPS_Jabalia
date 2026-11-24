@@ -226,14 +226,11 @@
                     <h3>معلومات المشترك</h3>
                     <p><span>الاسم:</span> <span class="value">{{ $invoice->arabic_name }}</span></p>
                     <p><span>اسم المنتفع:</span> <span class="value">{{ $invoice->beneficiary_name ?? '-' }}</span></p>
-                    <p><span>العنوان:</span> <span class="value">{{ $invoice->address ?? '-' }}</span></p>
                     <p><span>رقم الاشتراك:</span> <span class="value">{{ $invoice->agreement_id ?? '-' }}</span></p>
                 </div>
                 <div class="info-box">
                     <h3>معلومات الفاتورة</h3>
-                    <p><span>رقم السند:</span> <span class="value">{{ $invoice->voucher_no ?? '-' }}</span></p>
-                    <p><span>التاريخ:</span> <span class="value">{{ optional($invoice->voucher_date)->format('Y-m-d') ?? '-' }}</span></p>
-                    <p><span>الشهر:</span> <span class="value">{{ $invoice->voucher_month ?? '-' }}</span></p>
+                    <p><span>رقم الاشتراك:</span> <span class="value">{{ $invoice->agreement_id ?? '-' }}</span></p>
                 </div>
             </div>
 

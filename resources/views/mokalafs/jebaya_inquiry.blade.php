@@ -107,11 +107,7 @@
                                     <tr>
                                         <th>الاسم</th>
                                         <th>اسم المنتفع</th>
-                                        <th>العنوان</th>
                                         <th>رقم الاشتراك</th>
-                                        <th>رقم السند</th>
-                                        <th>التاريخ</th>
-                                        <th>الشهر</th>
                                         <th class="text-center">المستحق</th>
                                         <th class="text-center">الصافي</th>
                                         <th class="text-center">المتأخرات</th>
@@ -124,11 +120,7 @@
                                         <tr>
                                             <td>{{ $inv->arabic_name }}</td>
                                             <td>{{ $inv->beneficiary_name ?? '-' }}</td>
-                                            <td>{{ $inv->address ?? '-' }}</td>
                                             <td>{{ $inv->agreement_id ?? '-' }}</td>
-                                            <td>{{ $inv->voucher_no ?? '-' }}</td>
-                                            <td>{{ optional($inv->voucher_date)->format('Y-m-d') ?? '-' }}</td>
-                                            <td>{{ $inv->voucher_month ?? '-' }}</td>
                                             <td class="text-center">{{ number_format($inv->voucher_amt, 2) }}</td>
                                             <td class="text-center">{{ number_format($inv->net_amt, 2) }}</td>
                                             <td class="text-center">{{ number_format($inv->total_late, 2) }}</td>
